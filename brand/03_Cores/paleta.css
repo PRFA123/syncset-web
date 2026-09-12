@@ -1,0 +1,25 @@
+:root {
+  --color-primary: #0B132B;
+  --color-secondary: #00F0FF;
+  --color-accent: #7B2CBF;
+  --color-neutral-light: #F4F4F9;
+  --color-neutral-white: #FFFFFF;
+
+  --color-primary-rgb: 11, 19, 43;
+  --color-secondary-rgb: 0, 240, 255;
+  --color-accent-rgb: 123, 44, 191;
+  --color-neutral-light-rgb: 244, 244, 249;
+  --color-neutral-white-rgb: 255, 255, 255;
+
+  /* Day Mode */
+  --bg-day: var(--color-neutral-white);
+  --text-day: var(--color-primary);
+  --accent-day: var(--color-secondary);
+  --accent-secondary-day: var(--color-accent);
+
+  /* Night Mode */
+  --bg-night: var(--color-primary);
+  --text-night: var(--color-neutral-white);
+  --accent-night: var(--color-secondary);
+  --accent-secondary-night: var(--color-accent);
+}

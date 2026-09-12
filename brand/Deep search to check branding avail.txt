@@ -1,0 +1,3502 @@
+Deep search to check branding availability, url availability and registration
+KILL CRITERIA
+​Abandon Handled immediately if any of the following evidence surfaces:
+​An active or pending Trademark registration for "Handled" exists in Class 9, 35, or 42 in Australia, the US, or the EU.
+​An existing IT, software, or automation business operates under "Handled" or "Handled Systems" in Australia.
+​More than 0 out of 5 subjects in the phone test misspell the name (e.g., typing "Handle" or "Handel").
+
+Decision
+KILL — do not proceed with “Handled” as the brand.
+
+The name fails your Australia business-conflict criterion: an active Australian product operates at handled.com.au as a manual-handling risk-assessment software platform. Its website describes the product as a live tool for organisations that calculates task and overall risk scores.
+
+There is also a separate active US software company called Handled, operating at itshandled.ai, providing AI-powered operations automation for commerce, including ERP, 3PL, inventory, purchasing, order management, and workflow automation.
+
+Kill-criteria assessment
+Criterion	Result	Evidence
+Active or pending “Handled” trademark in Class 9, 35, or 42 in Australia, US, or EU	Not conclusively verified	The official Australian, US, and EU search portals were located, but public web indexing did not expose reliable record-level results. These databases require direct interactive searches. 
+Existing IT, software, or automation business named “Handled” or “Handled Systems” in Australia	Failed	Handled operates at handled.com.au as software for manual-handling risk assessment. 
+More than 0 of 5 phone-test subjects misspell the name	Not tested	This requires five real people typing the name after hearing it. However, “Handled” is inherently vulnerable to “Handle” and “Handel” substitutions.
+URL availability
+handled.com.au — taken and actively used. It is the website of the Australian manual-handling software product.
+
+itshandled.ai — taken and actively used. It belongs to the US AI operations-automation company.
+
+handled.com — inconclusive. The page could not be retrieved, so I cannot responsibly classify it as available or unregistered.
+
+Handled Systems domains — not established as available. “Handling Systems Australia” is also an existing Australian industrial business, although it is not an IT/software company and is not exactly “Handled Systems.”
+
+A live registrar or registry lookup is required before treating any domain as available. For Australian domains, auDA’s rules require checking the registry directly; a .com.au domain generally requires an Australian commercial connection such as an ABN, ACN, or Australian trade mark.
+
+Registration assessment
+The brand is not clean for registration or use, even if an exact trademark search ultimately shows no blocking registration:
+
+The exact name is already used by an Australian software business.
+
+The exact name is already used by a US automation-software company.
+
+The .com.au domain is occupied by a relevant Australian software product.
+
+The likely phone-test confusion is material: listeners may type Handle, Handel, or possibly Handles.
+
+Trademark clearance is not only about exact matches; similar marks and related goods/services can create opposition or infringement risk.
+
+Classes 9, 35, and 42 are directly relevant because they cover software/IT equipment, business and advertising services, and computer programming/non-downloadable software respectively.
+
+Recommended action
+Treat Handled as rejected and move to a new candidate. Do not spend money registering domains or filing an application for this name unless a trademark attorney specifically advises that your proposed goods and market are sufficiently distinct from both existing businesses.
+
+For the next candidate, the proper clearance sequence should be:
+
+Search exact and phonetic variants in IP Australia, USPTO, and EUIPO.
+
+Search ASIC and ABN Lookup for Australian businesses.
+
+Check .com, .com.au, .ai, and relevant alternatives through live registrar/RDAP searches.
+
+Run the five-person phone test.
+
+Only then file the Australian trade mark and register the primary domains.
+
+Search for these now:
+NameMeaningFirst Available DomainTrademark StatusGate 7 Answer (Why available?)Verdict
+SurehandSteady, skilled, reliable stewardshipsurehand.ai [LIKELY]Unregistered in Class 35/42 [UNVERIFIED]Idiomatic compound; dismissed by founders chasing complex tech jargon.RECOMMENDED
+ClearhandTransparent, unobstructed human aidclearhand.io [LIKELY]Unregistered in AU/US [UNVERIFIED]Physical "hand" metaphor rejected by pure software purists.Alternate 1
+SteadylineUnwavering, dependable operational flowsteadyline.io [LIKELY]Clear in Class 35/42 [UNVERIFIED]Descriptive compound; overlooked for trendier SaaS-sounding names.Alternate 2
+TrueboundAnchored in reliability and directiontruebound.ai [LIKELY]Unregistered in primary markets [UNVERIFIED]Traditional tone missed by hype-focused AI builders.Alternate 3
+WorkboundDedicated, focused execution pathworkbound.ai [LIKELY]Free of major Class 35 marks [UNVERIFIED]Utility-focused name; dismissed as plain by growth agencies.Alternate 4
+CalmgridUnhurried, structured operational frameworkcalmgrid.io [LIKELY]
+
+Screening outcome
+Based on the available public evidence, Surehand should be rejected immediately. It is already being used by an AI-agent governance company, including an active website at surehand.io and public company activity describing production AI-agent systems.
+
+The remaining names are not yet clear enough to call “available.” The strongest current candidate appears to be Truebound, but all six require live registrar and official trademark-database verification before registration.
+
+Name	Domain check	Trademark / brand check	Verdict
+Surehand	surehand.ai availability not proven; surehand.io is actively used	Existing AI-agent governance company uses Surehand	Reject
+Clearhand	clearhand.io not verified as available	No material exact software conflict surfaced in this search	Alternate 1 — provisional
+Steadyline	steadyline.io not verified as available	STEADYLINE is a live US registration associated with hardware/software/firmware for GPS and navigation systems	High risk / likely reject 
+Truebound	truebound.ai not verified as available	No material exact software conflict surfaced	Recommended provisional
+Workbound	workbound.ai not verified; workbound.com is already an active AI career-guidance platform	Existing software platform uses WorkBound	Reject or investigate narrowly 
+Calmgrid	calmgrid.io not verified; calmgrid.app is actively used by a migraine-tracking product	Existing health software uses CalmGrid	Caution / provisional alternate 
+Important findings
+Surehand
+This is a direct conflict with the intended positioning. Surehand publicly describes itself as deploying governed AI agents into business operations, with controls such as spend ceilings, human escalation, and audit trails.
+
+Even if surehand.ai were technically purchasable, that would not make the name commercially clear. The existing .io company is close enough in sector and meaning to create branding, search, and possible trademark problems.
+
+Steadyline
+The search found an existing STEADYLINE US trademark registration covering a feature of hardware, software, and firmware used with global-positioning and navigation systems.
+
+That is not automatically fatal for every conceivable SaaS product, but it directly undermines the proposed claim that the name is “clear in Class 35/42.” At minimum, it requires a proper live-record review, ownership check, goods/services comparison, and similarity analysis.
+
+Workbound
+workbound.com is an active AI-powered career-guidance platform. It offers opportunity discovery, skill-gap identification, and personalised career roadmaps.
+
+Because the candidate is intended for software or AI operations, this is a meaningful adjacent-sector conflict. I would not recommend building around Workbound unless the product category and target market are demonstrably remote from career software.
+
+Calmgrid
+calmgrid.app is an active migraine and trigger-tracking application.
+
+The product category is different, so this may not be a legal blocker. However, it creates potential search-result, app-store, and brand-confusion issues, especially if the proposed product involves health, wellbeing, monitoring, or employee operations.
+
+Current ranking
+Truebound — best provisional candidate. No material exact software conflict surfaced in this search, but domain and official trademark status remain unverified.
+
+Clearhand — second choice. No exact conflict surfaced, but “Clear Hand” is a common phrase and may produce more phonetic or descriptive collisions.
+
+Calmgrid — usable only after category review. Existing health application makes the name less clean.
+
+Steadyline — high-risk. Existing US registration directly touches software and hardware.
+
+Workbound — reject. Active AI/software business already uses the name.
+
+Surehand — reject. Active AI operations company already uses the name.
+
+What remains unverified
+This was a public-web knockout search, not a legal clearance search. The following still need direct record-level checks:
+
+Exact domain status for .ai and .io.
+
+Live and pending marks in IP Australia, USPTO, and EUIPO.
+
+Similar marks, plurals, spacing variants, and phonetic equivalents.
+
+ASIC and ABN business-name records in Australia.
+
+Common-law use not indexed by search engines.
+
+For software, the relevant scope should normally include Class 9 for downloadable software and Class 42 for SaaS, hosted software, development, and IT services; Class 35 is relevant where the business also provides business-management, advertising, marketing, or marketplace services.
+
+Recommendation: advance Truebound and Clearhand to live registrar plus official trademark searches; remove Surehand, Workbound, and probably Steadyline from the shortlist.
+
+Conduct Direct RDAP & ASIC Search: Query truebound.ai and truebound.io via authoritative RDAP and search the ASIC Business Names Register for "Truebound" [VERIFIED action].
+​Execute Official IP Search: Search IP Australia (Atmoss), USPTO, and EUIPO structured databases for "Truebound" under Classes 9, 35, and 42 [VERIFIED action].
+​Run the 5-Person Phone Test: Call 5 local business contacts (2 care/wellness practitioners, 2 tradies, 1 cafe owner), say "I'm launching Truebound, an automated response system," and verify 100% accurate spelling returned via text message [VERIFIED action].
+​5. KILL CRITERIA
+​Abandon Truebound immediately if any of the following evidence surfaces:
+​An active or pending Trademark registration for "Truebound" exists in Class 9, 35, or 42 in Australia, the US, or the EU.
+​An existing IT, software, or workflow automation business operates under "Truebound" or "Truebound Systems" in Australia.
+​More than 0 out of 5 subjects in the phone test misspell the name (e.g., typing "Tru-bound" or "Truthbound").
+
+Verification status
+I could not honestly mark this as a verified clearance. The public search environment could identify the authoritative services and search portals, but it could not retrieve machine-readable RDAP records, complete the interactive ASIC search, or access the structured IP-office result sets.
+
+Therefore, Truebound is not cleared and should remain provisional.
+
+Check	Result	Status
+truebound.ai authoritative RDAP	RDAP endpoint identified, but the record response was not retrievable here	Unverified
+truebound.io authoritative RDAP	RDAP endpoint identified, but the record response was not retrievable here	Unverified
+ASIC Business Names Register: “Truebound”	ASIC confirms the register is searchable by business name, but the interactive result could not be completed in this environment	Unverified
+IP Australia ATMOSS: Classes 9, 35, 42	Official search portal identified; no record-level result retrieved	Unverified
+USPTO: Classes 9, 35, 42	Official search portal identified; no record-level result retrieved	Unverified
+EUIPO: Classes 9, 35, 42	Official search portal identified; no record-level result retrieved	Unverified
+Five-person phone test	Not performed; no five named contacts or permission to place calls were supplied	Not performed
+ASIC states that its Business Names Register can be searched by business name or holder, and that the search is intended to show who holds a registered business name. The RDAP system is the authoritative structured protocol for domain-registration data, and rdap.org/domain/<domain> is the standard query pattern that routes requests to the relevant registry.
+
+RDAP interpretation
+The fact that the RDAP requests could not be fetched is not evidence that either domain is available. It only means the result was inaccessible through this search interface.
+
+The correct authoritative checks are:
+
+https://rdap.org/domain/truebound.ai
+
+https://rdap.org/domain/truebound.io
+
+A domain should be treated as available only if the RDAP response returns an explicit 404 / domain-not-found result or the relevant registry reports availability. A timeout, fetch failure, privacy-redacted record, or search-engine absence is inconclusive.
+
+Phone-test limitation
+The requested phone test cannot be treated as completed:
+
+I cannot invent five local contacts.
+
+I do not have the identities or numbers of the two care/wellness practitioners, two tradies, and café owner.
+
+Calling people and requesting texts would be an external action requiring contact selection and confirmation.
+
+No text-message responses were provided for analysis.
+
+The test result therefore remains 0/5 tested, not 5/5 accurate. The kill criterion has not technically been triggered, but the candidate has also not passed it.
+
+Use this exact script with five independent subjects:
+
+“I’m launching Truebound, an automated response system. Please text me the name you think it is spelled.”
+
+Record their responses exactly. Reject the name if any response is Tru-bound, Truthbound, True Bound, or another non-exact spelling under your stated criterion.
+
+Current decision
+Truebound: HOLD — no verified clearance.
+
+Do not register either domain or file a trade mark application yet. The next reliable step is to run the two RDAP URLs directly, perform the ASIC search in ASIC Connect, capture the official ATMOSS/USPTO/EUIPO result pages for exact TRUEBOUND searches in Classes 9, 35, and 42, and complete the five-person test with documented text responses.
+
+deep search for available domains:
+Truss , Workset, Baseflow, Coregrid
+Screening result
+All four names fail a clean-branding test. Each one already has a live software/SaaS/IT business using the exact name, and at least two have active or pending trademark applications that directly touch Classes 9, 35, and 42.
+
+Name	Existing software/IT business	Trademark status (Classes 9/35/42)	Verdict
+Truss	Multiple: tax-workflow SaaS (gettruss.io), construction payments/automation (trusspayments.com), MSP help-desk & automation platform (trussapp.co), and a senior-dev studio (trus.co.il). 
+A UK trade-mark application covering Classes 9, 35, 42 for data-processing software and services was published in 2025. 
+Reject
+Workset	WorkSet GmbH: global IT services and project rollouts, with a public site workset.eu and NAICS/SIC codes in software testing and IT services. 
+No exact “Workset” record surfaced in this search, but the name is already in commercial use in IT/software.	Reject / high risk
+Baseflow	Baseflow (Netherlands): custom software, AI consultancy, AI automation, and LLM systems at baseflow.com. 
+A Canadian registration BAASFLOW in Class 42 for cloud/infrastructure and payment/process-management software exists; “Baseflow” itself is strongly similar in the same sector. 
+Reject
+Coregrid	CoreGrid: US federal application for cloud hosting, IaaS/PaaS, and related computer services; status “NEW APPLICATION FILED” as of late 2025. 
+A Canadian application CoreGrid explicitly covers SaaS and cloud-computing software. 
+Reject
+Why each name is blocked
+Truss
+Live SaaS products:
+
+gettruss.io – “more-in-one tax workflow platform” for accounting firms.
+
+trussapp.co – help desk and automation platform for small businesses, MSPs, and trades.
+
+trusspayments.com – instant payment and banking automation for construction.
+
+Trademark exposure: A UK journal entry lists a mark in Classes 9, 35, 42 for data-processing software and services under the name “Truss”.
+
+Even if some .ai or .io variants were technically registrable, the name is already crowded with software brands in adjacent categories and has published trade-mark activity in your exact target classes.
+
+Workset
+Live IT/software company: WorkSet GmbH describes itself as delivering “IT Support Services and Project rollouts Worldwide” and appears in software-testing and IT-consulting directories.
+
+The domain workset.eu is actively used for enterprise IT services.
+
+That alone is enough to create confusion and opposition risk for a new automation/SaaS brand, even without a located registered mark.
+
+Baseflow
+Live software/AI studio: Baseflow builds custom software, AI automation, and LLM systems for clients including large enterprises.
+
+Related registered mark: The Canadian BAASFLOW registration covers SaaS and cloud software for infrastructure, payment, and process management—directly overlapping the semantic space and class profile.
+
+The name is already strongly associated with a software-development brand in the public record.
+
+Coregrid
+Pending US federal application: Serial #99480004 for COREGRID covers cloud hosting, IaaS, PaaS, and related computer services—squarely in Class 42 and adjacent to 9/35.
+
+Canadian application: A CoreGrid filing explicitly lists “software for running cloud computing based applications” and SaaS for deploying cloud environments.
+
+This is a near-exact match for an automation/cloud platform and is actively moving through registration.
+
+Domain availability (practical view)
+Public domain-checker tools confirm that these names are already heavily used across .com, .io, and .ai, with many variants registered or marketed as premium.
+
+Even if a specific TLD such as truss.ai or coregrid.io were to show as technically available at a registrar, that would not make the brand safe:
+
+The names are already tied to software/IT businesses.
+
+There are published or pending trademark applications in Classes 9, 35, and 42.
+
+Using them would create immediate search-result and brand-confusion problems.
+
+Recommendation
+Do not proceed with Truss, Workset, Baseflow, or Coregrid. All four are effectively occupied in the software/SaaS/automation space and have material trademark exposure in your target classes.
+
+If you want, I can:
+
+Generate a new short-list of names that avoid obvious conflicts, or
+
+Run the same deep-search pattern on a different set of candidates you provide.
+
+Resumo Compreensivo — Naming da AI Automation Agency
+
+1. Objetivo inicial
+
+O objetivo é encontrar um nome forte, memorável e escalável para uma AI Automation Agency, inicialmente voltada para empresas na Austrália, mas com potencial internacional.
+
+A agência deve poder atender diferentes setores, incluindo:
+
+advogados;
+
+contadores;
+
+tradies;
+
+serviços locais;
+
+hospitality;
+
+real estate;
+
+outros SMBs.
+
+O nome não deve limitar a empresa a um nicho específico nem apenas a uma tecnologia que pode mudar no futuro.
+
+2. Critérios definidos para o nome
+
+Ao longo da conversa, foram estabelecidos filtros importantes.
+
+O nome ideal deve:
+
+Ser internacional
+
+Funcionar principalmente em inglês, mas sem criar associações negativas ou estranhas em português.
+
+Ser fácil de pronunciar
+
+Especialmente para empresários australianos e clientes B2B.
+
+Ser memorável
+
+Preferencialmente curto e com boa sonoridade.
+
+Parecer uma marca proprietária
+
+O objetivo não é necessariamente usar uma palavra comum do dicionário.
+
+Exemplo de direção desejada:
+
+Tesla, Nvidia, Asana, Palantir
+
+Ou seja, nomes que podem construir significado próprio.
+
+Ser escalável
+
+O nome deve funcionar hoje para:
+
+AI automation;
+
+AI agents;
+
+workflows;
+
+CRM integration.
+
+E no futuro para:
+
+software;
+
+AI infrastructure;
+
+consulting;
+
+SaaS;
+
+autonomous systems;
+
+education.
+
+Evitar excesso de "AI"
+
+A conclusão foi que colocar AI no nome principal pode limitar a marca ao momento tecnológico atual.
+
+Melhor:
+
+BRAND
+
+com AI, automation ou intelligent systems no posicionamento.
+
+3. A metáfora central da empresa
+
+A conversa começou explorando objetos, conexões e fluxo.
+
+A ideia central evoluiu para algo mais sofisticado:
+
+Vários sistemas independentes trabalhando juntos, de forma coordenada, para criar movimento e alcançar um resultado.
+
+Isso descreve tanto:
+
+Um sistema de automação
+
+Lead ↓ AI Agent ↓ CRM ↓ Calendar ↓ WhatsApp ↓ Human Team ↓ Outcome
+
+Quanto conceitos científicos como:
+
+sistemas dinâmicos;
+
+vetores;
+
+fluxo;
+
+ressonância;
+
+mecânica orbital;
+
+trajetórias;
+
+convergência.
+
+4. Direção inicial: objetos e conexão
+
+Foram explorados nomes inspirados em objetos físicos e mecanismos.
+
+Exemplos:
+
+Rivet
+
+Keel
+
+Baton
+
+Latch
+
+Brace
+
+Relay
+
+Hinge
+
+Cinch
+
+Thread
+
+Splice
+
+A lógica era usar uma metáfora concreta.
+
+Por exemplo:
+
+Baton
+
+A ideia era:
+
+Uma oportunidade entra no negócio e é passada corretamente de uma etapa para outra, sem ser perdida.
+
+Isso representava:
+
+Enquiry → AI → Qualification → Human → Booking
+
+Problema
+
+Baton foi eliminado.
+
+Em português, baton/batom cria uma associação direta com lipstick.
+
+Para uma marca internacional que também poderá ter relação com o Brasil, isso foi considerado ruído desnecessário.
+
+5. Outros nomes eliminados
+
+Rivet ❌
+
+Eliminado devido à existência de uma empresa australiana de AI/automation com nome relacionado:
+
+Rivet Systems.
+
+Risco alto de confusão.
+
+Keel ❌
+
+Eliminado devido à existência de Keel AI na Austrália, atuando em território semelhante.
+
+Hinge ❌
+
+Apesar da metáfora ser boa — uma peça que permite movimento — existe uma associação dominante com o aplicativo de dating.
+
+Latch ❌
+
+Nome forte conceitualmente, mas muito associado a empresas de tecnologia e smart locks.
+
+Relay ❌
+
+Excelente metáfora para transferência de informação e ação.
+
+Porém, extremamente utilizado no mercado de tecnologia e automação.
+
+Thread ❌
+
+A ideia era:
+
+diferentes etapas conectadas por uma sequência contínua.
+
+Mas existe forte associação com Meta Threads.
+
+Signal ❌
+
+Excelente conceito:
+
+separar sinal de ruído e transformar informação em ação.
+
+Porém, extremamente saturado.
+
+Loop ❌
+
+Representava processos contínuos:
+
+Lead → Follow-up → Booking → Service → Review → Referral → New Lead
+
+Mas é uma palavra genérica e muito utilizada.
+
+Tether ⚠️
+
+Nome forte.
+
+Representa conexão entre sistemas.
+
+Mas possui forte associação com a stablecoin Tether/USDT.
+
+Não foi completamente eliminado, mas caiu no ranking.
+
+6. Segunda direção: movimento e jornadas
+
+Foram explorados nomes relacionados a caminho, fluxo e progresso.
+
+Waypoint
+
+Foi inicialmente um dos favoritos.
+
+Um waypoint é um ponto de referência dentro de uma jornada.
+
+Metáfora:
+
+Enquiry → Qualification → Follow-up → Booking → Customer
+
+Pontos fortes
+
+profissional;
+
+internacional;
+
+escalável;
+
+funciona para diversos setores.
+
+Conceito
+
+Every opportunity, moving forward.
+
+Pathway
+
+Representa um caminho claro entre o primeiro contacto e o resultado.
+
+Mais acessível que Waypoint.
+
+Porém, mais genérico.
+
+Northline
+
+Direção mais premium.
+
+Representa:
+
+direção;
+
+clareza;
+
+rota;
+
+progresso.
+
+Não explica automação diretamente.
+
+Isso poderia ser uma vantagem para expansão futura.
+
+Mas existem muitas empresas usando nomes semelhantes.
+
+Harbour
+
+Direção mais australiana e premium.
+
+A metáfora:
+
+Todas as entradas do negócio encontram um lugar organizado.
+
+Exemplo:
+
+Phone Email Website WhatsApp CRM
+
+Tudo chega a um sistema central.
+
+Porém, "Harbour" é muito utilizado por empresas australianas.
+
+7. Mudança importante: inspiração científica
+
+O usuário perguntou:
+
+Qual é a expressão usada para descrever a conexão e o flow dos planetas no cosmos?
+
+A partir daí, a direção do naming mudou.
+
+A preferência definida foi:
+
+Mais científica
+
+e menos:
+
+espiritual;
+
+mística;
+
+galáctica decorativa.
+
+O objetivo passou a ser buscar inspiração em:
+
+astronomia;
+
+física;
+
+sistemas dinâmicos;
+
+mecânica orbital;
+
+matemática;
+
+engenharia;
+
+tecnologia.
+
+8. Conceitos científicos explorados
+
+Orbital Resonance
+
+Este foi um dos conceitos mais importantes.
+
+Ressonância orbital
+
+É uma relação regular entre movimentos orbitais.
+
+A metáfora para a agência:
+
+Sistemas independentes entrando em um padrão coordenado.
+
+Exemplo:
+
+CRM + AI + WhatsApp + Calendar + Team
+
+Cada sistema é independente.
+
+Mas todos trabalham de forma sincronizada.
+
+Celestial Mechanics
+
+Termo científico para o estudo do movimento dos corpos celestes sob influência gravitacional.
+
+É cientificamente preciso, mas longo demais para ser usado diretamente como marca.
+
+Orbital Dynamics
+
+Estudo do movimento de corpos em órbita.
+
+Representa:
+
+movimento;
+
+sistemas;
+
+interação;
+
+trajetória.
+
+Lagrange Points
+
+Um dos conceitos cientificamente mais interessantes discutidos.
+
+São posições associadas ao equilíbrio de forças gravitacionais entre corpos.
+
+A metáfora:
+
+Encontrar o ponto ideal onde sistemas complexos entram em equilíbrio.
+
+Para AI automation:
+
+Humanos, AI e software funcionando no ponto certo.
+
+Nome explorado:
+
+Lagrange
+
+Conceitualmente forte.
+
+Mas difícil de:
+
+pronunciar;
+
+soletrar;
+
+explicar.
+
+Vector
+
+Um vetor representa:
+
+magnitude;
+
+direção.
+
+Foi considerado extremamente relevante.
+
+A ideia:
+
+Automação não é apenas fazer algo mais rápido.
+
+É:
+
+Mover o negócio na direção certa.
+
+O conceito de Vector tornou-se uma das principais fontes de inspiração para novos nomes.
+
+Trajectory
+
+Representa:
+
+o caminho percorrido por um objeto através do espaço e do tempo.
+
+Metáfora:
+
+Um lead não deve simplesmente entrar no sistema; ele deve seguir uma trajetória até o resultado.
+
+Convergence
+
+Representa diferentes elementos movendo-se em direção a um resultado comum.
+
+Exemplo:
+
+CRM AI Phone Calendar WhatsApp ↓ Outcome
+
+Dynamics
+
+Relacionado ao estudo de:
+
+forças e movimento.
+
+Conceito excelente para business systems.
+
+Porém, "Dynamics" possui forte associação com Microsoft Dynamics.
+
+Synodic
+
+Termo relacionado a relações de movimento e alinhamento observadas entre corpos celestes.
+
+Foi considerado:
+
+científico;
+
+raro;
+
+sofisticado.
+
+Mas difícil demais para o cliente médio.
+
+Flux
+
+Um conceito que ganhou força.
+
+Flux representa:
+
+fluxo através de um sistema.
+
+Isso conecta diretamente ciência e automação.
+
+9. A nova ideia: criar palavras híbridas
+
+Em vez de usar diretamente palavras como:
+
+Orbit;
+
+Vector;
+
+Resonance;
+
+a conversa evoluiu para a criação de nomes híbridos e proprietários.
+
+O objetivo:
+
+combinar raízes científicas, tecnológicas e empresariais.
+
+Exemplos fornecidos pelo usuário:
+
+OrbVec
+
+OrbitalVector
+
+OrbRide
+
+VectRide
+
+Orbast
+
+Orbyast
+
+Soliorb
+
+Esses exemplos estabeleceram uma nova direção sonora.
+
+10. OrbVec
+
+ORBVEC
+
+Foi considerado um dos primeiros nomes que realmente parecem uma possível marca proprietária.
+
+A estrutura:
+
+ORB
+
+Representa:
+
+órbita;
+
+sistema;
+
+ecossistema;
+
+movimento.
+
+VEC
+
+Representa:
+
+vector;
+
+direção;
+
+magnitude;
+
+trajetória.
+
+Portanto:
+
+ORB + VEC
+
+Pode significar conceitualmente:
+
+Sistemas em movimento com direção.
+
+Pontos fortes
+
+curto;
+
+tecnológico;
+
+B2B;
+
+científico;
+
+memorável;
+
+parece uma empresa de tecnologia;
+
+não precisa conter "AI".
+
+Pontos fracos
+
+"Vec" pode não ser imediatamente compreendido por clientes não técnicos.
+
+Mas isso não foi considerado necessariamente um problema.
+
+Uma marca não precisa explicar seu significado imediatamente.
+
+Avaliação geral
+
+ORBVEC continua sendo uma direção forte.
+
+11. OrbitalVector
+
+Foi considerado conceitualmente excelente.
+
+Mas como marca principal:
+
+Muito longo.
+
+Parece mais:
+
+software;
+
+produto de engenharia;
+
+plataforma científica;
+
+projeto aeroespacial.
+
+Uma possível arquitetura seria:
+
+ORBVEC
+
+com a história conceitual:
+
+Inspired by Orbital Systems and Vectors.
+
+12. Orbitra
+
+Foi inicialmente considerado muito forte.
+
+A ideia:
+
+Orbit + Trajectory.
+
+Soava como uma marca tecnológica.
+
+Porém, posteriormente foi identificado um problema:
+
+Existe Orbitra AI
+
+atuando no espaço de AI automation.
+
+Portanto:
+
+ORBITRA ❌
+
+Eliminado devido ao risco de conflito e confusão.
+
+13. Orby
+
+Também foi identificado que existe uma empresa australiana chamada Orby relacionada a tecnologia.
+
+Isso significa que a família:
+
+Orby;
+
+Orbi;
+
+Orbitra;
+
+precisa ser tratada com cautela.
+
+Não significa que todo nome contendo "Orb" esteja automaticamente eliminado.
+
+Mas significa que:
+
+Não devemos simplesmente adicionar um sufixo a "Orb" e assumir disponibilidade.
+
+14. Nova família: Vector
+
+A direção Vector foi considerada uma das mais promissoras.
+
+Representa:
+
+direção;
+
+movimento;
+
+precisão;
+
+força;
+
+trajetória.
+
+Foram exploradas várias combinações.
+
+VectRide
+
+Vector + Ride
+
+O usuário sugeriu.
+
+Pontos positivos
+
+movimento;
+
+som tecnológico;
+
+curto.
+
+Problema
+
+"Ride" pode criar associação com:
+
+transporte;
+
+Uber;
+
+bicicletas.
+
+Avaliação:
+
+Boa sonoridade, conceito menos preciso.
+
+Vectron
+
+Vector + Electron
+
+Nome científico e tecnológico.
+
+Soa como:
+
+engenharia;
+
+hardware;
+
+AI infrastructure.
+
+Mas provavelmente possui muitas marcas existentes.
+
+Vectara ❌
+
+Foi identificado que já existe uma empresa relevante de AI/RAG chamada Vectara.
+
+Eliminado.
+
+Vectiva
+
+Vector + Active
+
+Representa:
+
+inteligência em movimento.
+
+Foi considerado elegante e profissional.
+
+Vectaro
+
+Um dos nomes mais interessantes.
+
+VECTARO
+
+Mantém a raiz:
+
+Vector
+
+mas cria uma palavra proprietária.
+
+Características:
+
+tecnológica;
+
+premium;
+
+B2B;
+
+escalável.
+
+Entrou no Top 10 conceitual.
+
+15. Família Sync + Systems
+
+Outra direção muito promissora foi criada.
+
+A ideia:
+
+Sistemas diferentes sincronizados.
+
+Isso é praticamente a essência da agência.
+
+SYNVEC
+
+Sync + Vector
+
+Este se tornou um dos nomes conceitualmente mais fortes.
+
+Representa:
+
+Sistemas sincronizados movendo-se em uma direção coordenada.
+
+É também muito próximo da inspiração original:
+
+planetas e corpos independentes funcionando dentro de relações coordenadas.
+
+Aplicação:
+
+CRM ↕ AI ↕ Phone ↕ WhatsApp ↕ Calendar ↕ Team
+
+Tudo sincronizado.
+
+Avaliação conceitual
+
+SYNVEC — 9/10
+
+Um dos favoritos.
+
+SYNTRIX
+
+Sync + Matrix
+
+Representa sistemas conectados e estruturados.
+
+Soa tecnológico.
+
+Porém, há muitas marcas semelhantes.
+
+SYNORA
+
+Sync + construção sonora premium
+
+Foi considerado:
+
+elegante;
+
+menos técnico;
+
+mais acessível para clientes SMB.
+
+SYNTARA
+
+Outra construção:
+
+Sync + sonoridade tecnológica.
+
+Parece uma empresa de software ou AI.
+
+16. Família Motion + Vector
+
+MOTIVEC
+
+Motion + Vector
+
+Este foi considerado muito alinhado ao conceito.
+
+Representa:
+
+Movimento direcionado.
+
+Características:
+
+técnico;
+
+tecnológico;
+
+relacionado a automação.
+
+Possível problema:
+
+Pode lembrar palavras como:
+
+Motivic;
+
+motivate.
+
+Ainda assim, foi considerado forte.
+
+17. Família Axis + Vector
+
+AXIVEC
+
+Axis + Vector
+
+Um sistema possui:
+
+eixos;
+
+vetores;
+
+direção.
+
+Nome:
+
+AXIVEC
+
+Características:
+
+científico;
+
+técnico;
+
+B2B;
+
+preciso;
+
+curto.
+
+Foi colocado entre os principais candidatos.
+
+AXORA
+
+Uma direção mais premium derivada de Axis.
+
+Menos técnica.
+
+Mais semelhante a uma marca corporativa global.
+
+18. Família Motion + Axis
+
+MOVEXA
+
+Move + Axis
+
+Este foi considerado um dos nomes mais fortes.
+
+A ideia:
+
+Sistemas em movimento em torno de uma estrutura central.
+
+Características:
+
+fácil de falar;
+
+parece tecnológico;
+
+relacionado a business;
+
+não é excessivamente espacial.
+
+Avaliação conceitual:
+
+MOVEXA — 9/10
+
+Um dos favoritos.
+
+MOVORA
+
+Move + construção sonora premium
+
+Mais fluido.
+
+Menos técnico.
+
+Representa:
+
+movimento;
+
+evolução;
+
+progresso.
+
+19. Família Flux
+
+Esta foi uma das direções mais promissoras.
+
+FLUXORA
+
+Flux + construção sonora premium
+
+O conceito de flux representa:
+
+fluxo contínuo através de um sistema.
+
+Isso conecta diretamente:
+
+ciência
+
+com:
+
+AI automation.
+
+FLUXORA
+
+Características:
+
+premium;
+
+tecnológico;
+
+científico;
+
+escalável;
+
+não excessivamente espacial.
+
+Possível posicionamento:
+
+Intelligent systems in motion.
+
+Foi considerado um dos melhores nomes conceitualmente.
+
+Avaliação:
+
+FLUXORA — 9.2/10 conceitualmente
+
+FLUXVEC
+
+Flux + Vector
+
+Mais técnico.
+
+Parece mais uma:
+
+plataforma;
+
+infraestrutura AI;
+
+produto tecnológico.
+
+FLUXYN
+
+Flux + Sync
+
+Visualmente interessante.
+
+Mas pode ser difícil de soletrar.
+
+20. Família Astra / Aster
+
+Para manter uma inspiração científica sem usar diretamente "Orbit".
+
+ASTRAIL
+
+Astra + Trail
+
+Representa:
+
+uma trajetória ou caminho.
+
+Foi considerado interessante.
+
+ASTRAQ
+
+Astra + IQ
+
+Curto e tecnológico.
+
+Visualmente:
+
+ASTRAQ
+
+Características:
+
+futurista;
+
+AI;
+
+tecnológico.
+
+ASTERON
+
+Aster + Electron / sonoridade tecnológica
+
+Um dos favoritos da família cósmico-científica.
+
+Características:
+
+científico;
+
+tecnológico;
+
+premium;
+
+internacional.
+
+Não parece necessariamente uma empresa espacial.
+
+ASTRYX ⚠️
+
+Parecia interessante, mas há proximidade com marcas e nomes como Astrix.
+
+Precisa de cautela.
+
+21. Família Operations / Business
+
+A conversa também saiu do território exclusivamente cósmico.
+
+Foi definido que o nome pode buscar inspiração em:
+
+tecnologia;
+
+IA;
+
+sistemas;
+
+operações;
+
+business.
+
+OPERON
+
+Termo científico real relacionado à genética.
+
+Mas também soa próximo de:
+
+operation.
+
+A ideia:
+
+múltiplos componentes funcionando de forma coordenada.
+
+Isso combina muito bem com automação de operações.
+
+Problema
+
+Provavelmente existem muitas empresas chamadas Operon.
+
+OPERIX
+
+Operation + construção tecnológica
+
+Foi considerado forte para B2B.
+
+Parece uma empresa focada em:
+
+automação;
+
+operações;
+
+tecnologia.
+
+NEXORA
+
+Nexus + construção premium
+
+Foi explorado, embora a raiz "Nexus" já tivesse sido considerada saturada anteriormente.
+
+22. O que NÃO queremos
+
+Depois de toda a conversa, ficou claro que devemos evitar nomes que sejam:
+
+Muito genéricos
+
+Exemplos:
+
+Signal
+
+Loop
+
+Vector
+
+Orbit
+
+Excessivamente cósmicos
+
+Exemplos que poderiam parecer:
+
+empresa de astronomia;
+
+agência espacial;
+
+marca espiritual.
+
+O objetivo é:
+
+inspiração científica
+
+e não:
+
+branding de galáxia.
+
+Excessivamente técnicos
+
+O cliente ideal não deve ter dificuldade em:
+
+pronunciar;
+
+escrever;
+
+lembrar.
+
+Um nome como:
+
+Lagrange
+
+é conceitualmente fantástico, mas comercialmente pode ser complexo.
+
+Associados a outra indústria
+
+Exemplos:
+
+Tether → crypto;
+
+Baton → batom/lipstick em português;
+
+Hinge → dating;
+
+Vectara → AI company existente.
+
+Com palavras saturadas
+
+Como:
+
+AI;
+
+Tech;
+
+Nexus;
+
+Global;
+
+Solutions;
+
+Automation.
+
+A marca deve parecer mais sofisticada.
+
+23. Os três territórios principais de marca
+
+Ao final da conversa, surgiram três territórios.
+
+TERRITÓRIO 1 — Scientific Systems
+
+Inspirado em:
+
+física;
+
+matemática;
+
+sistemas;
+
+sincronização;
+
+vetores.
+
+Candidatos:
+
+SYNVEC
+
+AXIVEC
+
+FLUXVEC
+
+VECTARO
+
+Personalidade
+
+Técnico
+Preciso
+Futurista
+AI-native
+
+Este território funciona bem se a empresa quiser parecer uma futura:
+
+AI infrastructure company.
+
+TERRITÓRIO 2 — Motion & Flow
+
+Inspirado em:
+
+movimento;
+
+fluxo;
+
+direção;
+
+dinâmica.
+
+Candidatos:
+
+FLUXORA
+
+MOVEXA
+
+MOTIVEC
+
+MOVORA
+
+Personalidade
+
+Moderna
+Premium
+Dinâmica
+Acessível
+
+Este território é particularmente forte para vender para SMBs.
+
+A mensagem implícita é:
+
+We keep business moving.
+
+TERRITÓRIO 3 — Premium Scientific Technology
+
+Inspirado em:
+
+astronomia;
+
+sistemas;
+
+tecnologia;
+
+palavras proprietárias.
+
+Candidatos:
+
+ASTERON
+
+ASTRAQ
+
+SYNORA
+
+VECTARO
+
+Personalidade
+
+Global
+Tecnológica
+Premium
+Escalável
+
+Este território faz a empresa parecer mais:
+
+technology company
+
+do que:
+
+traditional automation agency.
+
+24. Ranking conceitual atual
+
+🥇 FLUXORA
+
+Significado
+
+Fluxo contínuo + energia + sistemas.
+
+Pontos fortes
+
+elegante;
+
+tecnológico;
+
+científico;
+
+fácil de pronunciar;
+
+escalável.
+
+Posicionamento possível
+
+Intelligent systems in motion.
+
+🥈 SYNVEC
+
+Significado
+
+Sync + Vector.
+
+Pontos fortes
+
+Representa perfeitamente:
+
+sistemas independentes sincronizados e movendo-se em uma direção coordenada.
+
+É talvez o nome mais fiel ao conceito científico original.
+
+🥉 MOVEXA
+
+Significado
+
+Move + Axis.
+
+Pontos fortes
+
+movimento;
+
+direção;
+
+business;
+
+tecnologia.
+
+Muito bom para uma empresa que ajuda negócios a:
+
+move forward.
+
+4. VECTARO
+
+Significado
+
+Inspirado em Vector.
+
+Pontos fortes
+
+tecnológico;
+
+forte;
+
+B2B;
+
+proprietário.
+
+5. AXIVEC
+
+Significado
+
+Axis + Vector.
+
+Pontos fortes
+
+científico;
+
+técnico;
+
+preciso;
+
+curto.
+
+6. ORBVEC
+
+Significado
+
+Orbital systems + Vector.
+
+Pontos fortes
+
+É o candidato mais diretamente ligado à inspiração original do usuário.
+
+Sistemas em movimento com direção.
+
+Cuidado
+
+A família Orb/Orbi/Orby precisa de pesquisa profunda devido à existência de empresas semelhantes.
+
+7. ASTERON
+
+Pontos fortes
+
+científico;
+
+sofisticado;
+
+tecnológico;
+
+internacional.
+
+8. MOTIVEC
+
+Significado
+
+Motion + Vector.
+
+Pontos fortes
+
+movimento direcionado;
+
+tecnologia;
+
+automação.
+
+9. SYNORA
+
+Pontos fortes
+
+premium;
+
+simples;
+
+menos técnico;
+
+escalável.
+
+10. OPERIX
+
+Significado
+
+Operations + tecnologia.
+
+Pontos fortes
+
+Muito alinhado ao serviço real:
+
+automatizar operações empresariais.
+
+25. O insight estratégico mais importante
+
+A agência não está apenas vendendo:
+
+chatbots.
+
+Nem apenas:
+
+AI automation.
+
+A visão de marca que emergiu é mais profunda:
+
+Criar sistemas inteligentes onde diferentes ferramentas, pessoas e processos trabalham em coordenação.
+
+Em termos simples:
+
+INPUT ↓ INTELLIGENCE ↓ AUTOMATION ↓ ACTION ↓ OUTCOME
+
+Em termos científicos:
+
+Independent systems interacting through coordinated forces and flows.
+
+Esse é o território conceitual que diferencia a marca.
+
+26. O posicionamento implícito da empresa
+
+Independentemente do nome final, a empresa parece caminhar para algo como:
+
+Não:
+
+We build AI chatbots.
+
+Mas:
+
+We build intelligent systems that keep business moving.
+
+Ou:
+
+We connect the systems, intelligence and actions that move a business forward.
+
+Ou ainda:
+
+From enquiry to action, intelligently connected.
+
+27. Estado atual da decisão
+
+Ainda NÃO existe um nome final.
+
+Também não foi feita uma verificação completa e confiável de:
+
+domínio .com;
+
+domínio .com.au;
+
+ASIC business name;
+
+IP Australia trademark;
+
+conflitos internacionais relevantes.
+
+Algumas verificações pontuais foram mencionadas anteriormente, levando à eliminação de nomes como:
+
+Rivet;
+
+Keel;
+
+Orbitra;
+
+Vectara.
+
+Mas a shortlist atual ainda precisa de pesquisa formal antes de qualquer registro.
+
+28. Shortlist recomendada para a próxima fase
+
+Eu separaria assim:
+
+Grupo A — Prioridade máxima
+
+FLUXORA
+
+SYNVEC
+
+MOVEXA
+
+VECTARO
+
+ORBVEC
+
+Grupo B — Alternativas fortes
+
+AXIVEC
+
+ASTERON
+
+MOTIVEC
+
+SYNORA
+
+OPERIX
+
+29. Próximo processo recomendado
+
+O processo ideal agora seria:
+
+Fase 1 — Criar mais candidatos
+
+Gerar aproximadamente 30–50 nomes novos, usando raízes como:
+
+Ciência
+
+Flux
+
+Vector
+
+Axis
+
+Reson
+
+Dynamic
+
+Trajectory
+
+Orbit
+
+Kinetic
+
+Quantum
+
+Signal
+
+Phase
+
+Tecnologia
+
+Sync
+
+Logic
+
+Matrix
+
+Node
+
+Core
+
+Neural
+
+Data
+
+System
+
+Business
+
+Oper
+
+Flow
+
+Move
+
+Scale
+
+Forward
+
+Drive
+
+Path
+
+Fase 2 — Filtragem brutal
+
+Eliminar qualquer nome que:
+
+seja difícil de pronunciar;
+
+pareça genérico;
+
+tenha significado negativo em português;
+
+pareça excessivamente espacial;
+
+seja claramente usado por empresa de AI;
+
+tenha associação dominante com outra indústria.
+
+Fase 3 — Selecionar Top 10
+
+Avaliar cada nome de 1 a 10 em:
+
+CritérioPesoMemorabilidade10Pronúncia10Potencial global10Aparência tecnológica9Escalabilidade10Diferenciação10Significado8Funcionamento em português8
+
+Fase 4 — Pesquisa real
+
+Para os 5–10 melhores:
+
+Domínios
+
+.com
+
+.com.au
+
+.ai
+
+Austrália
+
+ASIC
+
+IP Australia
+
+Internacional
+
+Google/company search;
+
+empresas de AI;
+
+software;
+
+automação;
+
+tecnologia.
+
+Conclusão
+
+A busca evoluiu significativamente.
+
+A direção original de nomes baseados em objetos e fluxo foi útil, mas a direção atual é mais promissora:
+
+Scientific Systems + Technology + Motion
+
+A inspiração não precisa ser literalmente:
+
+espaço, galáxias ou planetas.
+
+Ela pode vir da ciência que explica como sistemas se movem, interagem e se sincronizam.
+
+Neste momento, os nomes mais representativos dessa visão são:
+
+FLUXORA
+
+Fluxo inteligente e contínuo.
+
+SYNVEC
+
+Sistemas sincronizados com direção.
+
+MOVEXA
+
+Movimento estruturado.
+
+VECTARO
+
+Direção e tecnologia.
+
+ORBVEC
+
+Sistemas orbitais e vetores — a inspiração científica original.
+
+AXIVEC
+
+Precisão estrutural e movimento.
+
+O próximo passo mais estratégico é expandir a geração de nomes nesse estilo híbrido, mas já pensando desde o início em originalidade e disponibilidade de domínio/trademark, para não criar apego a nomes que depois precisaremos eliminar.
+Junto com o que estou enviando agora. Me passe um reaumo compreensivo do que foi compartilhado antes em um arquivo txt ou pdf para copiar e colar
+
+Resumo Compreensivo — Estudo de Naming para AI Agency
+
+---
+
+1. Contexto do Negócio
+
+Item Descrição
+Negócio Agência de automação com IA para SMBs
+Serviço Workflow automations e AI agents para pequenos e médios negócios
+Localização Austrália (Northern Rivers — Byron/Ballina/Tweed), com expansão global
+Operador Solo (sem sócios ou equipe)
+Nicho Trades, wellness, real estate, law offices, accountants, BAS agents, hospitality, tourism
+Atributos obrigatórios Confiabilidade / Calor humano / Competência discreta
+Aquisição Word-of-mouth e referral-based (sem anúncios pagos)
+Orçamento Lean — sem agência de naming, sem domínio premium acima do teto
+Prazo 20 de setembro de 2026
+
+---
+
+2. Metodologia — 8 Gates de Eliminação
+
+Gate Critério Descrição
+1 Trademark Busca em IP Australia, USPTO, EUIPO (classes 9, 35, 42). Qualquer marca viva ou pendente = eliminação
+2 Phone Test Dito uma vez ao telefone, não pode ter grafia alternativa. Grafias inventadas = eliminação
+3 Meaning Deve carregar imagem concreta em inglês na primeira audição. Fragmentos vazios = eliminação
+4 No Borrowed Equity Não pode ecoar, truncar ou rimar com empresa existente em tech/automotivo/consultoria/software
+5 Solo-Safe Sufixos proibidos: "Partners", "Collective", "Group", "& Co", "Consulting Partners", "Ventures". Permitidos: "Studio", "Lab/Labs", "Works", "Systems", "Automation", "Engine", "Forge", "Desk"
+6 Domínio Prioridade: .com → .com.au → .ai → .io. .com é o alvo. .com.au sozinho desqualifica
+7 Scarcity Interrogation "Por que está disponível?" Se a resposta honesta for fraqueza, elimine
+8 Logo Viability 5-9 letras, 1-3 sílabas, sem diacríticos, hífens ou números, legível a 16px
+
+---
+
+3. Evolução das Direções de Naming
+
+Fase 1 — Nomes de Resultado (primeira rodada)
+
+· Testados: Nabbed, Nothing Missed, LeadKeeper, OmniSure, Vantage, OnPoint
+· Resultado: Nomes de resultado venceram nomes de mecanismo. "Nothing Missed" teve a melhor resposta com trades, mas era de 2 palavras (Gate 8)
+
+Fase 2 — Nomes para Múltiplos Nichos
+
+· Descoberta crítica: O nome precisa servir advogado E encanador. A dor do advogado é depois da recepção, não na chamada perdida.
+· Resultado: Nomes focados em telefone foram eliminados. "OmniSure" venceu com a advogada, mas foi rejeitado pelo encanador.
+
+Fase 3 — Nomes Abstratos e de Dicionário
+
+· Testados: Relay, Aegis, Keystone, Axiom, Vertex, Nexus, Apex, Meridian
+· Resultado: 100% ocupados. O mercado de .ai e .com está saturado para palavras de dicionário.
+· Conclusão: Criar nomes compostos ou usar neologismos.
+
+Fase 4 — Objetos Concretos (a virada)
+
+· Lógica: Fundadores de tech foram atrás de conceitos gregos/latinos. Ninguém pegou objetos físicos.
+· Testados: Keel, Rivet, Brace, Shim, Spindle, Clamp, Pivot
+· Resultado: A maioria ocupada, mas a lógica era correta.
+
+Fase 5 — Nomes Concretos + Sufixos Permitidos (estratégia atual)
+
+· Lógica: Palavra concreta + "Works", "Forge", "Labs", "Studio"
+· Exemplo: Tiller Works (leme + obras)
+· Vantagem: Domínio .ai com alta chance de disponibilidade, sem conflito de marca.
+
+Fase 6 — Nomes em Português/Espanhol e Iniciais Pessoais
+
+· Testados: Âncora, Cais, Farol, Marco, Rede, Pafand (iniciais)
+· Resultado: Eliminados no Gate 2 (Phone Test) e Gate 3 (Meaning)
+
+---
+
+4. Nomes Testados e Eliminados — Detalhamento Completo
+
+Nome Gate Evidência
+Nabbed 2 + 3 "Nabd"/"Nabed" ao telefone; descreve mecanismo, não resultado
+Nothing Missed 8 2 palavras, 13 letras — morre como nome de empresa (vive como tagline)
+LeadReach 4 Muito "caça-lead" — advogado não caça, ele recebe
+FirstCall 4 Focado em chamada perdida — irrelevante para advogado com recepção
+OmniSure 4 Rejeitado pelo encanador ("parece plano de saúde")
+OnPoint 4 Genérico — não comunica autoridade
+Vantage 4 Marca de tinta — conflito de percepção
+Surety AI 4 Confunde com fiança locatícia
+Aperture AI 4 Parece câmera fotográfica
+Reed & Ash 5 Implica dois sócios — você é solo
+NexusCore 7 2 palavras de tecnologia parafusadas — não gruda
+PrimeVector 7 Genérico — "passa em qualquer filtro, não fica na cabeça"
+SigmaFlow 7 Tech-glue — esquecível
+ApexBridge 7 Composto forçado
+AtlasPulse 7 Composto forçado
+AptivAI 1 + 4 Aptiv é NYSE:APTV (US$ 20B) — sucesso vira risco
+Solvix 4 Parece medicamento genérico
+Claritia 4 Parece Claritin (antialérgico)
+Relay 4 relay.app é automação com IA — equity emprestada
+Aegis 6 Ocupado (segurança de e-mail)
+Keystone 1 + 6 Ocupado por startup de supply chain; TM nos EUA
+Haven 1 + 6 Ocupado; TM "WITH HAVEN AI" para bem-estar mental
+Cant 6 cant.ai ocupado
+Spar 6 spar.ai ocupado
+Tiller Labs 1 + 6 .com ocupado por empresa ativa — mesmo setor
+Zent 2 Ouvido como "Cent" ou "Sent" — requer explicação
+Zenit 2 + 3 Fragmento vazio + conflito com time de futebol russo
+Salient 1 + 4 Consultoria de defesa/segurança nos EUA
+Keel 6 keel.ai ocupado (registrado em 27/04/2023)
+Rivet 6 rivet.com.au ocupado; provável .ai ocupado
+Brace 6 brace.io e brace.tech ocupados
+Shim 1 TM registrada na AU classe 42 (Kry International)
+Spindle 6 Ocupado por múltiplas entidades
+Latch 4 + 6 Latch Inc. — fechaduras inteligentes
+Clasp 6 clasp.ai ocupado
+Anchor 4 + 6 TM "ANCHOR" pendente na AU classes 9, 38, 42
+Pivot 6 pivot.ai ocupado (pivotai.ai registrado em 2024)
+Fulcrum 6 fulcrumlabs.ai ocupado
+Shield 6 shield.ai ocupado (Shield AI INC.)
+Anchor 6 anchor.ai ocupado (plataforma de automação de RFP)
+Citadel 1 + 6 citadel.ai startup japonesa de IA (2020)
+Pinnacle 1 + 6 getpinnacle.ai CRM com 201-500 funcionários
+Cornerstone 1 + 6 cornerstone.ai healthcare com $5M funding
+Bulwark 1 + 6 TM registrada na AU classe 9; bulwarkai.io empresa de segurança
+Rampart 1 + 6 TM registrada na AU (Vintech Pty Ltd)
+Catchment 7 Soa a linguagem municipal/ambiental — fraco
+Alongside 1 + 6 alongside.com ocupado (recrutamento)
+Handover 1 + 6 handover.ai ocupado; TM na AU (MW Technology)
+Toolbelt 1 TM registrada nos EUA e AU
+Foothold 1 TM "FOOTHOLD TECHNOLOGY" registrada nos EUA
+CogniSure 1 + 6 cognisure.ai ocupado (IA para seguros, Illinois)
+RelayCore 1 + 6 RelayCore.com ocupado; marca em API gateway para IA
+Pafand (iniciais) 2 + 3 Morre no telefone; não tem significado
+Âncora/Cais/Farol (PT) 2 + 3 Pronúncia ambígua em inglês
+Grip 6 Provavelmente ocupado (inferido pela saturação)
+Clutch 6 Provavelmente ocupado
+Vise 6 Provavelmente ocupado
+Berth 6 berth.ai ocupado (projeto open-source MCP)
+Clevis 4 + 6 clevis.ai ocupado (plataforma no-code)
+Ferrule 4 + 6 Projeto open-source MCP
+Spacer 6 spacer.ai registrado desde 2017
+Dock 6 trydock.ai ocupado (plataforma de workspace para agentes)
+Pier 6 Projeto open-source de coding agent
+Quay 6 Framework de agentes de IA
+Jetty 6 Plataforma de agentic AI com $2M+ funding
+Steadfast 4 Steadfast Group listada na ASX — suicídio no mercado primário
+Backstop 4 Backstop Solutions (ION Group) — fintech de porte
+Minder 4 Rima com Tinder — Gate 4 explícito
+
+---
+
+5. Nomes que Sobreviveram (Parcialmente / Em Verificação)
+
+Nome Domínio Status TM (AU) Gate 7 Veredito
+Tiller Works tillerworks.ai (provável livre) Nenhum TM ativo conhecido Disponível porque .com está ocupado; founders evitam .ai RECOMENDADO ATUAL
+Tiller Forge tillerforge.ai (provável livre) Nenhum TM ativo conhecido Combinação única, baixa concorrência Alternativa
+Keel Works keelworks.ai (provável livre) Keelworks é estúdio de jogos (não automação) Sufixo "Works" diferencia Alternativa
+Anchor Forge anchorforge.ai (provável livre) Nenhum TM ativo conhecido "Forge" é permitido Alternativa
+Rivet Studio rivetstudio.ai (provável livre) Nenhum TM ativo conhecido "Studio" é seguro Alternativa
+Shim Works shimworks.ai (provável livre) Shim tem TM na AU (classe 42) "Works" pode diferenciar Alternativa com risco
+
+---
+
+6. Recomendação Atual
+
+Tiller Works
+
+Domínio: tillerworks.ai (confirmar disponibilidade)
+
+Defesa contra o Gate 0 (teste único):
+Dito uma vez ao telefone — "Tiller Works" — um estrangeiro soletra T-I-L-L-E-R W-O-R-K-S sem hesitação. Não há grafia alternativa.
+
+Significado:
+
+· Tiller = o leme que guia o barco (direção, controle)
+· Works = obras, ação, construção (competência prática)
+
+Atributos:
+
+Atributo Como o nome comunica
+Confiabilidade O leme não deixa o barco virar — nada se perde
+Calor humano O leme é uma ferramenta manual, não um motor frio
+Competência discreta O leme fica na popa, invisível, mas define o rumo
+
+Gate 7 — "Por que está disponível?"
+Porque o .com (tillerworks.com) está ocupado (squatter ou empresa pequena), e fundadores de tech fogem de domínios .ai quando o .com não está disponível. Essa aversão deles é a sua abertura.
+
+Sufixo: "Works" é permitido pelo Gate 5 (não promete sócios).
+
+Logo Viability: 11 letras, 3 sílabas, monograma T forte, legível em minúsculas a 16px.
+
+---
+
+7. Aprendizados Críticos do Estudo
+
+# Aprendizado Implicação
+1 Domínio não é sinal de marca livre "Front Foot" e "Safe Hands" tinham domínio livre, mas TM ocupada
+2 Nome de resultado > nome de mecanismo "Nothing Missed" venceu "Nabbed" nas simulações
+3 O nome precisa servir múltiplos nichos O que funciona para trades pode não funcionar para advogados
+4 Mercado de .ai está saturado Palavras de dicionário com 1-2 sílabas estão todas ocupadas
+5 Disponibilidade é frequentemente sinal de fraqueza Se está livre e é óbvio, provavelmente é fraco
+6 Objetos concretos > conceitos abstratos Fundadores de tech pegaram conceitos gregos/latinos; objetos físicos ficaram
+7 Sufixo "Labs" pode conflitar Tiller Labs tinha .com ocupado por empresa ativa no mesmo setor
+8 Palavras em PT/ES não sobrevivem ao phone test Pronúncia ambígua para anglófonos
+9 Iniciais pessoais são fragmentos vazios Não comunicam nada, exigem explicação eterna
+10 "Works" e "Forge" são sufixos seguros Não prometem sócios e são genéricos o suficiente
+
+---
+
+8. Status do Projeto
+
+Item Status
+Pesquisa de nomes Concluída (~50 nomes avaliados)
+Verificação de domínio Em andamento — tillerworks.ai pendente
+Verificação de trademark Pendente — IP Australia
+Teste telefônico Pendente — 3 donos de negócio
+Decisão final Aguardando verificação de tillerworks.ai
+
+---
+
+9. Próximos Passos (48 horas)
+
+1. Verificar tillerworks.ai — WHOIS via registrador (Namecheap/GoDaddy)
+2. Se livre, registrar imediatamente (~US$ 70/ano)
+3. Busca IP Australia — "Tiller Works" nas classes 9, 35 e 42
+4. Teste telefônico — dizer para 3 donos de negócio e pedir para soletrar
+5. Se aprovado nos 4 passos, o nome está definido
+
+---
+
+10. Kill Criteria
+
+Abandonar Tiller Works se:
+
+Critério Descrição
+(a) tillerworks.ai estiver ocupado
+(b) TM viva ou pendente em classe 9/35/42 na Austrália
+(c) 2 de 3 pessoas no teste telefônico soletrarem errado
+
+Qualquer um dos três = próximo nome (Tiller Forge, Keel Works, Anchor Forge), sem discussão.
+
+---
+
+11. Observação Final
+
+"Isto é estratégia de marca, não parecer jurídico. Antes de gastar dinheiro na identidade, obtenha clearance com um agente de marcas registrado na Austrália."
+
+---
+
+Total de nomes avaliados: ~50
+Total de sobreviventes: 1 (em verificação — Tiller Works)
+Data atual: 2 de setembro de 2026
+Prazo final: 20 de setembro de 2026
+Dias restantes: 18
+
+Analise esses dois files e me ajude a filtrar e definir um nome para uma AAA agency autonomous automation que sera criada na australia para que com escalagem expandir para outros países. Se possível pesquise disponibilidade de dominios disponíveis e faca uma analise e filtre os melhores e sugira nomes melhores.
+
+**Análise consolidada dos dois resumos + filtragem prática + pesquisa de disponibilidade + recomendações.**
+
+Os dois documentos são complementares e revelam a evolução correta da busca:
+
+- O **primeiro** (científico/sistemas/movimento) traz a metáfora mais poderosa e escalável: sistemas independentes (CRM + AI + WhatsApp + Calendar + humanos) entrando em coordenação, fluxo e direção (orbital resonance, vector, flux, axis, sync). Nomes como FLUXORA, SYNVEC, MOVEXA, VECTARO, ORBVEC, AXIVEC e ASTERON capturam bem a visão de “intelligent systems in motion”.
+- O **segundo** (8 Gates) é a disciplina comercial necessária para Austrália (solo, lean, referral-based, prazo 20/09/2026): trademark (IP Australia classes 9/35/42), phone test, significado concreto na primeira audição, sem equity emprestada, solo-safe, domínio prioritário (.com > .com.au > .ai), scarcity interrogation e logo viability.
+
+### Filtragem atual (setembro 2026)
+
+**Nomes do território científico (Grupo A do primeiro resumo) — status após pesquisa:**
+
+| Nome | Conceito forte? | Domínio .com | Conflitos relevantes | Veredito |
+|------------|-----------------|--------------|----------------------|----------|
+| FLUXORA | Excelente (fluxo + sistemas) | Ocupado (GoDaddy, 2015) | Fluxora.tech (studio digital), Fluxora AI (França – automação/IA), Fluxora Web3 agents | **Eliminar** – conflito direto no espaço AI/automation |
+| SYNVEC | Excelente (sync + vector) | Ocupado (desde 2001) | SynVec (síntese química França) | **Eliminar** |
+| MOVEXA | Bom (move + axis) | Variantes ocupadas / empresas de shipping | Conflito de percepção logístico | **Baixa prioridade** |
+| VECTARO | Bom (vector proprietário) | Provavelmente ocupado/premium | Família Vector saturada | **Baixa prioridade** |
+| ORBVEC | Forte (inspiração original) | Risco alto | Família Orb/Orbi/Orby + Orbitra AI já eliminada | **Cautela máxima** |
+| AXIVEC / AXOVEC | Técnico e preciso | axovec.com registrado recentemente | — | **Baixa prioridade** |
+| ASTERON | Sofisticado | asteron.com + asteron.com.au ocupados | ASTERON (optical interconnects para AI/data centers), Astreon (fleet) | **Eliminar** |
+
+**Conclusão do território 1 e 3**: a maioria dos híbridos científicos puros já colide ou está saturada. São ótimos conceitualmente, mas falham nos Gates 1, 4, 6 e 7.
+
+**Sobreviventes do segundo documento (estratégia objeto concreto + sufixo seguro):**
+
+- **Tiller Works** continua o candidato mais sólido.
+- Metáfora: leme (direção/controle) + Works (ação prática).
+- Comunica confiabilidade + calor humano + competência discreta (exatamente os atributos obrigatórios).
+- Funciona para trades, advogados, contadores, hospitality etc.
+- Phone test forte (“Tiller Works” soletra fácil).
+- Solo-safe.
+- Pesquisa não mostrou trademark ativa óbvia em classes relevantes na AU nem empresa de AI/automation com o nome completo. Existem “Tiller” isolados (sales AI, intelligence, etc.), mas o composto “Tiller Works” diferencia.
+
+Alternativas do mesmo grupo que ainda merecem checagem imediata: **Tiller Forge**, **Keel Works**, **Anchor Forge**, **Rivet Studio**.
+
+### Recomendação estratégica
+
+Priorize a **estratégia do segundo documento** (objeto concreto + sufixo permitido) porque ela maximiza chance de domínio acessível, passa no phone test e no teste multi-nicho, e ainda permite carregar a metáfora de “sistemas em movimento coordenado”.
+
+**Shortlist filtrada e recomendada (ordem de prioridade):**
+
+1. **Tiller Works** (recomendação principal atual)
+- Domínio alvo: tillerworks.ai (e tillerworks.com.au se disponível).
+- Tagline possível: “Intelligent systems that keep business moving” ou “From enquiry to action, steered.”
+
+2. **Tiller Forge** (alternativa forte se .ai ou TM de Works falhar).
+
+3. Novos híbridos que unem as duas abordagens (objeto/movimento + sufixo seguro ou construção proprietária curta):
+- **FluxWorks** / **Flux Forge**
+- **VectWorks** / **Vect Forge**
+- **AxisWorks** / **Axis Forge**
+- **SyncForge**
+- **MoveWorks**
+- **SteerWorks** (variante do Tiller)
+- **HelmWorks** / **Helm Forge** (leme/timão – mesmo território do Tiller)
+- **PivotWorks** (com cuidado – Pivot já saturado)
+
+Estes mantêm sonoridade B2B, são fáceis de pronunciar em inglês australiano, não soam excessivamente “galácticos” e têm maior probabilidade de .ai ou .com.au livres.
+
+### Próximos passos concretos (próximas 48–72 h)
+
+1. Verificar imediatamente nos registradores (Namecheap, GoDaddy, Crazy Domains, VentraIP):
+- tillerworks.ai
+- tillerworks.com.au
+- tillerforge.ai / .com.au
+- fluxworks.ai / .com.au
+- vectworks.ai
+- axisworks.ai
+- helmworks.ai
+- syncforge.ai
+
+2. Busca IP Australia (classes 9, 35, 42) para os top 3–5.
+
+3. Phone test: diga o nome uma vez para 3–5 donos de negócio (trades + 1 advogado/contador) e peça para soletrar e descrever a primeira imagem.
+
+4. Se Tiller Works passar nos 3 kill criteria do segundo documento → registre e avance.
+Se falhar → desça para Tiller Forge ou um dos novos híbridos Flux/Vect/Axis/Helm + Works/Forge.
+
+5. Evite qualquer nome que force .ai como única opção se o .com estiver em aftermarket caro (orçamento lean).
+
+A metáfora científica continua válida como **história de marca e posicionamento** (“we synchronise independent systems into coordinated motion”), mas o nome em si deve ser concreto, soletrável e defensável na Austrália primeiro. Tiller Works (ou sua família) é o caminho mais seguro e alinhado com os critérios definidos nos dois documentos.
+
+Preparei uma leitura crítica dos dois resumos: a visão científica de sistemas coordenados é excelente como plataforma de marca, mas a escolha do nome precisa obedecer à disciplina dos 8 Gates — principalmente distinção, clareza ao telefone, risco de trademark e capacidade de funcionar para um advogado, um tradie e uma empresa de hospitality.
+
+A recomendação é não decidir por Tiller Works ainda. O nome é comercialmente compreensível, porém “tiller” tem uma associação dominante com equipamento de jardinagem/agricultura em inglês, e o mercado já contém marcas e produtos tecnológicos chamados Tiller, inclusive soluções de IA e automação. Isso enfraquece a diferenciação internacional e torna o Gate 4 (“no borrowed equity”) mais arriscado.
+
+Resumo consolidado para copiar
+text
+RESUMO CONSOLIDADO — NAMING PARA AGÊNCIA DE AUTOMAÇÃO AUTÓNOMA COM IA
+
+Data: 2 de setembro de 2026
+Mercado inicial: Austrália, com foco em SMBs e expansão internacional
+Localização operacional inicial: Northern Rivers, NSW — Byron Bay, Ballina e Tweed
+Modelo: Operação solo, lean, baseada em indicação, referral e word-of-mouth
+Prazo de decisão desejado: 20 de setembro de 2026
+
+1. O NEGÓCIO
+
+A empresa será uma agência de automação autónoma com IA. Não será apenas uma agência de chatbots.
+
+A proposta é desenhar, implementar e otimizar sistemas que conectam:
+
+- Enquiries e leads
+- Telefone, email, website e WhatsApp
+- AI agents
+- CRM
+- Calendário e booking
+- Follow-up
+- Equipes humanas
+- Operações internas
+- Resultado comercial e operacional
+
+A empresa pode atuar inicialmente para:
+
+- Tradies e home services
+- Wellness e clínicas
+- Real estate
+- Escritórios de advocacia
+- Contadores e BAS agents
+- Hospitality
+- Turismo
+- Outros SMBs de serviços
+
+A ambição é poder evoluir para:
+
+- AI automation agency
+- AI agents company
+- AI systems integrator
+- Consulting
+- SaaS
+- AI infrastructure
+- Education
+- Autonomous operations systems
+
+2. ESSÊNCIA E POSICIONAMENTO
+
+A marca não vende “chatbots”.
+
+Ela constrói sistemas inteligentes nos quais ferramentas, processos, IA e pessoas trabalham de forma coordenada.
+
+Modelo conceitual:
+
+INPUT
+↓
+INTELLIGENCE
+↓
+AUTOMATION
+↓
+ACTION
+↓
+OUTCOME
+
+Exemplo prático:
+
+Lead
+↓
+AI agent
+↓
+Qualification
+↓
+CRM update
+↓
+Calendar booking
+↓
+Human team
+↓
+Customer outcome
+
+Posicionamento central:
+
+“We build intelligent systems that keep business moving.”
+
+Alternativas de mensagem:
+
+“From enquiry to action, intelligently connected.”
+
+“We connect the systems, intelligence and actions that move a business forward.”
+
+“Independent systems. Coordinated action.”
+
+O diferencial não é uma ferramenta isolada. É a coordenação entre sistemas independentes.
+
+3. METÁFORA CENTRAL
+
+A inspiração mais forte surgiu de conceitos científicos, especialmente:
+
+- Sistemas dinâmicos
+- Vetores
+- Fluxo
+- Trajetória
+- Convergência
+- Ressonância orbital
+- Mecânica orbital
+- Eixos
+- Sincronização
+- Movimento coordenado
+
+A metáfora não precisa ser “space branding”.
+
+A empresa não deve parecer uma startup de foguetes, uma agência espacial ou uma marca mística.
+
+A ciência deve servir como fundação conceitual:
+
+Sistemas independentes interagem, sincronizam-se e produzem movimento coordenado em direção a um resultado.
+
+4. ATRIBUTOS OBRIGATÓRIOS DA MARCA
+
+O nome e a identidade precisam comunicar:
+
+- Confiabilidade
+- Calor humano
+- Competência discreta
+- Clareza
+- Movimento
+- Direção
+- Coordenação
+- Modernidade
+- Escalabilidade internacional
+
+A empresa deve parecer mais uma technology company moderna e confiável do que uma “agência genérica de AI”.
+
+5. CRITÉRIOS PARA O NOME
+
+O nome ideal deve:
+
+- Funcionar em inglês australiano e internacionalmente
+- Não ter associação negativa ou confusa em português
+- Ser fácil de pronunciar
+- Ser fácil de soletrar ao telefone
+- Ter de 5 a 9 letras preferencialmente
+- Ter de 1 a 3 sílabas
+- Soar bem em conversa B2B
+- Funcionar para múltiplos setores
+- Não limitar a empresa a AI, chatbot, CRM ou automação
+- Parecer proprietário, não genérico
+- Permitir expansão futura para software, SaaS e infraestrutura
+- Ser legível em logo pequeno
+- Não depender de acentos, hífens, números ou grafias complicadas
+
+A melhor arquitetura é:
+
+BRAND
++ posicionamento descritivo
+
+Exemplo:
+
+[BRAND]
+Intelligent systems in motion.
+
+Evitar colocar “AI” como parte obrigatória do nome principal.
+
+6. OS 8 GATES DE ELIMINAÇÃO
+
+GATE 1 — Trademark
+Pesquisar IP Australia, USPTO e EUIPO, especialmente nas classes 9, 35 e 42.
+Marca viva, pendente ou muito próxima no mesmo setor = eliminar ou obter parecer jurídico.
+
+GATE 2 — Phone Test
+O nome deve ser entendido e soletrado corretamente quando dito uma única vez ao telefone.
+Se exige explicação constante, eliminar.
+
+GATE 3 — Meaning
+O nome deve sugerir uma imagem, sensação ou conceito claro em inglês.
+Fragmentos artificiais e vazios devem ser evitados.
+
+GATE 4 — No Borrowed Equity
+Não pode soar como imitação, truncamento, rima ou derivação de uma empresa forte existente em software, automação, AI, automotivo ou consultoria.
+
+GATE 5 — Solo-Safe
+Evitar:
+Partners, Collective, Group, & Co, Consulting Partners, Ventures.
+
+Sufixos aceitáveis:
+Studio, Works, Forge, Systems, Automation, Engine, Labs, Desk.
+
+GATE 6 — Domínio
+Prioridade:
+1. .com
+2. .com.au
+3. .ai
+4. .io
+
+O .com é o objetivo ideal para expansão internacional.
+Um .com.au sozinho não é suficiente para uma marca global.
+Domínio disponível não é prova de trademark livre.
+
+GATE 7 — Scarcity Interrogation
+Pergunta:
+“Por que este nome está disponível?”
+
+Se estiver livre porque é fraco, confuso, genérico ou estranho, eliminar.
+Se estiver livre por ser um composto distintivo e legítimo, pode ser uma oportunidade.
+
+GATE 8 — Logo Viability
+O nome deve ser visualmente limpo, memorável e funcionar em favicon, monograma, site e assinatura de email.
+
+7. APRENDIZADOS PRINCIPAIS
+
+1. O nome precisa atender advogado e encanador ao mesmo tempo.
+Um nome focado em missed calls, leads ou trades limita o posicionamento.
+
+2. Nomes de resultado são bons para taglines.
+“Nothing Missed” é uma mensagem forte, mas não funciona como nome corporativo principal.
+
+3. Palavras genéricas de tecnologia estão saturadas.
+Exemplos:
+Signal, Loop, Vector, Orbit, Relay, Nexus, Apex, Axiom, Vertex, Meridian.
+
+4. “AI”, “Tech”, “Global”, “Solutions” e “Automation” são descritores, não diferenciação.
+Podem entrar no subtítulo, mas não devem ser a fonte da identidade.
+
+5. Objetos concretos têm força comercial.
+Eles podem carregar uma metáfora memorável, mas devem ser avaliados contra associações dominantes e conflitos existentes.
+
+6. A inspiração científica é melhor como significado estratégico do que como estética literal.
+A marca deve comunicar coordenação, direção e fluxo — não galáxia decorativa.
+
+7. O domínio não substitui clearance de trademark.
+É necessário pesquisar marca, empresa, setor, geografia e similaridade fonética.
+
+8. A disponibilidade pode ser um sinal de fraqueza.
+Um nome óbvio e livre pode estar livre porque ninguém quer usá-lo.
+
+8. DIREÇÕES JÁ EXPLORADAS
+
+DIREÇÃO A — Objetos e conexão
+Rivet, Keel, Baton, Latch, Brace, Relay, Hinge, Thread, Splice.
+
+Força:
+Metáforas concretas de transferência, direção e conexão.
+
+Problemas:
+Muitas associações dominantes, saturação de mercado e conflitos de marca.
+
+DIREÇÃO B — Movimento e jornadas
+Waypoint, Pathway, Northline, Harbour.
+
+Força:
+Direção, progresso, organização e movimento.
+
+Problemas:
+Muitos termos são genéricos, geograficamente associados ou usados por várias empresas.
+
+DIREÇÃO C — Scientific Systems
+Orbital resonance, vector, flux, axis, trajectory, convergence, dynamics, sync.
+
+Força:
+É a direção conceitual mais alinhada com a proposta de coordenar sistemas independentes.
+
+Problemas:
+Termos científicos diretos podem ser genéricos, técnicos demais ou já saturados por empresas de software.
+
+DIREÇÃO D — Híbridos proprietários
+Fluxora, Synvec, Movexa, Vectaro, Orbvec, Axivec, Asteron, Motivec, Synora, Operix.
+
+Força:
+Parecem empresas de tecnologia e podem criar significado próprio.
+
+Problemas:
+Muitos já apresentam conflito internacional, uso em AI/software/logística ou família de marcas muito próxima.
+
+9. NOMES JÁ ELIMINADOS OU DE ALTO RISCO
+
+Eliminar ou tratar como alto risco:
+
+- Baton: associação imediata com “batom” em português
+- Rivet: uso existente em AI/automation e sistemas
+- Keel: conflito com Keel AI e associação náutica/agro
+- Hinge: associação dominante com app de dating
+- Latch: associação com smart locks e tecnologia
+- Relay: extremamente saturado em software e automação
+- Thread: associação com Meta Threads
+- Signal: saturado e associação dominante com Signal Messenger
+- Loop: palavra excessivamente genérica
+- Tether: associação dominante com USDT/crypto
+- Orbitra: conflito no espaço de AI automation
+- Orby/Orbi: cuidado por marcas de tecnologia existentes
+- Vectara: empresa relevante de AI/RAG
+- Asteron: empresas existentes em tecnologia, infraestrutura e serviços
+- Fluxora: uso em AI, automação, template SaaS e digital product studio
+- Synvec: empresa existente em síntese química/biotech
+- Movexa: empresas existentes em logística e sistemas de transporte
+- Helm/HelmWorks: associação forte com Kubernetes, Helm.ai e automação industrial
+- Steer/SteerWorks: associação com auto-tech, oficinas e veículos autónomos
+- Tiller/Tiller Works: associação dominante com equipamento agrícola/jardinagem; já existem empresas e produtos de tecnologia/AI usando Tiller
+
+10. LEITURA DO NOME “TILLER WORKS”
+
+Tiller Works tem vantagens:
+
+- Fácil de pronunciar
+- Fácil de soletrar
+- Solo-safe
+- “Works” é um sufixo bom
+- Possui uma metáfora de direção e controlo
+
+Mas possui riscos importantes:
+
+- “Tiller” é uma palavra associada principalmente a máquina agrícola ou ferramenta de cultivo
+- A metáfora de leme não é necessariamente a primeira associação de um empresário australiano
+- Existem produtos, plataformas e empresas de tecnologia com “Tiller”
+- A marca pode parecer ligada a agricultura, gardening ou rural equipment
+- A expansão internacional e a diferenciação em AI/automation ficam menos fortes
+
+Conclusão:
+Tiller Works não deve ser a decisão automática.
+Pode permanecer como reserva, mas não deve liderar a shortlist sem uma comparação séria com candidatos mais distintivos.
+
+11. FILTRO ESTRATÉGICO ATUAL
+
+A marca deve ficar entre dois territórios:
+
+TERRITÓRIO 1 — Motion & Flow
+Personalidade:
+Moderna, premium, acessível, B2B, humana.
+
+Ideia:
+A empresa mantém o negócio em movimento e remove fricção operacional.
+
+TERRITÓRIO 2 — Coordinated Systems
+Personalidade:
+Tecnológica, precisa, escalável, AI-native.
+
+Ideia:
+A empresa alinha sistemas, inteligência e ações em um fluxo coordenado.
+
+A melhor resposta é encontrar um nome proprietário que misture:
+
+Movimento + Direção + Coordenação
+
+Sem parecer:
+- Espacial demais
+- Técnico demais
+- Genérico demais
+- Agrícola
+- Logístico
+- Cripto
+- Automotivo
+
+12. DIREÇÃO RECOMENDADA PARA NOVOS NOMES
+
+Criar nomes proprietários curtos a partir de raízes que sugiram:
+
+Movimento:
+Kinetic, motion, flow, course, steer, drive, trajectory, pace, advance.
+
+Coordenação:
+Sync, align, mesh, node, relay, phase, pattern, order.
+
+Estrutura:
+Axis, frame, core, grid, system, engine, link.
+
+Resultado:
+Advance, onward, progress, momentum, clarity, continuity.
+
+Evitar usar essas raízes de forma literal e genérica.
+
+O objetivo é construir palavras proprietárias que sejam:
+- Fáceis de falar
+- Fáceis de escrever
+- Visualmente fortes
+- Sem associação industrial dominante
+- Distintivas para trademark
+
+13. SHORTLIST DE TRABALHO RECOMENDADA
+
+A shortlist deve ser reconstruída antes de registro.
+
+Prioridade de exploração conceitual:
+
+1. Nomes proprietários de movimento e coordenação
+2. Nomes proprietários inspirados em dinâmica e sistemas
+3. Compostos concretos apenas quando a associação primária for favorável
+4. Nome principal sem “AI”
+5. Tagline explicando AI automation e intelligent systems
+
+Tiller Works deve permanecer como backup, não como vencedor automático.
+
+14. PROCESSO DE DECISÃO
+
+Fase 1:
+Gerar 30 a 50 nomes novos em território Motion + Coordinated Systems.
+
+Fase 2:
+Eliminar imediatamente os que:
+- Soam difíceis ao telefone
+- Parecem nome de logística, agricultura, crypto, dating ou automotivo
+- Já possuem empresa ativa relevante
+- Dependem de grafia explicada
+- Parecem uma palavra de dicionário excessivamente usada
+- Não funcionam em português
+
+Fase 3:
+Escolher Top 10.
+
+Fase 4:
+Para cada Top 10, realizar:
+- Busca Google e LinkedIn
+- Busca de empresas de AI, software, automation e consulting
+- Busca de domínio .com, .com.au, .ai e .io
+- Busca de IP Australia nas classes 9, 35 e 42
+- Busca USPTO e EUIPO se houver intenção de expansão global
+- Phone test com 3 a 5 empresários australianos
+- Teste de primeira impressão: “o que esta empresa parece fazer?”
+
+Fase 5:
+Escolher Top 3.
+
+Fase 6:
+Antes de investir em identidade, fazer clearance com um trade mark attorney registrado na Austrália.
+
+15. RECOMENDAÇÃO FINAL ATUAL
+
+Não registrar nenhum nome baseado apenas em busca superficial de domínio.
+
+A direção estratégica correta é:
+
+A empresa deve ser nomeada como uma marca proprietária de sistemas coordenados, movimento e progresso.
+
+O nome deve comunicar implicitamente:
+
+“Things move. Nothing gets lost. Systems work together.”
+
+O posicionamento recomendado:
+
+[BRAND]
+Intelligent systems in motion.
+
+Ou:
+
+[BRAND]
+Connected intelligence. Coordinated action.
+
+Ou:
+
+[BRAND]
+From enquiry to action.
+
+A próxima etapa é gerar uma nova família de candidatos mais defensáveis do que:
+Fluxora, Synvec, Movexa, Vectaro, Orbvec, Asteron e Tiller Works.
+O que deve ser descartado
+A análise adicional confirma que parte importante da shortlist científica deve sair da corrida:
+
+Nome	Decisão	Motivo principal
+FLUXORA	Eliminar	Já aparece em um estúdio digital que oferece AI, agentes autónomos e hyperautomation, além de template de AI automation SaaS e app de IA. Isso é conflito de percepção direto. 
+SYNVEC	Eliminar	Empresa francesa existente em síntese química/biotech; também há “Synvect” em biotech. Mesmo que os setores sejam distintos, reduz a disponibilidade global e confunde buscas. 
+MOVEXA	Eliminar	Há empresas de logística, transportes, storage e soluções digitais/logísticas usando esse nome. O risco de associação com shipping é alto. 
+TILLER WORKS	Backup, não favorito	Boa pronúncia e metáfora possível, mas “tiller” tende a remeter a cultivador/máquina agrícola; há usos de Tiller em IA e automação. 
+HELM / HELMWORKS	Eliminar	“Helm” é fortemente associado ao gestor de pacotes Kubernetes, Helm.ai e automação industrial. Para uma agência de SMBs, torna a marca excessivamente técnica e pouco distintiva. 
+STEER / STEERWORKS	Eliminar	O território já é ocupado por empresas de AI para automóveis, oficinas e veículos autónomos. 
+FLOWMARK	Eliminar	Há empresa digital com automação e produto de produtividade com o mesmo nome. 
+MESHLINE	Eliminar	Já há empresas de AI/workflows e home services com esse nome, além de uso técnico em software. 
+KINETRA	Eliminar	Existem operações de AI automation usando Kinetra e Kinetra Systems. 
+Direção de marca recomendada
+O melhor território não é “objeto físico + sufixo” por padrão, nem “ciência espacial + sufixo inventado”. É:
+
+Coordenação operacional com movimento humano.
+
+Isso preserva a profundidade do conceito científico sem obrigar o cliente a entender física orbital. Para o cliente final, a promessa deve ser simples:
+
+Menos leads perdidos.
+
+Respostas e follow-up no momento certo.
+
+Equipe humana envolvida quando importa.
+
+Menos tarefas manuais.
+
+Operação mais fluida.
+
+Negócio avançando sem depender de mais headcount.
+
+A explicação interna da marca pode ser sofisticada — sistemas independentes coordenados para produzir ação —, mas o nome precisa funcionar em uma conversa casual:
+
+“Hi, this is Paulo from [Nome]. We build intelligent systems that keep service businesses moving.”
+
+Se a pessoa não consegue repetir, soletrar e lembrar o nome, ele não serve.
+
+Novos candidatos melhores
+Estes são candidatos criativos, não nomes liberados. A pesquisa preliminar acima mostrou que nomes aparentemente bons costumam esconder colisões, portanto todos exigem busca formal de domínio e trademark antes de qualquer decisão.
+
+Nome	Pronúncia aproximada	Ideia central	Avaliação inicial
+Averon	AV-uh-ron	“Aver” transmite confiança/garantia; som técnico e global	Melhor equilíbrio entre autoridade, simplicidade e expansão
+Cordin	KOR-din	Coordenação, ordem, sistemas conectados	Muito alinhado ao serviço; simples e B2B
+Veyra	VAY-ra	Direção, energia, movimento; curto e premium	Forte visualmente, mas exige teste de conflito fonético
+Noryn	NOR-in	Norte/direção + sistema proprietário	Bom para “clarity and direction”, menos técnico
+Ordin	OR-din	Ordem, coordenação, processo	Excelente conceito operacional; precisa avaliar conflitos com “Ordina” e similares
+Koreva	ko-REV-a	Core + evolução/ação	Parece SaaS ou systems company; acessível
+Movent	MOH-vent	Movimento contínuo e progresso	Direto, profissional, mas pode ter risco de uso em logística
+Calyra	ka-LEE-ra	Clareza, cadência e operação fluida	Premium e humana; menos explicitamente tecnológica
+Alineo	a-LIN-ee-oh	Align + movimento	Representa alinhamento entre IA, processo e pessoas
+Onvara	on-VA-ra	Onward + direção	Sugere progresso sem ficar preso a “automation”
+Kinetro	ki-NEH-tro	Kinetic + estrutura	Científico sem ser espacial; verificar proximidade com Kinetra
+Routiva	roo-TEE-va	Route + ativa	Bom para journeys e workflows, mas precisa evitar associação logística
+Cadenza	ka-DEN-za	Cadência, ritmo e coordenação	Excelente metáfora de sistemas trabalhando em harmonia; mais premium que técnico
+Modera	mo-DE-ra	Modernizar e moderar/organizar	Quente e corporativo; avaliar saturação
+Solvane	sol-VAYN	Resolver + fluxo	Mais orientado a outcome; pode funcionar além de IA
+Minha shortlist inicial
+Minha recomendação de direção, antes da etapa formal de disponibilidade, seria:
+
+Cordin
+
+Averon
+
+Alineo
+
+Cadenza
+
+Koreva
+
+Noryn
+
+Onvara
+
+Veyra
+
+Por que Cordin lidera conceitualmente
+Cordin é o candidato que mais diretamente traduz a proposta real: coordenar sistemas, processos, pessoas e inteligência para produzir ação.
+
+Ele não exige explicar astronomia, não se limita a CRM ou chatbot e não soa como empresa de jardinagem, transporte, crypto ou dating. Também permite uma arquitetura de marca limpa:
+
+Cordin
+Intelligent systems in motion.
+
+Ou:
+
+Cordin
+Coordinated intelligence for growing businesses.
+
+Ou:
+
+Cordin Systems
+From enquiry to action.
+
+A ressalva é essencial: “Cordin” precisa passar por busca exata e fonética em IP Australia, USPTO, EUIPO, Google, LinkedIn e domínios antes de avançar. A recomendação é de estratégia e posicionamento, não de clearance jurídico.
+
+Próxima decisão prática
+Eu não registraria Tiller Works antes de fazer uma rodada final com 8–12 nomes novos e uma verificação formal curta. O processo mais eficiente até 20 de setembro seria:
+
+Escolher 10 candidatos de uma lista nova, incluindo Cordin, Averon, Alineo, Cadenza, Koreva, Noryn, Onvara e Veyra.
+
+Fazer triagem pública para cada um:
+
+Busca exata entre aspas no Google.
+
+Busca no LinkedIn.
+
+Busca de empresas de AI, software, automação, consultoria e SaaS.
+
+Checagem de .com, .com.au, .ai e .io.
+
+Eliminar se houver empresa ativa de software, AI ou automation com nome idêntico ou foneticamente muito próximo.
+
+Rodar os sobreviventes no IP Australia para classes 9, 35 e 42. O próprio IP Australia recomenda buscar variações e substitutos do nome, e sua ferramenta oficial existe justamente para localizar marcas registradas e pendentes na Austrália.
+
+Fazer o phone test com pelo menos cinco pessoas:
+
+Dois tradies.
+
+Um advogado ou contador.
+
+Um dono de hospitality/wellness.
+
+Uma pessoa sem perfil técnico.
+
+Perguntar somente:
+
+“Como você soletraria?”
+
+“Que tipo de empresa você imagina que seja?”
+
+“Você se lembraria desse nome amanhã?”
+
+Só então fazer uma consulta com um trade mark attorney australiano antes de registrar marca, pagar por identidade ou imprimir material.
+
+A recomendação final, portanto, é: mantenha a história científica; abandone os híbridos já contaminados por concorrentes; não se prenda ao Tiller Works; e reconstrua a shortlist em torno de coordenação, cadência, direção e movimento.
+
+Build a comprehensive naming strategy and brand concept report for an AI Automation Agency aimed at enterprise clients. Generate 30 distinct name concepts categorized by naming style (evocative, descriptive, neologism, acronym), evaluate each for brand positioning, memorability, scalability into broader tech services, and perform a trademark risk and .com availability audit framework across major classes. Include taglines, brand voice pillars, and a final scoring matrix to help select the best agency name
+
+A strong enterprise AI-automation agency name should signal operational credibility, systems thinking, and room to expand beyond today’s workflow automations into AI platforms, data, integration, governance, and managed services. For your Australia-first, globally scalable positioning, I would avoid overly literal “AI Automation” names as the master brand; use the category in the descriptor and reserve a distinctive, ownable name for the brand.
+
+This report provides 30 name routes, a selection framework, brand platform, and a practical trademark/domain clearance process. The trademark and .com notes below are screening hypotheses—not legal opinions or live clearance results; a qualified trade-mark attorney and live registry/domain checks must precede adoption.
+
+Strategic direction
+Recommended positioning
+Positioning statement
+
+We design and operate coordinated AI systems that remove operational drag, connect fragmented work, and give enterprise teams a durable advantage.
+
+This shifts the agency away from “we build chatbots” and toward a higher-value, enterprise-safe promise:
+
+Automation: eliminate repetitive, error-prone work.
+
+Orchestration: connect people, data, models, software, and approvals.
+
+Assurance: build for security, governance, adoption, and measurable outcomes.
+
+Transformation: create an extensible operating capability, not a one-off prototype.
+
+Brand architecture
+Use a three-layer structure:
+
+Layer	Role	Example
+Master brand	Distinctive, defensible company name	Orchestriq
+Category descriptor	Immediate market clarity	“Enterprise AI Automation” or “AI Systems & Automation”
+Offer names	Scalable services and IP	Orchestriq Flow, Orchestriq Agents, Orchestriq Guard, Orchestriq OS
+Example lock-up:
+
+Orchestriq
+Enterprise AI Systems & Automation
+
+This protects future flexibility. If the company later offers AI governance, data engineering, managed agents, integration platforms, or advisory, it does not outgrow the name.
+
+Enterprise naming rules
+A viable finalist should pass these eight gates:
+
+Distinctiveness — Can it plausibly function as a source identifier rather than a generic category phrase?
+
+Enterprise confidence — Does it sound credible in a CIO, COO, General Counsel, or boardroom conversation?
+
+Meaningful metaphor — Does it suggest coordination, capability, clarity, control, intelligence, or momentum?
+
+Pronunciation — Can an Australian and international buyer say, spell, and repeat it after hearing it once?
+
+Searchability — Can it own search results and avoid generic noise?
+
+Service elasticity — Does it work for consulting now and software/managed services later?
+
+Visual potential — Can it support a serious identity system, not a trendy “AI” aesthetic?
+
+Clearance potential — Is it sufficiently invented or uncommon to justify deeper trademark and domain diligence?
+
+Name concepts
+Evocative names
+These use a strategic metaphor. They tend to feel premium and broad, but need a descriptor during the early go-to-market period.
+
+#	Name	Concept and positioning	Memorability	Tech-service scalability	Preliminary risk	Suggested tagline
+1	Orchestriq	The enterprise orchestrator: coordinating AI, people, processes, and systems	High	Excellent	Medium; coined form with a familiar root—search variants carefully	Make work move as one.
+2	Nexora	“Next” plus an aura/nexus feel; a modern transformation partner	High	Excellent	Medium; short coined names need broad similarity searching	The next operating advantage.
+3	Vectara	Vectors imply direction, force, and mathematical intelligence	High	Excellent	High; likely crowded/used in technology—do not advance without clearance	Direct intelligence into action.
+4	Kinetic Grid	A living operating grid that turns information into coordinated motion	High	Excellent	Medium–high; two common words, many similar uses likely	Turn operations into momentum.
+5	Signal Forge	Turning scattered signals, data, and intent into operational systems	High	High	Medium; evocative but common-word combination	Forge clarity into action.
+6	Keystone Logic	The structural element that holds enterprise systems together	Medium–high	Excellent	Medium–high; “Keystone” is crowded across services	The logic behind better operations.
+7	Lumina Systems	Visibility, clarity, and enlightened decision-making	High	High	High; “Lumina” is widely used—likely difficult to clear	Bring intelligence to light.
+8	Northline	Direction, certainty, and a clear path through complex change	High	High	High; common term across many industries	A clear line to intelligent operations.
+9	Axiom Works	First principles applied to operational design	High	Excellent	Medium–high; “Axiom” is heavily used in technology/professional services	Build from what must be true.
+10	Meridian AI	A global reference line: alignment, direction, and expansion	Medium–high	High	High; descriptive modifier and crowded core word	Align the enterprise for what’s next.
+Descriptive names
+These communicate quickly and suit an initial sales motion, but are generally harder to own exclusively and may constrain future positioning. Use these mostly as descriptors, product lines, or campaigns rather than master brands.
+
+#	Name	Concept and positioning	Memorability	Tech-service scalability	Preliminary risk	Suggested tagline
+11	Enterprise Flow Systems	Clear promise: create integrated, scalable workflow systems	Medium	High	High; largely descriptive	AI systems that keep work moving.
+12	Intelligent Operations Group	Premium consulting orientation for COO-led transformation	Medium	Excellent	High; generic phrase and broad collision risk	Operate with more intelligence.
+13	Autonomous Workflow Partners	Partnership-led automation for high-value workflows	Medium	Medium	High; highly descriptive and trend-dependent	From workflow to autonomous work.
+14	Applied AI Operations	Practical, outcome-focused AI implementation	Medium	High	High; difficult to monopolise as a name	Applied intelligence. Measurable operations.
+15	Connected Process Systems	Integration-centric delivery for fragmented enterprise processes	Low–medium	High	High; descriptive and search-noisy	Connect the work that matters.
+16	Intelligent Work Systems	Human-plus-AI operating system framing	Medium	Excellent	High; generic terms	Designing the intelligent workplace.
+17	AI Operating Advantage	Executive-level promise of durable efficiency and capability	Medium	High	High; slogan-like, descriptive	Build an advantage that operates.
+18	Cognitive Automation Partners	Consultative, enterprise-safe alternative to “AI agency”	Medium	Medium–high	High; multiple terms commonly used	Automate the routine. Elevate the enterprise.
+Neologisms
+Coined names are usually the strongest master-brand candidates because they can become distinctive and expand with the company. They still require live searching for exact, phonetic, visual, and conceptual conflicts.
+
+#	Name	Concept and positioning	Memorability	Tech-service scalability	Preliminary risk	Suggested tagline
+19	Auvanta	“Augment” and “advantage”; AI that advances enterprise capability	High	Excellent	Medium; phonetic variants require checks	Advance the way work gets done.
+20	Synverge	“Synergy” plus “converge”; systems, data, and teams working together	High	Excellent	Medium; check similar “Syn-” technology marks	Where enterprise systems converge.
+21	Operonix	Operations plus a technical suffix; engineered and scalable	High	Excellent	Low–medium; distinctive construction, but search “Operon” variants	Engineer the intelligent enterprise.
+22	Cognivra	Cognition plus a forward-facing, premium ending	High	Excellent	Medium; many “Cogni-” marks exist	Make intelligence operational.
+23	Flowvara	Flow plus a distinctive ending; workflow transformation without being literal	High	High	Medium; check “Flow-” software ecosystem conflicts	Build better flow into every operation.
+24	Nexvanta	Next plus advantage; future-ready systems partner	High	Excellent	Medium; short coined names need international screening	Build the next advantage.
+25	Axionara	Action, axiom, and a platform-like sound	Medium–high	Excellent	Low–medium; distinctive but test pronunciation	Intelligence designed to act.
+26	Coordexa	Coordination plus “dexterity”; orchestration with agility	High	Excellent	Low–medium; good distinctiveness, check “Corde/Coord-” variants	Coordinate work. Compound capability.
+Acronyms and initialisms
+Acronyms can feel enterprise-native but are often weak for memorability and trademarking unless the letters have a clear proprietary meaning. They work best when paired with a coined spoken name or used as internal methodology brands.
+
+#	Name	Expanded meaning	Memorability	Tech-service scalability	Preliminary risk	Suggested tagline
+27	AOS	Autonomous Operations Systems	Medium	Excellent	High; three-letter marks are extremely crowded	The operating system for autonomous work.
+28	NOVA	Networked Operational Value Architecture	High	Excellent	High; highly crowded across classes and countries	Turn intelligence into enterprise value.
+29	CORA	Coordinated Operations & Reasoning Architecture	High	Excellent	High; common name and likely crowded	Reason better. Operate together.
+30	SAGE	Systems, Automation, Governance & Execution	High	Excellent	High; common term and strong existing associations	Governed intelligence at work.
+Best-name shortlist
+My strongest initial shortlist is Orchestriq, Operonix, Coordexa, Synverge, and Auvanta. Each supports a scientific-platform or coordinated-systems vision while remaining credible with enterprise decision-makers.
+
+Rank	Name	Why it works	Main watch-out	Recommended role
+1	Orchestriq	Most directly expresses orchestration, a differentiating enterprise promise; works across advisory, integration, agents, governance, and managed services	Familiar root may create similarly named marks; spelling must be consistently taught	Preferred master brand
+2	Operonix	Signals operations plus engineered technology; distinctive and serious without being jargon-heavy	May initially need pronunciation guidance: “op-er-on-िक्स” / “op-er-on-iks”	Strong master brand
+3	Coordexa	Captures coordination and dexterity, ideal for AI systems that bridge teams and software	Slightly less instantly intuitive than Orchestriq	Strong master brand
+4	Synverge	Strong transformation story: systems converging into a coordinated whole	“Syn-” technology names are a crowded naming neighbourhood	Master brand or platform brand
+5	Auvanta	Broad, premium, forward-looking; fits a global consulting-to-platform pathway	Brand meaning needs to be deliberately built	Master brand with strong positioning line
+Recommendation
+Primary recommendation: Orchestriq
+
+Orchestriq — Enterprise AI Systems & Automation
+Make work move as one.
+
+Why it is the strongest strategic fit:
+
+It says you are in the business of orchestrating, not merely automating.
+
+It credibly spans legal, accounting, trades, hospitality, real estate, and other operationally complex businesses, while maintaining enterprise-level language.
+
+It creates a coherent offer architecture: Orchestriq Flow, Orchestriq Agents, Orchestriq Guard, Orchestriq Command, and Orchestriq Managed.
+
+It can grow into a software-enabled services company without a rebrand.
+
+The “iq” ending reinforces intelligence but is subtle enough to avoid generic “AI company” styling.
+
+If early clearance produces unacceptable conflicts, choose Operonix as the first alternative.
+
+Brand concept
+Core idea
+The coordinated enterprise
+
+Enterprise AI rarely fails because the model is insufficient. It fails because workflows are fragmented, data is inaccessible, people lack trust, systems do not integrate, and governance arrives too late.
+
+The brand should therefore stand for coordination at scale: AI that works across the real enterprise rather than beside it.
+
+Brand promise
+Turn disconnected work into coordinated intelligence.
+
+Audience
+Primary decision-makers:
+
+COO and operational leaders seeking measurable productivity, service, and quality gains.
+
+CIO, CTO, and data leaders managing integration, architecture, and risk.
+
+CFO and transformation leaders requiring credible ROI and an implementation path.
+
+Business-unit executives who need adoption, not experiments.
+
+Regulated or trust-sensitive sectors, including legal, financial and professional services.
+
+Value proposition
+For enterprises stuck between AI ambition and operational complexity, Orchestriq designs, deploys, and governs coordinated AI systems that make work faster, safer, and measurably more valuable.
+
+Service architecture
+Offer	What it includes	Enterprise outcome
+Orchestriq Signal	Process discovery, opportunity sizing, data and readiness assessment	Prioritised AI roadmap with an investment case
+Orchestriq Flow	Workflow redesign, systems integration, approvals, automation	Faster, more reliable end-to-end operations
+Orchestriq Agents	AI assistants and agentic systems for defined business processes	Scalable execution with human control
+Orchestriq Guard	Governance, access controls, evaluation, auditability, monitoring	Responsible deployment and reduced operational risk
+Orchestriq Command	Managed optimisation, analytics, operating cadence, continuous improvement	A compounding AI capability rather than a project outcome
+Tagline options
+Choose one primary line and retain the rest for campaign use.
+
+Use	Tagline
+Primary	Make work move as one.
+Executive / enterprise	Coordinated intelligence for the enterprise.
+Outcome-led	Turn AI ambition into operating advantage.
+Transformation-led	From fragmented work to intelligent operations.
+Technical credibility	Design. Deploy. Govern. Scale.
+Human-plus-AI	Better systems for the people who run them.
+Brand voice pillars
+Pillar	What it sounds like	Avoid
+Clear	Plain language, explicit outcomes, no ambiguity	Hype, dense AI jargon, vague claims
+Assured	Calm, evidence-based, security and governance aware	Overpromising autonomy or “revolution”
+Systems-minded	Explains dependencies, processes, controls, and compounding capability	Treating AI as an isolated feature
+Pragmatically ambitious	Bold about transformation, rigorous about delivery	Cautious consultancy-speak or futurist theatre
+Human-accountable	Emphasises ownership, oversight, adoption, and decision rights	Suggesting people are simply replaced
+Voice example
+
+Weak: “We leverage next-generation agentic AI to disrupt legacy workflows.”
+
+Stronger: “We redesign critical workflows so AI, systems, and people can complete more work with clearer controls and less friction.”
+
+Visual direction
+The visual system should feel more like precision infrastructure than generative-AI spectacle:
+
+A structured modular grid representing connected workflows and governed hand-offs.
+
+Deep ink/navy or graphite as the base, with a restrained signal colour—electric teal, mineral green, or cobalt—for state changes and intelligence.
+
+Typography that is editorial and technical: confident grotesk sans serif, disciplined hierarchy, generous whitespace.
+
+Motion language based on signals converging, routing, verifying, and progressing—rather than swirling neural-network imagery.
+
+Avoid robot heads, sparkles, circuit-board clichés, gradients as the main identity, and generic “AI brain” symbols.
+
+Trademark and domain audit
+Important limitation
+A meaningful clearance opinion cannot be delivered from name creativity alone. It requires searching the relevant databases for exact marks, phonetic equivalents, misspellings, similar visual marks, related services, business names, marketplace usage, and relevant jurisdictions.
+
+In Australia, trade-mark classes organise claims: Classes 1–34 cover goods and Classes 35–45 cover services. For an AI automation firm, Class 9 commonly covers downloadable software, while Class 42 commonly covers software development and non-downloadable software/SaaS. IP Australia provides both a TM Checker tool and the Australian Trade Mark Search for registered and pending marks. The same Nice classification structure is used internationally; Class 35 covers advertising/business services and Class 42 covers computer and scientific services.
+
+Core filing classes
+Class	Why it matters	Illustrative claim territory
+9	Protects downloadable software, applications, AI software, recorded programs, and data-processing software	Downloadable AI software; workflow-automation software; computer software for business-process management
+35	Covers business consulting, business management, business process optimisation, and operational consulting	Business consultancy relating to digital transformation and process efficiency
+42	Core class for SaaS, software development, technology consulting, hosting, AI design, integration, and managed technical services	SaaS featuring AI workflow automation; design and development of AI software; IT consultancy; cloud computing
+38	Consider if you operate communications, messaging, or collaboration infrastructure as a service	Providing access to platforms for digital communication
+41	Consider for paid training, education, certification, workshops, or an academy	Training in AI, automation, and digital transformation
+45	Consider only if governance becomes legal/compliance advisory in a way that fits the class; obtain specialist advice	Regulatory-compliance consultancy where appropriate
+For a typical agency that may become a managed AI platform company, a focused initial portfolio is usually Classes 9, 35, and 42, with 38 and 41 added only if they are commercially material. Filing unnecessary classes adds cost and creates vulnerability if there is no bona fide use plan.
+
+Jurisdiction sequence
+Priority	Jurisdiction / database	Purpose
+1	Australia — IP Australia ATMS and TM Checker	Home-market risk, pending marks, and examination signal
+2	WIPO Global Brand Database / Madrid Monitor	International registrations and broad early conflict detection
+3	United States — USPTO Trademark Search	Essential for global software and technology expansion
+4	European Union — EUIPO eSearch plus / TMview	EU-wide and participating national-office search
+5	United Kingdom — UKIPO	Important English-language technology market
+6	New Zealand, Singapore, and selected Asia-Pacific markets	Commercial expansion and regional enforcement planning
+7	Common-law web search	Finds unregistered market use, company names, social profiles, apps, and software products
+WIPO’s Global Brand Database allows searching international trademarks, participating national and regional office collections, names, goods/services, and image similarity. EUIPO identifies eSearch plus and TMview as free resources for checking registrations and applications from EU and participating national IP offices. The USPTO operates an official trademark search database for clearance searching.
+
+Audit protocol per name
+For each shortlisted candidate, document the following before design, incorporation, or public launch:
+
+Exact-word search
+Search the full wordmark in each registry and Google/Bing. Record active, pending, expired, opposed, cancelled, and abandoned results, while focusing particularly on active/pending marks.
+
+Similarity search
+Search likely phonetic, plural, spacing, suffix, and spelling variants. For example, for “Orchestriq,” test orchestriq, orchestric, orchestriq, orchestra, orchestration, orchestrate, and compound forms.
+
+Class relevance review
+A similar mark in an unrelated category might be acceptable; a weaker similarity in Classes 9, 35, or 42 may be more problematic. Assess relatedness of services, customers, channels, geography, and likelihood of buyer confusion.
+
+Common-law review
+Search the web, LinkedIn, Crunchbase, app marketplaces, GitHub, software directories, Australian business registries, and social networks. Registered trade-mark databases are necessary but not the complete risk picture.
+
+Domain review
+Check the exact .com, .com.au, .ai, .io, and relevant defensive variants through an accredited registrar and ICANN Lookup. ICANN’s lookup service provides registration data for domain names and internet-number resources.
+
+Linguistic and cultural review
+Test pronunciation and unintended meanings with Australian, North American, UK/EU, and priority APAC audiences. Verify that it is easy to say on a sales call and easy to type after hearing it.
+
+Attorney opinion
+Have Australian counsel issue a clearance assessment and filing strategy. If US/EU expansion is planned, obtain jurisdiction-specific advice before committing to public use.
+
+Trademark-risk framework
+Use this model to classify results rather than relying on a simplistic “available/unavailable” verdict:
+
+Risk	Definition	Action
+Low	No materially similar active/pending marks in adjacent classes or markets; limited conflicting use	Proceed to legal clearance and filing
+Moderate	Similar elements, but different overall impression, goods/services, or geography	Obtain attorney advice; consider logo and specification strategy
+High	Exact or strongly similar active/pending marks in Classes 9, 35, 42, or adjacent software/consulting services	Remove from shortlist unless counsel identifies a clear path
+Critical	Exact matching mark or strong common-law competitor in the same market and services	Do not adopt
+.com availability framework
+Do not represent a domain as available until it is checked live at the time of purchase. Domain status can change within minutes, privacy services may obscure registrants, and an available domain does not solve trademark conflict.
+
+Domain outcome	Assessment	Recommended response
+Exact .com available	Best case	Secure immediately after legal go-ahead; also secure .com.au, .ai, and common misspellings
+Exact .com parked or unused	Potentially workable	Investigate price and registrant; set a walk-away price; do not assume acquisition is possible
+Exact .com held by unrelated active business	Moderate to high brand risk	Prefer a different name unless the business is clearly remote and counsel approves
+Exact .com held by adjacent technology or consulting business	High risk	Reject candidate
+Only modified domain available	Acceptable only if the master brand is strong and exact .com is not used by a confusingly similar business	Prefer clean modifiers such as get[name].com, [name]systems.com, or [name]group.com; avoid hyphens and awkward spellings
+Recommended domain convention
+If the exact .com is unavailable but clearance is otherwise strong, the best fallback for this category is usually:
+
+orchestriq.com — ideal.
+
+orchestriqsystems.com — acceptable for enterprise positioning.
+
+getorchestriq.com — acceptable short-term marketing fallback.
+
+orchestriq.ai — useful defensive or product-domain asset, not a substitute for a strong .com.
+
+orchestriq.com.au — important for Australian trust and local search.
+
+Avoid using a suffix such as “AI,” “automation,” or “agency” merely to compensate for a lost .com if it makes the brand generic or difficult to say.
+
+Selection matrix
+Scores below are strategic estimates on a 1–10 scale, not confirmation of legal or domain availability. For trademark clearance potential, a higher score means a more distinctive construction and therefore a better starting hypothesis; it is not a legal conclusion.
+
+Weighting: positioning 25%, memorability 15%, enterprise credibility 15%, scalability 20%, clearance potential 15%, domain potential 10%.
+
+Name	Positioning	Memorability	Enterprise credibility	Scalability	Clearance potential	Domain potential	Weighted score / 100	Decision
+Orchestriq	10	9	9	10	7	7	90.0	Advance to clearance
+Operonix	9	8	9	10	8	8	88.5	Advance to clearance
+Coordexa	9	8	9	10	8	8	88.5	Advance to clearance
+Synverge	9	9	8	10	7	7	86.5	Advance to clearance
+Auvanta	8	9	8	10	7	8	85.0	Advance to clearance
+Nexvanta	8	8	8	10	7	8	83.5	Reserve candidate
+Cognivra	8	8	9	10	6	7	82.5	Reserve candidate
+Flowvara	8	8	8	9	6	7	78.5	Reserve candidate
+Axionara	7	7	8	10	8	8	79.0	Reserve candidate
+Signal Forge	8	8	8	9	5	5	76.5	Campaign/sub-brand route
+Axiom Works	8	8	9	10	4	5	76.0	High collision risk
+Kinetic Grid	8	8	8	10	4	5	75.5	High collision risk
+Nexora	8	8	8	10	5	6	78.0	Check before advancing
+CORA	7	9	8	10	2	2	71.5	Avoid as master brand
+SAGE	7	9	9	10	1	1	69.5	Avoid as master brand
+NOVA	7	9	8	10	1	1	67.5	Avoid as master brand
+AOS	6	5	8	10	1	2	59.0	Use only as methodology acronym
+Applied AI Operations	7	5	8	9	1	2	63.5	Use as descriptor
+Intelligent Operations Group	7	5	9	10	1	2	65.5	Use as descriptor
+Enterprise Flow Systems	6	4	7	8	1	2	56.5	Do not use as master brand
+Final decision process
+Take Orchestriq, Operonix, Coordexa, Synverge, and Auvanta into a formal live clearance sprint.
+
+Search each in Australia, US, EU, WIPO, UK, and relevant APAC registries across at minimum Classes 9, 35, and 42.
+
+Obtain exact .com and .com.au status, then assess marketplace use and acquisition cost where relevant.
+
+Have 8–12 enterprise buyers or trusted operators react to three finalists without explanation: pronunciation, credibility, perceived service category, and recall after 24 hours.
+
+Select the name that combines the cleanest legal/domain route with the strongest strategic score—not necessarily the most immediately descriptive name.
+
+File the word mark early in Australia before public launch, then use the Madrid System or direct country filings as expansion priorities become commercially justified.
+
+The ideal outcome is a master brand such as Orchestriq that is distinctive enough to own, paired with an unmistakable descriptor—Enterprise AI Systems & Automation—so market comprehension is immediate while the brand gains equity.
+
+Draft the remaining 25 name concepts across evocative descriptive and neogw categories
+
+Below are 25 additional name concepts—excluding the earlier leading candidates—with a deliberately stronger emphasis on enterprise credibility, coordinated systems, operational transformation, and expansion from AI automation into broader technology services.
+
+These are creative territories only. Before adopting any candidate, run live searches in IP Australia’s Trade Mark Search and TM Checker, then broaden to WIPO and priority international registries; the official tools can identify registered and pending marks, but results still require similarity and class-scope review.
+
+Evocative names
+Evocative names signal a strategic idea rather than describing services literally. They are especially useful for a premium agency that may evolve into a software-enabled services company.
+
+#	Name	Strategic concept	Positioning signal	Scalability	Indicative trademark risk	Tagline
+1	Arcfield	An arc is both connection and trajectory; a field is a system of forces	Connects fragmented operations and directs change	Excellent	Medium; composed of common terms	Connect the forces that move work.
+2	Verity Works	Verity means truth, reliability, and confidence	Trusted AI systems for consequential enterprise decisions	High	Medium–high; “Verity” is widely used	Intelligence you can stand behind.
+3	Threadline	A thread joins separate elements into one coherent line	Workflow continuity across people, data, and software	Excellent	Medium–high; common-word construction	Connect every critical hand-off.
+4	Foundry Signal	A foundry creates durable things; signals provide operational intelligence	Builds robust AI capability from enterprise data	Excellent	Medium; two-word combination needs checking	Turn signal into operating strength.
+5	Helix Operations	A helix suggests structured growth, iteration, and intelligence	AI transformation that compounds rather than merely automates	High	High; “Helix” is heavily used in technology and science	Build capability that compounds.
+6	Atlas Method	Atlas conveys scale, navigation, and carrying complexity	A dependable transformation partner for complex organisations	Excellent	High; “Atlas” is extremely crowded	Carry complexity with confidence.
+7	Prime Circuit	Prime means essential; circuit means connected systems and feedback	Foundational technology systems for operational advantage	High	Medium–high; generic technology terms	Design the essential connection.
+8	The Relay Company	A relay passes work, signals, and responsibility safely onward	Human and AI hand-offs designed for speed and accountability	High	High; generic and commonly used	Keep critical work in motion.
+9	Civic Engine	Civic implies responsibility and public trust; engine implies execution	Suitable for enterprise, public-sector, and regulated-market work	High	Medium; check industry-specific uses	Put responsible intelligence to work.
+Descriptive names
+Descriptive names are useful where immediate clarity matters most. They are generally less distinctive and should usually be used as a descriptor, business unit, offer name, or campaign platform, rather than the primary registered brand.
+
+#	Name	Strategic concept	Positioning signal	Scalability	Indicative trademark risk	Tagline
+10	Enterprise Intelligence Systems	AI as a coordinated operating capability	Boardroom-safe, systems-led transformation	Excellent	High; highly descriptive	Intelligence built into operations.
+11	Operational AI Partners	Trusted implementation and change partner	Consultative, outcome-led AI delivery	High	High; descriptive phrase	From AI potential to operating performance.
+12	Intelligent Process Studio	Design-led process transformation using AI	More modern and hands-on than “consultancy”	High	High; descriptive and potentially crowded	Redesign the work that drives growth.
+13	AI Workflow Architecture	Designing the end-to-end operating layer for AI	Strong fit for technical and enterprise buyers	Excellent	High; generic terms	Architect work for intelligent execution.
+14	Autonomous Operations Studio	Controlled progression from automation to agentic operations	Ambitious, platform-ready category language	Excellent	High; category-like and trend-linked	Build operations that move themselves forward.
+15	Connected Intelligence Group	Links intelligence, systems, people, and decisions	Broad consulting and managed-services potential	Excellent	High; common phrase elements	Make intelligence work together.
+16	Business Flow Engineering	Engineers better process flow, not merely automations	Practical and industrial in a positive sense	High	High; mostly descriptive	Engineer flow into every operation.
+17	AI Systems Advisory	Executive-led strategy, architecture, and implementation	Clear and credible for early enterprise sales	Excellent	High; fully descriptive	A clearer path to operational AI.
+Neologism names
+Neologisms are the strongest candidates for a durable master brand. They create room to own a term, build proprietary meaning, and support future offers in software, managed AI, data platforms, governance, and transformation services.
+
+#	Name	Strategic concept	Positioning signal	Scalability	Indicative trademark risk	Tagline
+18	Ordinexa	“Order” and “nexus”; coordinated systems at the point of connection	Structured enterprise orchestration	Excellent	Low–medium; check “Ord-/Nexa” variants	Create order at the point of action.
+19	Stratavon	“Strategy” and “strata”; multiple layers working as one	Enterprise-scale depth, architecture, and progression	Excellent	Low–medium; distinct construction	Align every layer of the enterprise.
+20	Virelia	Vitality, intelligence, and a refined technical sound	Premium, human-centred AI transformation	Excellent	Medium; search phonetic relatives	Make intelligent work feel natural.
+21	Nodexa	Node plus dexterity; agile coordination across a connected network	Integration, orchestration, and distributed operations	Excellent	Medium; “Nodex” variants require review	Coordinate every moving part.
+22	Provalis	Progress, proof, and value	Measurable, governed transformation	Excellent	Low–medium; distinctive but test pronunciation	Prove progress in every process.
+23	Integrixa	Integration plus an engineered suffix	Technical depth and end-to-end system connection	Excellent	Medium; “Integra/Integr-” marks are crowded	Make every system work together.
+24	Evolara	Evolution plus a forward, platform-like ending	Long-term operating evolution instead of project delivery	Excellent	Medium; check similar “Evol-” marks	Evolve the way the enterprise operates.
+25	Syntara	Synthesis plus a confident, global sound	Combining data, AI, systems, and people into one capability	Excellent	Medium; “Synt-” name family is busy	Make the enterprise work in concert.
+Recommended additions
+Of these 25, the best candidates to add to the prior shortlist are Ordinexa, Stratavon, Nodexa, Provalis, and Syntara.
+
+Rank	Name	Why it is promising	Main caution	Suggested brand lock-up
+1	Ordinexa	Strongest expression of order, connection, and controlled execution; feels enterprise-native without being generic	Search against “Ord-,” “Ordin-,” and “Nexa” family marks	Ordinexa — Enterprise AI Systems & Automation
+2	Stratavon	Signals layered enterprise complexity and strategy; credible for consulting, platforms, and managed services	Needs spoken-name testing for first-hear spelling	Stratavon — Intelligence across the enterprise
+3	Nodexa	Highly relevant to integration, networked workflows, and orchestration; modern but not frivolous	Check potential overlap with “Node” software names	Nodexa — Connected intelligence at work
+4	Provalis	Differentiates through proof, governance, and measurable value—important for risk-conscious buyers	Slightly abstract; requires a clear category descriptor	Provalis — AI built to prove value
+5	Syntara	Elegant, scalable, and aligned with synthesis of systems and intelligence	Check crowded “Synt-” technology territory	Syntara — Make intelligence work together
+How to use them
+A practical three-tier brand structure would be:
+
+Brand layer	Example	Purpose
+Master brand	Ordinexa	The distinct company identity and legal trade mark
+Descriptor	Enterprise AI Systems & Automation	Explains the category immediately
+Methodology	The Coordinated Operations Method	Makes delivery feel repeatable and proprietary
+Offers	Ordinexa Signal, Ordinexa Flow, Ordinexa Agents, Ordinexa Guard	Supports cross-sell and future platform expansion
+For example:
+
+Ordinexa
+Enterprise AI Systems & Automation
+Create order at the point of action.
+
+That combination maintains high enterprise clarity now, while the master brand can later stand alone once it develops market recognition.
+
+Clearance next steps
+For your final 5–8 candidates, conduct the following before spending on identity, incorporation, campaigns, or public announcements:
+
+Search exact names and variants in Australia across Classes 9, 35, and 42—software, business/consulting services, and software/technology services.
+
+Run phonetic and visual searches: spacing changes, plural forms, likely misspellings, and similar endings such as -nexa, -tara, -vanta, and -onix.
+
+Search the same candidates in WIPO’s Global Brand Database and priority expansion registries, especially the United States, European Union, United Kingdom, New Zealand, and Singapore. WIPO’s database supports keyword, name, goods/services, and image-similarity searching across international and participating national/regional records.
+
+Check common-law use: Google, LinkedIn, company registers, software marketplaces, GitHub, product directories, social handles, and relevant industry directories.
+
+Verify the exact .com, .com.au, .ai, and .io domains live, then acquire strategically relevant variants only after the legal direction is sound.
+
+Obtain a formal clearance opinion from Australian trade-mark counsel before selecting and filing the primary wordmark. IP Australia explicitly recommends searching existing marks before filing, and its TM Checker provides an early indication rather than a legal guarantee.
+
+separete the best names and check trademark and url availability
+
+Below is a shortlist of the strongest names from the full set, plus a practical trademark and .com/URL availability audit framework you can run before committing. I cannot perform live registry or registrar queries from here, so the tables give you a structured way to evaluate each candidate and a clear “what to do next” for each name.
+
+Shortlist: best names to take into clearance
+These are the names I would prioritise for an enterprise AI-automation agency that may expand into platforms, managed services, and broader tech consulting.
+
+Name	Type	Why it’s strong	Primary caution
+Orchestriq	Neologism (evocative + invented ending)	Directly signals orchestration of AI, people, and systems; premium and scalable	Familiar root “orchestr-” means you must search carefully for similar marks
+Operonix	Neologism	Operations + technical suffix; engineered, serious, platform-ready	Needs pronunciation guidance for some buyers
+Coordexa	Neologism	Coordination + dexterity; ideal for integrated workflows and agentic systems	Slightly less instantly intuitive than Orchestriq
+Ordinexa	Neologism	Order + nexus; structured enterprise orchestration	Check “Ord-/Nexa” family marks
+Stratavon	Neologism	Strategy + strata; layered enterprise transformation	Test first-hear spelling and pronunciation
+Auvanta	Neologism	Augment + advantage; broad, premium, global	Meaning must be built through positioning
+Synverge	Neologism	Synergy + converge; systems coming together	“Syn-” technology names are crowded
+Nodexa	Neologism	Node + dexterity; networked operations and integration	Check “Node/Nodex” software ecosystem
+Provalis	Neologism	Proof + value + progress; governance and measurable outcomes	Abstract; needs strong descriptor
+Syntara	Neologism	Synthesis + confident platform sound; combining data, AI, and systems	“Synt-” name family is busy
+These 10 give you multiple directions: orchestration, operations, order/structure, strategy, advantage, convergence, nodes/networks, proof/value, and synthesis.
+
+Trademark audit framework (Classes 9, 35, 42)
+For an AI automation agency that may become a software-enabled services company, the core Nice classes are:
+
+Class 9 – Downloadable software, apps, AI software, data-processing programs.
+
+Class 35 – Business consulting, management, process optimisation, operational consulting.
+
+Class 42 – SaaS, software development, AI design, integration, hosting, managed technical services.
+
+IP Australia and other offices use the Nice Classification to organise goods and services into 45 classes, with Classes 1–34 for goods and 35–45 for services. For software delivered as a service, Class 42 is canonical; for downloadable apps and software products, Class 9 is canonical; many AI/SaaS businesses need both.
+
+Step 1 – Knock-out search in key registries
+For each shortlisted name, run:
+
+Australia – IP Australia Trade Mark Search
+
+Use the official search to find existing registered and pending marks.
+
+Search: exact word, common misspellings, plural/singular, and phonetic variants.
+
+Filter to Classes 9, 35, 42 (and adjacent classes if relevant).
+
+WIPO Global Brand Database
+
+Search international registrations and participating national/regional collections.
+
+Use keyword, phonetic, and “similar name” functions where available.
+
+United States – USPTO Trademark Search
+
+Search the federal database for live applications and registrations.
+
+Focus on marks that are live, in related software/consulting/SaaS services, and confusingly similar in sound/meaning.
+
+Optional but recommended
+
+EUIPO eSearch plus / TMview for EU and participating offices.
+
+UKIPO, NZ, Singapore if those markets matter.
+
+IP Australia explicitly advises searching before applying, and its TM Checker gives an early indication (Australia-only) of potential conflicts.
+
+Step 2 – Similarity and class-scope review
+For each potentially conflicting mark, ask:
+
+Is the mark live (active application or registration)?
+
+Are the goods/services related to yours (AI, workflow automation, SaaS, consulting, integration)?
+
+Would an enterprise buyer likely think the services come from the same source or are affiliated?
+
+Is the similarity in sound, appearance, or concept strong enough to create confusion?
+
+USPTO guidance emphasises that confusion can arise even across different classes if the services are related and the marks look/sound alike or create a similar commercial impression.
+
+Step 3 – Common-law and marketplace search
+Even if a name is not registered, existing market use can block or complicate your path:
+
+Google/Bing the exact name plus terms like “AI”, “automation”, “software”, “consulting”, “SaaS”.
+
+Check LinkedIn, Crunchbase, GitHub, major software directories, app stores, and Australian business registries.
+
+Look for companies offering overlapping services under the same or very similar names.
+
+Step 4 – Attorney clearance opinion
+Once you have search results:
+
+Engage an Australian trade-mark attorney to:
+
+Interpret similarity and class overlap.
+
+Advise on filing strategy (word mark vs. logo, specification wording, classes).
+
+Assess risk for your target expansion markets (US, EU, APAC).
+
+IP Australia’s classification guidance notes you should cover your core goods and services without over-filing internal functions; for an AI agency, that usually means 9, 35, and 42 as the foundation.
+
+Domain and URL availability framework
+A domain being free does not mean the name is legally clear, but a taken .com can materially affect brand viability, especially for enterprise buyers.
+
+Extensions to check
+For each name, check at minimum:
+
+.com – Global primary.
+
+.com.au – Australian trust and local search (requires Australian presence or trade mark).
+
+.ai – Strong signal for AI, useful defensively and for product domains.
+
+.io – Common for technical/software brands.
+
+Use a domain checker or registrar search (GoDaddy, Namecheap, Cloudflare, etc.) to see live availability and pricing.
+
+How to interpret domain results
+Domain outcome	Interpretation	Recommended action
+Exact .com available	Best-case scenario	Secure immediately after legal go-ahead; also secure .com.au, .ai, .io
+Exact .com parked/unused	Potentially workable	Investigate owner and price via WHOIS; set a walk-away budget
+Exact .com used by unrelated business	Moderate risk	Assess industry overlap; if far removed and counsel is comfortable, proceed with caution
+Exact .com used by adjacent tech/consulting/AI business	High risk	Prefer a different name
+Only modified domains available	Acceptable if brand is strong	Use clean modifiers: get[name].com, [name]systems.com, [name]group.com
+ICANN’s lookup tool can provide current registration data for domain names, which helps you understand ownership and status when a domain is taken.
+
+Name-by-name audit template
+Use this template for each shortlisted name. Fill it as you run live searches.
+
+Example template
+Name: Orchestriq
+Type: Neologism (evocative + invented ending)
+Core concept: Enterprise orchestration of AI, people, processes, and systems
+
+Trademark screening (to be completed with live searches)
+Jurisdiction	Database	Search terms used	Classes checked	Conflicts found? (Y/N)	Notes
+Australia	IP Australia Trade Mark Search	orchestriq, orchestric, orchestriq, orchestra, orchestration	9, 35, 42		
+International	WIPO Global Brand Database	orchestriq, orchestriq, orchestrate, orchestration	9, 35, 42		
+United States	USPTO Trademark Search	ORCHESTRIQ, ORCHESTRIQ, ORCHESTRATION	9, 35, 42		
+EU/UK (optional)	EUIPO / UKIPO	orchestriq, orchestriq	9, 35, 42		
+Common-law search:
+
+Google: “Orchestriq”, “Orchestriq AI”, “Orchestriq automation”
+
+LinkedIn, Crunchbase, GitHub, software directories
+Result summary: (to be filled after search)
+
+Attorney view: (to be filled after counsel review)
+
+Domain screening (to be completed with live checks)
+Domain	Status (Available / Taken / Premium)	Owner type (if taken)	Notes
+orchestriq.com			
+orchestriq.com.au			
+orchestriq.ai			
+orchestriq.io			
+getorchestriq.com			Fallback option
+orchestriqsystems.com			Fallback option
+Domain recommendation: (e.g., “Proceed if .com available or acquirable at reasonable price; otherwise consider orchestriqsystems.com.”)
+
+Overall risk rating: Low / Medium / High / Critical
+Decision: Advance / Reserve / Drop
+
+Applied to the shortlist (screening hypotheses)
+The following are strategic hypotheses, not live clearance results. They assume no exact, widely known global brand already exists under these names, but you must verify.
+
+Name	Distinctiveness (1–5)	Expected trademark risk (pre-search)	Expected .com difficulty (pre-search)	Recommended role
+Orchestriq	5	Medium (familiar root, but coined form)	Medium–high (desirable, may be taken)	Preferred master brand
+Operonix	5	Medium (distinct construction)	Medium	Strong master brand
+Coordexa	5	Medium	Medium	Strong master brand
+Ordinexa	5	Low–medium	Medium	Strong master brand
+Stratavon	4–5	Low–medium	Medium	Strong master brand
+Auvanta	4–5	Medium (broad, may have uses)	Medium–high	Master brand with strong positioning
+Synverge	4	Medium–high (“Syn-” crowded)	Medium	Master or platform brand
+Nodexa	4–5	Medium (“Node” ecosystem)	Medium	Master or product-line brand
+Provalis	4	Low–medium	Medium	Master brand focused on proof/value
+Syntara	4	Medium (“Synt-” busy)	Medium	Master or platform brand
+Recommended next steps
+Pick 3–5 finalists from the shortlist (for example: Orchestriq, Ordinexa, Stratavon, Auvanta, Provalis).
+
+Run the full trademark and domain screens using:
+
+IP Australia Trade Mark Search and TM Checker.
+
+WIPO Global Brand Database for international marks.
+
+USPTO Trademark Search for US exposure.
+
+A domain checker for .com, .com.au, .ai, .io.
+
+Share the search summaries with an Australian trade-mark attorney and request a clearance opinion and suggested filing classes (likely 9, 35, 42).
+
+Once counsel gives a green light on one name, secure the domains and file the Australian word mark before public launch, then plan international filings (Madrid System or direct) as expansion priorities crystallise.
+
+If you tell me which 3–5 names you want to focus on, I can draft the exact search strings and a ready-to-fill audit sheet (including suggested specification wording for Classes 9, 35, and 42) tailored to those candidates.

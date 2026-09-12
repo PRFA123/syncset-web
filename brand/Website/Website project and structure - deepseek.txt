@@ -1,0 +1,215 @@
+CONFIDENTIAL — INTERNAL STRATEGY DOCUMENT
+Project Code Name: "SyncSet — Zero-to-One Digital Presence"
+Prepared for: North-star & CEO
+Prepared by: Senior Architect / Engineering Lead
+Date: September 12, 2026
+
+1. Executive Summary & Strategic Recommendation
+Recommendation: Full Multi-Page Website with an Interactive Product Demo Landing Page, not a single landing page.
+
+After competitive analysis and technical review, a single landing page is insufficient for SyncSet's positioning. SyncSet is not a freelance consultancy selling one-off automation builds — it is an AI automation agency with platform capabilities (connectors, MCPs, APIs, CRM integrations). This requires a site architecture that supports:
+
+Multiple service verticals (CRM automation, workflow orchestration, API connectors, MCP servers) — each with dedicated indexable pages
+
+Proof-of-capability through an interactive workflow demo
+
+SEO surface area for long-tail B2B queries across niches ("AI automation for logistics," "CRM workflow automation for healthcare," etc.)
+
+Scalability as marketing integrates content, case studies, and programmatic SEO
+
+A single-page site would cap organic reach at one URL and force all messaging into one scroll — a proven failure mode for automation agencies. Industry analysis confirms that AI agency sites which convert build distinct service pages with dedicated detail pages, not a compressed single-page pitch. The recommendation is a hybrid: a high-impact landing experience at / that immediately proves SyncSet's capability via interactive animation, with full supporting pages beneath it.
+
+2. Stakeholder Alignment: Business Principles → Digital Translation
+North-star & CEO Verification Checklist
+Business Principle	Digital Translation	Approval Required
+"Help people thrive and prosper"	Every page must lead with outcomes, not technology. Hero copy says "We help [role] save [X] hours/week" — not "We build AI automations."	Copy sign-off
+"Synchronize workflows"	Visual identity uses flow, connection, and rhythm motifs. Interactive demo shows nodes connecting in real time.	Brand sign-off
+"Saving time, increasing lead captivity"	Case studies and stats band must show before/after time savings and lead conversion lift.	Data validation
+"All niches"	Site architecture supports use-case landing pages by vertical (sales, ops, support, marketing) — each independently indexable.	IA sign-off
+"AAA AI automation agency"	Tone is engineering-credible, not hype-driven. Dark editorial aesthetic, technical vocabulary, no gradient-SaaS clichés.	Visual identity sign-off
+Open item for CEO: Confirm the primary conversion event. Industry data shows "Book a 20-minute automation audit" outperforms "Start free trial" for service businesses. Recommended CTA: "Book a Workflow Audit".
+
+3. Competitive Landscape Analysis
+3.1 Direct Competitors (AI Automation Agencies)
+Competitor Type	What Works	What Fails
+Zapier/Make/n8n Studios	Lead with workflow canvas visuals, integration logos, "automate this trigger → action" clarity	Over-index on tool names; no agency proof
+Dark-gradient AI templates (Neoner, Axonixa)	Bold visual identity, engineering-practice aesthetic	Generic — "looks like every other AI agency"
+Warm editorial approach (Dravix)	Stands out in saturated market; nature-inspired calm builds trust	May read as "lifestyle brand" rather than technical partner
+Product-led SaaS sites (Zapier.com)	Excellent interactive demos; clear pricing tiers	Misaligned with service model — no product to trial
+Key insight: The automation agency market is visually saturated with dark purple gradients. Differentiation opportunity lies in engineering-practice credibility — think Linear, Vercel, or Raycast, not generic AI template.
+
+3.2 What High-Converting Agency Sites Do
+Structural analysis of top-performing automation agency sites reveals a consistent six-section homepage flow:
+
+Hero — Names the process, not the technology
+
+Proof — Logos, numbers, before/after process metrics
+
+Services — Outcome-based language, 3–5 clear steps
+
+Process — Visual workflow showing how SyncSet operates
+
+Case studies — Real examples with hard numbers
+
+CTA — Repeat the audit booking at least twice
+
+4. Visual Identity & Branding System
+4.1 Design Direction: "Engineered Calm"
+Concept: Dark editorial foundation with luminous accents — not gradient-heavy SaaS, not sterile corporate. The aesthetic communicates precision engineering and system reliability, echoing visual identity trends where "dark, atmospheric foundations paired with luminous gradients" convey intelligence abstractly, without literal tech imagery.
+
+Element	Specification
+Primary surface	Deep charcoal (#0A0A0B) with subtle grain texture
+Accent	Electric cyan (#00E5FF) for interactive elements; amber (#FFB800) for CTAs
+Typography — Headlines	Space Grotesk — geometric, characterful at large sizes, free/OFL
+Typography — Body/UI	Inter — workhorse for screens, tall x-height, variable font
+Typography — Code/Data	JetBrains Mono — monospace for workflow labels, API references
+Motion	Workflow nodes illuminate sequentially; scroll-triggered reveal of connection lines
+Logo treatment	Wordmark in Space Grotesk Medium, tightened tracking; logomark uses SyncSet's flow motif
+Font recommendation rationale: Space Grotesk is a derivative of Space Mono that "keeps just enough quirk to feel distinctive without becoming gimmicky" — ideal for a brand that must feel both technical and approachable. Inter handles dashboard-level UI text and scales to hero sizes without losing legibility.
+
+4.2 Logo Integration
+The attached logo's wordmark should be reset in Space Grotesk Medium (500) , with optical tracking of -2%. The logomark remains unchanged. This creates a unified typographic system where the logo, headlines, and UI share one geometric family.
+
+5. Technical Architecture
+5.1 Stack Recommendation
+Layer	Technology	Rationale
+Framework	Next.js 15 (App Router)	SSR/SSG for SEO, API routes for MCP endpoint proxying, React Server Components for performance
+Styling	Tailwind CSS + CSS variables	Design token system; rapid iteration
+CMS	Payload CMS or Sanity	Headless, structured content for service pages, case studies, blog
+Interactive Demo	React Flow + Framer Motion	Workflow canvas visualization; node-based animation
+Animation	GSAP + Lenis	Scroll-triggered reveals, smooth scroll
+MCP/API Layer	Next.js Route Handlers + MCP SDK	Expose /api/mcp endpoints; proxy to backend automation services
+Database	PostgreSQL (Neon) + Redis	Case study data, lead qualification, session cache
+Auth	Clerk or Auth.js	For client portal (Phase 3)
+Hosting	Vercel	Edge functions, ISR, analytics
+Analytics	PostHog + GTM	Intent tracking, funnel analysis
+5.2 MCP & Connector Architecture (High-Level)
+text
+[Client Browser]
+       │
+       ▼
+[Next.js Edge — API Gateway]
+       │
+       ├──► /api/mcp — MCP Server (SSE)
+       │         │
+       │         ├── Authentication (OAuth 2.0)
+       │         ├── Rate limiting
+       │         └── Tenant scoping
+       │
+       ├──► /api/connectors — REST proxy to integration services
+       │
+       └──► /api/leads — Lead qualification + routing
+                │
+                ▼
+       [PostgreSQL] + [Redis Cache] + [Kafka Event Queue]
+This mirrors the standard MCP-based SaaS B2B architecture: client layer → API gateway → MCP server → LLM/service layer → data layer. The site itself becomes a demonstration of SyncSet's technical capability.
+
+6. Site Architecture & Information Design
+6.1 Full Page Map
+Route	Purpose	SEO Priority
+/	Home — interactive demo, hero, proof, services overview	Highest
+/services	Service index — card grid linking to detail pages	High
+/services/crm-automation	CRM workflow automation detail	High
+/services/workflow-orchestration	Cross-system workflow detail	High
+/services/api-connectors	Connector/MCP detail	Medium
+/services/mcp-servers	MCP server development detail	Medium
+/use-cases/[vertical]	Programmatic landing pages by industry	High (scalable)
+/case-studies	Index of proof	High
+/case-studies/[slug]	Individual case study with metrics	High
+/pricing	Engagement tiers (Audit → Build → Operate)	Medium
+/about	Team, principles, positioning	Medium
+/blog	Content hub for SEO	High (long-term)
+/contact	Audit booking + form	Highest (conversion)
+6.2 Homepage Section Flow
+Hero — Full-bleed interactive workflow animation. Headline: "We synchronize your workflows. You grow." Sub: "SyncSet builds AI-powered automations and CRM systems for businesses that refuse to scale manually." CTA: Book a Workflow Audit
+
+Proof Band — Animated counters: hours saved, workflows deployed, lead conversion lift
+
+Interactive Demo — Live node canvas showing a sample workflow (Lead Capture → Enrichment → CRM Sync → Follow-up Sequence) with nodes illuminating in sequence
+
+Services Bento Grid — Four cards linking to service detail pages
+
+Process — 4-step engagement model (Audit → Architect → Build → Operate)
+
+Case Study Feature — One deep case study with before/after metrics
+
+Testimonials — Rotating slider with roles and company sizes
+
+FAQ — Buyer-voice questions addressing scope, timeline, ownership
+
+Final CTA — Audit booking, repeated
+
+6.3 Interactive Workflow Demo Specification
+This is SyncSet's core differentiator. Implementation approach:
+
+Canvas: React Flow with custom node components
+
+Animation: GSAP timeline triggered on scroll — nodes fade in sequentially, connection lines draw, data packets animate along edges
+
+Interactivity: Click a node → side panel shows the connector/API used, the business outcome, and a "This is what we'd build for you" CTA
+
+Performance: Canvas lazy-loads on intersection; falls back to static SVG for reduced-motion users
+
+Reference implementations exist: AG2's Playground demonstrates real-time agent orchestration with streaming responses and node illumination. SyncSet's demo should be simpler but equally visceral — a 6-node workflow that tells a story.
+
+7. SEO & Discoverability Strategy
+7.1 Technical SEO Foundation
+Requirement	Implementation
+Structured data	Organization, Service, Person, BreadcrumbList, FAQPage, Article — unified entity graph with consistent @id references
+Core Web Vitals	Target 100/100 PageSpeed; ISR for content pages, static for marketing
+Rendering	SSG for all marketing pages; ISR for blog; SSR only for dynamic demo
+Sitemap	Auto-generated, segmented by content type
+Robots.txt	Explicit allow for all public routes; disallow /api/*
+7.2 Content & Keyword Strategy
+Primary keyword clusters:
+
+"AI automation agency" (high competition, brand-building)
+
+"CRM workflow automation for [vertical]" (programmatic, scalable)
+
+"[Tool] integration + [Tool] automation" (long-tail, high intent)
+
+"MCP server development" (emerging, low competition)
+
+Programmatic SEO opportunity: /use-cases/[vertical] pages generated from CMS data — each targeting a specific industry's workflow pain points. This is the scalability play.
+
+7.3 LLM Optimization (GEO/AEO)
+Structured data is no longer just for rich snippets — it's a core signal for LLMs when deciding which sources to cite. SyncSet's schema should explicitly define:
+
+Services as Service entities with serviceType and areaServed
+
+Case studies as Article with mentions linking to service entities
+
+FAQ as FAQPage with buyer-voice questions
+
+8. Build Phases & Timeline
+Phase	Scope	Duration	Deliverable
+Phase 0 — Foundation	Design system, tokens, logo typography, content strategy	2 weeks	Brand + content approved
+Phase 1 — Core Site	Home, Services index, 4 service detail pages, About, Contact	4 weeks	Live marketing site
+Phase 2 — Interactive Demo	Workflow canvas, node animations, side panel interactions	3 weeks	Demo integrated on home
+Phase 3 — Content Engine	Blog, case studies CMS, use-case page templates	3 weeks	SEO surface live
+Phase 4 — Lead Infrastructure	Audit booking flow, lead scoring, CRM webhook, analytics	2 weeks	Conversion tracking
+Phase 5 — Scale	Client portal, MCP endpoint demo, programmatic pages	Ongoing	Platform expansion
+9. What I Need from North-star & CEO for Approval
+Font sign-off — Space Grotesk (headlines) + Inter (body) + JetBrains Mono (code)
+
+Color palette sign-off — Charcoal #0A0A0B, Cyan #00E5FF, Amber #FFB800
+
+Primary CTA confirmation — "Book a Workflow Audit" vs. alternative
+
+Case study availability — At least one real client metric for proof band before launch
+
+Domain & branding — Confirm syncset.com (or equivalent) and final wordmark lockup
+
+Content ownership — Who writes service page copy? Recommended: senior engineer + marketing review
+
+10. Risk Register
+Risk	Mitigation
+Dark aesthetic reduces readability for older B2B buyers	Ensure WCAG AA contrast; test with 40+ demographic
+Interactive demo fails on low-end devices	Lazy-load + static fallback; test on mobile 3G
+Service pages cannibalize each other	Clear IA with canonical hierarchy; internal linking strategy
+MCP/API content too technical for buyers	Layer copy: outcome headline, technical proof below fold
+Programmatic pages thin content penalty	Require 400+ words unique copy per vertical; CMS validation
+Next Step: Once this plan is approved at the stakeholder level, I will produce the Technical Design Document (TDD) with component architecture, data models, and API contracts for Phase 1 sprint planning.
+
+Awaiting your green light.

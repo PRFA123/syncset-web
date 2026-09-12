@@ -1,0 +1,48 @@
+---
+import Cta from './Cta.astro';
+---
+
+<header class="header">
+  <div class="header__container">
+    <div class="header__logo">
+      <span class="header__logo-text">SyncSet</span>
+    </div>
+    <nav class="header__nav">
+      <Cta variant="dark" />
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    background-color: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: var(--space-4) var(--gutter);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header__container {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header__logo {
+    flex: 0 0 auto;
+  }
+
+  .header__logo-text {
+    font-family: var(--font-human);
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .header__nav {
+    flex: 0 0 auto;
+  }
+</style>

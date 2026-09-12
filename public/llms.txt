@@ -1,0 +1,16 @@
+# SyncSet
+
+> AI workflow automation for businesses of all sizes. We connect the tools you already use — WhatsApp, CRM, calendar — so enquiries are captured and bookings are confirmed automatically.
+
+## Services
+
+- Workflow automation: connecting existing business tools to eliminate manual re-entry
+- CRM integration: syncing customer data across communication channels
+- Enquiry capture: automated response and booking from missed calls, DMs, and web forms
+
+## Contact
+
+- Website: https://www.syncset.com.au
+- Audit booking: https://www.syncset.com.au/book
+- Email: hello@syncset.com.au
+- Location: Byron Bay, NSW, Australia (remote-first, serves AU and internationally)

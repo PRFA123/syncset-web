@@ -1,0 +1,243 @@
+High-End Web Development with Claude
+
+These sources provide a comprehensive guide to **automating life and business** using advanced AI agents and specialized coding tools like **Claude Code**. The material introduces a systematic approach to productivity, categorized into the **"four Cs" framework**: coordination for managing schedules, creativity for generating professional assets, clarity for deciphering complex data, and coaching for interpersonal preparation. For digital creators, the guides demonstrate how to build **premium, high-value websites** in minutes by leveraging component libraries, design skills, and image generation models. Detailed workflows illustrate how users can **clone existing sites**, implement sophisticated scroll animations, and deploy functional applications to live domains without extensive technical knowledge. Ultimately, the sources advocate for a transition from using AI as a simple chatbot to employing it as a **multifaceted autonomous agent** that multiplies human potential and professional output.
+
+
+# Relatório de Due Diligence Técnica: Arquitetura de Sistema Web para Agência de IA com Claude
+
+---
+
+## PART 1 — Inventário de Fontes e Classificação de Credibilidade
+
+Abaixo está a avaliação técnica rigorosa das 41 fontes presentes neste notebook, classificadas com base em especificidade técnica, reprodutibilidade, consistência interna e presença de elementos promocionais ou alegações não verificáveis.
+
+### 1. Documentação Oficial e Currículo da Anthropic
+* **Best practices for Claude Code** [111–158]: Guia de engenharia oficial da Anthropic detalhando gestão da janela de contexto, Plan Mode, loops de verificação, subagentes e ganchos (hooks). Credibilidade: **Alta**.
+* **Overview - Claude Code Docs** [999–1018]: Documentação oficial sobre instalação, superfícies de execução (CLI, VS Code, Desktop, Web) e integração com ferramentas. Credibilidade: **Alta**.
+* **Quickstart - Claude Code Docs** [1035–1053]: Guia prático inicial da Anthropic cobrindo comandos de terminal, autenticação e operações git. Credibilidade: **Alta**.
+* **The Complete Guide to Building Skills for Claude | Anthropic** [1054–1115]: Especificação técnica oficial da arquitetura de divulgação progressiva em 3 níveis da pasta `.claude/skills/`. Credibilidade: **Alta**.
+* **Build with Claude - Claude Academy (2 Fontes)** [231–244]: Portal oficial de cursos cobrindo Claude Code 101, subagentes, chamadas de API e Model Context Protocol (MCP). Credibilidade: **Alta**.
+* **Claude Cookbook** [339–380]: Receitas de engenharia cobrindo chamadas de ferramenta programáticas, compactação automática de contexto e avaliação de modelos. Credibilidade: **Alta**.
+* **Prompting for frontend aesthetics | Claude Cookbook** [1019–1034]: Guia de Prithvi Rajasekaran detalhando o `DISTILLED_AESTHETICS_PROMPT` para eliminar os padrões visuais genéricos de IA ("AI slop"). Credibilidade: **Alta**.
+
+### 2. Relatórios Acadêmicos e Especializações Estruturadas
+* **High-End AI Web Development: Comprehensive Evaluation...** [540–568]: Avaliação acadêmica sobre paradigmas agenticos, vetores de ataque de segurança (HalluSquatting, explorações de `.git`) e fluxos híbridos browser/IDE. Credibilidade: **Alta**.
+* **AI for Web Developers Specialization - Coursera (Scrimba)** [92–110, 550]: Série de 5 cursos cobrindo engenharia de prompts, integração de APIs e deploy na nuvem Cloudflare. Credibilidade: **Alta / Média**.
+* **Generative AI for Web Development Specialization - Coursera** [523–539, 550]: Especialização de 4 cursos focada em Cursor AI, OpenAI Codex e fluxo de trabalho com Claude. Credibilidade: **Média**.
+* **Cursor Tutorials, Tools, and Guides | Developers Digest** [499–522]: Guias para desenvolvedores cobrindo modelos de ameaça de segurança, enxames de agentes e comparação de clientes MCP. Credibilidade: **Alta / Média**.
+
+### 3. Discussões Técnicas da Comunidade e Avaliações de Engenharia
+* **I was a top 0.01% Cursor user, then switched to Claude Code 2.0 | Hacker News** [827–876]: Análise detalhada sobre fluxos baseados em terminal vs. IDE, manutenibilidade de código e verificabilidade. Credibilidade: **Alta / Média**.
+* **v0 vs Bolt.new: A Senior Dev's Perspective... - Reddit** [1228–1251]: Comparativo de produção por um desenvolvedor sênior entre o output limpo para produção do v0 (Vercel) e as limitações de protótipo do Bolt.new. Credibilidade: **Alta / Média**.
+* **Using Claude code to build a website, what “skills” should use? - Reddit** [1199–1227]: Consenso de desenvolvedores sobre os plugins essenciais (`superpowers`, `frontend-design`, `bareminimum.design`, Strapi CMS). Credibilidade: **Alta / Média**.
+
+### 4. Conteúdo Prático, Repositórios Open-Source e Vídeo-Tutoriais
+* **A complete AI agency at your fingertips (msitarzewski/agency-agents)** [26–91, 554]: Repositório open-source com 230+ personas especializadas de IA e scripts de instalação multi-ferramenta. Credibilidade: **Alta**.
+* **Meng To - How to build your designs with Claude and Cursor AI** [951–998]: Desconstrução em código a partir de primeiros princípios, utilização de Tailwind CSS e fluxos de trabalho sem Figma. Credibilidade: **Alta / Média**.
+* **Building Beautiful Websites with Claude Code Is Too Easy** [245–279] & **I Built The Ultimate Claude Website Design Skill** [769–790] (Nate Herk): Fluxos práticos utilizando VS Code, `CLAUDE.md`, loops de screenshot via Puppeteer e componentes do `21st.dev`. Credibilidade: **Média**.
+* **Turn Claude Into A Design GENIUS In 3 Simple Steps** (Chase AI) [1173–1198]: Análise prática do Impeccable CLI (23 comandos de refinamento, 46 padrões de "slop"), Taste Skill v2 e biblioteca `21st.dev`. Credibilidade: **Média**.
+* **Build \$10,000 Websites using Claude Code** [159–207] e **How to Build \$10K Websites in Minutes** [665–768] (Metics Media / Caleb): Tutoriais práticos utilizando `frontend-design`, `UI UX Pro Max`, conector Hostinger e geradores visuais. *Alerta de Hype*: Promessas promocionais exageradas ("\$10.000 em minutos"), além de links afiliados. Credibilidade: **Média / Baixa**.
+* **Claude Code + Nano Banana 2...** [295–325], **Claude Design Now Builds...** [429–455] e **Claude Fable 5 Builds \$10,000 Websites...** [456–481] (Jack Roberts): Cobrem Firecrawl MCP, Higgsfield Seedance 2.5 e automação de SEO. *Alerta de Hype*: Títulos sensacionalistas ("site de \$50.000 em 21 mins"). Credibilidade: **Média / Baixa**.
+* **Claude Code + Seedance 2.5...** [326–338] e **Claude Design = Easy Websites...** [416–428] (Kyle Skelly): Passagem de bastão do Figma Dev Mode para Claude Code e geração de vídeos de órbita 360 graus. Credibilidade: **Média**.
+* **Claude Design 2.0 = Beautiful \$5K Websites...** (Eliot Prince) [381–415]: Fluxo para Claude Design Systems, extração de diretrizes de marca e deploy via Replit. Credibilidade: **Média**.
+* **How I Build INSANELY Beautiful Websites...** (Yashica Jain) [569–646]: Estrutura de 8 passos cobrindo design de peças, geração de imagens em lote via Codex e auditoria visual. Credibilidade: **Média**.
+* **I ranked every AI Coder: Bolt vs. Cursor vs. Replit vs Lovable** (Greg Isenberg / Mickey) [805–826]: Taxonomia de ferramentas por nível de controle e habilidades técnicas requeridas. Credibilidade: **Média**.
+* **Can You Build a Pro Website With v0 and Cursor...** (Rob Shocks) [281–294]: Construção de interfaces com Vercel v0 e montagem no Cursor com Shadcn UI. Credibilidade: **Média**.
+* **4 AI Agents To Automate 99% Of Your Life** (Sandeep Swadia) [1–17]: Uso de tarefas no Claude Cowork e conectores de Gmail/Calendar. Credibilidade: **Média**.
+* **8 New Websites Every Vibe Coder Needs** (Adrien) [18–25]: Apresentação de keeper.com, Neimora AI MCP, Lifeline e Agentation. Credibilidade: **Média**.
+* **I cloned 3 apps and now make \$35K/month** (Starter Story / Samuel Rondo) [791–804]: Validação de produtos clonados, pilha Next.js/Node.js, SEO e anúncios. Credibilidade: **Média**.
+* **Claude Fable 5 Built a \$10K Website in Minutes** (Zubair Trabzada) [482–498]: Apresentação do Higgsfield MCP para efeitos de scroll 3D. Credibilidade: **Média / Baixa**.
+* **How I Built INSANE Claude Design Websites...** (Jono Catliff) [647–664]: Pipeline de Claude Design para animações GSAP no Next.js deployed na Vercel. Credibilidade: **Média / Baixa**.
+* **CLONE ANY WEBSITE IN MINUTES...** (Sk Shihan Fardin) [280–289]: Recomenda raspagem bruta de HTML/CSS via extensão *Save All Resources* e montagem no Trae AI. *Alerta de Fragilidade*: Produz código macarrônico, Rígido e inmanutenível. Credibilidade: **Baixa**.
+
+---
+
+## PART 2 — Tabela de Extração de Ferramentas, Skills, Conectores, MCPs, APIs e Repositórios
+
+| Nome do Item | Categoria | O que faz | Etapa Recomendada no Build | Fonte(s) de Origem | Confiança |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Claude Code** | Ferramenta (CLI) | Agente de desenvolvimento via terminal que executa comandos bash, edita arquivos e gerencia o git | Montagem Central e Refatoração | Anthropic Docs | Alta |
+| **Claude Cowork / Desktop** | Ferramenta (Desktop) | Ambiente desktop para gerenciamento de sessões em segundo plano e rotinas agendadas | Gestão de Tarefas e Rotinas | Anthropic Docs, Sandeep | Alta |
+| **Claude Design** | Ferramenta (Superfície) | Construtor visual de protótipos e sistemas de design dentro do Claude | Prototipagem Visual Inicial | Eliot, Kyle | Alta |
+| **Vercel v0** | Ferramenta (Motor Web) | Gera componentes React / Shadcn UI estilizados com Tailwind CSS para produção | Scaffold de Componentes UI | Reddit, Rob | Alta |
+| **Cursor AI** | Ferramenta (IDE) | IDE baseada no VS Code com indexação de codebase e edição multi-arquivos | Iteração Full-Stack de Recursos | Meng To, Greg, Paper | Alta |
+| **Strapi** | Ferramenta (CMS) | CMS Headless open-source para gestão desacoplada de conteúdo | Arquitetura de Conteúdo Backend | Paper, Reddit | Alta |
+| **frontend-design** | Skill / Plugin | Elimina padrões genéricos (Inter/Arial), força variáveis CSS e paletas ousadas | Geração do Design System | Anthropic, Nate, Reddit | Alta |
+| **UI UX Pro Max** | Skill / Plugin | Traz 84 estilos de UI, 161 paletas de cores e combinações de fontes | Direcionamento Estético e Estilização | Metics, Yashica | Alta / Média |
+| **Superpowers Marketplace** | Skill / Plugin | Fornece os fluxos `/superpowers:brainstorm` e loop de plano-execução | Planejamento e Arquitetura | Reddit, Paper | Alta |
+| **Impeccable CLI / Skill** | Skill / Ferramenta | Disponibiliza 23 comandos de refinamento visual e detecção de "slop" | Polimento e Refinamento Visual | Chase AI | Alta |
+| **Taste Skill v2** | Skill | Identifica vícios visuais de IA e refina layout, tipografia e movimento | Polimento Visual | Chase AI | Média |
+| **ScrollCraft** | Skill | Conduz entrevistas interativas para criar landing pages baseadas em scroll | Estrutura de Interação | Nate | Média |
+| **SEO Strategy Skill** | Skill | Gera meta tags, dados estruturados JSON-LD, sitemaps e relatórios de auditoria | Estruturação e Auditoria de SEO | Jack | Média |
+| **DISTILLED_AESTHETICS_PROMPT** | Prompt de Sistema | Conjunto de regras para proibir fontes genéricas e gradientes roxos previsíveis | Configuração de Contexto | Anthropic Cookbook | Alta |
+| **Agency Agents** | Repositório / Utilitário | Coleção de 230+ personas de IA especializadas (Dev Frontend, Designer, Auditor) | Delegação de Papéis na Agência | msitarzewski, Paper | Alta |
+| **21st.dev** | Repositório / Biblioteca | Biblioteca open-source de componentes interativos Tailwind CSS / React | Componentes UI Embarcados | Adrien, Metics, Chase | Alta |
+| **Open Design** | Repositório / Ferramenta | Extrai cores, tipografia e espaçamentos de sites ao vivo para um `DESIGN.md` | Extração de Design System | Developers Digest | Alta |
+| **Higgsfield MCP Server** | MCP Server | Conecta o Claude aos modelos Seedance 2.5, Veo 3.1 e Nano Banana para mídia 3D *(Nota: Requer assinatura/créditos pagos. Confirmar orçamento)* | Geração de Mídias Embarcadas | Metics, Jack | Alta |
+| **Firecrawl MCP** | MCP Server / API | Realiza raspagem profunda e extrai diretrizes de marcas e ativos estruturados | Pesquisa e Extração de Marcas | Jack | Alta |
+| **Hostinger Connector MCP** | MCP Server | Automatiza a implantação de sites estáticos e mapeamento de DNS *(Nota: Requer plano pago de hospedagem Hostinger. Confirmar orçamento)* | Implantação e Hospedagem | Metics, Yashica | Média |
+| **Vercel MCP Server** | MCP Server | Realiza deploy de repositórios diretamente na rede global de borda da Vercel | Implantação e Hospedagem | Jack | Alta |
+| **GitHub CLI (`gh`)** | Ferramenta (CLI) | CLI para gestão de repositórios, Pull Requests e automação de CI/CD | Controle de Versão e CI/CD | Anthropic Docs, Nate | Alta |
+| **Puppeteer** | Ferramenta (Biblioteca) | Automação de navegadores para captura automatizada de screenshots e QA | Loop de Verificação Visual | Nate | Média |
+| **Google Fonts API** | API / Recurso Ext. | Repositório externo de fontes tipográficas para carregamento dinâmico | Design System Tipográfico | Anthropic, Paper | Alta |
+| **Bareminimum.design** | Ferramenta (Web) | Gerador de wireframes estruturais sem elementos estéticos | Planejamento de Layout | Reddit | Média |
+| **Save All Resources** | Ferramenta (Extensão) | Extensão para extração bruta de arquivos HTML/CSS/JS de páginas | Raspagem Bruta | Fardin | Baixa |
+| *APIs Standalone (Outras)* | Categoria | *Não há cobertura nas fontes de APIs avulsas de terceiros além dos conectores de provedores citados (Anthropic, OpenAI, Cloudflare, Google Fonts). Categoria vazia nas fontes.* | N/A | N/A | N/A |
+
+---
+
+## PART 3 — Sistema de Construção Ponta a Ponta para o Site da Agência
+
+Este sistema sequencial foi desenhado estritamente com base nas fontes credíveis (Classificação Alta/Média). Ele adota uma arquitetura nome-agnóstica (utilizando os marcadores `[NOME_DA_MARCA]` e `[SEU_DOMINIO]`) para permitir a troca de marca, textos e chaves de banco de dados sem refatoração de código. As ferramentas gratuitas/gratuitas com limite foram priorizadas; ferramentas pagas estão sinalizadas explicitamente para confirmação de orçamento.
+
+```
+  ┌────────────────┐     ┌────────────────┐     ┌────────────────┐
+  │ 1. PLANEJAMENTO│ ──> │  2. SITEMAP    │ ──> │3. DESIGN SYSTEM│
+  └────────────────┘     └────────────────┘     └────────────────┘
+                                                        │
+  ┌────────────────┐     ┌────────────────┐             ▼
+  │ 6. MANUTENÇÃO  │ <── │ 5. DEPLOYMENT  │ <── ┌────────────────┐
+  └────────────────┘     └────────────────┘     │4. COMPONENTES  │
+                                                └────────────────┘
+```
+
+### Fase 1: Planejamento Arquitetural e Definição de Escopo
+* **Objetivo**: Fixar os limites do sistema, stack técnica e objetivos de conversão antes de gerar código [119–120].
+* **Metodologia**:
+  1. Inicie a sessão do Claude Code em Plan Mode (`claude --permission-mode plan`) e invoque o plugin `superpowers:brainstorm`.
+  2. Conduza uma entrevista detalhada usando a ferramenta `AskUserQuestion` [139–140] para levantar: escopo dos serviços de automação da agência, meta de conversão, limites de banco de dados e integrações.
+* **Ferramentas**: Claude Code CLI (`claude`), plugin `superpowers` (Gratuito).
+* **Entregável / Arquivo**: `/workspace/scratch/SPEC.md` contendo a especificação arquitetural auto-contida.
+
+### Fase 2: Sitemap, Rotas e Estrutura de Arquivos
+* **Objetivo**: Escalonar rotas e a estrutura do repositório sem poluidores estéticos.
+* **Metodologia**:
+  1. Desenhe wireframes estruturais de baixa fidelidade utilizando `bareminimum.design` ou prompts estruturais.
+  2. Inicialize o workspace Next.js (App Router) estilizado com Tailwind CSS e primitivos do Shadcn UI.
+  3. Integre o Strapi CMS Headless para desacoplar a gestão de conteúdo de automação do código da interface.
+* **Ferramentas**: `npx create-next-app`, Shadcn UI (Gratuito), Strapi CMS (Gratuito/Open-source).
+* **Entregável / Arquivo**: Estrutura do projeto (`/app/layout.tsx`, `/app/page.tsx`, `/app/services/page.tsx`) e `/docs/sitemap.json`.
+
+### Fase 3: Design System Anti-Slop e Identidade Visual (Nome-Agnóstica)
+* **Objetivo**: Configurar tokens visuais que impedem os vícios de IA e garantem uma estética profissional.
+* **Metodologia**:
+  1. Extraia regras visuais de sites de referência com o utilitário `Open Design` (`DESIGN.md`) ou `Firecrawl MCP`.
+  2. Adicione o `DISTILLED_AESTHETICS_PROMPT` ao arquivo `CLAUDE.md` [547, 1021–1023] e instale o plugin oficial `frontend-design`.
+  3. Importe combinações tipográficas via Google Fonts API (ex: *Clash Display* para títulos e *Satoshi* para corpo).
+  4. Mapeie todas as cores para variáveis CSS (primária, secundária, superfície, fundo) utilizando o espaço `[NOME_DA_MARCA]` como referência dinâmica no arquivo de estilos.
+* **Ferramentas**: Claude Code CLI, Google Fonts API (Gratuito), `Open Design` (Gratuito).
+* **Entregável / Arquivo**: `/CLAUDE.md` com diretrizes do projeto [127–130], `/DESIGN.md` e `/app/globals.css`.
+
+### Fase 4: Componentes de Automação Embarcados para a Agência
+* **Objetivo**: Construir e integrar os módulos funcionais da agência.
+* **Metodologia**:
+  1. **Widget do Agente Conversacional**: Implemente o componente React (`/components/AgentWidget.tsx`) com estado de escuta/processamento. `[LACUNA — não baseada em fontes, boa prática geral: Conectar o widget a uma Rota de API Next.js configurada com Server-Sent Events (SSE) para streaming de respostas]`.
+  2. **Calculadora de ROI de Automação**: Monte o componente interativo (`/components/RoiCalculator.tsx`) utilizando sliders e gráficos de métricas limpos extraídos da biblioteca `21st.dev`.
+  3. **Fluxo de Agendamento Modal**: Crie o formulário de captura (`/components/BookingModal.tsx`). `[LACUNA — não baseada em fontes, boa prática geral: Configurar rotas de webhook no Next.js para enviar os dados de agendamento a um CRM externo como HubSpot ou Cal.com]`.
+  4. **Animações de Transição**: Aplique revelações escalonadas via CSS (`animation-delay`) ou biblioteca GSAP.
+* **Ferramentas**: Primitivos React, `21st.dev` (Gratuito). *(Nota sobre Mídia 3D/Vídeos: O uso do Higgsfield MCP Server para geração de mídias dinâmicas exige confirmação prévia de orçamento devido aos custos de créditos da API)*.
+* **Entregável / Arquivo**: Componentes modulares testados na pasta `/components/`.
+
+### Fase 5: Implantação na Borda (Deployment)
+* **Objetivo**: Publicar a aplicação na infraestrutura de produção com mapeamento de domínio.
+* **Metodologia**:
+  1. Vincule o projeto ao repositório GitHub via `gh` CLI.
+  2. Conecte o repositório à Vercel utilizando o `Vercel MCP Server` [311–312]. *(Opção Paga Alternativa: Conector Hostinger MCP, que requer plano de hospedagem pago e confirmação prévia de orçamento)*.
+  3. Realize o vinculo do domínio personalizado `[SEU_DOMINIO]` com certificado SSL ativado.
+* **Ferramentas**: `gh` CLI, `Vercel MCP Server` (Camada Gratuita Hobby disponível) [311–312].
+* **Entregável / Arquivo**: Repositório remoto configurado e URL de produção ativa.
+
+### Fase 6: Manutenção, Testes e Monitoramento
+* **Objetivo**: Garantir integridade contínua do código, auditoria visual e proteção da cadeia de suprimentos.
+* **Metodologia**:
+  1. **Loop de Verificação**: Rode os testes automatizados (`npm run test`) e execute o comando `/verify`.
+  2. **Loop de QA Visual**: Configure um script Puppeteer para registrar screenshots em visualizações móveis e desktop, comparando com os wireframes originais.
+  3. **Segurança e Higiene**: Verifique dependências contra *HalluSquatting*, adicione `.env` ao `.gitignore` e garanta que o Claude Code esteja atualizado para mitigar falhas de `.git`.
+  4. **SEO Técnico e Descoberta de IA**: Execute a skill `/seo strategy` para gerar os arquivos `/public/llms.txt`, `/public/robots.txt`, dados estruturados JSON-LD e tags OpenGraph [319–323].
+* **Ferramentas**: Puppeteer, `/seo strategy` skill, Sentry CLI.
+* **Entregável / Arquivo**: `/docs/audit-report.md`, `.github/workflows/deploy.yml`, `/public/llms.txt` e `/public/robots.txt`.
+
+---
+
+## PART 4 — Conflitos & Divergências
+
+A análise técnica das 41 fontes revelou quatro grandes conflitos metodológicos e arquiteturais entre tutoriais de influenciadores e a documentação oficial/análise de engenharia sênior.
+
+| Conflito / Divergência | Posição da Fonte A | Posição da Fonte B | Recomendação Fundamentada do Arquiteto |
+| :--- | :--- | :--- | :--- |
+| **1. Geradores de Browser ("Vibe Coders") vs. IDEs Locais / CLI de Terminal** | Criadores de conteúdo (Ras Mic, Samuel Rondo, Jono Catliff) defendem criar projetos inteiros em geradores de browser (v0, Bolt.new, Lovable, Claude Design) com prompts únicos. | Desenvolvedores Seniores no Reddit e Hacker News afirmam que geradores de browser criam código acoplado, inflado e inmanutenível quando o projeto passa de um protótipo [542, 827, 1228–1233]. | **Adotar Pipeline Híbrido em Estágios**. Utilize geradores baseados em browser (como Vercel v0) exclusivamente no início para explorar a interface visual dos componentes. Em seguida, exporte o código React/Tailwind limpo para uma estrutura local Next.js gerenciada via Claude Code ou Cursor AI. |
+| **2. "One-Shot Prompting" em 20 Minutos vs. Loop Iterativo Exploração-Plano-Código-Verificação** | Vídeos do YouTube afirmam que sites complexos de "\$10.000 a \$50.000" são construídos com um único prompt em sessões de 20 minutos. | Documentação da Anthropic e análises de engenharia provam que um prompt único satura a janela de contexto com suposições não verificadas, gerando degradação e o erro do "código quase certo". | **Executar o Loop de 4 Fases Obrigatório**. Proíba o "one-shot". Execute sequencialmente: 1. *Explorar* (Plan Mode), 2. *Planejar* (`SPEC.md`), 3. *Implementar*, 4. *Verificar* (Testes e Puppeteer) [120–122, 256]. Use `/clear` frequentemente entre subtarefas. |
+| **3. Raspagem Bruta / Clonagem de Sites vs. Extração Limpa de Design System** | Tutoriais de clonagem recomendam baixar o HTML/CSS/JS bruto de sites com extensões do Chrome e injetá-los no Claude para clonar interfaces [280–281]. | Documentação da Anthropic, Meng To e comunidades de desenvolvimento alertam que clonar código raspado cria código engessado e inmanutenível; a regra é extrair apenas regras de estilo e design tokens [128–130, 554, 962–963, 1201]. | **Extraia Tokens (`DESIGN.md`), Não Código Bruto**. Utilize ferramentas como `Open Design` ou `Firecrawl MCP` para extrair apenas paleta de cores, tipografia e espaçamentos para o arquivo `/DESIGN.md`. Reconstrua o layout do zero usando componentes Shadcn UI e Next.js limpos. |
+| **4. Modo Automático Sem Supervisão ("Auto Mode") vs. Controle Estrito de Permissões** | Vídeos recomendam ativar o modo automático sem checagens ("dangerous skip permissions") para que o agente rode de forma ininterrupta. | Documentação da Anthropic e pesquisas de segurança alertam que execuções sem travas causam consumo infinito de tokens, fugas de sandbox e vulnerabilidades de *HalluSquatting*. | **Uso de Sandboxing Isolado com Travas de Segurança (Hooks)**. Ative o modo automático exclusivamente em ambientes isolados no nível de sistema operacional (`/sandbox`) [131–132]. Implemente um script *Stop hook* (`.claude/hooks/stop.sh`) que impede a conclusão do turno até que os testes passem. Requeira aprovação manual para pushes no git e deployments. |
+
+---
+
+## PART 5 — Sequência de Ações (Plano de Trabalho Executável para Claude Code)
+
+Envie este plano de trabalho ordenado de 15 passos diretamente para execução no Claude Code / Cowork.
+
+```markdown
+1. [ ] Ação: Inicializar o repositório git local, arquivos de memória e variáveis de ambiente.
+       Ferramenta: Terminal / Claude Code CLI (`claude`)
+       Arquivo Gerado: `/CLAUDE.md` e `/package.json`
+
+2. [ ] Ação: Configurar regras de segurança, exclusões de credenciais e permissões de workspace.
+       Ferramenta: Terminal / `gh` CLI
+       Arquivo Gerado: `.claude/settings.json` e `.gitignore`
+
+3. [ ] Ação: Instalar os plugins de design oficial e framework de planejamento de tarefas.
+       Ferramenta: Claude Code CLI (`/plugin`)
+       Arquivo Gerado: Plugins `frontend-design` e `superpowers` registrados na sessão
+
+4. [ ] Ação: Conduzir a entrevista arquitetural para mapear os requisitos da agência [NOME_DA_MARCA].
+       Ferramenta: Claude Code CLI (`/superpowers:brainstorm` / `AskUserQuestion`)
+       Arquivo Gerado: `/workspace/scratch/SPEC.md`
+
+5. [ ] Ação: Extrair tokens visuais e configurar as variáveis CSS do tema anti-slop.
+       Ferramenta: Utilitário Open Design / `DISTILLED_AESTHETICS_PROMPT`
+       Arquivo Gerado: `/DESIGN.md` e `/app/globals.css`
+
+6. [ ] Ação: Estruturar os wireframes de baixa fidelidade e as rotas do Next.js App Router.
+       Ferramenta: Claude Code Plan Mode (`claude --permission-mode plan`)
+       Arquivo Gerado: `/docs/wireframe_plan.md` e `/app/layout.tsx`
+
+7. [ ] Ação: Inicializar o projeto Next.js com suporte a Tailwind CSS e Shadcn UI.
+       Ferramenta: Terminal / `npx shadcn-ui@latest init`
+       Arquivo Gerado: `/tailwind.config.js` e diretório `/components/ui/`
+
+8. [ ] Ação: Desenvolver a barra de navegação, cabeçalho e seção Hero nome-agnóstica.
+       Ferramenta: Claude Code (plugin `frontend-design`)
+       Arquivo Gerado: `/components/Navbar.tsx` e `/components/Hero.tsx`
+
+9. [ ] Ação: Construir a grade de serviços de automação e vitrine de casos de uso para [NOME_DA_MARCA].
+       Ferramenta: Claude Code CLI
+       Arquivo Gerado: `/components/Services.tsx` e `/components/CaseStudies.tsx`
+
+10. [ ] Ação: Desenvolver o componente do Agente Conversacional Embarcado (`AgentWidget`).
+        Ferramenta: Claude Code CLI / Primitivos React
+        Arquivo Gerado: `/components/AgentWidget.tsx` e `/app/api/chat/route.ts`
+
+11. [ ] Ação: Desenvolver a Calculadora de ROI interativa e o formulário modal de agendamento.
+        Ferramenta: Claude Code CLI / Biblioteca `21st.dev`
+        Arquivo Gerado: `/components/RoiCalculator.tsx` e `/components/BookingModal.tsx`
+
+12. [ ] Ação: Configurar e otimizar ativos visuais leves e tipografia do sistema.
+        Ferramenta: Google Fonts API / CSS Gradients
+        Arquivo Gerado: Ativos na pasta `/public/assets/` *(Nota: Se o usuário optar por mídias dinâmicas via Higgsfield MCP, requerer confirmação de orçamento antes da execução)*
+
+13. [ ] Ação: Executar o loop de verificação visual automatizada através do Puppeteer.
+        Ferramenta: Puppeteer CLI / Subagente `/code-review`
+        Arquivo Gerado: `/workspace/scratch/review-report.md`
+
+14. [ ] Ação: Realizar auditoria de SEO técnico, acessibilidade WCAG e arquivos de descoberta por IA.
+        Ferramenta: Claude Code CLI (skill `/seo strategy`)
+        Arquivo Gerado: `/docs/audit-report.md`, `/public/robots.txt` e `/public/llms.txt`
+
+15. [ ] Ação: Executar o deploy da aplicação para a infraestrutura de borda e mapear o DNS.
+        Ferramenta: Vercel MCP Server / GitHub CLI
+        Arquivo Gerado: URL de Produção Ativa mapeada para `[SEU_DOMINIO]` e Logs de Build
+```
+
+---
+
+💡 **Próximo Passo**: Deseja que eu inicie a execução do **Passo 1** criando a estrutura inicial com os arquivos `/CLAUDE.md` e `/package.json` no ambiente de computação?

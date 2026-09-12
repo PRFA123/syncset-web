@@ -1,0 +1,50 @@
+
+---
+
+## REGRAS DE EXECUÇÃO
+
+1. **NÃO** salvar arquivos automaticamente - primeiro mostrar o relatório, depois perguntar se devo salvar
+2. **NÃO** comprar ou registrar nenhum domínio - apenas pesquisar e reportar
+3. **NÃO** acessar sites de terceiros não autorizados - usar apenas Namecheap, Instant Domain Search e WHOIS
+4. **NÃO** utilizar informações pessoais sensíveis
+5. **FAZER** verificação em lotes para evitar bloqueios
+6. **FAZER** registro detalhado de cada etapa
+7. **FAZER** validação cruzada dos resultados (confirmar disponibilidade em pelo menos 2 fontes)
+
+---
+
+## FORMATO DE SAÍDA
+
+O relatório deve ser entregue em formato Markdown, bem estruturado, com:
+- Títulos e subtítulos claros
+- Tabelas organizadas
+- Emojis para facilitar a leitura (✅ ❌ ⚠️ ⭐)
+- Links para os domínios disponíveis (ex: `https://www.namecheap.com/domains/domain-name-search/?domain=forgehub.com`)
+
+---
+
+## PONTOS DE ATENÇÃO
+
+⚠️ **Importante**:
+- Alguns domínios podem aparecer como disponíveis em uma ferramenta e indisponíveis em outra - sempre validar
+- Domínios "Premium" têm preços acima do normal - indicar isso claramente
+- Domínios .com são prioritários, mas .io e .ai são boas alternativas para startups de tecnologia
+- Verificar se há marcas registradas conflitantes (pesquisa rápida no Google/Trademarkia)
+
+---
+
+## CHECKLIST DE ENTREGA
+
+Antes de finalizar, verifique:
+- [ ] 50 nomes únicos gerados
+- [ ] Todos os nomes verificados em pelo menos 3 TLDs
+- [ ] Status de disponibilidade confirmado para cada um
+- [ ] TOP 10 ranqueados com justificativa
+- [ ] Relatório completo e bem formatado
+- [ ] Recomendações claras para aquisição
+
+---
+
+**INICIAR PROCESSO AGORA**
+
+Vamos começar com a FASE 1: Geração dos 50 nomes.

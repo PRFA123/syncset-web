@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy — SyncSet"
+  description="SyncSet privacy policy"
+>
+  <Header />
+
+  <main id="main-content">
+    <section class="legal">
+      <div class="legal__container">
+        <h1>Privacy Policy</h1>
+
+        <p>
+          SyncSet ("we", "us", "our") collects information you provide when booking a workflow audit or submitting an enquiry. This includes your name, email address, business name, and any details you share in the audit form.
+        </p>
+
+        <p>
+          We use this information to respond to your enquiry and conduct the audit. We do not sell your data. We do not share it with third parties except where required to deliver our service (e.g. calendar booking tools).
+        </p>
+
+        <p>
+          You may request deletion of your data at any time by emailing hello@syncset.com.au.
+        </p>
+
+        <p>
+          This site uses Cloudflare Web Analytics, which is cookieless and collects no personal data.
+        </p>
+
+        <p>
+          <strong>⚠️ Note:</strong> This privacy policy is a skeleton and requires review by an Australian legal professional before publication. Compliance with the Privacy Act 1988 (Cth) is mandatory.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .legal {
+    min-height: calc(100vh - 200px);
+    padding: var(--space-24) var(--gutter);
+    background-color: var(--paper);
+  }
+
+  .legal__container {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    color: var(--graphite);
+    line-height: 1.8;
+  }
+
+  .legal__container h1 {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: var(--space-12);
+  }
+
+  .legal__container p {
+    margin-bottom: var(--space-6);
+  }
+
+  .legal__container strong {
+    color: var(--ink);
+  }
+
+  @media (max-width: 768px) {
+    .legal {
+      padding: var(--space-16) var(--gutter);
+    }
+
+    .legal__container h1 {
+      font-size: var(--text-xl);
+    }
+  }
+</style>

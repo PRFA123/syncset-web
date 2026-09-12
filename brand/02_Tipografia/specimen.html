@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncSet Tipografia - Espécime</title>
+    <style>
+        @font-face {
+            font-family: 'Space Grotesk';
+            src: url('fonts/space-grotesk-v22-latin-regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Inter';
+            src: url('fonts/inter-v20-latin-regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        :root {
+            --space-grotesk: 'Space Grotesk', sans-serif;
+            --inter: 'Inter', sans-serif;
+            --primary: #0B132B;
+            --secondary: #00F0FF;
+            --accent: #7B2CBF;
+            --neutral-light: #F4F4F9;
+            --neutral-white: #FFFFFF;
+        }
+        body {
+            font-family: var(--inter);
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--neutral-white);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--space-grotesk);
+            color: var(--primary);
+            margin-top: 2em;
+            margin-bottom: 0.5em;
+        }
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.75rem; }
+        h4 { font-size: 1.5rem; }
+        h5 { font-size: 1.25rem; }
+        h6 { font-size: 1rem; }
+        p { margin-bottom: 1em; }
+        .font-sample {
+            margin-bottom: 2em;
+            padding: 1em;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            background-color: var(--neutral-light);
+        }
+        .font-title {
+            font-weight: bold;
+            margin-bottom: 0.5em;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+        .font-title::before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary);
+        }
+        .sample-text {
+            font-size: 1rem;
+        }
+        .sample-heading {
+            font-size: 1.5rem;
+            margin-bottom: 0.5em;
+        }
+        .sample-paragraph {
+            font-size: 1rem;
+            margin-bottom: 0.5em;
+        }
+        .sample-ui {
+            font-size: 0.875rem;
+            margin-bottom: 0.5em;
+        }
+        .weights {
+            display: flex;
+            gap: 1em;
+            margin-top: 0.5em;
+            flex-wrap: wrap;
+        }
+        .weight-box {
+            padding: 0.5em;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            min-width: 60px;
+        }
+        .weight-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25em;
+        }
+        .weight-value {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <h1>Espécime Tipográfico - SyncSet</h1>
+    <p>Exemplos de uso das fontes <strong>Space Grotesk</strong> (principal) e <strong>Inter</strong> (secundária).</p>
+
+    <div class="font-sample">
+        <div class="font-title">Space Grotesk (Principal)</div>
+        <div class="sample-text">
+            <p class="sample-heading">Heading Example (H2)</p>
+            <p class="sample-paragraph">Este é um exemplo de parágrafo em Space Grotesk Regular. A fonte apresenta características geométricas com toque humanizado, ideal para identidades tecnológicas.</p>
+            <p class="sample-ui">UI Example: Button / Input Placeholder</p>
+        </div>
+        <div class="weights">
+            <div class="weight-box">
+                <div class="weight-label">Peso</div>
+                <div class="weight-value">400 (Regular)</div>
+            </div>
+            <div class="weight-box">
+                <div class="weight-label">Estilo</div>
+                <div class="weight-value">Normal</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="font-sample">
+        <div class="font-title">Inter (Secundária)</div>
+        <div class="sample-text">
+            <p class="sample-heading">Heading Example (H2)</p>
+            <p class="sample-paragraph">Este é um exemplo de parágrafo em Inter Regional. Optimizada para interfaces digitais, oferece excelente legibilidade em pequenos tamanhos.</p>
+            <p class="sample-ui">UI Example: Button / Input Placeholder</p>
+        </div>
+        <div class="weights">
+            <div class="weight-box">
+                <div class="weight-label">Peso</div>
+                <div class="weight-value">400 (Regular)</div>
+            </div>
+            <div class="weight-box">
+                <div class="weight-label">Estilo</div>
+                <div class="weight-value">Normal</div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Alternativas Consideradas</h2>
+    <ul>
+        <li><strong>Satoshi</strong>: Geométrica moderna, boa para headings.</li>
+        <li><strong>Montserrat</strong>: Muito popular, pode ser genérica.</li>
+        <li><strong>Plus Jakarta Sans</strong>: Boa alternativa, mas menos conhecida.</li>
+    </ul>
+
+    <h2>Recomendações de Uso</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Elemento</th>
+                <th>Fonte</th>
+                <th>Peso</th>
+                <th>Tamanho</th>
+                <th>Uso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Título Principal</td>
+                <td>Space Grotesk</td>
+                <td>Bold (700)</td>
+                <td>32px</td>
+                <td>Headers de páginas, seções hero</td>
+            </tr>
+            <tr>
+                <td>Título de Seção</td>
+                <td>Space Grotesk</td>
+                <td>SemiBold (600)</td>
+                <td>24px</td>
+                <td>Headers de cards, seções de conteúdo</td>
+            </tr>
+            <tr>
+                <td>Título de Componente</td>
+                <td>Inter</td>
+                <td>Bold (700)</td>
+                <td>20px</td>
+                <td>Cards, modais, painéis</td>
+            </tr>
+            <tr>
+                <td>Corpo de Texto</td>
+                <td>Inter</td>
+                <td>Regular (400)</td>
+                <td>16px</td>
+                <td>Parágrafos, descrições, textos longos</td>
+            </tr>
+            <tr>
+                <td>Rótulos e Annotations</td>
+                <td>Inter</td>
+                <td>Medium (500)</td>
+                <td>14px</td>
+                <td>Formulários, tabelas, dados</td>
+            </tr>
+            <tr>
+                <td>Botões</td>
+                <td>Inter</td>
+                <td>SemiBold (600)</td>
+                <td>14px</td>
+                <td>CTAs, ações primárias e secundárias</td>
+            </tr>
+            <tr>
+                <td>Input Placeholder</td>
+                <td>Inter</td>
+                <td>Regular (400)</td>
+                <td>12px</td>
+                <td>Campos de entrada, buscas</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

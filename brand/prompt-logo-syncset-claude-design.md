@@ -1,0 +1,100 @@
+# Prompt — Geração de Logo Syncset (Claude Design)
+
+**Uso:** colar diretamente no Claude Design. O conceito já foi validado em rodadas anteriores de exploração — este prompt não pede pra "criar uma logo do zero", pede pra executar em alta fidelidade uma direção já aprovada.
+
+---
+
+## Prompt pronto para colar
+
+```
+ROLE
+You are a senior brand identity designer specializing in minimal, precision-built
+marks for technology and professional-services companies. You work like a type
+foundry engineer, not an illustrator: every curve and angle is deliberate,
+grid-based, and justified.
+
+CONTEXT
+Brand: Syncset — an AI automation agency serving small businesses, launching in the
+Northern Rivers region of Australia with global ambitions. Positioning: reliable,
+warm, quietly competent — the opposite of hype-driven "AI startup" branding.
+Brand archetype: The Sage/Reliable — quiet authority, precision over noise.
+Tagline: "Automação sob medida, para negócios reais." (roughly: "Automation built
+to fit real businesses.")
+
+The mark concept has already been chosen through a prior design exploration and is
+LOCKED. Do not propose alternative concepts or symbolism — execute this one at
+production quality.
+
+CONCEPT — "A Ancoragem" (The Anchor)
+Two straight geometric lines descend at a mirrored angle from two upper points and
+converge toward the bottom center. Instead of meeting at a sharp vertex, they
+resolve into a single soft, shallow curve at the point of convergence — one
+continuous stroke, symmetric, built on a strict grid.
+
+Symbolic logic (do not state this in the mark itself, it's context only): multiple
+inputs/systems converging into one reliable, resolved outcome — automation that
+settles complexity into something calm and singular.
+
+CONSTRUCTION RULES (non-negotiable)
+- Single, uniform stroke weight throughout — no variation in line thickness.
+- Perfectly symmetric about the vertical axis.
+- Exactly ONE point of organic curvature (the convergence point) — everything else
+  is straight, precise, grid-aligned geometry.
+- Built on a visible internal grid/module logic — angles and proportions must look
+  intentional, not freehand.
+- Rounded stroke caps and joins only at the convergence curve; straight segments
+  read as crisp geometric lines.
+- Must remain legible and identifiable at 16–20px (favicon scale) — this is a hard
+  acceptance criterion, not a nice-to-have.
+
+WHAT TO AVOID (explicit exclusions — these are AI-industry clichés this brand is
+positioned against)
+- No neural-network nodes-and-lines patterns.
+- No purple-to-blue gradients or any "generic AI" color treatment.
+- No literal gears, cogs, or circuit-board iconography.
+- No lightning bolts, rockets, or "speed" arrow symbolism.
+- No 3D bevels, drop shadows, or glossy/skeuomorphic effects — flat and vector only.
+
+COLOR
+Keep this first pass strictly monochrome: a single deep, confident ink tone
+(near-black navy/charcoal, e.g. in the #1B2A38 family) on a near-white background.
+Do not propose a full color palette yet — that comes after the mark shape itself
+is approved. If you want to gesture toward color direction, offer it as a
+SEPARATE, clearly labeled optional note, not as the primary deliverable.
+
+TYPOGRAPHY (for lockup versions only)
+Pair the mark with the wordmark "SYNCSET" in a clean geometric sans-serif,
+uppercase, moderate-to-wide letter tracking, medium/semibold weight — confident
+and quiet, not playful, not condensed/techy.
+
+DELIVERABLES — produce all of the following from the same locked mark
+1. Primary mark — standalone symbol, large scale, on white/light background.
+2. Monochrome reversed version — same mark in white/light ink on the dark navy
+   background, for dark-mode and dark-surface use.
+3. Horizontal lockup — mark + "SYNCSET" wordmark side by side, properly spaced.
+4. Vertical/stacked lockup — mark above wordmark, centered.
+5. Icon-only application mockup — the mark alone inside a rounded-square app-icon
+   frame (simulate favicon/app icon context) to visually confirm it holds up at
+   small scale.
+
+OUTPUT FORMAT
+Present each deliverable clearly labeled. Keep all versions strictly consistent
+with each other (same proportions, same stroke logic) — these must read as one
+cohesive system, not five different interpretations of the brief.
+
+CONSTRAINTS
+- Do not deviate from the locked concept described above, even if you think of a
+  "more interesting" alternative — this stage is execution, not ideation.
+- Do not add secondary symbolic elements (no dots, no extra lines, no texture)
+  beyond what is described.
+- Flag clearly, as a separate note, if you believe the 16–20px legibility
+  requirement is at risk with any version — do not silently soften the mark to
+  fix it.
+```
+
+---
+
+## Nota de uso
+
+- Se o Claude Design entregar variações que fujam do conceito travado, não é "criatividade bem-vinda" — é desvio do brief. Volte e reforce: "execute o conceito descrito, não proponha alternativas."
+- Depois de aprovar o mark em preto/branco, aí sim abrimos uma segunda passada de prompt só pra paleta de cores — separar essas duas decisões evita que uma cor bonita salve um símbolo fraco (ou o contrário).

@@ -1,0 +1,137 @@
+---
+const faqs = [
+  {
+    q: "Do we need to replace the tools we already use?",
+    a: "No. SyncSet works with what you have — WhatsApp, Google Calendar, your existing CRM, whatever you're already running. We connect them. We don't replace them.",
+  },
+  {
+    q: "How long does a first build take?",
+    a: "Most pilots are live within 1–3 weeks from the audit. The audit itself takes 20 minutes.",
+  },
+  {
+    q: "What if something breaks after you build it?",
+    a: "We monitor the workflows we build. If something stops working, we fix it — you don't need to diagnose it or call a tech support line. You tell us it's broken and we sort it.",
+  },
+  {
+    q: "Who owns the workflows after you build them?",
+    a: "You do. Every automation, every integration, every piece of data stays in your accounts, under your control. If you decide to stop working with us tomorrow, everything we built keeps running.",
+  },
+  {
+    q: "Do you work with businesses outside Australia?",
+    a: "Yes. We're based in Australia but work remotely across all time zones. If your team speaks English and your tools have APIs, we can connect them.",
+  },
+  {
+    q: "I've paid for systems before that nobody ended up using. How is this different?",
+    a: "Because we don't sell you a platform — we build a workflow around what your team already does. There's no new software to learn, no dashboard to check, no training to roll out. It runs in the background. If your team has to change how they work for it to function, we haven't done our job.",
+  },
+  {
+    q: "What's the difference between the pilot and a full build?",
+    a: "The pilot is one workflow, fixed scope, fixed price — designed to prove the concept works in your actual business before you commit to more. A full build covers multiple workflows across your operation. Most clients start with the pilot.",
+  },
+  {
+    q: "We're not a tech company. Can you still help us?",
+    a: "That's most of our clients. You don't need to understand how it works — you need to understand what it does for your business. We handle the technical side entirely.",
+  },
+];
+---
+
+<section class="faq" aria-labelledby="faq-heading">
+  <h2 id="faq-heading" class="faq__title">Common questions</h2>
+  <dl class="faq__list">
+    {
+      faqs.map((item) => (
+        <div class="faq__item">
+          <details>
+            <summary class="faq__question">{item.q}</summary>
+            <div class="faq__answer">
+              <p>{item.a}</p>
+            </div>
+          </details>
+        </div>
+      ))
+    }
+  </dl>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+})} />
+
+<style>
+  .faq {
+    max-width: var(--max-content);
+    margin: var(--space-24) auto;
+    padding: 0 var(--gutter);
+  }
+
+  .faq__title {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    margin-bottom: var(--space-12);
+    color: var(--ink);
+  }
+
+  .faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin: 0;
+    padding: 0;
+  }
+
+  .faq__item {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .faq__item:last-child {
+    border-bottom: none;
+  }
+
+  details {
+    padding: var(--space-6) 0;
+  }
+
+  .faq__question {
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    padding: var(--space-3) 0;
+  }
+
+  .faq__question::after {
+    content: "▼";
+    display: inline-block;
+    font-size: 12px;
+    color: var(--graphite);
+    transition: transform var(--duration-fast) var(--ease-out);
+    margin-left: var(--space-4);
+  }
+
+  details[open] .faq__question::after {
+    transform: rotate(180deg);
+  }
+
+  .faq__answer {
+    padding: var(--space-4) 0;
+    color: var(--graphite);
+    line-height: 1.6;
+  }
+
+  .faq__answer p {
+    margin: 0;
+  }
+</style>

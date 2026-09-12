@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Terms of Service — SyncSet"
+  description="SyncSet terms of service"
+>
+  <Header />
+
+  <main id="main-content">
+    <section class="legal">
+      <div class="legal__container">
+        <h1>Terms of Service</h1>
+
+        <p>
+          These terms govern your use of syncset.com.au and any services provided by SyncSet.
+        </p>
+
+        <p>
+          By booking a workflow audit, you agree that the audit is free and non-binding. No work will commence and no payment will be requested without a separate written agreement specifying scope and price.
+        </p>
+
+        <p>
+          SyncSet provides automation and integration services. We do not provide legal, financial, or medical advice. Automation workflows are built to your specification and approved by you before deployment.
+        </p>
+
+        <p>
+          <strong>⚠️ Note:</strong> This terms of service document is a skeleton and requires review by an Australian legal professional before publication.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .legal {
+    min-height: calc(100vh - 200px);
+    padding: var(--space-24) var(--gutter);
+    background-color: var(--paper);
+  }
+
+  .legal__container {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    color: var(--graphite);
+    line-height: 1.8;
+  }
+
+  .legal__container h1 {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: var(--space-12);
+  }
+
+  .legal__container p {
+    margin-bottom: var(--space-6);
+  }
+
+  .legal__container strong {
+    color: var(--ink);
+  }
+
+  @media (max-width: 768px) {
+    .legal {
+      padding: var(--space-16) var(--gutter);
+    }
+
+    .legal__container h1 {
+      font-size: var(--text-xl);
+    }
+  }
+</style>
