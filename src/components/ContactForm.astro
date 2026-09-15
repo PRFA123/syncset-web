@@ -13,6 +13,7 @@
         id="cf-name"
         name="name"
         autocomplete="name"
+        maxlength="200"
         required
         aria-required="true"
       />
@@ -25,6 +26,7 @@
         id="cf-email"
         name="email"
         autocomplete="email"
+        maxlength="254"
         required
         aria-required="true"
       />
@@ -38,6 +40,7 @@
       id="cf-business"
       name="business"
       autocomplete="organization"
+      maxlength="200"
       required
       aria-required="true"
     />
@@ -45,7 +48,7 @@
 
   <div class="contact-form__field">
     <label for="cf-message">What's slowing you down? <span class="contact-form__optional">(optional)</span></label>
-    <textarea id="cf-message" name="message" rows="4"></textarea>
+    <textarea id="cf-message" name="message" rows="4" maxlength="5000"></textarea>
   </div>
 
   <!-- Honeypot — hidden from real users, catches simple bots. Never focus-reachable. -->
@@ -193,17 +196,14 @@
   const status = document.getElementById('contact-form-status');
 
   if (form && status) {
+    // The server rejects submissions faster than a human could fill the form,
+    // measured from when this script ran (i.e. when the form became usable).
+    const renderedAt = Date.now();
+
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
-      // Honeypot check — if filled, silently pretend success without sending anything.
       const honeypot = form.querySelector<HTMLInputElement>('#cf-company-website');
-      if (honeypot && honeypot.value.trim() !== '') {
-        status.textContent = "Thanks, we'll be in touch shortly.";
-        status.dataset.state = 'success';
-        form.reset();
-        return;
-      }
 
       const submitButton = form.querySelector<HTMLButtonElement>('.contact-form__submit');
       const nameInput = form.querySelector<HTMLInputElement>('#cf-name');
@@ -248,6 +248,8 @@
             email: emailInput.value,
             business: businessInput.value,
             message: messageInput?.value ?? '',
+            company_website: honeypot?.value ?? '',
+            form_ts: renderedAt,
           }),
         });
 
