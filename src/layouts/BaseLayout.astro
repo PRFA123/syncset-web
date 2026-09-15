@@ -13,8 +13,12 @@ const {
   title = 'SyncSet. AI Workflow Automation for Australian Business',
   description = 'SyncSet connects the tools your business already uses so no enquiry goes unanswered and no booking gets lost. We build it. You own it.',
   ogImage = '/og-image.png',
-  canonicalURL = Astro.url.href,
+  // pathname only: a query string on the canonical splits ranking signals.
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
 } = Astro.props;
+
+// Open Graph and Twitter require absolute image URLs; relative ones render no card.
+const ogImageURL = new URL(ogImage, Astro.site).href;
 ---
 
 <!doctype html>
@@ -29,7 +33,7 @@ const {
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageURL} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_AU" />
@@ -38,7 +42,7 @@ const {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageURL} />
 
     <!-- Favicons -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
