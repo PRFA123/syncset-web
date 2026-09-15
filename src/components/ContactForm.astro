@@ -1,0 +1,286 @@
+---
+// Professional contact form — alternative conversion path to the Cal.com booking flow.
+// Posts to /api/lead.ts (Cloudflare Pages Function), which forwards to the
+// lead-intake-v1 Make.com scenario (Notion CRM + Telegram alert + confirmation email).
+---
+
+<form id="contact-form" class="contact-form" novalidate>
+  <div class="contact-form__row">
+    <div class="contact-form__field">
+      <label for="cf-name">Name<span aria-hidden="true">*</span></label>
+      <input
+        type="text"
+        id="cf-name"
+        name="name"
+        autocomplete="name"
+        required
+        aria-required="true"
+      />
+    </div>
+
+    <div class="contact-form__field">
+      <label for="cf-email">Email<span aria-hidden="true">*</span></label>
+      <input
+        type="email"
+        id="cf-email"
+        name="email"
+        autocomplete="email"
+        required
+        aria-required="true"
+      />
+    </div>
+  </div>
+
+  <div class="contact-form__field">
+    <label for="cf-business">Business name<span aria-hidden="true">*</span></label>
+    <input
+      type="text"
+      id="cf-business"
+      name="business"
+      autocomplete="organization"
+      required
+      aria-required="true"
+    />
+  </div>
+
+  <div class="contact-form__field">
+    <label for="cf-message">What's slowing you down? <span class="contact-form__optional">(optional)</span></label>
+    <textarea id="cf-message" name="message" rows="4"></textarea>
+  </div>
+
+  <!-- Honeypot — hidden from real users, catches simple bots. Never focus-reachable. -->
+  <div class="contact-form__honeypot" aria-hidden="true">
+    <label for="cf-company-website">Leave this field empty</label>
+    <input type="text" id="cf-company-website" name="company_website" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <button type="submit" class="contact-form__submit">
+    <span class="contact-form__submit-label">Send message</span>
+  </button>
+
+  <p
+    id="contact-form-status"
+    class="contact-form__status"
+    role="status"
+    aria-live="polite"
+  ></p>
+</form>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    max-width: 560px;
+  }
+
+  .contact-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .contact-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .contact-form__field label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .contact-form__field label span[aria-hidden] {
+    color: var(--failed);
+    margin-left: 2px;
+  }
+
+  .contact-form__optional {
+    font-weight: 400;
+    color: var(--graphite);
+  }
+
+  .contact-form input[type='text'],
+  .contact-form input[type='email'],
+  .contact-form textarea {
+    font-family: var(--font-human);
+    font-size: var(--text-base);
+    color: var(--ink);
+    background-color: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: var(--space-3);
+    resize: vertical;
+  }
+
+  .contact-form input:focus-visible,
+  .contact-form textarea:focus-visible {
+    outline: 2px solid var(--running);
+    outline-offset: 2px;
+  }
+
+  .contact-form input.contact-form__input--error,
+  .contact-form textarea.contact-form__input--error {
+    border-color: var(--failed);
+  }
+
+  .contact-form__honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .contact-form__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    padding: var(--space-3) var(--space-8);
+    font-family: var(--font-human);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--paper);
+    background-color: var(--ink);
+    border-radius: 4px;
+    transition: background-color var(--duration-fast) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  .contact-form__submit:hover {
+    background-color: var(--graphite);
+  }
+
+  .contact-form__submit:focus-visible {
+    outline: 2px solid var(--running);
+    outline-offset: 2px;
+  }
+
+  .contact-form__submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .contact-form__status {
+    margin: 0;
+    font-size: var(--text-sm);
+    min-height: 1.5em;
+  }
+
+  .contact-form__status[data-state='success'] {
+    color: var(--running);
+    font-weight: 500;
+  }
+
+  .contact-form__status[data-state='error'] {
+    color: var(--failed);
+    font-weight: 500;
+  }
+
+  @media (max-width: 640px) {
+    .contact-form__row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('contact-form-status');
+
+  if (form && status) {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      // Honeypot check — if filled, silently pretend success without sending anything.
+      const honeypot = form.querySelector<HTMLInputElement>('#cf-company-website');
+      if (honeypot && honeypot.value.trim() !== '') {
+        status.textContent = "Thanks, we'll be in touch shortly.";
+        status.dataset.state = 'success';
+        form.reset();
+        return;
+      }
+
+      const submitButton = form.querySelector<HTMLButtonElement>('.contact-form__submit');
+      const nameInput = form.querySelector<HTMLInputElement>('#cf-name');
+      const emailInput = form.querySelector<HTMLInputElement>('#cf-email');
+      const businessInput = form.querySelector<HTMLInputElement>('#cf-business');
+      const messageInput = form.querySelector<HTMLTextAreaElement>('#cf-message');
+
+      [nameInput, emailInput, businessInput].forEach((el) =>
+        el?.classList.remove('contact-form__input--error')
+      );
+
+      if (!nameInput?.value.trim() || !emailInput?.value.trim() || !businessInput?.value.trim()) {
+        [nameInput, emailInput, businessInput].forEach((el) => {
+          if (!el?.value.trim()) el?.classList.add('contact-form__input--error');
+        });
+        status.textContent = 'Please fill in your name, email and business name.';
+        status.dataset.state = 'error';
+        return;
+      }
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(emailInput.value.trim())) {
+        emailInput.classList.add('contact-form__input--error');
+        status.textContent = 'Please enter a valid email address.';
+        status.dataset.state = 'error';
+        return;
+      }
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.querySelector('.contact-form__submit-label')!.textContent = 'Sending…';
+      }
+      status.textContent = '';
+      status.removeAttribute('data-state');
+
+      try {
+        const response = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: nameInput.value,
+            email: emailInput.value,
+            business: businessInput.value,
+            message: messageInput?.value ?? '',
+          }),
+        });
+
+        if (!response.ok) {
+          let serverMessage = '';
+          try {
+            const body = await response.json();
+            serverMessage = typeof body?.error === 'string' ? body.error : '';
+          } catch {
+            // Response wasn't valid JSON — fall through to the generic message below.
+          }
+
+          status.textContent =
+            response.status >= 400 && response.status < 500 && serverMessage
+              ? serverMessage
+              : "Something went wrong on our end. Please email contact@syncset.com.au directly.";
+          status.dataset.state = 'error';
+          return;
+        }
+
+        status.textContent = "Thanks, we'll get back to you within 1 business day.";
+        status.dataset.state = 'success';
+        form.reset();
+      } catch (error) {
+        status.textContent =
+          "Something went wrong on our end. Please email contact@syncset.com.au directly.";
+        status.dataset.state = 'error';
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.querySelector('.contact-form__submit-label')!.textContent = 'Send message';
+        }
+      }
+    });
+  }
+</script>

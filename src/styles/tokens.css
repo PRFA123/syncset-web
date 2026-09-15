@@ -1,80 +1,86 @@
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/PlusJakartaSans-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'JetBrains Mono';
-  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+/* ==========================================================
+   SyncSet — design tokens
+   Dark theme, approved direction V28 (forest green + steel blue).
+   Fonts load via Google Fonts in BaseLayout.astro (Instrument Sans +
+   JetBrains Mono) — see the <link> tags there, not here.
+   ========================================================== */
 
 :root {
-  /* Superfícies */
-  --paper: #FBFAF7;
-  --surface: #F2F0EB;
-  --rule: #E2DED6;
+  color-scheme: dark;
 
-  /* Texto */
-  --ink: #101112;
-  --graphite: #55585E;
+  /* Surfaces — old names kept (--paper, --surface) so every existing
+     component re-themes automatically without touching its markup */
+  --paper: #05080A;        /* was light paper, now the page ground */
+  --ground: #05080A;
+  --ground-lift: #070D11;
+  --surface: #0A1117;
+  --surface-2: #0E1A21;
+  --rule: rgba(198, 214, 222, 0.14);
+  --rule-strong: rgba(198, 214, 222, 0.22);
 
-  /* Estados de workflow — NUNCA usar decorativamente */
-  --running: #1F7A5C;   /* "em fase" — único acento permitido por escolha estética */
-  --queued: #A8721A;    /* só quando algo está de fato pendente */
-  --failed: #A32E22;    /* só em erro real de UI */
+  /* Text */
+  --ink: #E6EDF0;
+  --ink-2: #A9B8BF;
+  --graphite: #A9B8BF;     /* old name, mapped to the new secondary ink */
+  --muted: #6B7C85;
 
-  /* Tipografia */
-  --font-human: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-system: 'JetBrains Mono', 'Courier New', monospace;
+  /* Forest greens — inbound side */
+  --forest-deep: #15503C;
+  --forest: #1D6B4F;
+  --accent: #4BBA8B;
+  --accent-lit: #6FDDAE;
 
-  /* Escala de tipo (base 4px) */
-  --text-xs: 0.75rem;     /*  12px */
-  --text-sm: 0.875rem;    /*  14px */
-  --text-base: 1.125rem;  /*  18px — body */
-  --text-lg: 1.5rem;      /*  24px — H3 */
-  --text-xl: 2.25rem;     /*  36px — H2 */
-  --text-2xl: 3.5rem;     /*  56px — H1 */
-  --text-3xl: 4rem;       /*  64px — Display (só herói) */
+  /* Steel blues — outbound side */
+  --blue-deep: #0D2634;
+  --blue: #3E7FA8;
+  --blue-lit: #6FB6DE;
 
-  /* Espaçamento (escala 4px) */
-  --space-1: 0.25rem;   /*  4px */
-  --space-2: 0.5rem;    /*  8px */
-  --space-3: 0.75rem;   /* 12px */
-  --space-4: 1rem;      /* 16px */
-  --space-6: 1.5rem;    /* 24px */
-  --space-8: 2rem;      /* 32px */
-  --space-12: 3rem;     /* 48px */
-  --space-16: 4rem;     /* 64px */
-  --space-24: 6rem;     /* 96px */
-  --space-32: 8rem;     /* 128px */
+  /* Neutral edge light — never swapped for green or blue, those carry meaning */
+  --light: #DCEAF6;
+  --light-lit: #FFFFFF;
+  --edge-w: 46%;
+  --edge-halo: rgba(214, 234, 250, 0.19);
+  --edge-halo-2: rgba(176, 206, 230, 0.07);
+  --edge-line: rgba(246, 252, 255, 0.70);
+  --edge-line-2: rgba(198, 224, 244, 0.32);
+
+  /* Workflow states — kept semantic, only the colour brightened for dark bg */
+  --running: #4BBA8B;      /* "in progress" — same value as --accent on purpose */
+  --queued: #D9A441;
+  --failed: #F2555A;
+
+  /* Typography */
+  --font-human: 'Instrument Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-system: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --display: var(--font-human);
+  --mono: var(--font-system);
+
+  /* Type scale (unchanged) */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1.125rem;
+  --text-lg: 1.5rem;
+  --text-xl: 2.25rem;
+  --text-2xl: 3.5rem;
+  --text-3xl: 4rem;
+
+  /* Spacing (unchanged) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
 
   /* Layout */
   --max-content: 1280px;
-  --gutter: var(--space-8);  /* 32px mobile */
+  --gutter: var(--space-8);
 
-  /* Movimento */
+  /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-fast: 120ms;
   --duration-base: 240ms;
@@ -82,7 +88,7 @@
 
 @media (min-width: 768px) {
   :root {
-    --gutter: var(--space-16);  /* 64px tablet+ */
+    --gutter: var(--space-16);
   }
 }
 
@@ -101,7 +107,7 @@
   top: -100%;
   left: var(--space-4);
   background: var(--ink);
-  color: var(--paper);
+  color: var(--ground);
   padding: var(--space-2) var(--space-4);
   border-radius: 4px;
   font-family: var(--font-human);
@@ -165,7 +171,7 @@ a {
 }
 
 button,
-[role="button"] {
+[role='button'] {
   font-family: var(--font-human);
   cursor: pointer;
   border: none;

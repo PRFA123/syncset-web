@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import Cta from '../components/Cta.astro';
 import SyncDiagram from '../components/SyncDiagram.astro';
 import Faq from '../components/Faq.astro';
+import ContactForm from '../components/ContactForm.astro';
 import {
   generateOrganizationSchema,
   generateLocalBusinessSchema,
@@ -14,6 +15,34 @@ import {
 const organizationSchema = generateOrganizationSchema();
 const localBusinessSchema = generateLocalBusinessSchema();
 const websiteSchema = generateWebSiteSchema();
+
+// Connector marquee: the *whole list* is rendered twice, back to back, so the CSS
+// animation can slide it exactly -50% and loop seamlessly. Duplicating each item
+// individually ([app, app, app, app, ...]) instead of the list ([...list, ...list])
+// makes every logo appear as an immediate side-by-side pair — that was the bug.
+const connectorApps = [
+  { slug: 'googlecalendar', bc: '#4285F4', name: 'Google Calendar' },
+  { slug: 'hubspot', bc: '#FF7A59', name: 'HubSpot' },
+  { slug: 'notion', bc: '#E8E8E8', name: 'Notion' },
+  { slug: 'stripe', bc: '#635BFF', name: 'Stripe' },
+  { slug: 'gmail', bc: '#EA4335', name: 'Gmail' },
+  { slug: 'xero', bc: '#13B5EA', name: 'Xero' },
+  { slug: 'airtable', bc: '#18BFFF', name: 'Airtable' },
+  { slug: 'make', bc: '#8A3FFC', name: 'Make' },
+  { slug: 'telegram', bc: '#26A5E4', name: 'Telegram' },
+  { slug: 'shopify', bc: '#7AB55C', name: 'Shopify' },
+  { slug: 'caldotcom', bc: '#D8DEE4', name: 'Cal.com' },
+  { slug: 'zapier', bc: '#FF4F00', name: 'Zapier' },
+  { slug: 'supabase', bc: '#3ECF8E', name: 'Supabase' },
+  { slug: 'googlesheets', bc: '#34A853', name: 'Google Sheets' },
+  { slug: 'n8n', bc: '#EA4B71', name: 'n8n' },
+  { slug: 'brevo', bc: '#0B996E', name: 'Brevo' },
+  { slug: 'clickup', bc: '#7B68EE', name: 'ClickUp' },
+  { slug: 'square', bc: '#9BA2A8', name: 'Square' },
+  { slug: 'woocommerce', bc: '#9B5C8F', name: 'WooCommerce' },
+  { slug: 'mailchimp', bc: '#FFE01B', name: 'Mailchimp' },
+  { slug: 'myob', bc: '#8B3FD1', name: 'MYOB' },
+];
 ---
 
 <BaseLayout>
@@ -23,18 +52,252 @@ const websiteSchema = generateWebSiteSchema();
 
   <Header />
 
-  <main id="main-content">
+  <main id="main-content" class="page">
     <!-- Section 1: Hero -->
     <section class="hero">
       <div class="hero__container">
         <h1 class="hero__headline">Every missed enquiry becomes a booked job.<br />Nobody types a thing.</h1>
         <p class="hero__subhead">We connect the tools your business already runs, so the follow-up happens by itself.</p>
         <div class="hero__cta">
-          <Cta variant="dark" subtext />
+          <Cta variant="primary" subtext />
         </div>
         <SyncDiagram />
       </div>
     </section>
+
+    <!-- Section 1.5: The gap (benchmark dashboard) + The core (compass plate) -->
+    <section class="gap">
+      <div class="gap__container small-row">
+        <div class="frame frame--glow">
+          <div class="mini-head"><span><b>The gap</b>, industry benchmark</span><span>Sourced</span></div>
+          <div class="dash-stage">
+            <div class="dash">
+              <div class="tile tile-wide">
+                <div class="tile-label">How fast firms reply to an inbound enquiry</div>
+                <div class="tile-value">23<small>% never reply at all</small></div>
+                <svg viewBox="0 0 340 62" aria-hidden="true">
+                  <g font-family="JetBrains Mono, monospace" font-size="9" fill="#93A4AE">
+                    <rect x="0" y="6" width="115" height="13" rx="2.5" fill="#4BBA8B" />
+                    <text x="120" y="16">WITHIN 1 HOUR · 37%</text>
+                    <rect x="0" y="24" width="50" height="13" rx="2.5" fill="#3E7FA8" />
+                    <text x="120" y="34">1–24 HOURS · 16%</text>
+                    <rect x="0" y="42" width="75" height="13" rx="2.5" fill="#2E4A5A" />
+                    <text x="120" y="52">OVER 24 HOURS · 24%</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="tile">
+                <div class="tile-label">Average first response</div>
+                <div class="tile-value">42<small>hours</small></div>
+                <div class="bar-row" aria-hidden="true">
+                  <i class="bar" style="height:12%"></i><i class="bar b" style="height:22%"></i>
+                  <i class="bar b" style="height:38%"></i><i class="bar b" style="height:54%"></i>
+                  <i class="bar b" style="height:72%"></i><i class="bar b" style="height:88%"></i>
+                  <i class="bar b" style="height:100%"></i>
+                </div>
+              </div>
+              <div class="tile">
+                <div class="tile-label">Business calls unanswered</div>
+                <div class="tile-value">62<small>%</small></div>
+                <svg viewBox="0 0 140 30" aria-hidden="true">
+                  <rect x="0" y="11" width="140" height="7" rx="3.5" fill="rgba(198,214,222,0.08)" />
+                  <rect x="0" y="11" width="87" height="7" rx="3.5" fill="url(#gradbar)" />
+                  <defs>
+                    <linearGradient id="gradbar" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stop-color="#1D6B4F" />
+                      <stop offset="62%" stop-color="#4BBA8B" />
+                      <stop offset="100%" stop-color="#6FB6DE" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <p class="dash-source">
+            Response data: Harvard Business Review / MIT, <i>The Short Life of Online Sales Leads</i> (2,241 US firms).
+            Call data: 411 Locals, 2024 (85 businesses, 58 industries).
+          </p>
+        </div>
+
+        <div class="frame frame--glow">
+          <div class="mini-head"><span><b>The core</b></span><span>Always on</span></div>
+          <div class="plate-stage">
+            <div class="plate-band">
+              <svg class="plate-streaks" viewBox="0 0 340 168" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <defs>
+                  <path id="wW" d="M 6 40  H 86 L 126 80" />
+                  <path id="wE" d="M 334 40 H 254 L 214 80" />
+                  <path id="wS" d="M 6 128 H 86 L 126 88" />
+                  <path id="wN" d="M 334 128 H 254 L 214 88" />
+                  <radialGradient id="markGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#6FDDAE" stop-opacity=".09" />
+                    <stop offset="60%" stop-color="#4BBA8B" stop-opacity=".035" />
+                    <stop offset="100%" stop-color="#4BBA8B" stop-opacity="0" />
+                  </radialGradient>
+                </defs>
+
+                <use href="#wW" class="pl-wire" /><use href="#wE" class="pl-wire" />
+                <use href="#wS" class="pl-wire" /><use href="#wN" class="pl-wire" />
+
+                <circle cx="170" cy="84" r="70" fill="url(#markGlow)" />
+
+                <circle class="pl-face" cx="170" cy="84" r="46" />
+                <circle class="pl-bezel" cx="170" cy="84" r="54" />
+                <g class="pl-tick">
+                  <line x1="170" y1="24" x2="170" y2="33" />
+                  <line x1="230" y1="84" x2="221" y2="84" />
+                  <line x1="170" y1="144" x2="170" y2="135" />
+                  <line x1="110" y1="84" x2="119" y2="84" />
+                </g>
+                <g class="pl-tick-d">
+                  <line x1="212" y1="42" x2="207" y2="47" />
+                  <line x1="212" y1="126" x2="207" y2="121" />
+                  <line x1="128" y1="126" x2="133" y2="121" />
+                  <line x1="128" y1="42" x2="133" y2="47" />
+                </g>
+                <text class="pl-bearing" x="170" y="20" text-anchor="middle">N</text>
+                <text class="pl-bearing" x="240" y="87" text-anchor="middle">E</text>
+                <text class="pl-bearing" x="170" y="155" text-anchor="middle">S</text>
+                <text class="pl-bearing" x="100" y="87" text-anchor="middle">W</text>
+
+                <image href="/logo-mark.png" x="139" y="53" width="62" height="62" style="filter: drop-shadow(0 0 3px rgba(111,221,174,.24));" />
+
+                <g class="pip-halo">
+                  <circle r="6"><animateMotion dur="3.8s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.3 1"><mpath href="#wW" /></animateMotion></circle>
+                  <circle r="6"><animateMotion dur="3.8s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.3 1"><mpath href="#wE" /></animateMotion></circle>
+                  <circle r="6"><animateMotion dur="3.8s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.3 1"><mpath href="#wS" /></animateMotion></circle>
+                  <circle r="6"><animateMotion dur="3.8s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.3 1"><mpath href="#wN" /></animateMotion></circle>
+                </g>
+                <g class="pip">
+                  <circle r="2.4"><animateMotion dur="3.8s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.3 1"><mpath href="#wW" /></animateMotion></circle>
+                  <circle r="2.4"><animateMotion dur="3.8s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.3 1"><mpath href="#wE" /></animateMotion></circle>
+                  <circle r="2.4"><animateMotion dur="3.8s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.3 1"><mpath href="#wS" /></animateMotion></circle>
+                  <circle r="2.4"><animateMotion dur="3.8s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.4 0 0.3 1"><mpath href="#wN" /></animateMotion></circle>
+                </g>
+              </svg>
+            </div>
+            <div class="plate-copy">
+              <b>One system, not ten tabs.</b>
+              <span>Everything your business already runs, wired into a single path that never forgets a step.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1.8: Animated flow diagram (enquiry in, booking out) -->
+    <div class="section-head flow__head">
+      <p class="section-eyebrow">How it runs</p>
+      <h2 class="section-title">Every channel in. Every system out. No one retyping in between.</h2>
+      <p class="section-sub">
+        An enquiry lands wherever your client happened to send it. SyncSet captures it, checks it, routes it and confirms it, then updates everything downstream that would otherwise wait for you.
+      </p>
+    </div>
+    <div class="flow__wrap">
+    <section class="frame frame--glow flow">
+      <div class="flow-bar">
+        <span><b>Enquiry</b> → booking</span>
+        <span>Median 41s</span>
+      </div>
+      <div class="flow-scroll">
+        <svg viewBox="0 0 1060 400" width="1060" height="400" role="img" aria-labelledby="flow-desc">
+          <title id="flow-desc">Enquiries from any channel flow into SyncSet, which captures, qualifies, routes and confirms them, then pushes results out to your CRM, calendar, client and team.</title>
+          <defs>
+            <linearGradient id="wireIn" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#4BBA8B" stop-opacity=".10" />
+              <stop offset="100%" stop-color="#6FDDAE" stop-opacity=".55" />
+            </linearGradient>
+            <linearGradient id="wireOut" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#6FB6DE" stop-opacity=".55" />
+              <stop offset="100%" stop-color="#3E7FA8" stop-opacity=".10" />
+            </linearGradient>
+            <path id="in0" d="M 196 36 C 320 36, 380 200, 470 200" />
+            <path id="out0" d="M 590 200 C 690 200, 750 36, 864 36" />
+            <path id="in1" d="M 196 118 C 320 118, 380 200, 470 200" />
+            <path id="out1" d="M 590 200 C 690 200, 750 118, 864 118" />
+            <path id="in2" d="M 196 200 C 320 200, 380 200, 470 200" />
+            <path id="out2" d="M 590 200 C 690 200, 750 200, 864 200" />
+            <path id="in3" d="M 196 282 C 320 282, 380 200, 470 200" />
+            <path id="out3" d="M 590 200 C 690 200, 750 282, 864 282" />
+            <path id="in4" d="M 196 364 C 320 364, 380 200, 470 200" />
+            <path id="out4" d="M 590 200 C 690 200, 750 364, 864 364" />
+            <radialGradient id="coreBloom" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#6FDDAE" stop-opacity="0.10" />
+              <stop offset="30%" stop-color="#4BBA8B" stop-opacity="0.15" />
+              <stop offset="42%" stop-color="#6FDDAE" stop-opacity="0.26" />
+              <stop offset="55%" stop-color="#4BBA8B" stop-opacity="0.13" />
+              <stop offset="76%" stop-color="#1D6B4F" stop-opacity="0.05" />
+              <stop offset="100%" stop-color="#1D6B4F" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+
+          <use href="#in0" class="wire-in" /><use href="#out0" class="wire-out" />
+          <use href="#in1" class="wire-in" /><use href="#out1" class="wire-out" />
+          <use href="#in2" class="wire-in" /><use href="#out2" class="wire-out" />
+          <use href="#in3" class="wire-in" /><use href="#out3" class="wire-out" />
+          <use href="#in4" class="wire-in" /><use href="#out4" class="wire-out" />
+
+          {['in0', 'out0', 'in1', 'out1', 'in2', 'out2', 'in3', 'out3', 'in4', 'out4'].map((pathId, i) => {
+            const kind = pathId.startsWith('in') ? 'in' : 'out';
+            const begin = (i * 0.4).toFixed(2) + 's';
+            return (
+              <>
+                <circle class={`packet-halo-${kind}`} r="5.5" opacity="0">
+                  <animateMotion dur="4.2s" begin={begin} repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines="0.45 0 0.35 1"><mpath href={`#${pathId}`} /></animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.10;0.86;1" dur="4.2s" begin={begin} repeatCount="indefinite" />
+                </circle>
+                <circle class={`packet packet-${kind}`} r="2.3" opacity="0">
+                  <animateMotion dur="4.2s" begin={begin} repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines="0.45 0 0.35 1"><mpath href={`#${pathId}`} /></animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.10;0.86;1" dur="4.2s" begin={begin} repeatCount="indefinite" />
+                </circle>
+              </>
+            );
+          })}
+
+          <circle cx="530" cy="200" r="215" fill="url(#coreBloom)" />
+
+          <g>
+            <rect class="node-box" x="6" y="17" width="180" height="38" rx="10" />
+            <text class="node-label" x="96" y="41">Missed call</text>
+            <rect class="node-box" x="6" y="99" width="180" height="38" rx="10" />
+            <text class="node-label" x="96" y="123">Chat message</text>
+            <rect class="node-box" x="6" y="181" width="180" height="38" rx="10" />
+            <text class="node-label" x="96" y="205">Web form</text>
+            <rect class="node-box" x="6" y="263" width="180" height="38" rx="10" />
+            <text class="node-label" x="96" y="287">Email enquiry</text>
+            <rect class="node-box" x="6" y="345" width="180" height="38" rx="10" />
+            <text class="node-label" x="96" y="369">Social DM</text>
+          </g>
+
+          <g>
+            <rect class="node-box" x="874" y="17" width="180" height="38" rx="10" />
+            <text class="node-label" x="964" y="41">CRM record</text>
+            <rect class="node-box" x="874" y="99" width="180" height="38" rx="10" />
+            <text class="node-label" x="964" y="123">Calendar hold</text>
+            <rect class="node-box" x="874" y="181" width="180" height="38" rx="10" />
+            <text class="node-label" x="964" y="205">Reply sent</text>
+            <rect class="node-box" x="874" y="263" width="180" height="38" rx="10" />
+            <text class="node-label" x="964" y="287">Team alert</text>
+            <rect class="node-box" x="874" y="345" width="180" height="38" rx="10" />
+            <text class="node-label" x="964" y="369">Follow-up</text>
+          </g>
+
+          <text class="stage-label" x="424" y="100" text-anchor="end">Capture</text>
+          <text class="stage-label" x="636" y="100">Qualify</text>
+          <text class="stage-label" x="424" y="312" text-anchor="end">Confirm</text>
+          <text class="stage-label" x="636" y="312">Route</text>
+
+          <rect x="474" y="144" width="112" height="112" rx="9" transform="rotate(45 530 200)" fill="#0A1117" stroke="#4BBA8B" stroke-width="1.4" opacity=".95" />
+          <rect x="486" y="156" width="88" height="88" rx="26" transform="rotate(45 530 200)" fill="none" stroke="rgba(111,221,174,.30)" stroke-width="1" />
+          <image class="core-mark" href="/logo-mark.png" x="493" y="163" width="74" height="74" />
+        </svg>
+      </div>
+      <div class="flow-foot">
+        <span>In, every channel your clients already use</span>
+        <span>Out, every system you already pay for</span>
+      </div>
+    </section>
+    </div>
 
     <!-- Section 2: The Problem -->
     <section class="problem">
@@ -44,13 +307,13 @@ const websiteSchema = generateWebSiteSchema();
         </blockquote>
         <div class="problem__body">
           <p>
-            Most business owners we talk to aren't losing clients because they don't care. They're losing them because the reply that should take 30 seconds takes 3 hours — and by then, the client has moved on.
+            It's not that business owners don't care. It's that the reply that should take 30 seconds takes 3 hours, and by then, the client has moved on.
           </p>
           <p>
             The problem isn't the tools. It's the gap between them. Every time someone reads a message and re-types it somewhere else, that's a gap. Every time a booking sits in a WhatsApp thread waiting to be entered into a calendar, that's a gap. Every gap is a place where a client can disappear.
           </p>
           <p>
-            You already know this. You've probably tried to fix it — a person to manage the messages, a system nobody ended up using, a spreadsheet that worked for a week. The issue isn't effort. It's that none of those things close the gap automatically.
+            You already know this. You've probably tried to fix it. A person to manage the messages, a system nobody ended up using, a spreadsheet that worked for a week. The issue isn't effort. It's that none of those things close the gap automatically.
           </p>
         </div>
       </div>
@@ -59,18 +322,18 @@ const websiteSchema = generateWebSiteSchema();
     <!-- Section 3: Proof -->
     <section class="proof">
       <div class="proof__container">
-        <h2 class="proof__title">What it looks like in practice.</h2>
+        <h2 class="proof__title">See it work before you take our word for it.</h2>
         <div class="proof__case">
-          <p class="proof__label">How do we know this works? We run it on ourselves.</p>
+          <p class="proof__label">We run our own enquiries through it, no case study required.</p>
           <p>
-            Every enquiry to syncset.com.au goes through the same system we'd build for you — form to CRM to confirmation in under 60 seconds, unattended. That number is what we'll put here when we've measured it for 30 days.
+            Every enquiry to syncset.com.au runs through the exact system we'd build for you, form to CRM to confirmation, unattended. Submit the form below and watch it happen. That's the whole pitch, proven on ourselves before we ever pitch it to you.
           </p>
         </div>
       </div>
     </section>
 
     <!-- Section 4: How It Works -->
-    <section class="how-it-works">
+    <section class="how-it-works" id="how-it-works">
       <div class="how-it-works__container">
         <h2 class="how-it-works__title">How it works.</h2>
         <div class="how-it-works__steps">
@@ -92,14 +355,14 @@ const websiteSchema = generateWebSiteSchema();
             <div class="step__number">3</div>
             <h3 class="step__title">Build</h3>
             <p class="step__body">
-              We connect your existing tools and build the automation. Most first builds take 1–3 weeks. You own everything we build — the workflows, the data, the integrations. Not us.
+              We connect your existing tools and build the automation. Most first builds take 1–3 weeks. You own everything we build, the workflows, the data, the integrations. Not us.
             </p>
           </div>
           <div class="step">
             <div class="step__number">4</div>
             <h3 class="step__title">Operate</h3>
             <p class="step__body">
-              We monitor and adjust. If something breaks, we fix it — not you. No lock-in. If you ever want to take it in-house or switch providers, the system goes with you.
+              We monitor and adjust. If something breaks, we fix it, not you. No lock-in. If you ever want to take it in-house or switch providers, the system goes with you.
             </p>
           </div>
         </div>
@@ -107,29 +370,74 @@ const websiteSchema = generateWebSiteSchema();
     </section>
 
     <!-- Section 5: Pricing -->
-    <section class="pricing">
+    <section class="pricing" id="pricing">
       <div class="pricing__container">
         <h2 class="pricing__title">What it costs.</h2>
         <p class="pricing__headline">Pilots start at A$900. Most first builds run A$1,800–2,500.</p>
         <p class="pricing__body">
-          Fixed scope, fixed price — no monthly retainer until you've seen it work. The pilot covers one workflow end-to-end: usually enquiry capture to booking confirmation. If it works, we build from there. If it doesn't do what we said it would, you don't pay the second half.
+          Fixed scope, fixed price, no monthly retainer until you've seen it work. The pilot covers one workflow end-to-end: usually enquiry capture to booking confirmation. If it works, we build from there. If it doesn't do what we said it would, you don't pay the second half.
         </p>
         <p class="pricing__trust">No lock-in. No ongoing fees unless you want them. You own the system.</p>
       </div>
     </section>
 
-    <!-- Section 6: FAQ -->
-    <Faq />
-
-    <!-- Section 7: Final CTA -->
-    <section class="cta-final">
-      <div class="cta-final__container">
-        <h2 class="cta-final__text">Every missed enquiry becomes a booked job.<br />Nobody types a thing.</h2>
-        <div class="cta-final__button">
-          <Cta variant="green" subtext />
+    <!-- Section 5.5: Connectors -->
+    <div class="section-head connectors__head">
+      <p class="section-eyebrow">Integrations</p>
+      <h2 class="section-title">Plugs into what you already run.</h2>
+      <p class="section-sub">No migration, no new logins, no asking your team to learn another tool.</p>
+    </div>
+    <section class="frame conn-strip connectors__strip">
+      <div class="app-rail">
+        <div class="app-track">
+          {[...connectorApps, ...connectorApps].map((app, i) => (
+            <div class="app-tile" style={`--bc:${app.bc}`} data-logo={app.slug} title={app.name} aria-hidden={i >= connectorApps.length ? 'true' : undefined}>
+              <img src={`/logos/${app.slug}.svg`} alt="" loading="lazy" />
+            </div>
+          ))}
         </div>
       </div>
     </section>
+    <p class="conn-note connectors__note">
+      Marks shown are each vendor's own published brand asset. Slack, Microsoft, Twilio, Pipedrive,
+      monday.com, Zoho and Front are not in the open icon set, those come straight from their
+      brand kits (still missing, see the handoff doc).
+    </p>
+
+    <!-- Section 6: FAQ -->
+    <Faq />
+
+    <!-- Section 6.5: Contact form (alternative to Cal.com booking) -->
+    <section class="contact" id="contact">
+      <div class="contact__container">
+        <h2 class="contact__title">Prefer to write instead?</h2>
+        <p class="contact__subhead">
+          Tell us where your enquiries get lost and we'll reply within 1 business day, no booking required.
+        </p>
+        <ContactForm />
+      </div>
+    </section>
+
+    <!-- Section 7: Final CTA -->
+    <div class="section-head cta-final__head">
+      <p class="section-eyebrow">Start here</p>
+      <h2 class="section-title">Stop losing clients to slow replies.</h2>
+      <p class="section-sub">Book the audit. It's free, and it's 20 minutes.</p>
+    </div>
+    <div class="cta-final__wrap">
+      <section class="frame frame--glow book-band">
+        <div class="book-inner">
+          <div class="book-copy">
+            <p class="book-line">No deck, no discovery call about a discovery call.</p>
+            <p class="book-note">20 minutes · free · no commitment</p>
+          </div>
+          <div class="book-actions">
+            <a class="btn btn-primary" href="/book">Book a Workflow Audit →</a>
+            <a class="btn btn-ghost" href="#contact">Write instead</a>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <Footer />
@@ -325,30 +633,90 @@ const websiteSchema = generateWebSiteSchema();
     margin: 0;
   }
 
-  /* Final CTA */
-  .cta-final {
+  /* Contact form */
+  .contact {
     padding: var(--space-32) var(--gutter);
-    background-color: var(--ink);
-    color: var(--paper);
+    background-color: var(--surface);
   }
 
-  .cta-final__container {
+  .contact__container {
     max-width: var(--max-content);
     margin: 0 auto;
-    text-align: center;
   }
 
-  .cta-final__text {
+  .contact__title {
     font-size: var(--text-xl);
     font-weight: 700;
-    color: var(--paper);
-    margin-bottom: var(--space-12);
-    line-height: 1.3;
+    color: var(--ink);
+    margin-bottom: var(--space-4);
   }
 
-  .cta-final__button {
-    display: flex;
-    justify-content: center;
+  .contact__subhead {
+    font-size: var(--text-base);
+    color: var(--graphite);
+    line-height: 1.6;
+    margin-bottom: var(--space-12);
+    max-width: 600px;
+  }
+
+  /* Gap — industry benchmark card */
+  .gap {
+    padding: 0 var(--gutter) var(--space-16);
+    background-color: var(--paper);
+  }
+
+  .gap__container {
+    max-width: var(--max-content);
+    margin: 0 auto;
+  }
+
+  /* How it runs — animated flow diagram */
+  .flow__head {
+    max-width: var(--max-content);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .flow__wrap {
+    max-width: var(--max-content);
+    margin: 0 auto var(--space-16);
+    padding-inline: var(--gutter);
+  }
+
+  /* Connectors */
+  .connectors__head,
+  .connectors__strip {
+    max-width: var(--max-content);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .connectors__strip {
+    padding-inline: 0;
+  }
+
+  .connectors__note {
+    max-width: var(--max-content);
+    margin: var(--space-6) auto var(--space-24);
+    padding-inline: var(--gutter);
+  }
+
+  .connectors__note code {
+    font-family: var(--mono);
+    font-size: 0.9em;
+  }
+
+  /* Final CTA */
+  .cta-final__head {
+    max-width: var(--max-content);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .cta-final__wrap {
+    max-width: var(--max-content);
+    margin: 0 auto var(--space-32);
+    padding-inline: var(--gutter);
   }
 
   /* Responsive */
@@ -366,3 +734,15 @@ const websiteSchema = generateWebSiteSchema();
     }
   }
 </style>
+
+<script>
+  // Official brand marks already live in public/logos — this just proves each file
+  // loads before showing it, so a missing SVG never renders as a broken image.
+  document.querySelectorAll<HTMLElement>('.app-tile[data-logo]').forEach((tile) => {
+    const img = tile.querySelector('img');
+    if (!img) return;
+    img.addEventListener('error', () => {
+      tile.textContent = (tile.getAttribute('title') || '?').charAt(0);
+    });
+  });
+</script>

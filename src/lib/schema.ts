@@ -65,7 +65,7 @@ export function generateOrganizationSchema(): SchemaOrganization {
     areaServed: ['AU', 'Worldwide'],
     contactPoint: {
       '@type': 'ContactPoint',
-      email: 'hello@syncset.com.au',
+      email: 'contact@syncset.com.au',
       contactType: 'customer service',
     },
     sameAs: ['https://www.linkedin.com/company/syncset'],
@@ -88,7 +88,7 @@ export function generateLocalBusinessSchema(): SchemaLocalBusiness {
     },
     areaServed: ['AU', 'Worldwide'],
     priceRange: 'A$900–A$2,500',
-    email: 'hello@syncset.com.au',
+    email: 'contact@syncset.com.au',
   };
 }
 

@@ -1,0 +1,643 @@
+/* ==========================================================
+   SyncSet — V28 visual direction, shared pieces
+   Reusable building blocks ported from the approved artifact
+   (https://claude.ai/code/artifact/f17ed8f0-3cd7-4bd4-81a5-92775f7cf36d).
+
+   NOT ported here, on purpose (see claude/handoff-direcao-visual-para-copy.md §7):
+   - the tapered-line "runner" that chases the frame border — the hardest
+     technique in the artifact (getPointAtLength + centered-difference
+     normals); the flow diagram's own packet/wire animation IS ported below,
+     just not that specific border-runner effect
+   - the "Motion on/off" toggle and the ".system" review panel — those exist
+     only in the review artifact, never meant for production
+   ========================================================== */
+
+.page {
+  position: relative;
+  overflow: hidden;
+}
+.page::before {
+  content: '';
+  position: absolute;
+  top: -280px;
+  left: 50%;
+  width: min(1000px, 130vw);
+  height: 720px;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse 60% 60% at 40% 50%, rgba(29, 107, 79, 0.20) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 55% at 62% 42%, rgba(62, 127, 168, 0.13) 0%, transparent 72%);
+  pointer-events: none;
+}
+
+/* ---------- frame + static edge light (invertase-style) ---------- */
+
+.frame {
+  position: relative;
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--surface) 0%, var(--ground-lift) 100%);
+  border: 1px solid var(--rule);
+}
+
+.frame--glow::before,
+.frame--glow::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.frame--glow::before {
+  top: -21px;
+  width: var(--edge-w);
+  height: 44px;
+  background: radial-gradient(ellipse at center, var(--edge-halo) 0%, var(--edge-halo-2) 46%, transparent 74%);
+  filter: blur(9px);
+}
+.frame--glow::after {
+  top: -1px;
+  width: calc(var(--edge-w) - 2%);
+  height: 2px;
+  border-radius: 2px;
+  background: radial-gradient(ellipse at center, var(--edge-line) 0%, var(--edge-line-2) 40%, transparent 78%);
+  filter: blur(1.1px);
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.btn-primary {
+  position: relative;
+  background: linear-gradient(180deg, var(--accent) 0%, #2e8a66 100%);
+  color: #02110b;
+  box-shadow: 0 0 0 1px rgba(75, 186, 139, 0.4), 0 10px 30px -14px rgba(75, 186, 139, 0.9);
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px rgba(111, 221, 174, 0.55), 0 14px 36px -14px rgba(75, 186, 139, 1);
+}
+.btn-ghost {
+  position: relative;
+  background: transparent;
+  color: var(--ink-2);
+  border-color: rgba(198, 222, 240, 0.24);
+}
+.btn-ghost::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -16px;
+  width: 56%;
+  height: 34px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, var(--edge-halo) 0%, var(--edge-halo-2) 48%, transparent 76%);
+  filter: blur(7px);
+  pointer-events: none;
+  transition: width 0.35s ease, opacity 0.35s ease;
+}
+.btn-ghost::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -1px;
+  width: 54%;
+  height: 2.5px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  background: radial-gradient(ellipse at center, var(--edge-line) 0%, var(--edge-line-2) 42%, transparent 78%);
+  filter: blur(1.2px);
+  pointer-events: none;
+  transition: width 0.35s ease, opacity 0.35s ease;
+}
+.btn-ghost:hover::before {
+  width: 76%;
+  opacity: 1.35;
+}
+.btn-ghost:hover::after {
+  width: 74%;
+}
+.btn-ghost:hover {
+  color: var(--ink);
+  border-color: rgba(216, 236, 250, 0.42);
+}
+.btn:focus-visible {
+  outline: 2px solid var(--accent-lit);
+  outline-offset: 3px;
+}
+
+/* ---------- section headers ---------- */
+
+.section-head {
+  margin-block: clamp(58px, 9vw, 100px) 22px;
+  max-width: 62ch;
+}
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+.section-title {
+  margin: 0 0 8px;
+  font-size: clamp(24px, 3.4vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  color: var(--ink);
+}
+.section-sub {
+  margin: 0;
+  font-size: 16.5px;
+  color: var(--ink-2);
+  max-width: 56ch;
+}
+
+/* ---------- "the gap" benchmark dashboard card ---------- */
+
+.mini-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.mini-head b {
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.dash-stage {
+  padding: 16px 16px 20px;
+  perspective: 1100px;
+  overflow: hidden;
+}
+.dash {
+  transform: rotateX(11deg) rotateY(-15deg) rotateZ(2deg);
+  transform-origin: 60% 50%;
+  border-radius: 10px;
+  border: 1px solid var(--rule-strong);
+  background: linear-gradient(160deg, var(--surface-2) 0%, #0a1319 100%);
+  box-shadow: 0 26px 50px -26px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(198, 214, 222, 0.04);
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 9px;
+  animation: dash-float 11s ease-in-out infinite;
+}
+@keyframes dash-float {
+  0%,
+  100% {
+    transform: rotateX(11deg) rotateY(-15deg) rotateZ(2deg) translateY(0);
+  }
+  50% {
+    transform: rotateX(9deg) rotateY(-12deg) rotateZ(1.4deg) translateY(-6px);
+  }
+}
+.tile {
+  background: rgba(10, 17, 23, 0.85);
+  border: 1px solid var(--rule);
+  border-radius: 7px;
+  padding: 9px 10px;
+  min-width: 0;
+}
+.tile-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.tile-value {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  margin-top: 1px;
+}
+.tile-value small {
+  font-size: 10px;
+  color: var(--accent);
+  font-weight: 500;
+  margin-left: 5px;
+}
+.tile svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 6px;
+}
+.tile-wide {
+  grid-column: 1 / -1;
+}
+.bar-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 28px;
+  margin-top: 7px;
+}
+.bar {
+  flex: 1;
+  border-radius: 1.5px 1.5px 0 0;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--forest) 100%);
+}
+.bar.b {
+  background: linear-gradient(180deg, var(--blue) 0%, var(--blue-deep) 100%);
+}
+.dash-source {
+  margin: 0;
+  padding: 0 16px 16px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.dash-source i {
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dash {
+    animation: none;
+  }
+}
+
+/* ---------- small-row: two frames side by side (dashboard + core plate) ---------- */
+
+.small-row {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 18px;
+}
+@media (max-width: 820px) {
+  .small-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- "the core" — glowing compass plate ---------- */
+
+.plate-stage {
+  position: relative;
+  padding: 22px 18px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.plate-band {
+  position: relative;
+  width: 100%;
+  height: 168px;
+  display: grid;
+  place-items: center;
+}
+.plate-streaks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+.pl-wire {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 1.2;
+  opacity: 0.75;
+}
+.pl-bezel {
+  fill: none;
+  stroke: rgba(198, 222, 240, 0.2);
+  stroke-width: 1;
+}
+.pl-tick {
+  stroke: rgba(198, 222, 240, 0.55);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+.pl-tick-d {
+  stroke: rgba(198, 222, 240, 0.22);
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+.pl-face {
+  fill: #0b131a;
+  stroke: rgba(111, 182, 222, 0.28);
+  stroke-width: 1;
+}
+.pl-bearing {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  fill: rgba(206, 228, 244, 0.74);
+  text-transform: uppercase;
+}
+.pip {
+  fill: var(--blue-lit);
+  filter: drop-shadow(0 0 5px rgba(111, 182, 222, 0.95));
+}
+.pip-halo {
+  fill: rgba(111, 182, 222, 0.22);
+}
+.plate-copy {
+  text-align: center;
+  max-width: 30ch;
+}
+.plate-copy b {
+  display: block;
+  font-size: 16.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.plate-copy span {
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plate-streaks animateMotion {
+    display: none;
+  }
+}
+
+/* ---------- animated flow diagram: enquiry in, booking out ---------- */
+
+.flow {
+  padding: 6px 12px 10px;
+  max-width: 940px;
+}
+.flow-bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px 8px 12px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.flow-bar b {
+  color: var(--ink-2);
+  font-weight: 500;
+}
+.flow-scroll {
+  overflow-x: auto;
+  padding-block: 6px 2px;
+}
+.flow-scroll svg {
+  display: block;
+  width: 100%;
+  min-width: 780px;
+  height: auto;
+}
+.wire-in {
+  fill: none;
+  stroke: url(#wireIn);
+  stroke-width: 1.1;
+}
+.wire-out {
+  fill: none;
+  stroke: url(#wireOut);
+  stroke-width: 1.1;
+}
+.packet {
+  filter: drop-shadow(0 0 5px currentColor);
+}
+.packet-in {
+  fill: #6fddae;
+  color: #6fddae;
+}
+.packet-out {
+  fill: #6fb6de;
+  color: #6fb6de;
+}
+.packet-halo-in {
+  fill: rgba(111, 221, 174, 0.16);
+}
+.packet-halo-out {
+  fill: rgba(111, 182, 222, 0.16);
+}
+.node-box {
+  fill: var(--surface-2);
+  stroke: var(--rule-strong);
+  stroke-width: 1;
+}
+.node-label {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  fill: var(--ink-2);
+  text-transform: uppercase;
+  text-anchor: middle;
+}
+.stage-label {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  fill: #c6d6dd;
+  text-transform: uppercase;
+}
+.core-mark {
+  transform-box: view-box;
+  transform-origin: 530px 200px;
+  animation: coreSpin 26s linear infinite;
+  filter: drop-shadow(0 0 3px rgba(111, 221, 174, 0.28)) drop-shadow(0 0 9px rgba(75, 186, 139, 0.14));
+}
+@keyframes coreSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.flow-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  justify-content: space-between;
+  padding: 11px 8px 6px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .core-mark {
+    animation: none;
+  }
+  .flow-scroll animateMotion {
+    display: none;
+  }
+}
+
+/* ---------- connector rail (marquee of integration tiles) ---------- */
+
+.conn-strip {
+  padding: 0;
+  overflow: hidden;
+}
+.app-rail {
+  position: relative;
+  padding-block: 9px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+.app-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: 15px;
+  animation: rail 40s linear infinite;
+}
+@keyframes rail {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.app-rail:hover .app-track {
+  animation-play-state: paused;
+}
+.app-tile {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(157deg, #1f2c36 0%, #111a21 48%, #080e13 100%);
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.75),
+    0 3px 6px -1px rgba(0, 0, 0, 0.8),
+    0 0 14px -6px color-mix(in srgb, var(--bc) 42%, transparent);
+  transform: perspective(150px) rotateX(7deg);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.app-tile::before {
+  content: '';
+  position: absolute;
+  inset: 1px 1px 45% 1px;
+  border-radius: 10px 10px 6px 6px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+.app-tile img {
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+  display: block;
+  position: relative;
+  opacity: 0.66;
+  filter: saturate(0.62) brightness(0.92) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.9));
+  transition: opacity 0.28s ease, filter 0.28s ease;
+}
+.app-tile:hover img {
+  opacity: 1;
+  filter: saturate(1) brightness(1) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.9));
+}
+.app-tile span {
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--tc, #e6edf0);
+  opacity: 0.7;
+}
+.app-rail:hover .app-tile {
+  transform: perspective(150px) rotateX(0deg);
+}
+.app-tile:hover {
+  transform: perspective(150px) rotateX(0deg) translateY(-2px) scale(1.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 6px 12px -2px rgba(0, 0, 0, 0.85),
+    0 0 20px -5px color-mix(in srgb, var(--bc) 70%, transparent);
+}
+.conn-slot img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  display: block;
+}
+.conn-note {
+  margin: 18px 0 0;
+  font-size: 13.5px;
+  color: var(--muted);
+  max-width: 68ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-track {
+    animation: none;
+  }
+}
+
+/* ---------- closing band ---------- */
+
+.book-band {
+  padding: clamp(26px, 4vw, 40px) clamp(20px, 3.4vw, 36px);
+}
+.book-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+}
+.book-copy {
+  min-width: 0;
+}
+.book-line {
+  margin: 0 0 6px;
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.book-note {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.book-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+@media (max-width: 620px) {
+  .book-actions {
+    width: 100%;
+  }
+  .book-actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}

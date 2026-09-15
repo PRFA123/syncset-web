@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 ---
 
 <BaseLayout
-  title="Terms of Service — SyncSet"
+  title="Terms of Service, SyncSet"
   description="SyncSet terms of service"
 >
   <Header />
@@ -14,21 +14,54 @@ import Footer from '../components/Footer.astro';
     <section class="legal">
       <div class="legal__container">
         <h1>Terms of Service</h1>
+        <p class="legal__updated">Last updated: 14 September 2026</p>
 
         <p>
-          These terms govern your use of syncset.com.au and any services provided by SyncSet.
+          These terms govern your use of syncset.com.au and the workflow-audit and automation-build services SyncSet provides.
         </p>
 
+        <h2>The free audit</h2>
         <p>
-          By booking a workflow audit, you agree that the audit is free and non-binding. No work will commence and no payment will be requested without a separate written agreement specifying scope and price.
+          Booking a workflow audit is free and creates no obligation on either side. We spend 20 minutes learning how enquiries move through your business and tell you what we'd build. No work starts and no payment is requested from a free audit alone.
         </p>
 
+        <h2>Paid work</h2>
         <p>
-          SyncSet provides automation and integration services. We do not provide legal, financial, or medical advice. Automation workflows are built to your specification and approved by you before deployment.
+          Any paid engagement, a pilot or a full build, is governed by a separate written scope of work that we send you before any payment or work begins. That document sets out price, deliverables, and timeline, and takes precedence over these general terms for that engagement.
         </p>
 
+        <h2>What we don't do</h2>
         <p>
-          <strong>⚠️ Note:</strong> This terms of service document is a skeleton and requires review by an Australian legal professional before publication.
+          SyncSet builds and maintains workflow automations. We don't provide legal, financial, tax, or medical advice, and nothing on this site should be read as such. Automation workflows are built to the specification you approve; you review and sign off before anything goes live.
+        </p>
+
+        <h2>Ownership</h2>
+        <p>
+          You own everything we build for you, the workflows, the integrations, the data that flows through them, from the day it's delivered. If you stop working with us, the system keeps running in your accounts; we don't hold anything back.
+        </p>
+
+        <h2>Liability</h2>
+        <p>
+          We take reasonable care to build reliable automations and to fix anything that breaks that we built. We're not liable for failures in third-party tools we connect to (your CRM, calendar, messaging platform, and similar) that are outside our control, or for losses arising from how you use the systems we build. Nothing in these terms limits any consumer guarantee you're entitled to under the Australian Consumer Law that can't lawfully be excluded.
+        </p>
+
+        <h2>Changes</h2>
+        <p>
+          We may update these terms as our services change. Continued use of the site after an update means you accept the current version.
+        </p>
+
+        <h2>Governing law</h2>
+        <p>
+          These terms are governed by the laws of New South Wales, Australia.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          <a href="mailto:contact@syncset.com.au">contact@syncset.com.au</a>, Byron Bay NSW 2481, Australia.
+        </p>
+
+        <p class="legal__disclaimer">
+          <strong>⚠️ Note:</strong> This draft was prepared by Claude, not a lawyer; it is not legal advice. Before publishing, confirm: whether the liability wording actually protects you given SyncSet's entity structure (sole trader vs. registered company changes your personal exposure, and may warrant an explicit liability cap backed by insurance); whether a separate signed scope-of-work per client is your actual current practice or still aspirational; and whether the Australian Consumer Law guarantee wording matches current ACCC guidance for a services business.
         </p>
       </div>
     </section>
@@ -55,7 +88,20 @@ import Footer from '../components/Footer.astro';
     font-size: var(--text-2xl);
     font-weight: 700;
     color: var(--ink);
+    margin-bottom: var(--space-4);
+  }
+
+  .legal__updated {
+    font-size: var(--text-sm);
+    color: var(--graphite);
     margin-bottom: var(--space-12);
+  }
+
+  .legal__container h2 {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--ink);
+    margin: var(--space-12) 0 var(--space-4);
   }
 
   .legal__container p {
@@ -64,6 +110,18 @@ import Footer from '../components/Footer.astro';
 
   .legal__container strong {
     color: var(--ink);
+  }
+
+  .legal__container a {
+    color: var(--ink);
+    text-decoration: underline;
+  }
+
+  .legal__disclaimer {
+    margin-top: var(--space-16);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--rule);
+    font-size: var(--text-sm);
   }
 
   @media (max-width: 768px) {

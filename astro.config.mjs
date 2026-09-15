@@ -13,7 +13,9 @@ export default defineConfig({
   adapter: cloudflare(),
   vite: {
     build: {
-      minify: 'terser',
+      // esbuild ships with Vite already — no extra dependency to install,
+      // unlike 'terser' which requires an explicit devDependency.
+      minify: 'esbuild',
     },
   },
 });

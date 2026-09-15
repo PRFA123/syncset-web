@@ -1,19 +1,15 @@
 ---
 interface Props {
-  variant?: 'dark' | 'green';
+  variant?: 'primary' | 'ghost';
   subtext?: boolean;
 }
 
-const { variant = 'dark', subtext = false } = Astro.props;
+const { variant = 'primary', subtext = false } = Astro.props;
 ---
 
 <div class="cta-wrapper">
-  <a href="/book" class={`cta-btn cta-btn--${variant}`}>
-    Book a Workflow Audit →
-  </a>
-  {subtext && (
-    <p class="cta-subtext">20 minutes. Free. No commitment.</p>
-  )}
+  <a href="/book" class={`btn btn-${variant}`}>Book a Workflow Audit →</a>
+  {subtext && <p class="cta-subtext">20 minutes. Free. No commitment.</p>}
 </div>
 
 <style>
@@ -24,44 +20,11 @@ const { variant = 'dark', subtext = false } = Astro.props;
     gap: var(--space-3);
   }
 
-  .cta-btn {
-    display: inline-block;
-    padding: var(--space-3) var(--space-6);
-    font-family: var(--font-human);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: transform var(--duration-fast) var(--ease-out),
-      box-shadow var(--duration-fast) var(--ease-out);
-  }
-
-  .cta-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  .cta-btn--dark {
-    background-color: var(--ink);
-    color: var(--paper);
-  }
-
-  .cta-btn--dark:hover {
-    background-color: var(--graphite);
-  }
-
-  .cta-btn--green {
-    background-color: var(--running);
-    color: var(--paper);
-  }
-
-  .cta-btn--green:hover {
-    background-color: #167a52;
-  }
-
   .cta-subtext {
+    font-family: var(--mono);
     font-size: var(--text-xs);
-    color: var(--graphite);
+    letter-spacing: 0.06em;
+    color: var(--muted);
     margin: 0;
   }
 </style>
