@@ -2,12 +2,32 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+const pageURL = new URL('/book/', Astro.site).href;
+const bookSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${pageURL}#webpage`,
+  url: pageURL,
+  name: 'Book a Workflow Audit',
+  description: 'Schedule your free 20-minute workflow audit with SyncSet. No commitment, no slides.',
+  isPartOf: { '@id': 'https://www.syncset.com.au/#website' },
+  about: { '@id': 'https://www.syncset.com.au/#organization' },
+  potentialAction: {
+    '@type': 'ReserveAction',
+    target: 'https://cal.com/syncset/30min',
+    object: { '@type': 'Service', name: 'Workflow Audit', provider: { '@id': 'https://www.syncset.com.au/#organization' } },
+  },
+};
 ---
 
 <BaseLayout
   title="Book a Workflow Audit, SyncSet"
   description="Schedule your free 20-minute workflow audit with SyncSet. No commitment, no slides."
 >
+  <Fragment slot="schema">
+    <script type="application/ld+json" set:html={JSON.stringify(bookSchema)} />
+  </Fragment>
   <Header />
 
   <main id="main-content">

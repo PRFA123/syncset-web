@@ -55,7 +55,7 @@ export function generateOrganizationSchema(): SchemaOrganization {
     '@id': 'https://www.syncset.com.au/#organization',
     name: 'SyncSet',
     url: 'https://www.syncset.com.au',
-    logo: 'https://www.syncset.com.au/favicon.svg',
+    logo: 'https://www.syncset.com.au/logo-mark.png', // 180×180 raster — Google wants ≥112px, not SVG
     description:
       'AI workflow automation agency. We connect the tools your business already uses so no enquiry goes unanswered.',
     foundingLocation: {
