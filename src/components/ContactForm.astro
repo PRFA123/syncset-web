@@ -211,13 +211,17 @@
       const businessInput = form.querySelector<HTMLInputElement>('#cf-business');
       const messageInput = form.querySelector<HTMLTextAreaElement>('#cf-message');
 
-      [nameInput, emailInput, businessInput].forEach((el) =>
-        el?.classList.remove('contact-form__input--error')
-      );
+      [nameInput, emailInput, businessInput].forEach((el) => {
+        el?.classList.remove('contact-form__input--error');
+        el?.removeAttribute('aria-invalid');
+      });
 
       if (!nameInput?.value.trim() || !emailInput?.value.trim() || !businessInput?.value.trim()) {
         [nameInput, emailInput, businessInput].forEach((el) => {
-          if (!el?.value.trim()) el?.classList.add('contact-form__input--error');
+          if (!el?.value.trim()) {
+            el?.classList.add('contact-form__input--error');
+            el?.setAttribute('aria-invalid', 'true');
+          }
         });
         status.textContent = 'Please fill in your name, email and business name.';
         status.dataset.state = 'error';
@@ -227,6 +231,7 @@
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailPattern.test(emailInput.value.trim())) {
         emailInput.classList.add('contact-form__input--error');
+        emailInput.setAttribute('aria-invalid', 'true');
         status.textContent = 'Please enter a valid email address.';
         status.dataset.state = 'error';
         return;
@@ -236,7 +241,7 @@
         submitButton.disabled = true;
         submitButton.querySelector('.contact-form__submit-label')!.textContent = 'Sending…';
       }
-      status.textContent = '';
+      status.textContent = 'Sending your message…';
       status.removeAttribute('data-state');
 
       try {

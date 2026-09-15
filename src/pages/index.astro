@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Cta from '../components/Cta.astro';
-import SyncDiagram from '../components/SyncDiagram.astro';
 import Faq from '../components/Faq.astro';
 import ContactForm from '../components/ContactForm.astro';
 import {
@@ -61,7 +60,6 @@ const connectorApps = [
         <div class="hero__cta">
           <Cta variant="primary" subtext />
         </div>
-        <SyncDiagram />
       </div>
     </section>
 
@@ -75,16 +73,11 @@ const connectorApps = [
               <div class="tile tile-wide">
                 <div class="tile-label">How fast firms reply to an inbound enquiry</div>
                 <div class="tile-value">23<small>% never reply at all</small></div>
-                <svg viewBox="0 0 340 62" aria-hidden="true">
-                  <g font-family="JetBrains Mono, monospace" font-size="9" fill="#93A4AE">
-                    <rect x="0" y="6" width="115" height="13" rx="2.5" fill="#4BBA8B" />
-                    <text x="120" y="16">WITHIN 1 HOUR · 37%</text>
-                    <rect x="0" y="24" width="50" height="13" rx="2.5" fill="#3E7FA8" />
-                    <text x="120" y="34">1–24 HOURS · 16%</text>
-                    <rect x="0" y="42" width="75" height="13" rx="2.5" fill="#2E4A5A" />
-                    <text x="120" y="52">OVER 24 HOURS · 24%</text>
-                  </g>
-                </svg>
+                <ul class="reply-bars" aria-label="Reply speed to an inbound enquiry">
+                  <li><i style="--w:100%;--c:#4BBA8B"></i><span>Within 1 hour · 37%</span></li>
+                  <li><i style="--w:43%;--c:#3E7FA8"></i><span>1–24 hours · 16%</span></li>
+                  <li><i style="--w:65%;--c:#2E4A5A"></i><span>Over 24 hours · 24%</span></li>
+                </ul>
               </div>
               <div class="tile">
                 <div class="tile-label">Average first response</div>
@@ -392,7 +385,7 @@ const connectorApps = [
         <div class="app-track">
           {[...connectorApps, ...connectorApps].map((app, i) => (
             <div class="app-tile" style={`--bc:${app.bc}`} data-logo={app.slug} title={app.name} aria-hidden={i >= connectorApps.length ? 'true' : undefined}>
-              <img src={`/logos/${app.slug}.svg`} alt="" loading="lazy" />
+              <img src={`/logos/${app.slug}.svg`} alt={app.name} loading="lazy" />
             </div>
           ))}
         </div>
@@ -441,6 +434,28 @@ const connectorApps = [
   </main>
 
   <Footer />
+
+  <script>
+    // SMIL (<animateMotion>) ignores CSS, so reduced-motion has to pause it here.
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const applyMotion = () => {
+      document.querySelectorAll('svg').forEach((svg) => {
+        motion.matches ? svg.pauseAnimations() : svg.unpauseAnimations();
+      });
+    };
+    applyMotion();
+    motion.addEventListener('change', applyMotion);
+
+    // Official brand marks already live in public/logos — this just proves each file
+    // loads before showing it, so a missing SVG never renders as a broken image.
+    document.querySelectorAll<HTMLElement>('.app-tile[data-logo]').forEach((tile) => {
+      const img = tile.querySelector('img');
+      if (!img) return;
+      img.addEventListener('error', () => {
+        tile.textContent = (tile.getAttribute('title') || '?').charAt(0);
+      });
+    });
+  </script>
 </BaseLayout>
 
 <style>
@@ -472,7 +487,7 @@ const connectorApps = [
   }
 
   .hero__cta {
-    margin-bottom: var(--space-24);
+    margin-bottom: 0;
   }
 
   /* Problem Section */
@@ -734,15 +749,3 @@ const connectorApps = [
     }
   }
 </style>
-
-<script>
-  // Official brand marks already live in public/logos — this just proves each file
-  // loads before showing it, so a missing SVG never renders as a broken image.
-  document.querySelectorAll<HTMLElement>('.app-tile[data-logo]').forEach((tile) => {
-    const img = tile.querySelector('img');
-    if (!img) return;
-    img.addEventListener('error', () => {
-      tile.textContent = (tile.getAttribute('title') || '?').charAt(0);
-    });
-  });
-</script>

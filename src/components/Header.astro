@@ -73,6 +73,9 @@
     color: inherit;
     text-decoration: none;
     transition: color 0.18s ease;
+    /* 44px tall hit area without changing the visual rhythm */
+    padding: 12px 4px;
+    margin: -12px -4px;
   }
 
   .header__nav-link:hover {
@@ -85,10 +88,18 @@
     }
   }
 
-  /* the hero carries the same CTA one screen down; two of them overflow a 390px header */
+  /* Keep the primary CTA reachable from the header on phones; only the nav folds. */
   @media (max-width: 560px) {
     .header__cta {
-      display: none;
+      padding: 10px 14px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+  }
+  @media (max-width: 400px) {
+    .header__cta {
+      padding: 10px 11px;
+      font-size: 12px;
     }
   }
 </style>

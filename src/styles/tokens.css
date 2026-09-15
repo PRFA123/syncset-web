@@ -190,7 +190,7 @@ summary {
   --ink: #E6EDF0;
   --ink-2: #A9B8BF;
   --graphite: #A9B8BF;     /* old name, mapped to the new secondary ink */
-  --muted: #6B7C85;
+  --muted: #7C8D96;       /* 5.1:1 on --surface-2, the darkest ground it sits on */
 
   /* Forest greens — inbound side */
   --forest-deep: #15503C;

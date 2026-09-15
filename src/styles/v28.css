@@ -221,7 +221,7 @@
 }
 .tile-label {
   font-family: var(--mono);
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-2);
@@ -235,7 +235,7 @@
   margin-top: 1px;
 }
 .tile-value small {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--accent);
   font-weight: 500;
   margin-left: 5px;
@@ -248,6 +248,30 @@
 }
 .tile-wide {
   grid-column: 1 / -1;
+}
+.reply-bars {
+  margin-top: 8px;
+  display: grid;
+  gap: 5px;
+}
+.reply-bars li {
+  display: grid;
+  grid-template-columns: 38% 1fr;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #93a4ae;
+  white-space: nowrap;
+}
+.reply-bars i {
+  display: block;
+  height: 12px;
+  width: var(--w);
+  border-radius: 2.5px;
+  background: var(--c);
 }
 .bar-row {
   display: flex;
@@ -347,7 +371,7 @@
 }
 .pl-bearing {
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 17px; /* viewBox scale is ~0.72 at 360px → 12.2px effective */
   letter-spacing: 0.12em;
   fill: rgba(206, 228, 244, 0.74);
   text-transform: uppercase;
@@ -374,12 +398,6 @@
   font-size: 14.5px;
   color: var(--muted);
   line-height: 1.55;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .plate-streaks animateMotion {
-    display: none;
-  }
 }
 
 /* ---------- animated flow diagram: enquiry in, booking out ---------- */
@@ -415,6 +433,12 @@
   min-width: 780px;
   height: auto;
 }
+/* Below tablet the diagram scrolls anyway, so render it at 1:1 to keep labels legible. */
+@media (max-width: 1023px) {
+  .flow-scroll svg {
+    min-width: 1060px;
+  }
+}
 .wire-in {
   fill: none;
   stroke: url(#wireIn);
@@ -449,7 +473,7 @@
 }
 .node-label {
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: 0.08em;
   fill: var(--ink-2);
   text-transform: uppercase;
@@ -457,7 +481,7 @@
 }
 .stage-label {
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: 0.15em;
   fill: #c6d6dd;
   text-transform: uppercase;
@@ -489,9 +513,6 @@
 @media (prefers-reduced-motion: reduce) {
   .core-mark {
     animation: none;
-  }
-  .flow-scroll animateMotion {
-    display: none;
   }
 }
 
