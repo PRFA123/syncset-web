@@ -5,7 +5,7 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   site: 'https://www.syncset.com.au',
   integrations: [sitemap()],
-  output: 'server',
+  output: 'static',
   adapter: cloudflare(),
   vite: {
     build: {
