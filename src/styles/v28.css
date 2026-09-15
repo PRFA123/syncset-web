@@ -63,6 +63,89 @@
   filter: blur(1.1px);
 }
 
+/* ---------- hero headline shine ----------
+   A slow pass of light over the silver headline (one lap every 22s). Colour stays
+   --ink at every point of the gradient except the highlight, so contrast never
+   dips; reduced-motion collapses the animation to its final (plain) state. */
+.h1-shine {
+  position: relative;
+  /* static silver gradient — painted once, so the moving light reads against it */
+  background: linear-gradient(180deg, #f4f8fa 0%, #c3d0d6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* A narrow window (.shine) slides across the headline; inside it a white copy of
+   the text (from data-text, so the heading's DOM text is not duplicated) slides
+   the opposite way so the glyphs stay registered. Both moves are transforms, so
+   the compositor does all the work — background-clip:text + background-position
+   repainted the whole headline every frame (~13% of a throttled mobile main
+   thread, see audit/03-v28-fidelity.md). Window = 22% of the headline, so the
+   text copy inside it is 100% / 22% = 454.5% wide. */
+.h1-shine .shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 50%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 50%, transparent);
+  transform: translateX(-100%);
+  animation: shine-window 22s linear infinite;
+}
+.h1-shine .shine::before {
+  content: attr(data-text);
+  white-space: pre-line;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 454.5454%;
+  color: var(--light-lit);
+  transform: translateX(22%);
+  animation: shine-text 22s linear infinite;
+}
+@keyframes shine-window {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(454.5454%);
+  }
+}
+@keyframes shine-text {
+  from {
+    transform: translateX(22%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* ---------- rail: tapered light along the flow frame's border ----------
+   Geometry (points) is written by the script in index.astro. */
+.rail {
+  position: absolute;
+  inset: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+.rail .ring {
+  fill: none;
+  stroke: none;
+}
+.rail .taper {
+  fill: var(--edge-line);
+}
+.rail .taper--halo {
+  fill: var(--edge-halo);
+}
+
 /* ---------- buttons ---------- */
 
 .btn {
