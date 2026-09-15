@@ -314,19 +314,19 @@ h6 {
 h1 {
   font-size: var(--text-2xl);
   font-weight: 700;
-  letter-spacing: -1.5%;
+  letter-spacing: -0.015em;
 }
 
 h2 {
   font-size: var(--text-xl);
   font-weight: 700;
-  letter-spacing: -1%;
+  letter-spacing: -0.01em;
 }
 
 h3 {
   font-size: var(--text-lg);
   font-weight: 500;
-  letter-spacing: -0.5%;
+  letter-spacing: -0.005em;
 }
 
 p {
