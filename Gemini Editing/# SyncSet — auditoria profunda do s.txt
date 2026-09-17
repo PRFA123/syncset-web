@@ -1,0 +1,149 @@
+# SyncSet — auditoria profunda do site real, engenheiro sênior
+
+> Escrito depois que o Paulo apontou, com razão, que a "verificação" anterior desta
+> sessão foi superficial. Esta auditoria vai fundo em cada bug apontado, com causa
+> raiz, não só sintoma. Atualizada depois que o Paulo mandou 5 prints do site no
+> celular real dele, que revelaram a causa raiz verdadeira do Bug #3 (peguei errado na
+> primeira tentativa) e um quarto bug (diagrama de fluxo ilegível no mobile) que eu
+> não tinha visto ainda.
+> Data: 2026-09-14. Servidor local: `http://localhost:4321` (Astro dev, live reload).
+
+---
+
+## Como esta auditoria foi feita
+
+Para cada bug: (1) inspecionei o código-fonte real no disco do Paulo, (2) reproduzi
+ao vivo quando consegui (Chrome real do Paulo via `claude-in-chrome`, ou os prints do
+celular dele quando a automação não dava conta), (3) só então concluí. Cada correção
+foi gravada no disco via ponte de dispositivo e **reconfirmada por hash SHA-256 antes
+de qualquer alegação de sucesso**.
+
+---
+
+## Bug #1 — Logo genérica no lugar da marca real — ✅ CORRIGIDO E VERIFICADO AO VIVO
+
+`favicon.svg` (placeholder de scaffold) estava sendo usado como marca em 3 lugares
+(Header, compass "The core", núcleo de "How it runs"). A marca real já existia em
+`public/apple-touch-icon.png`, só não estava ligada a nada. Gerei `logo-mark.png`
+(mesmo "S", recolorido claro/transparente para o tema escuro) e troquei as 3
+referências. Confirmado com zoom no header e no núcleo do diagrama — nítido, zero
+erro de console.
+
+## Bug #2 — Cal.com em branco em `/book` — ✅ CORRIGIDO E VERIFICADO AO VIVO
+
+`book.astro` usava `<iframe src="https://cal.com/...">` cru, bloqueado pelo Cal.com
+(proteção padrão contra clickjacking de terceiros). Troquei pelo embed oficial deles
+(script `postMessage`, `Cal.ns["30min"]("inline", {...})`). Confirmado ao vivo: `/book`
+mostra o calendário completo, mês real, horários reais, clique reconhecido.
+
+## Bug #3 — Ícones "duplicados" na faixa de conectores — ✅ CAUSA RAIZ REAL
+## ENCONTRADA E CORRIGIDA (minha primeira tentativa estava errada)
+
+**Minha primeira hipótese nesta auditoria (marquee-seam por largura de viewport)
+estava errada** — medi ao vivo e descartei, documentado na versão anterior deste
+arquivo. **O Paulo então mandou print real do celular dele, que mostrou o bug de
+forma inequívoca**: cada ícone aparecia como um par idêntico lado a lado (S-S,
+M-M, círculo-círculo, ...), não como uma repetição distante no loop do carrossel.
+
+**Causa raiz real, no código:** `index.astro` linha 387 (antes da correção) fazia
+```js
+[...21 apps].flatMap((app) => [app, app])
+```
+`.flatMap(app => [app, app])` duplica **cada item individualmente e adjacente**,
+produzindo `[app1, app1, app2, app2, app3, app3, ...]` — não é o padrão de marquee
+correto. O padrão certo (duplicar a *lista inteira* uma vez, para o loop de
+`translateX(-50%)` funcionar) é `[...lista, ...lista]`, produzindo
+`[app1, app2, ..., app21, app1, app2, ..., app21]`. Eu tinha lido essa linha antes e
+não simulado mentalmente o `flatMap` corretamente — assumi que already fazia a
+duplicação certa e fui atrás de uma causa raiz errada (timing de animação) em vez do
+bug real, que era determinístico e sempre visível, sem depender de a animação estar
+rodando ou não.
+
+**Correção aplicada:** extraí a lista de apps para uma constante `connectorApps` no
+frontmatter e troquei o render para `[...connectorApps, ...connectorApps].map(...)`.
+
+**Verificado ao vivo por inspeção direta do DOM** (não por screenshot — um efeito
+colateral de zoom/renderização que introduzi na janela do Chrome do Paulo ao testar
+redimensionamento para mobile impediu screenshots limpos depois disso; ver nota no
+fim): script no console lendo `data-logo` de todos os 42 `.app-tile` confirmou
+`total: 42` e `isImmediatePairBug: false` — nenhum par adjacente idêntico. Lista
+começa `googlecalendar, hubspot, notion, stripe, gmail, xero, airtable, make,
+telegram, shopify, ...`, ordem correta, sem repetição imediata.
+
+## Bug #4 (novo, achado pelos prints do celular) — Diagrama de fluxo ilegível no
+## mobile — ✅ CORRIGIDO, verificação visual pendente
+
+**O que os prints mostraram:** na seção "How it runs", em vez do SVG manter 780px de
+largura mínima com scroll horizontal (como o CSS já previa:
+`.flow-scroll { overflow-x: auto }` + `.flow-scroll svg { min-width: 780px }`), o
+diagrama inteiro aparecia encolhido para caber nos ~380px de tela do celular, com todo
+o texto (rótulos dos nós, "Capture/Qualify/Confirm/Route") ilegível, borrado, quase
+impossível de ler.
+
+**Causa raiz provável:** o `<svg>` do diagrama tinha `viewBox="0 0 1060 400"` mas
+**nenhum atributo `width`/`height` próprio** — só a viewBox e o CSS. SVG sem
+`width`/`height` intrínsecos tem comportamento de dimensionamento inconsistente entre
+navegadores (principalmente em mobile) quando combinado com `width:100%` +
+`min-width` via CSS — em vez de respeitar o `min-width:780px` e deixar o contêiner
+pai rolar horizontalmente, alguns navegadores escalam o SVG inteiro pela `viewBox`
+para caber no espaço disponível, ignorando o `min-width`.
+
+**Correção aplicada:** adicionei `width="1060" height="400"` como atributos diretos no
+`<svg>`, junto da viewBox já existente — isso dá ao elemento um tamanho intrínseco
+bem definido, tornando o `min-width:780px` do CSS confiável entre navegadores.
+
+**Não confirmado visualmente ainda:** ao tentar validar no Chrome real do Paulo
+redimensionando a janela para simular mobile, o `resize_window` desta sessão causou um
+efeito colateral — uma janela do Chrome dele ficou com o conteúdo renderizando
+minúsculo (zoom/device-scale-factor preso em ~3x), e eu não consegui reverter isso de
+forma limpa fechando/reabrindo abas. **Não mexi mais nisso para não piorar.** A
+correção em si (atributos width/height no SVG) é uma prática padrão, documentada e de
+baixo risco, mas a confirmação visual final no mobile real depende do próximo print do
+Paulo depois que ele testar.
+
+---
+
+## O que ainda não foi verificado
+
+- **Bug #4, confirmação visual final** — pendente do próximo print/teste do Paulo no
+  celular real dele (ou de uma sessão futura sem o problema de zoom desta).
+- **Efeito colateral no Chrome do Paulo:** uma ou mais janelas do Chrome dele podem ter
+  ficado com zoom/escala bugada por causa dos testes de redimensionamento desta sessão.
+  Não afeta o código do site. Se ele notar, `Ctrl+0` ou fechar a janela resolve.
+- **Outros "botões que não funcionam" ou "texto"** não identificados nos 5 prints
+  recebidos — os prints cobriram: hero, gap/core, diagrama de fluxo, "how it works",
+  pricing, conectores, FAQ, contact form, CTA final, footer. Não apareceu nenhum outro
+  problema óbvio além dos 4 bugs acima nesses prints.
+
+---
+
+## Estado atual — todos os 4 bugs identificados têm correção aplicada e gravada no
+## disco do Paulo (hash conferido)
+
+1. ✅ Logo real — corrigido, verificado ao vivo.
+2. ✅ Cal.com embed — corrigido, verificado ao vivo.
+3. ✅ Ícones duplicados (causa raiz real: `flatMap` por item, não por lista) —
+   corrigido, verificado por inspeção de DOM.
+4. ✅ Diagrama de fluxo ilegível no mobile — corrigido (atributos width/height no SVG),
+   verificação visual final pendente.
+
+Próximo passo: o Paulo testar no celular real dele e confirmar visualmente o Bug #4 e
+a ausência de janelas Chrome bugadas. Depois disso, retomar a lista de fechamento
+técnico do handoff principal (§8).
+
+---
+
+## Lição registrada (atualizada)
+
+Três coisas aprendidas nesta sessão sobre verificação:
+1. Verificação de UI = existe + é o conteúdo certo + funciona de ponta a ponta.
+2. Quando uma hipótese de causa raiz não se sustenta com números medidos, descartar
+   abertamente em vez de forçar uma correção especulativa.
+3. **Nova, desta rodada:** ler código complexo (como `.flatMap(app => [app, app])`)
+   exige simular mentalmente o resultado passo a passo, não reconhecer o padrão de
+   relance e assumir que está certo. A primeira leitura desse `flatMap` pareceu, à
+   primeira vista, "duplicar a lista para o marquee" — só simulando de verdade (item
+   por item) é que fica claro que duplica cada item individualmente. Isso custou uma
+   rodada inteira de investigação na direção errada. Prints reais do usuário venceram
+   uma teoria de código elegante, mas errada — evidência empírica sempre helps mais
+   que dedução a partir do código quando as duas divergem.

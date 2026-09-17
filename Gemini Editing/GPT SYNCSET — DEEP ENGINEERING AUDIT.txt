@@ -1,0 +1,813 @@
+# SYNCSET — DEEP ENGINEERING AUDIT + VISUAL RECONSTRUCTION + PRODUCTION FINISH
+
+You are acting as a PRINCIPAL/SENIOR SOFTWARE ENGINEER, SENIOR FRONTEND ENGINEER, UI/UX IMPLEMENTATION SPECIALIST, DESIGN-SYSTEM ENGINEER, BROWSER QA ENGINEER and TECHNICAL ARCHITECT.
+
+Your responsibility is to take ownership of the current SyncSet website project and bring it to an exceptionally polished, production-ready professional standard.
+
+This is NOT a superficial CSS adjustment task.
+
+The current website contains visible distortions and implementation mistakes including, but not limited to:
+
+* alignment
+* spacing
+* proportions
+* frames
+* buttons
+* typography hierarchy
+* positioning
+* visual effects
+* glow
+* borders
+* animations
+* component relationships
+* responsive behaviour
+* visual rhythm
+* section composition
+
+The objective is to identify and correct the ROOT CAUSES of these problems and make the rendered website faithfully mirror the approved Visual Direction.
+
+---
+
+# 1. PROJECT LOCATION
+
+Use this project as the primary source:
+
+C:\Users\paulo\syncset-web
+
+You must inspect the COMPLETE project, not only the obvious frontend files.
+
+Inspect, where applicable:
+
+* source code
+* components
+* pages
+* layouts
+* styles
+* CSS
+* Tailwind configuration
+* theme/design-system files
+* assets
+* SVGs
+* images
+* fonts
+* animations
+* utility files
+* configuration files
+* package.json
+* build configuration
+* environment configuration
+* scripts
+* routing
+* form implementation
+* integrations
+* deployment configuration
+* test configuration
+* documentation
+* previous implementation artifacts
+
+Do not assume that the current component structure is correct.
+
+---
+
+# 2. VISUAL SOURCE OF TRUTH
+
+The website must be visually aligned to this Visual Direction:
+
+C:\PauloOS\70_AI_OS\AGENT_STUDIO\brand\Website\Gemini Editing\SyncSet Visual Direction.url
+
+Open and inspect the Visual Direction using the browser.
+
+Do NOT merely read the URL as text.
+
+Actually open the referenced Visual Direction in the browser and visually inspect the design.
+
+Compare the Visual Direction directly against the rendered localhost website.
+
+The Visual Direction is the visual source of truth.
+
+The existing website is the implementation to be corrected.
+
+Do not replace the Visual Direction with your own design.
+
+---
+
+# 3. USE ALL RELEVANT HERMES CAPABILITIES
+
+Before beginning implementation, inspect the Hermes environment and use the relevant available:
+
+* Hermes skills
+* agents
+* browser tools
+* browser vision
+* browser snapshot/DOM inspection
+* browser console
+* terminal
+* process tools
+* filesystem/project tools
+* Git tools
+* web-development capabilities
+* UI/UX capabilities
+* frontend engineering capabilities
+* browser testing capabilities
+* visual QA capabilities
+* relevant repositories/resources
+
+Use the existing `agentic-AI-website-builder` capability where available and appropriate.
+
+Use Hermes skills, agents and repositories as engineering resources, not as decoration.
+
+If a relevant capability already exists, use it rather than unnecessarily recreating it.
+
+Do not install random or unrelated tools.
+
+---
+
+# 4. FIRST RULE — DEEP AUDIT BEFORE EDITING
+
+Do NOT immediately begin changing CSS.
+
+First perform a deep engineering and visual audit.
+
+You must understand:
+
+1. how the project was originally built
+2. what framework and architecture it uses
+3. how the page is structured
+4. which components generate each visible section
+5. where the styles originate
+6. where animations originate
+7. where assets originate
+8. which files are shared across sections
+9. which implementation decisions were inherited from previous Claude sessions
+10. whether multiple sessions created conflicting or duplicated implementations
+11. whether obsolete components/styles remain in the repository
+12. whether visual inconsistencies come from parent containers, grids, flex layouts, spacing systems, CSS overrides, transforms, or component-level issues
+
+Search the entire project to determine the real implementation.
+
+Do not rely on filenames alone.
+
+Trace dependencies between components and styles.
+
+---
+
+# 5. FIND THE FULL HISTORY OF THE IMPLEMENTATION
+
+The website may have been built or modified across multiple Claude sessions.
+
+Therefore inspect the repository for:
+
+* duplicated components
+* alternate implementations
+* old versions
+* abandoned styles
+* competing CSS rules
+* obsolete animation implementations
+* duplicated assets
+* conflicting responsive rules
+* temporary fixes
+* magic numbers
+* negative margins
+* transforms used as positioning hacks
+* `!important`
+* duplicated media queries
+* inconsistent spacing values
+* inconsistent frame dimensions
+* inconsistent animation definitions
+
+Determine which implementation is actually being rendered.
+
+Do not fix files that are not connected to the current page.
+
+---
+
+# 6. BROWSER-BASED VISUAL AUDIT
+
+Start or identify the correct localhost development server.
+
+Determine the correct command from the project configuration.
+
+Open the actual SyncSet website in the browser.
+
+Then open the Visual Direction.
+
+Visually compare them.
+
+Do not consider source code to be evidence that the rendered result is correct.
+
+The browser-rendered page is the final authority for visual QA.
+
+Use:
+
+* browser vision
+* browser screenshots
+* browser snapshots
+* DOM inspection
+* console inspection
+
+where available.
+
+---
+
+# 7. BUILD A VISUAL DIFFERENCE MAP
+
+Before making substantial corrections, create an internal comparison for every relevant section.
+
+For each section determine:
+
+* target position
+* actual position
+* target width
+* actual width
+* target height
+* actual height
+* horizontal alignment
+* vertical alignment
+* spacing
+* typography scale
+* typography weight
+* border treatment
+* frame treatment
+* glow
+* lighting
+* animation
+* button placement
+* button dimensions
+* visual hierarchy
+* responsive behaviour
+
+Classify each discrepancy as:
+
+CRITICAL
+HIGH
+MEDIUM
+LOW
+
+Prioritize structural/layout problems before decorative details.
+
+---
+
+# 8. ROOT-CAUSE ENGINEERING RULE
+
+Never treat symptoms when the underlying layout architecture is wrong.
+
+For example:
+
+Do NOT immediately solve:
+
+"Frame is 40px too far left"
+
+with:
+
+margin-left: -40px;
+
+Instead investigate:
+
+container
+→ width
+→ max-width
+→ padding
+→ grid
+→ flex
+→ alignment
+→ gap
+→ child dimensions
+
+and correct the real cause.
+
+Avoid accumulating patches.
+
+The final code should be clean enough for another senior engineer to inherit.
+
+---
+
+# 9. VISUAL IMPLEMENTATION STANDARD
+
+Apply professional frontend engineering criteria to:
+
+## Layout
+
+* consistent containers
+* precise alignment
+* predictable spacing
+* proportional composition
+* balanced grids
+* intentional whitespace
+* consistent section rhythm
+
+## Typography
+
+* appropriate hierarchy
+* consistent sizing
+* correct line heights
+* correct weights
+* controlled wrapping
+* proper visual emphasis
+
+## Components
+
+* consistent dimensions
+* reusable primitives where appropriate
+* predictable states
+* coherent spacing
+
+## Buttons
+
+* position
+* size
+* spacing
+* hierarchy
+* hover state
+* glow
+* animation
+* visual treatment
+
+## Frames / Cards
+
+* dimensions
+* radius
+* borders
+* glow
+* internal alignment
+* spacing
+* animation
+* relationship to surrounding containers
+
+## Animation
+
+* timing
+* easing
+* movement
+* synchronisation
+* glow
+* opacity
+* border movement
+* hover interaction
+* performance
+
+Do not apply one generic animation to every element when the Visual Direction clearly uses different treatments.
+
+---
+
+# 10. VISUAL FIDELITY REQUIREMENT
+
+The goal is NOT:
+
+"make it look approximately similar."
+
+The goal is:
+
+"make the rendered implementation faithfully reproduce the intended Visual Direction."
+
+Where the Visual Direction demonstrates:
+
+* specific spacing
+* specific alignment
+* specific frame proportions
+* specific button placement
+* specific glow
+* specific border behaviour
+* specific animation
+* specific visual hierarchy
+
+reproduce those characteristics as faithfully as technically practical.
+
+Do not substitute a generic approximation when the reference can be implemented accurately.
+
+---
+
+# 11. PRESERVE CONTENT AND FUNCTIONALITY
+
+Unless a change is explicitly required by the Visual Direction or necessary to correct the implementation, preserve:
+
+* existing copy
+* navigation
+* links
+* forms
+* integrations
+* application logic
+* existing functional behaviour
+
+Do not rewrite functional business logic just to make the page visually different.
+
+Do not perform unrelated refactoring.
+
+---
+
+# 12. RESPONSIVE ENGINEERING
+
+Do not optimize only for one desktop screenshot.
+
+Verify the resulting implementation at appropriate viewport sizes, including:
+
+* large desktop
+* standard desktop/laptop
+* tablet
+* mobile
+
+Check for:
+
+* overflow
+* broken grids
+* overlapping elements
+* distorted frames
+* clipped effects
+* broken buttons
+* typography problems
+* excessive spacing
+* broken forms
+* animation problems
+
+A desktop correction must not create mobile regressions.
+
+---
+
+# 13. PERFORMANCE AND ACCESSIBILITY
+
+Inspect the implementation for:
+
+* excessive DOM complexity
+* unnecessarily expensive animations
+* layout thrashing
+* poor animation properties
+* missing accessibility labels
+* keyboard navigation problems
+* focus problems
+* poor semantic structure
+* contrast issues where relevant
+* reduced-motion considerations
+
+Prefer efficient animation techniques such as transform and opacity where appropriate.
+
+Do not sacrifice performance merely to reproduce decorative effects.
+
+---
+
+# 14. BROWSER CONSOLE AUDIT
+
+After the page loads, inspect the browser console.
+
+Look for:
+
+* JavaScript errors
+* React errors
+* warnings
+* broken asset requests
+* failed API calls
+* hydration errors
+* animation/runtime errors
+* resource failures
+
+Fix relevant problems.
+
+Do not hide errors or suppress warnings merely to make the console appear clean.
+
+---
+
+# 15. ITERATIVE VISUAL QA LOOP
+
+This is mandatory.
+
+Do not perform one implementation pass and declare completion.
+
+Use the cycle:
+
+OPEN
+↓
+INSPECT
+↓
+COMPARE
+↓
+IDENTIFY
+↓
+FIX
+↓
+RENDER
+↓
+INSPECT AGAIN
+↓
+COMPARE AGAIN
+↓
+FIX AGAIN
+↓
+FINAL VERIFY
+
+Repeat until the major visual discrepancies are eliminated.
+
+The code compiling successfully is NOT proof that the task is complete.
+
+---
+
+# 16. FINAL VISUAL INSPECTION
+
+Before completion, inspect the entire page from top to bottom.
+
+Do not inspect only the sections that were previously reported as broken.
+
+Look for new regressions caused by your changes.
+
+Specifically inspect:
+
+* top navigation/header
+* hero/top section
+* Booking Sync section
+* CTA buttons
+* Every Enquiry section
+* Core / Always On section
+* workflow section
+* lower content sections
+* Common Questions
+* contact area
+* footer
+* responsive behaviour
+
+---
+
+# 17. ENGINEERING QUALITY STANDARD
+
+The final implementation must be suitable as a reference implementation for another professional software engineer.
+
+That means:
+
+* clean architecture
+* understandable CSS
+* minimal duplication
+* no unnecessary hacks
+* maintainable components
+* clear naming
+* reusable patterns
+* predictable responsive behaviour
+* no accidental dependencies
+* no dead code introduced
+* no temporary debugging code
+* no console errors
+* no obvious technical debt introduced during this task
+
+Do not optimize for "fastest patch."
+
+Optimize for:
+
+CORRECT
++
+CLEAN
++
+MAINTAINABLE
++
+VISUALLY ACCURATE
+
+---
+
+# 18. GIT SAFETY
+
+Before making significant changes:
+
+* inspect `git status`
+* understand existing modifications
+* do not overwrite unrelated work
+* do not delete unrelated files
+* do not reset the repository
+* do not discard previous work blindly
+
+At the end inspect:
+
+`git status`
+
+and:
+
+`git diff --stat`
+
+Do not commit or push unless explicitly instructed.
+
+---
+
+# 19. FINAL TECHNICAL VALIDATION
+
+Determine which validation commands are available from the project.
+
+Run the appropriate:
+
+* lint
+* type checking
+* tests
+* production build
+
+Fix errors resulting from your changes.
+
+Do not suppress errors.
+
+Do not declare success because the development server loads.
+
+---
+
+# 20. DEPLOYMENT READINESS GATE
+
+The website is NOT considered finished until ALL of the following are true:
+
+[ ] Visual Direction inspected directly in browser
+
+[ ] localhost website inspected directly in browser
+
+[ ] visual differences systematically audited
+
+[ ] structural layout corrected
+
+[ ] alignment corrected
+
+[ ] spacing corrected
+
+[ ] frames corrected
+
+[ ] button placement corrected
+
+[ ] effects corrected
+
+[ ] animations corrected
+
+[ ] typography corrected where necessary
+
+[ ] responsive behaviour verified
+
+[ ] browser console inspected
+
+[ ] relevant runtime errors resolved
+
+[ ] assets load correctly
+
+[ ] navigation works
+
+[ ] buttons work
+
+[ ] form works
+
+[ ] project passes available technical checks
+
+[ ] production build succeeds
+
+[ ] no obvious visual regressions remain
+
+[ ] implementation is clean and maintainable
+
+---
+
+# 21. ZERO-ASSUMPTION RULE
+
+Do not assume:
+
+* the previous Claude implementation was correct
+* previous Hermes changes were correct
+* a component is correct because its source code appears reasonable
+* CSS values are correct because they are intentional
+* an animation is correct because it exists
+* a frame is correctly positioned because its dimensions look reasonable
+
+Verify the rendered result.
+
+Evidence must come from:
+
+SOURCE
++
+BROWSER
++
+VISUAL COMPARISON
++
+TECHNICAL VALIDATION
+
+---
+
+# 22. DO NOT DECLARE SUCCESS PREMATURELY
+
+You are responsible for delivering the final result.
+
+Do not report:
+
+"Looks good"
+
+unless you have actually performed the complete browser-based verification.
+
+Do not report:
+
+"Done"
+
+because files were modified.
+
+Do not report:
+
+"Ready"
+
+because the build succeeded.
+
+The success criterion is the combined result:
+
+VISUAL FIDELITY
++
+LAYOUT QUALITY
++
+FUNCTIONALITY
++
+RESPONSIVENESS
++
+CODE QUALITY
++
+BUILD VALIDATION
+
+---
+
+# 23. FINAL REPORT
+
+When finished, provide a structured engineering report:
+
+## PROJECT AUDIT
+
+What architecture and implementation you found.
+
+## ROOT CAUSES
+
+What was actually causing the visual distortions.
+
+## FILES CHANGED
+
+Exact files modified.
+
+## VISUAL CORRECTIONS
+
+What was corrected and why.
+
+## ANIMATIONS / EFFECTS
+
+What was corrected or rebuilt.
+
+## RESPONSIVE QA
+
+Viewport sizes and issues checked.
+
+## BROWSER QA
+
+Visual inspection and console results.
+
+## TECHNICAL QA
+
+Lint / typecheck / tests / build results.
+
+## REMAINING ISSUES
+
+Any unresolved issues, limitations or differences from the Visual Direction.
+
+## DEPLOYMENT STATUS
+
+Return exactly one:
+
+READY FOR DEPLOYMENT
+
+or:
+
+NOT READY FOR DEPLOYMENT
+
+If NOT READY FOR DEPLOYMENT, clearly identify every blocker.
+
+---
+
+# FINAL COMMAND
+
+Take complete engineering ownership of the SyncSet website.
+
+Use:
+
+"C:\Users\paulo\syncset-web"
+
+as the working project.
+
+Use:
+
+C:\PauloOS\70_AI_OS\AGENT_STUDIO\brand\Website\Gemini Editing\SyncSet Visual Direction.url
+
+as the visual reference.
+
+Use the relevant `agentic-AI-website-builder` capability, Hermes skills, agents, repositories, browser tools and engineering tools available to you.
+
+Open BOTH the Visual Direction and the actual localhost website in the browser.
+
+Perform a deep source-code audit AND a deep rendered-visual audit.
+
+Find the root causes of the distortions.
+
+Correct them professionally.
+
+Render again.
+
+Inspect again.
+
+Compare again.
+
+Continue iterating until the result is genuinely polished.
+
+The final website must be something a senior frontend engineer could inherit and use as a professional reference implementation.
+
+Do not deliver a partial result.
+
+Do not deliver a superficial result.
+
+Do not stop at compilation.
+
+Do not stop at the first successful render.
+
+Deliver the finished implementation only after technical and visual verification.

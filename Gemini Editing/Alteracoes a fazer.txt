@@ -1,0 +1,76 @@
+abaixo segue um resumo dos detalhes que encontrei que precisam ser alterados. Voce pode melhorar as instrucoes criando um prompt melhor.
+
+Quero que atue como um engenheiro e arquiteto dev senior para criar um projeto de codigo para ser executado e arrumar as configuracoes do site. Se for um projeto de codigo somente para rodar ele completo seria melhor do que ficar dividindo em partes. Voce tem autonomia, aplica e executa.
+
+
+
+Resumo:
+
+Alteracoes a fazer no website da SyncSet:
+
+
+
+1 - do lado esquerdo da tab do navegador onde mostra logo, aparece uma logo que nao condiz com a Syncset logo. trocar para logo oficial.
+
+
+
+2 - No topo, o primeiro Heading onde tem a logo, "How it works / Integrations" deve ficar centralizado proporcionalmente com o heading de baixo "Booking Sync is Live"
+
+
+
+3 - O frame horizontal do "Booking sync is live" deve subir um pouco na pagina ficando entre top heading "how it works" e "Every enquiry ends as a booked job"
+
+
+
+4 - O frame horizontal do "Booking sync is live" e "Every enquiry ends as a booked job"
+
+os efeitos e animacoes nao foram aplicados.
+
+
+
+5 - O texto geral do site ainda contem os travessoes grandes "-" gerados pelo AI texting.
+
+
+
+6 - Os botoes "book a workflow audit" e "see how it runs" aparecem no site na parte inferior da pagina e nao no sub heading do topo como no Artifact.
+
+
+
+7 - O Frame " the core/Always on; One system, not ten tabs.
+
+Everything your business already runs, wired into a single path that never forgets a step." a imagem e o frame devem ser um pouco maior para dar o matching com o frame do lado esquerdo que possui o dashboard.
+
+
+
+8 - No frame "enquiry booking" onde tem a animacao do workflow, o efeito animado de ter duas linhas contornando o frame sincronicamente nao foi aplicado. O frame deve ter a largura da pagina porque nao esta alinhado.
+
+
+
+9 - No frame "enquiry booking" onde tem a animacao do workflow, considerando desse frame para baixo os espacamentos estao muito grandes entre todos os subheadings da parte inferior do site.
+
+
+
+10 - em baixo de "No migration, no new logins, no asking your team to learn another tool." tem uma animacao com as logos dos apps e conectores. elas estao muito ofuscadas e devem ser levemente desofuscadas. As logos na animacao foram as que eu baixei mas gostaria de mudar somente as logos para um estilo mais 3d prevalecendo o design das logos originais. As logos estao dentro de um frame que eh um quadrado pequeno, nao sei se altero ou mantenho esse frame, vai depender de como serao as novas logos. talvez baixar novo pacote de apps.
+
+
+
+11 - no heading "Common questions" esta muito grande e muito espacado e deve ser menor e mais discreto.
+
+
+
+12 - no heading "Prefer to write instead?" o titulo pode ser menor assim como o formulario precisa de adaptacao. nao sei se mantenho o formulario como esta ou se adiciono um botao onde a pessoa que esta navegando clica e o formulario abre. gostaria de uma opiniao ou outra alternativa mais moderna. 
+
+Excelente raio-X. Essa lista de 12 pontos mapeia com precisão cirúrgica as falhas de fidelidade visual, refinamento de layout e motion design em relação à especificação V28/V2.0.
+
+Como Dev Senior & UI Architect, elaborei um Plano de Execução Unificado (Prompt Master de Refatoração Integral). Você poderá rodar esse script/execução de código de uma só vez para ajustar as configurações, remover resquícios de AI-texting e trazer o site para paridade total com o protótipo.
+
+💡 Análise Técnica & Recomendação para o Ponto 12 (Formulário)
+Sua dúvida no Ponto 12: Manter o formulário exposto ou criar um modal/gaveta expansível?
+
+Recomendação de UX/UI Senior: Em landing pages B2B orientadas à conversão direta de serviços high-ticket, manter o formulário exposto no rodapé aumenta drasticamente a conversão (elimina a fricção de clique adicional). No entanto, o layout atual ocupa um bloco vertical excessivo e desproporcional.
+
+A Solução Ideal: Transformar o "Prefer to write instead?" em um Card Compacto Glassmorphic de 2 Colunas:
+
+Esquerda (35%): Titularidade minimalista (Prefer to write instead?) + microcopy e indicador de SLA (replies within 1 business day).
+
+Direita (65%): Formulário inline compacto de 2 linhas de inputs + caixa de mensagem ajustada. Isso elimina a sensação de "espaço vazio", mantém o formulário acessível sem cliques extras e preserva a sofisticação visual do Design System V2.0.

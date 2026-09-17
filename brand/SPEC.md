@@ -475,10 +475,7 @@ const faqs = [
     "url": "https://www.syncset.com.au",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Byron Bay",
-      "addressRegion": "NSW",
-      "postalCode": "2481",
-      "addressCountry": "AU"
+      addressCountry: 'AU',
     },
     "areaServed": ["AU", "Worldwide"],
     "priceRange": "A$900–A$2,500",
@@ -594,7 +591,7 @@ Sitemap: https://www.syncset.com.au/sitemap-index.xml
 - Website: https://www.syncset.com.au
 - Audit booking: https://www.syncset.com.au/book
 - Email: hello@syncset.com.au
-- Location: Byron Bay, NSW, Australia (remote-first, serves AU and internationally)
+- Location: Australia (remote-first, serves AU and internationally)
 ```
 
 ---

@@ -27,9 +27,6 @@ export interface SchemaLocalBusiness {
   url: string;
   address: {
     '@type': string;
-    addressLocality: string;
-    addressRegion: string;
-    postalCode: string;
     addressCountry: string;
   };
   areaServed: string[];
@@ -65,7 +62,7 @@ export function generateOrganizationSchema(): SchemaOrganization {
     areaServed: ['AU', 'Worldwide'],
     contactPoint: {
       '@type': 'ContactPoint',
-      email: 'contact@syncset.com.au',
+      email: 'hello@syncset.com.au',
       contactType: 'customer service',
     },
     sameAs: ['https://www.linkedin.com/company/syncset'],
@@ -81,14 +78,11 @@ export function generateLocalBusinessSchema(): SchemaLocalBusiness {
     url: 'https://www.syncset.com.au',
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Byron Bay',
-      addressRegion: 'NSW',
-      postalCode: '2481',
       addressCountry: 'AU',
     },
     areaServed: ['AU', 'Worldwide'],
     priceRange: 'A$900–A$2,500',
-    email: 'contact@syncset.com.au',
+    email: 'hello@syncset.com.au',
   };
 }
 

@@ -1,0 +1,365 @@
+{
+  "name": "lead-intake-v1",
+  "version": "1.0.0",
+  "description": "SyncSet GBP + Website Lead Intake Pipeline — captures enquiries from multiple sources → Notion CRM → Telegram alert → auto-response email → follow-up timers → booking tracking",
+  "trigger": {
+    "type": "webhook",
+    "name": "Lead Submission (Website / GBP)",
+    "description": "Receives lead data from syncset.com.au website form and (future) Google Business Profile messages",
+    "expected_payload": {
+      "name": "string (lead's full name)",
+      "email": "string (lead's email address)",
+      "business": "string (lead's business name or industry)",
+      "message": "string (enquiry message or reason for contact)",
+      "source": "string (origin: 'syncset.com.au/home', 'gbp-message', etc.)",
+      "utm_source": "string or null (campaign attribution)",
+      "utm_medium": "string or null (campaign attribution)",
+      "timestamp": "ISO 8601 string (when enquiry was submitted)"
+    },
+    "example_payload": {
+      "name": "Jane Smith",
+      "email": "jane@smithretail.com.au",
+      "business": "Smith Retail Group",
+      "message": "We get 20+ WhatsApp enquiries a day and can't keep up. Interested in learning more about how SyncSet could help.",
+      "source": "syncset.com.au/home",
+      "utm_source": null,
+      "utm_medium": null,
+      "timestamp": "2026-09-17T14:35:00Z"
+    }
+  },
+  "steps": [
+    {
+      "step": 1,
+      "name": "Receive & Validate Payload",
+      "module": "webhook",
+      "action": "Receive HTTP POST",
+      "output": "raw_payload",
+      "error_handling": "If payload missing required fields (name, email, business): → Log error to Telegram + discard"
+    },
+    {
+      "step": 2,
+      "name": "Clean Lead Data",
+      "module": "text-aggregator",
+      "action": "Trim whitespace, normalize email to lowercase",
+      "input": "raw_payload.{name, email, business, message}",
+      "output": "clean_lead",
+      "error_handling": "If email invalid format: → Alert Paulo, skip step 3–5"
+    },
+    {
+      "step": 3,
+      "name": "Create Notion Lead Record",
+      "module": "notion",
+      "action": "Create new database record in 'SyncSet Leads' table",
+      "fields": {
+        "Name": "clean_lead.name",
+        "Email": "clean_lead.email",
+        "Business": "clean_lead.business",
+        "Message": "clean_lead.message",
+        "Source": "raw_payload.source",
+        "Status": "New",
+        "Created": "raw_payload.timestamp",
+        "Booked?": "No",
+        "Follow-up Due": "formula: +24 hours from Created"
+      },
+      "error_handling": "If Notion API fails: → Log to Telegram, store payload to backup Airtable table, retry in 5 min",
+      "output": "notion_record_id"
+    },
+    {
+      "step": 4,
+      "name": "Send Telegram Alert",
+      "module": "telegram",
+      "action": "Send message to @Paulo_leads_bot",
+      "message_template": "🚨 **New Lead**\n**Name:** {clean_lead.name}\n**Business:** {clean_lead.business}\n**Email:** {clean_lead.email}\n**Message:** {clean_lead.message}\n**Source:** {raw_payload.source}\n**Notion ID:** {notion_record_id}\n**Cal.com Link:** https://cal.com/syncset/workflow-audit",
+      "error_handling": "If Telegram API fails: → Continue; log separately; manual sweep every 4 hours"
+    },
+    {
+      "step": 5,
+      "name": "Send Auto-Response Email",
+      "module": "email",
+      "action": "Send confirmation email to lead",
+      "email_template": "Welcome Email (see below)",
+      "to": "clean_lead.email",
+      "subject": "Your Workflow Audit is 1 click away — SyncSet",
+      "error_handling": "If email send fails: → Log to Telegram, mark as 'email-bounced' in Notion, do NOT attempt retry"
+    },
+    {
+      "step": 6,
+      "name": "Set 24-Hour Follow-Up Reminder",
+      "module": "delay-timer",
+      "action": "Wait 24 hours; if lead has NOT booked by then → Trigger follow-up email",
+      "condition": "IF Notion record.Booked? == 'No' AND time_since_created >= 24 hours",
+      "error_handling": "If webhook timeout: → Treat as missed follow-up; log to Telegram"
+    },
+    {
+      "step": 7,
+      "name": "Send 24-Hour Follow-Up (Conditional)",
+      "module": "email",
+      "action": "If Step 6 condition true: send 1st follow-up email",
+      "email_template": "Follow-up Email #1 (see below)",
+      "to": "clean_lead.email",
+      "condition": "lead.Booked? == 'No' AND 24h elapsed",
+      "error_handling": "Same as Step 5"
+    },
+    {
+      "step": 8,
+      "name": "Set 72-Hour Follow-Up Reminder",
+      "module": "delay-timer",
+      "action": "Wait additional 48 hours (72h total); if still NOT booked → Trigger final follow-up",
+      "condition": "IF Notion record.Booked? == 'No' AND time_since_created >= 72 hours",
+      "error_handling": "Same as Step 6"
+    },
+    {
+      "step": 9,
+      "name": "Send 72-Hour Follow-Up (Conditional, FINAL)",
+      "module": "email",
+      "action": "If Step 8 condition true: send 2nd (final) follow-up email",
+      "email_template": "Follow-up Email #2 (see below)",
+      "to": "clean_lead.email",
+      "condition": "lead.Booked? == 'No' AND 72h elapsed",
+      "error_handling": "Same as Step 5; after this email, no further contact unless lead responds"
+    },
+    {
+      "step": 10,
+      "name": "Monitor Cal.com for Booking",
+      "module": "polling-webhook",
+      "action": "Every 15 minutes: check Cal.com API for new bookings matching lead email",
+      "query": "SELECT bookings WHERE guest_email == clean_lead.email AND booking_time > raw_payload.timestamp",
+      "error_handling": "If Cal.com API unavailable: → Log, retry next cycle; manual check daily"
+    },
+    {
+      "step": 11,
+      "name": "Update Notion on Booking (Conditional)",
+      "module": "notion",
+      "action": "If booking detected: update Notion record",
+      "fields": {
+        "Booked?": "Yes",
+        "Booking Time": "cal_booking.scheduled_time",
+        "Cal.com ID": "cal_booking.id",
+        "Status": "Booked"
+      },
+      "error_handling": "If Notion update fails: → Log to Telegram; manual update Paulo"
+    },
+    {
+      "step": 12,
+      "name": "Send Booking Confirmation to Lead",
+      "module": "email",
+      "action": "If Step 11 succeeds: send calendar event + confirmation",
+      "email_template": "Booking Confirmation Email (see below)",
+      "to": "clean_lead.email",
+      "attach": "ics calendar file from Cal.com",
+      "error_handling": "Same as Step 5"
+    },
+    {
+      "step": 13,
+      "name": "Add Event to Google Calendar",
+      "module": "google-calendar",
+      "action": "Create calendar event in Paulo's personal calendar",
+      "event_details": {
+        "title": "Workflow Audit: {clean_lead.business}",
+        "description": "Lead: {clean_lead.name} ({clean_lead.email})\nBusiness: {clean_lead.business}\nEnquiry: {clean_lead.message}\nSource: {raw_payload.source}",
+        "start": "cal_booking.scheduled_time",
+        "end": "cal_booking.scheduled_time + 30 minutes",
+        "location": "Zoom (Cal.com link)"
+      },
+      "error_handling": "If Google Calendar API fails: → Log to Telegram; manual entry"
+    },
+    {
+      "step": 14,
+      "name": "End Scenario (Success Path)",
+      "module": "webhook",
+      "action": "Return HTTP 200 OK to caller",
+      "response": {
+        "status": "success",
+        "lead_id": "notion_record_id",
+        "message": "Lead captured and processing begun"
+      }
+    }
+  ],
+  "error_paths": [
+    {
+      "trigger": "Invalid payload (missing required fields)",
+      "action": "Log error to Telegram, discard, return HTTP 400",
+      "recovery": "Manual review and re-entry by Paulo"
+    },
+    {
+      "trigger": "Notion API failure (Step 3)",
+      "action": "Store payload in backup Airtable, alert Telegram, retry Step 3 in 5 min",
+      "recovery": "If retries fail after 3 attempts: manual Notion entry + email to lead"
+    },
+    {
+      "trigger": "Email send failure (Steps 5, 7, 9, 12)",
+      "action": "Mark lead as 'email-bounced', alert Telegram, do NOT retry",
+      "recovery": "Paulo contacts lead via alternative method (phone, Telegram if available)"
+    },
+    {
+      "trigger": "Telegram alert failure (Step 4)",
+      "action": "Log to Airtable, continue pipeline",
+      "recovery": "Manual sweep of Notion 'New' status every 4 hours"
+    },
+    {
+      "trigger": "Cal.com booking not detected after 72h (Step 10)",
+      "action": "Mark as 'No Response' in Notion, stop follow-ups",
+      "recovery": "Manual outreach by Paulo if desired; no automatic further contact"
+    }
+  ],
+  "test_payloads": [
+    {
+      "name": "Happy Path: Form submission with email",
+      "source": "syncset.com.au/home",
+      "payload": {
+        "name": "Alex Johnson",
+        "email": "alex@xyzservices.com.au",
+        "business": "XYZ Home Services",
+        "message": "We receive 15+ booking requests on WhatsApp daily. Very interested in streamlining.",
+        "source": "syncset.com.au/home",
+        "utm_source": "linkedin",
+        "utm_medium": "organic",
+        "timestamp": "2026-09-17T10:30:00Z"
+      },
+      "expected_result": "Lead created in Notion, Telegram alert sent, welcome email sent, follow-ups scheduled"
+    },
+    {
+      "name": "GBP Message (Future): Direct message from GBP",
+      "source": "gbp-message",
+      "payload": {
+        "name": "Maria Garcia",
+        "email": "maria@garciaplumbing.com.au",
+        "business": "Garcia Plumbing",
+        "message": "Saw your profile on Google, sounds like exactly what we need",
+        "source": "gbp-message",
+        "utm_source": null,
+        "utm_medium": null,
+        "timestamp": "2026-09-17T11:15:00Z"
+      },
+      "expected_result": "Same as happy path; source logged as 'gbp-message' for attribution"
+    },
+    {
+      "name": "Error Case: Invalid email",
+      "source": "syncset.com.au/home",
+      "payload": {
+        "name": "Bob Smith",
+        "email": "not-an-email",
+        "business": "Bob's Business",
+        "message": "Interested in learning more",
+        "source": "syncset.com.au/home",
+        "utm_source": null,
+        "utm_medium": null,
+        "timestamp": "2026-09-17T12:00:00Z"
+      },
+      "expected_result": "Error logged to Telegram, lead skipped, HTTP 400 returned"
+    },
+    {
+      "name": "Edge Case: Lead books immediately",
+      "source": "syncset.com.au/home",
+      "payload": {
+        "name": "Priya Sharma",
+        "email": "priya@bhartitech.com",
+        "business": "Bharti Tech Consulting",
+        "message": "Perfect timing, let's get started",
+        "source": "syncset.com.au/home",
+        "utm_source": null,
+        "utm_medium": null,
+        "timestamp": "2026-09-17T13:00:00Z"
+      },
+      "expected_result": "Lead created, booking detected within minutes (Step 10 short-circuit), confirmation sent, follow-ups cancelled"
+    }
+  ],
+  "email_templates": [
+    {
+      "name": "Welcome Email",
+      "subject": "Your Workflow Audit is 1 click away — SyncSet",
+      "from": "hello@syncset.com.au",
+      "body": "Hi {lead.name},\n\nThanks for reaching out. Your 20-minute workflow audit is ready to book.\n\n👉 Book your time here: https://cal.com/syncset/workflow-audit\n\nNo prep needed. We'll spend 20 minutes learning where your enquiries come in, where they get stuck, and what we could actually fix.\n\nIf you have any questions before the call, just reply to this email.\n\nCheers,\nThe SyncSet team"
+    },
+    {
+      "name": "Follow-up Email #1 (24 hours)",
+      "subject": "Just checking in — Workflow Audit booking",
+      "from": "hello@syncset.com.au",
+      "body": "Hi {lead.name},\n\nJust a gentle nudge — if you're still interested in the workflow audit, the calendar is open:\n\n👉 https://cal.com/syncset/workflow-audit\n\nFeel free to pick any time that works. Questions? Hit reply.\n\nCheers,\nSyncSet"
+    },
+    {
+      "name": "Follow-up Email #2 (72 hours, FINAL)",
+      "subject": "Last opportunity: Workflow Audit booking",
+      "from": "hello@syncset.com.au",
+      "body": "Hi {lead.name},\n\nOne last heads-up — we've got a couple of audit slots available this week if you'd like to grab one:\n\n👉 https://cal.com/syncset/workflow-audit\n\nIf now isn't the right time, no worries. Feel free to reach out anytime you're ready.\n\nCheers,\nSyncSet"
+    },
+    {
+      "name": "Booking Confirmation Email",
+      "subject": "Workflow Audit confirmed — {booking.time}",
+      "from": "hello@syncset.com.au",
+      "body": "Hi {lead.name},\n\nAwesome! Your audit is scheduled for {booking.time} (AEDT).\n\n📅 Add to your calendar: [ICS attachment]\n📞 Zoom link: [Cal.com link]\n❓ Questions: Reply to this email anytime\n\nLooking forward to learning about {lead.business}.\n\nCheers,\nSyncSet"
+    }
+  ],
+  "import_instructions": {
+    "platform": "Make.com",
+    "steps": [
+      "1. Log into make.com (https://make.com) with your Make account",
+      "2. Click 'Create a new scenario'",
+      "3. Choose 'Webhook' as the trigger module (Step 1 above)",
+      "4. Copy the webhook URL generated by Make",
+      "5. Configure each step in the UI using the module list above (Webhook → Text Aggregator → Notion → Telegram → Email → Delays → Google Calendar)",
+      "6. Map fields from previous modules to next modules using Make's visual connector",
+      "7. For Notion: authenticate with your Notion workspace, select 'SyncSet Leads' database, map fields as shown in Step 3",
+      "8. For Telegram: get bot token from @BotFather on Telegram, set channel to @Paulo_leads_bot",
+      "9. For Email: use a service like Postmark or SendGrid (pre-configured); use templates provided above",
+      "10. For Google Calendar: authenticate with your Google account",
+      "11. For Cal.com: set up Cal.com API key (Settings → Integrations → API)",
+      "12. Test with sample payloads (see test_payloads section above)",
+      "13. Once working: share webhook URL with frontend developer to embed in form submission endpoint"
+    ]
+  },
+  "himl_rules": [
+    {
+      "action": "Create lead in Notion",
+      "autonomy": "Autonomous",
+      "condition": "Always"
+    },
+    {
+      "action": "Send Telegram alert",
+      "autonomy": "Autonomous",
+      "condition": "Always"
+    },
+    {
+      "action": "Send auto-response email (template fixed)",
+      "autonomy": "Human approval for first 20 sends, then autonomous if zero errors",
+      "condition": "After 20 test sends reviewed by Paulo"
+    },
+    {
+      "action": "Follow-up 24h / 72h emails",
+      "autonomy": "Human approval for first 5 sequences, then autonomous if zero unsubscribes/bounces",
+      "condition": "After 5 test leads tracked by Paulo"
+    },
+    {
+      "action": "Any email with LLM-generated content",
+      "autonomy": "Never autonomous — always human-in-the-loop",
+      "condition": "Always require Paulo approval"
+    },
+    {
+      "action": "Update Notion status",
+      "autonomy": "Autonomous",
+      "condition": "Always"
+    },
+    {
+      "action": "Add Google Calendar event",
+      "autonomy": "Autonomous",
+      "condition": "Always"
+    }
+  ],
+  "maintenance": {
+    "weekly": [
+      "Review undelivered emails (bounces, failures)",
+      "Check Notion 'SyncSet Leads' for data quality issues",
+      "Monitor Telegram alerts for patterns (e.g., recurring errors)"
+    ],
+    "monthly": [
+      "Review pipeline conversion rate (leads → booked)",
+      "Audit email open / click rates",
+      "Check for any follow-up emails stuck in 'pending' state"
+    ],
+    "quarterly": [
+      "Review email templates for freshness / relevance",
+      "Audit Cal.com availability and timezone settings",
+      "Reconcile leads between Notion and Google Calendar"
+    ]
+  }
+}

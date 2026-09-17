@@ -87,7 +87,7 @@ Pesquisa direta em agências de automação australianas e no padrão global da 
 - Blog com três posts de 2024 → lê-se como negócio abandonado.
 - CTAs múltiplos competindo (agendar / baixar guia / assinar newsletter) → dividem a intenção e derrubam os três.
 
-**Dado que contraria a intuição e vale a sua atenção:** investimento em IA por porte de empresa — 24% nas de 1–9 funcionários, 45% nas de 10–49, 75% nas de 75+ (pesquisa Business.com/Dialog com 1.009 trabalhadores em firmas de 2–250 pessoas). O micro-negócio é o mais barato de alcançar e o menos provável de comprar. Isso não invalida o mercado de Northern Rivers, mas sugere que dentro dele o alvo é o negócio estabelecido com volume repetitivo real — a clínica com 12 pessoas, não o eletricista sozinho.
+**Dado que contraria a intuição e vale a sua atenção:** investimento em IA por porte de empresa — 24% nas de 1–9 funcionários, 45% nas de 10–49, 75% nas de 75+ (pesquisa Business.com/Dialog com 1.009 trabalhadores em firmas de 2–250 pessoas). O micro-negócio é o mais barato de alcançar e o menos provável de comprar. Isso não invalida o mercado australiano, mas sugere que dentro dele o alvo é o negócio estabelecido com volume repetitivo real — a clínica com 12 pessoas, não o eletricista sozinho.
 
 ---
 
@@ -267,7 +267,7 @@ syncset.com.au
 ├── /services/[service]/[industry]      ESTÁGIO 2 🔒  matriz programática
 ├── /tools/roi-calculator               ESTÁGIO 2 🔒
 ├── /tools/automation-audit             ESTÁGIO 2 🔒
-├── /[location]                         ESTÁGIO 2 🔒  Byron Bay, Lismore, Ballina…
+├── /[location]                         ESTÁGIO 2 🔒  servindo cidades australianas pricipais
 └── /resources/[post]                   ESTÁGIO 2 🔒  só se houver cadência real
 ```
 
@@ -499,7 +499,7 @@ public/robots.txt
 | Página | Schema |
 |---|---|
 | Todas | `Organization` + `WebSite` + `BreadcrumbList` |
-| Home | `+ LocalBusiness` (areaServed: Northern Rivers NSW) `+ FAQPage` |
+| Home | `+ LocalBusiness` (areaServed: Australia + internacional) `+ FAQPage` |
 | Serviço (E1) | `+ Service` |
 | Case (E1) | `+ Article` |
 
@@ -573,7 +573,7 @@ Marque cada uma. Nada começa antes disso.
 | 6 | Confirmar Arquivo 01 como marca núcleo e 02 como variante de display | Aprovar | ☐ |
 | 7 | Confirmar idioma do site = inglês | Confirmar | ☐ |
 | 8 | **Definir faixa de preço para a seção 5** | Sessão do Council obrigatória (precificação = alto risco) | ☐ |
-| 9 | Definir área de serviço declarada no `LocalBusiness` | Northern Rivers NSW + remoto AU | ☐ |
+| 9 | Definir área de serviço declarada no `LocalBusiness` | Australia + internacional + remoto | ☐ |
 | 10 | Confirmar: nenhum número no site sem medição real | Confirmar | ☐ |
 
 ### Pendências suas, bloqueantes para o dia 1

@@ -17,7 +17,7 @@
 
 ## 1.2 A visão real do projeto (extraída, não presumida)
 
-Estúdio solo em Byron Bay que desenha e opera times de agentes de IA para pequenos negócios. Nome **SyncSet**, registrado. Proposta: sincronizar workflows que o negócio já roda, recuperar tempo e capturar leads perdidos. Fase 1 do projeto-mãe = Branding & Design. Fase 2 (vendas, entrega, financeiro) **travada até o primeiro cliente pagante**. Ferramentas de pé: Telegram bot, Notion CRM, Make.com, Google Calendar, GitHub, Obsidian. Zero clientes. Zero cases. Zero números medidos.
+Estúdio solo que desenha e opera times de agentes de IA para pequenos negócios, enderecável em todo o Brasil mas com operações na Austrália. Nome **SyncSet**, registrado. Proposta: sincronizar workflows que o negócio já roda, recuperar tempo e capturar leads perdidos. Fase 1 do projeto-mãe = Branding & Design. Fase 2 (vendas, entrega, financeiro) **travada até o primeiro cliente pagante**. Ferramentas de pé: Telegram bot, Notion CRM, Make.com, Google Calendar, GitHub, Obsidian. Zero clientes. Zero cases. Zero números medidos.
 
 ## 1.3 Decisões técnicas já tomadas — e formalmente registradas
 

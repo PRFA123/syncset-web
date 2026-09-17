@@ -1,0 +1,301 @@
+# SyncSet — handoff: da direção visual para o próximo bloco
+
+> Documento de passagem. Escrito no fim do chat que fechou a direção visual do site
+> (V28 do artifact). Atualizado após o bloco de auditoria/reescrita de copy, o bloco
+> de privacy/terms + revisão do ContactForm, o bloco de port da V28 + limpeza de
+> em-dashes + estabilização do dev server, e o bloco de port do diagrama de fluxo
+> animado + núcleo rotativo.
+> Data: 2026-09-14.
+
+---
+
+## 1. O que está fechado
+
+**Direção visual do site SyncSet — APROVADA pelo Paulo na V28, e agora 100% PORTADA
+para o Astro (Blocos C e D, ver §6), incluindo o diagrama de fluxo animado e o
+núcleo/compass rotativo.**
+
+O artifact é uma página HTML única, autocontida, que serviu de *spec visual*: ela não é
+o site. O site real é o projeto Astro, e a direção inteira já foi portada — o que falta
+é fechamento técnico (ver §8), não mais nada visual.
+
+- Artifact publicado: `https://claude.ai/code/artifact/f17ed8f0-3cd7-4bd4-81a5-92775f7cf36d`
+  (título "SyncSet Visual Direction", favicon ◇; também acessível pela URL curta
+  `https://claude.ai/artifact/WpcVCEv39DoJmGMQsyXSfW` — mesmo artifact).
+- Arquivo-fonte no container daquele chat: `/home/claude/syncset-dark-direction.html` (~64 KB, ~1230 linhas).
+  **Container é efêmero — o arquivo não existe mais.** Para retomar, ler o artifact
+  (`Artifact` com `action: "read"` e a URL acima) e salvar em disco.
+- Arquivos de apoio publicados junto: `syncset-mark.png` + 21 SVGs em `logos/`.
+
+### Tokens de design (fonte da verdade, já em `tokens.css`)
+
+```css
+--ground:#05080A;      --ground-lift:#070D11;
+--surface:#0A1117;     --surface-2:#0E1A21;
+--forest-deep:#15503C; --forest:#1D6B4F;
+--accent:#4BBA8B;      --accent-lit:#6FDDAE;
+--blue-deep:#0D2634;   --blue:#3E7FA8;   --blue-lit:#6FB6DE;
+--light:#DCEAF6;       --light-lit:#FFFFFF;
+--ink:#E6EDF0;         --ink-2:#A9B8BF;  --muted:#6B7C85;
+--display:'Instrument Sans'; --mono:'JetBrains Mono';
+/* luz estática das molduras — definida uma vez, usada em todas */
+--edge-w:46%;
+--edge-halo:rgba(214,234,250,.19);   --edge-halo-2:rgba(176,206,230,.07);
+--edge-line:rgba(246,252,255,.70);   --edge-line-2:rgba(198,224,244,.32);
+```
+
+### Regras semânticas de cor (não são decoração — foram decididas)
+
+- **Verde = entrada.** Fio verde = enquiry chegando.
+- **Azul aço = saída.** Fio azul = sistema sendo atualizado.
+- **Luz branco-prateada = neutra.** Usada nas molduras justamente por *não* competir
+  com verde e azul, que carregam significado. Nunca trocar por verde ou azul.
+
+### Movimento — tudo portado
+
+Portado para `v28.css` e `index.astro`: moldura com luz estática na aresta
+(`.frame--glow`), marquee de conectores (`.app-track`, 40s linear infinite), cards do
+dashboard, **o diagrama de fluxo animado** (seção "How it runs" — `.flow`,
+`.flow-scroll`, pacotes de luz `<animateMotion>` com `<mpath>`, 10 nós de entrada/saída,
+4 estágios) e **o núcleo/compass rotativo** (seção "The core" — `.plate-*`, `@keyframes
+coreSpin`).
+
+**Não portado, por decisão de escopo (não é bug):**
+- O toggle "Motion on/off" e o painel `.system` de revisão — eram ferramentas do
+  artifact de revisão, não conteúdo de produção.
+- A técnica de linha afilada por polígono (ver detalhe técnico abaixo) — o port usou
+  `<animateMotion>`/`<mpath>` com círculos (mais simples, mais barato de manter),
+  não a técnica de polígono do artifact original. Efeito visual equivalente, código
+  mais simples. Ver §6 Bloco D.
+
+### Técnica das linhas afiladas — NÃO refazer com stroke (referência, caso um dia se use o polígono)
+
+Foi a parte mais cara da conversa original com o artifact. Registrado para não repetir o erro
+(mesmo não tendo sido usada no port final — ver acima):
+
+- `stroke-width` em SVG é **um valor único por path**. Traço não afina. Ponto.
+- Empilhar vários paths (3, 10, 14, 18 camadas foi tentado) **sempre** produz
+  bandas visíveis ou pontas de cap — o Paulo detectou isso quatro vezes seguidas
+  ("parecem várias linhas emendadas").
+- A única solução que funciona: **um polígono preenchido único**, gerado com
+  `getPointAtLength()` ao longo de um rail invisível, com a normal calculada por
+  **diferença centrada** (diferença adiantada cria dobra nos cantos) e meia-largura
+  `HEAD_W * (1-t)^1.25 / 2`.
+- Parar a amostragem com `break` quando o comprimento cai abaixo do piso.
+  Fazer `clamp` empilha amostras no mesmo ponto e gera um espeto de luz.
+- Constantes finais: `HEAD_W = 1.1`, `SPAN = 0.13`, `SAMPLES = 64`, `DUR = 5200 ms`,
+  gap de 10% do perímetro em cada ponta.
+- Envelope de opacidade final: `(0.19 + 0.33 * smoothstep(phase/0.8)) * smoothstep((1-phase)/0.2)`
+  → faixa medida 0,19 → 0,518. O piso de 0,19 existe porque partir de 0 fazia a
+  ponta final ofuscar a saída.
+
+### Outras armadilhas já pagas
+
+- `offset-path` em elemento HTML **rotaciona, não entorta**. Não serve para linha curva.
+- `offset-distance: -100%` faz clamp, não wrap. Use `animation-direction: reverse`.
+- `animation-direction: reverse` **não** rotaciona o elemento — precisa `offset-rotate: auto 180deg`.
+- `calc(var(--L) - 100)` não interpola em `stroke-dashoffset`. Usar valores literais.
+
+---
+
+## 2. O que mudou na auditoria final (V27 → V28, no artifact)
+
+Seis defeitos reais encontrados medindo no navegador, todos corrigidos e verificados
+no artifact antes do port:
+
+1. Âncoras mortas (`#book`, `#pricing`) — corrigidas.
+2. Rótulos ilegíveis no gráfico — corrigidos.
+3. Pontos cardeais pouco legíveis — corrigidos.
+4. Contraste AA de `.tile-label` — corrigido.
+5. Overflow do CTA duplicado em mobile (390px) — corrigido.
+6. Grid quebrado no painel de notas — corrigido.
+
+Verificado em Playwright: 0 erros de console, 0 âncoras mortas, 0 scroll horizontal
+em 1440px e em 390px.
+
+---
+
+## 3. Armadilha que já pegou o port — `prefers-reduced-motion`
+
+Existe em `tokens.css` uma regra `@media (prefers-reduced-motion: reduce)` que zera
+toda animação do site se o SO/navegador pedir movimento reduzido. Isso é
+**intencional e correto para produção** — só causou confusão durante o port porque o
+Paulo tinha "Efeitos visuais" desligado no Windows nesse meio-tempo. Já confirmado
+funcionando como esperado (Bloco C, verificado pelo Claude Code local).
+
+---
+
+## 4. Estado do site real (Astro)
+
+Caminho: `C:\Users\paulo\syncset-web` (máquina do Paulo, acessível via ponte de dispositivo
+ou diretamente pelo Claude Code local).
+
+- Astro 5 + `@astrojs/cloudflare`, build passando (confirmado de novo no Bloco D).
+- Git: repo local, branch `main`. **Ainda não empurrado para o GitHub.**
+- `.wrangler/` foi commitado por engano e depois removido do índice
+  (`git rm -r --cached .wrangler`). `.gitignore` já cobre `.dev.vars` e `.wrangler/`.
+- `.dev.vars` com `MAKE_WEBHOOK_URL` presente e confirmado (Bloco C).
+  **Falta configurar a mesma variável no Cloudflare Pages.**
+- `ContactForm.astro` + `api/lead.ts`: validação de e-mail por regex nos dois lados,
+  confirmada funcionando (Bloco C).
+- Preview local: `npm run dev` → `http://localhost:4321` (ou porta seguinte se ocupada).
+- Backups automáticos do Bloco D em disco: `src/pages/index.astro.bak-2026-09-14` e
+  `src/styles/v28.css.bak-2026-09-14` (versões pré-diagrama-de-fluxo, por segurança).
+
+### Logos dos conectores
+
+`C:\Users\paulo\syncset-web\public\logos\` — 21 SVGs oficiais, já integrados na faixa
+de conectores (marquee) do site real.
+
+**7 faltando** (o texto no site já avisa isso), removidos do Simple Icons a pedido das
+próprias empresas. Só saem do brand kit de cada uma: Slack, Microsoft, Twilio,
+Pipedrive, monday.com, Zoho, Front.
+
+---
+
+## 5. Dados do dashboard — já verificados, não refazer
+
+Os números do mockup são **benchmark de indústria**, não telemetria da SyncSet.
+O card foi deliberadamente rotulado "The gap, industry benchmark" (e não "Run log")
+porque apresentar dado de terceiro como próprio seria enganoso.
+
+| Número | Significado | Fonte |
+|---|---|---|
+| 37% / 16% / 24% / 23% | resposta em <1h / 1–24h / >24h / nunca | HBR + MIT, *The Short Life of Online Sales Leads* (2.241 empresas americanas) |
+| 42 h | tempo médio de primeira resposta | mesma fonte |
+| 62% | ligações comerciais não atendidas | 411 Locals, 2024 (85 empresas, 58 setores) |
+
+**Descartados por não rastreabilidade** (apareciam em blogs de SEO sem fonte primária):
+US$126k/ano de perda, "85% não retornam a ligação", "78% compram de quem responde
+primeiro". Não reintroduzir.
+
+---
+
+## 6. Blocos concluídos em 2026-09-14
+
+### Bloco A: auditoria e reescrita do texto do site
+
+Corrigida a seção "Proof" (afirmava um tempo de resposta nunca medido) e o "we talk to"
+que implicava volume de clientes que a SyncSet ainda não tem.
+
+### Bloco B: revisão do ContactForm + privacy/terms reais
+
+Bug real corrigido: e-mail não era validado por formato, só por presença.
+`privacy.astro` e `terms.astro` deixaram de ser esqueleto, escritos com base no fluxo
+real de dados (Make.com → Notion + Telegram; Cal.com para booking).
+
+### Bloco C: port da direção V28 + limpeza de em-dash + estabilização
+
+- Reskin completo do site real para o tema escuro V28 (tokens, `v28.css`, hero,
+  dashboard "the gap", faixa de conectores com marquee, CTA final) mantendo todo o
+  conteúdo existente (fusão, não substituição).
+- Removidos todos os em-dashes visíveis ao usuário em 8 arquivos
+  (`index.astro`, `Faq.astro`, `Footer.astro`, `ContactForm.astro`, `privacy.astro`,
+  `terms.astro`, `book.astro`, `BaseLayout.astro`), substituídos por vírgula, ponto
+  ou ponto-e-vírgula conforme o contexto.
+- Dev server estabilizado: build de produção limpo, zero erros de console, zero
+  em-dash restante, `prefers-reduced-motion` funcionando como esperado, validação de
+  e-mail (client+server) confirmada, `.dev.vars` presente.
+
+### Bloco D: port do diagrama de fluxo animado + núcleo/compass rotativo
+
+Esses dois elementos tinham ficado de fora do Bloco C por decisão de escopo, mas o
+Paulo comparou o site com o artifact V28 e considerou o resultado incompleto perto do
+que tinha sido aprovado — com razão: eram os dois elementos visuais mais fortes da
+direção. Portados na íntegra:
+
+- **"The core"**: compass/plate rotativo com 4 pontos cardeais e halo, usando
+  `<animateMotion>` + `<mpath>` (não a técnica de polígono do artifact original — ver
+  §1). Seção `.plate-*`/`.pl-*`/`.pip*` em `v28.css`.
+- **"How it runs"**: diagrama de fluxo com 10 pacotes de luz animados percorrendo
+  caminhos curvos entre 5 nós de entrada (missed call, chat, web form, email, social
+  DM) e 5 de saída (CRM, calendário, reply, alerta de equipe, follow-up), com o
+  núcleo losango rotativo no centro (`@keyframes coreSpin`) e 4 labels de estágio
+  (Capture, Qualify, Confirm, Route). Seção `.flow*`/`.node-box`/`.packet*` em
+  `v28.css`, markup gerado por `.map()` em `index.astro` (10 pares de círculo animado
+  em vez de repetir markup manualmente).
+- Ajuste estrutural feito durante a integração (não fazia parte do conteúdo portado):
+  a nova seção do diagrama não tinha o wrapper de largura máxima que as outras seções
+  da página ganham de um `.wrap` global que não existe nesta estrutura Astro — sem
+  ele, o diagrama ficava colado na borda esquerda. Corrigido com classes
+  `flow__head`/`flow__wrap` espelhando o padrão já usado em `connectors__head`/
+  `cta-final__wrap`.
+- **Lição operacional grave:** a escrita desses dois arquivos pela ponte de dispositivo
+  (`device_commit_files`) reportou sucesso duas vezes seguidas, mas o conteúdo no disco
+  do Paulo voltou silenciosamente para a versão anterior (confirmado via inspeção do
+  DOM ao vivo, não só leitura de arquivo). O Paulo confirmou que nenhum editor estava
+  aberto no arquivo — a causa raiz nunca foi confirmada (não é edição concorrente
+  conhecida). **Correção**: abandonar a ponte de dispositivo para escritas importantes
+  neste projeto; entregar os arquivos via `SendUserFile` e pedir para o Claude Code
+  local (acesso direto ao disco, sem ponte) fazer a substituição com verificação por
+  hash SHA-256 antes/depois. Funcionou de primeira.
+- **Verificação final:** confirmada de duas formas independentes — relatório do Claude
+  Code local (hash batendo, build limpo, dev server sem erros de console) e, nesta
+  sessão, inspeção visual e de DOM ao vivo via navegador (compass girando, 10 nós
+  visíveis, pacotes de luz animados, wrapper de largura aplicado, zero erros de
+  console).
+
+**Não mexido, por estar sólido:** copy de "How it works", pricing, FAQ.
+
+---
+
+## 7. Próximo bloco — em aberto
+
+Não há mais bloco de conteúdo/visual pendente. A direção V28 está 100% portada. O que
+resta é a lista de fechamento técnico do §8, em ordem.
+
+---
+
+## 8. Pendências abertas, em ordem
+
+1. ~~Auditoria e reescrita do texto do site~~ — concluído (Bloco A), testado.
+2. ~~Redigir `privacy.astro` / `terms.astro` reais~~ — concluído (Bloco B). Faltam os
+   3 pontos jurídicos sinalizados nos próprios arquivos (isenção do Privacy Act,
+   estrutura societária, scope-of-work por cliente) — só o Paulo resolve.
+3. ~~Portar a direção V28 para o Astro~~ — concluído (Bloco C).
+4. ~~Diagrama de fluxo animado + núcleo rotativo~~ — concluído (Bloco D).
+5. Teste ponta a ponta do formulário de contato contra o `lead-intake-v1` (envio real,
+   não só validação de formato).
+6. Variável `MAKE_WEBHOOK_URL` no Cloudflare Pages + deploy.
+7. Push do repo para o GitHub.
+8. 9 vulnerabilidades do `npm audit` (2 low, 2 moderate, 4 high, 1 critical) — nunca investigadas.
+9. Lighthouse — nunca rodado.
+10. Os 7 logos faltantes, dos brand kits dos fornecedores.
+11. Chatbot da SyncSet — o Paulo concordou em adiar ("seguimos no momento certo"). Bloco 5.
+
+---
+
+## 9. Como o Paulo quer trabalhar (regras permanentes)
+
+- **Português do Brasil.** Identificadores de arquivo/código em inglês.
+- **Direto, honesto, opinativo.** Quando houver várias respostas, escolher uma e justificar.
+  Dizer onde ele pode melhorar mesmo quando for difícil de ouvir.
+- **Nunca digitar credenciais, API keys ou senhas.** Usar o fluxo
+  `credential-requests_create` do Make, ou pedir para ele fazer.
+- **Nunca pular a ordem dos Blocos.**
+- Ele acompanha o desenvolvimento visual e **testa de verdade** — pegou vários bugs e
+  omissões que passaram despercebidos, incluindo uma vez em que declarei o site
+  "pronto" sem checar de verdade o que ele estava vendo. **Nunca declarar algo pronto
+  sem verificação visual/DOM ao vivo, própria, feita nesta sessão** — relatório de
+  outro agente (Claude Code local, por exemplo) é insumo, não substitui a checagem.
+- Ele prefere ver o resultado ao vivo (artifact HTML ou navegador) a ver mockup estático.
+- Instalou (2026-09-14) 21 subagentes do Claude Code em `C:\Users\paulo\.claude\agents`
+  (ver `claude/agentes-disponiveis.md`) — só funcionam em sessão local do Claude Code
+  naquela máquina, não nesta sessão de nuvem. Usar o Claude Code local para qualquer
+  tarefa que precise de escrita confiável em disco ou terminal estável na máquina
+  dele — a ponte de dispositivo desta sessão de nuvem já mostrou duas falhas silenciosas
+  de escrita neste projeto (ver Bloco D) e, à parte disso, `device_bash` está
+  atualmente quebrado nesta máquina por um bug conhecido do Windows Update
+  (09/set/2026) que impede montar as pastas conectadas como shell — só
+  `device_list_dir`/`device_stage_files`/`device_commit_files` funcionam.
+- Em momentos de orçamento de tokens apertado, prefere que o trabalho mecânico seja
+  feito localmente (Claude Code) em vez de repetidas idas e vindas pela ponte de
+  dispositivo.
+
+## 10. Referências visuais que ele forneceu
+
+monad.com (a animação do workflow — ícones laterais emitindo linha rumo ao centro),
+invertase.io (o tratamento da linha em torno dos frames e dos botões — padrão para
+**todas** as linhas), slash.com (placa da logo com glow), resend.com (título com
+gradiente e luz), liveblocks.io (animação de luz), settle.com (marquee de marcas),
+thalamusgme.com, mosey.com, helicone.ai, linear.app, evolv-ai.

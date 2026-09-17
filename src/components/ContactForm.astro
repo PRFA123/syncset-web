@@ -4,290 +4,263 @@
 // lead-intake-v1 Make.com scenario (Notion CRM + Telegram alert + confirmation email).
 ---
 
-<form id="contact-form" class="contact-form" novalidate>
-  <div class="contact-form__row">
-    <div class="contact-form__field">
-      <label for="cf-name">Name<span aria-hidden="true">*</span></label>
-      <input
-        type="text"
-        id="cf-name"
-        name="name"
-        autocomplete="name"
-        maxlength="200"
-        required
-        aria-required="true"
-      />
+<div class="contact-wrapper">
+  <div class="contact-glass">
+    <!-- Left: SLA only (title+description already in page) -->
+    <div class="contact-left">
+      <p class="contact-left__sla">replies within 1 business day</p>
     </div>
 
-    <div class="contact-form__field">
-      <label for="cf-email">Email<span aria-hidden="true">*</span></label>
-      <input
-        type="email"
-        id="cf-email"
-        name="email"
-        autocomplete="email"
-        maxlength="254"
-        required
-        aria-required="true"
-      />
+    <!-- Right: compact inline form -->
+    <div class="contact-right">
+      <form id="contact-form" class="contact-form" novalidate>
+        <div class="contact-form__row">
+          <div class="contact-form__field">
+            <label for="cf-name">Name<span aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="cf-name"
+              name="name"
+              autocomplete="name"
+              maxlength="200"
+              required
+              aria-required="true"
+            />
+          </div>
+          <div class="contact-form__field">
+            <label for="cf-email">Email<span aria-hidden="true">*</span></label>
+            <input
+              type="email"
+              id="cf-email"
+              name="email"
+              autocomplete="email"
+              maxlength="254"
+              required
+              aria-required="true"
+            />
+          </div>
+        </div>
+
+        <div class="contact-form__row">
+          <div class="contact-form__field">
+            <label for="cf-business">Business name<span aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="cf-business"
+              name="business"
+              autocomplete="organization"
+              maxlength="200"
+              required
+              aria-required="true"
+            />
+          </div>
+        </div>
+
+        <div class="contact-form__field">
+          <label for="cf-message">What's slowing you down? <span class="contact-form__optional">(optional)</span></label>
+          <textarea id="cf-message" name="message" rows="3" maxlength="5000"></textarea>
+        </div>
+
+        <!-- Honeypot — hidden from real users, catches simple bots. -->
+        <div class="contact-form__honeypot" aria-hidden="true">
+          <label for="cf-company-website">Leave this field empty</label>
+          <input type="text" id="cf-company-website" name="company_website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <button type="submit" class="contact-form__send">
+          <span class="contact-form__send-label">Send message</span>
+        </button>
+        <p
+          id="contact-form-status"
+          class="contact-form__status"
+          role="status"
+          aria-live="polite"
+        ></p>
+      </form>
     </div>
   </div>
 
-  <div class="contact-form__field">
-    <label for="cf-business">Business name<span aria-hidden="true">*</span></label>
-    <input
-      type="text"
-      id="cf-business"
-      name="business"
-      autocomplete="organization"
-      maxlength="200"
-      required
-      aria-required="true"
-    />
-  </div>
-
-  <div class="contact-form__field">
-    <label for="cf-message">What's slowing you down? <span class="contact-form__optional">(optional)</span></label>
-    <textarea id="cf-message" name="message" rows="4" maxlength="5000"></textarea>
-  </div>
-
-  <!-- Honeypot — hidden from real users, catches simple bots. Never focus-reachable. -->
-  <div class="contact-form__honeypot" aria-hidden="true">
-    <label for="cf-company-website">Leave this field empty</label>
-    <input type="text" id="cf-company-website" name="company_website" tabindex="-1" autocomplete="off" />
-  </div>
-
-  <button type="submit" class="contact-form__submit">
-    <span class="contact-form__submit-label">Send message</span>
-  </button>
-
-  <p
-    id="contact-form-status"
-    class="contact-form__status"
-    role="status"
-    aria-live="polite"
-  ></p>
-</form>
-
-<style>
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-    max-width: 560px;
-  }
-
-  .contact-form__row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-6);
-  }
-
-  .contact-form__field {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .contact-form__field label {
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--ink);
-  }
-
-  .contact-form__field label span[aria-hidden] {
-    color: var(--failed);
-    margin-left: 2px;
-  }
-
-  .contact-form__optional {
-    font-weight: 400;
-    color: var(--graphite);
-  }
-
-  .contact-form input[type='text'],
-  .contact-form input[type='email'],
-  .contact-form textarea {
-    font-family: var(--font-human);
-    font-size: var(--text-base);
-    color: var(--ink);
-    background-color: var(--paper);
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    padding: var(--space-3);
-    resize: vertical;
-  }
-
-  .contact-form input:focus-visible,
-  .contact-form textarea:focus-visible {
-    outline: 2px solid var(--running);
-    outline-offset: 2px;
-  }
-
-  .contact-form input.contact-form__input--error,
-  .contact-form textarea.contact-form__input--error {
-    border-color: var(--failed);
-  }
-
-  .contact-form__honeypot {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-  }
-
-  .contact-form__submit {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    align-self: flex-start;
-    padding: var(--space-3) var(--space-8);
-    font-family: var(--font-human);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--paper);
-    background-color: var(--ink);
-    border-radius: 4px;
-    transition: background-color var(--duration-fast) var(--ease-out),
-      transform var(--duration-fast) var(--ease-out);
-  }
-
-  .contact-form__submit:hover {
-    background-color: var(--graphite);
-  }
-
-  .contact-form__submit:focus-visible {
-    outline: 2px solid var(--running);
-    outline-offset: 2px;
-  }
-
-  .contact-form__submit:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  .contact-form__status {
-    margin: 0;
-    font-size: var(--text-sm);
-    min-height: 1.5em;
-  }
-
-  .contact-form__status[data-state='success'] {
-    color: var(--running);
-    font-weight: 500;
-  }
-
-  .contact-form__status[data-state='error'] {
-    color: var(--failed);
-    font-weight: 500;
-  }
-
-  @media (max-width: 640px) {
-    .contact-form__row {
-      grid-template-columns: 1fr;
+  <style>
+    .contact-wrapper {
+      max-width: var(--max-content);
+      width: 100%;
+      margin-inline: auto;
+      padding-inline: var(--gutter);
     }
-  }
-</style>
+    .contact-glass {
+      display: grid;
+      grid-template-columns: 0.54fr 1fr;
+      gap: var(--space-8);
+      background: linear-gradient(135deg, rgba(75, 186, 139, 0.08) 0%, rgba(62, 127, 168, 0.04) 100%);
+      border: 1px solid rgba(75, 186, 139, 0.2);
+      border-radius: 16px;
+      padding: 50px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
 
-<script>
-  const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  const status = document.getElementById('contact-form-status');
+    .contact-glass::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(75, 186, 139, 0.5), transparent);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+    @media (max-width: 767px) {
+      .contact-glass {
+        grid-template-columns: 1fr;
+      }
+    }
+    .contact-left {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .contact-left__title {
+      font-family: var(--display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0;
+    }
+    .contact-left__microcopy {
+      font-size: var(--text-sm);
+      color: var(--ink-2);
+      margin: 0;
+    }
+    .contact-left__sla {
+      margin-top: auto;
+      font-family: var(--mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.06em;
+      color: #6fb6de;
+    }
+    .contact-right {
+      display: contents;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .contact-form__row {
+      display: grid;
+      gap: 20px;
+    }
+    @media (min-width: 600px) {
+      .contact-form__row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .contact-form__field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .contact-form__field label {
+      font-family: var(--mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .contact-form__optional {
+      color: var(--ink-3);
+      font-weight: 400;
+    }
+    .contact-form__field input,
+    .contact-form__field textarea {
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--rule);
+      background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+      color: var(--ink);
+      font-family: var(--display);
+      font-size: var(--text-sm);
+      transition: border-color 0.18s ease, background 0.18s ease;
+    }
+    .contact-form__field input:focus,
+    .contact-form__field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+    }
+    .contact-form__honeypot {
+      display: none;
+    }
+    .contact-form__send {
+      align-self: flex-start;
+      margin-top: 12px;
+      padding: 11px 22px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: linear-gradient(180deg, var(--accent) 0%, #2e8a66 100%);
+      color: #02110b;
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: 0 0 0 1px rgba(75, 186, 139, 0.4), 0 8px 24px -10px rgba(75, 186, 139, 0.7);
+    }
+    .contact-form__send:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 1px rgba(75, 186, 139, 0.4), 0 10px 30px -14px rgba(75, 186, 139, 0.9);
+    }
+    .contact-form__status {
+      font-family: var(--mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.06em;
+      color: var(--ink-2);
+      margin: 0;
+    }
+  </style>
 
-  if (form && status) {
-    // The server rejects submissions faster than a human could fill the form,
-    // measured from when this script ran (i.e. when the form became usable).
-    const renderedAt = Date.now();
+  <script type="module">
+    // Inline form submit via fetch — sends JSON with a form_ts timestamp so the
+    // /api/lead.ts honeypot + minimum-fill checks work as designed.
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contact-form');
+      const status = document.getElementById('contact-form-status');
+      if (!form || !status) return;
 
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formTs = Date.now();
+        const formData = new FormData(form);
+        const payload = {};
+        for (const [key, value] of formData.entries()) {
+          if (key === 'company_website') continue; // skip honeypot from client payload
+          payload[key] = value;
+        }
+        payload.form_ts = formTs;
 
-      const honeypot = form.querySelector<HTMLInputElement>('#cf-company-website');
-
-      const submitButton = form.querySelector<HTMLButtonElement>('.contact-form__submit');
-      const nameInput = form.querySelector<HTMLInputElement>('#cf-name');
-      const emailInput = form.querySelector<HTMLInputElement>('#cf-email');
-      const businessInput = form.querySelector<HTMLInputElement>('#cf-business');
-      const messageInput = form.querySelector<HTMLTextAreaElement>('#cf-message');
-
-      [nameInput, emailInput, businessInput].forEach((el) => {
-        el?.classList.remove('contact-form__input--error');
-        el?.removeAttribute('aria-invalid');
+        status.textContent = 'Sending…';
+        try {
+          const res = await fetch('/api/lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          const data = await res.json();
+          if (res.ok) {
+            form.reset();
+            status.textContent = 'Thanks — we’ll be in touch within 1 business day.';
+          } else {
+            status.textContent = data.error || 'Something went wrong. Please try again.';
+          }
+        } catch {
+          status.textContent = 'Network error. Please try again.';
+        }
       });
-
-      if (!nameInput?.value.trim() || !emailInput?.value.trim() || !businessInput?.value.trim()) {
-        [nameInput, emailInput, businessInput].forEach((el) => {
-          if (!el?.value.trim()) {
-            el?.classList.add('contact-form__input--error');
-            el?.setAttribute('aria-invalid', 'true');
-          }
-        });
-        status.textContent = 'Please fill in your name, email and business name.';
-        status.dataset.state = 'error';
-        return;
-      }
-
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(emailInput.value.trim())) {
-        emailInput.classList.add('contact-form__input--error');
-        emailInput.setAttribute('aria-invalid', 'true');
-        status.textContent = 'Please enter a valid email address.';
-        status.dataset.state = 'error';
-        return;
-      }
-
-      if (submitButton) {
-        submitButton.disabled = true;
-        submitButton.querySelector('.contact-form__submit-label')!.textContent = 'Sending…';
-      }
-      status.textContent = 'Sending your message…';
-      status.removeAttribute('data-state');
-
-      try {
-        const response = await fetch('/api/lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: nameInput.value,
-            email: emailInput.value,
-            business: businessInput.value,
-            message: messageInput?.value ?? '',
-            company_website: honeypot?.value ?? '',
-            form_ts: renderedAt,
-          }),
-        });
-
-        if (!response.ok) {
-          let serverMessage = '';
-          try {
-            const body = await response.json();
-            serverMessage = typeof body?.error === 'string' ? body.error : '';
-          } catch {
-            // Response wasn't valid JSON — fall through to the generic message below.
-          }
-
-          status.textContent =
-            response.status >= 400 && response.status < 500 && serverMessage
-              ? serverMessage
-              : "Something went wrong on our end. Please email contact@syncset.com.au directly.";
-          status.dataset.state = 'error';
-          return;
-        }
-
-        status.textContent = "Thanks, we'll get back to you within 1 business day.";
-        status.dataset.state = 'success';
-        form.reset();
-      } catch (error) {
-        status.textContent =
-          "Something went wrong on our end. Please email contact@syncset.com.au directly.";
-        status.dataset.state = 'error';
-      } finally {
-        if (submitButton) {
-          submitButton.disabled = false;
-          submitButton.querySelector('.contact-form__submit-label')!.textContent = 'Send message';
-        }
-      }
     });
-  }
-</script>
+  </script>

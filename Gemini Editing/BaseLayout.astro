@@ -1,0 +1,72 @@
+---
+import '../styles/tokens.css';
+import '../styles/v28.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+}
+
+const {
+  title = 'SyncSet. AI Workflow Automation for Australian Business',
+  description = 'SyncSet connects the tools your business already uses so no enquiry goes unanswered and no booking gets lost. We build it. You own it.',
+  ogImage = '/og-image.png',
+  // pathname only: a query string on the canonical splits ranking signals.
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+} = Astro.props;
+
+// Open Graph and Twitter require absolute image URLs; relative ones render no card.
+const ogImageURL = new URL(ogImage, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_AU" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Fonts — Instrument Sans (body/display) + JetBrains Mono (labels), per the
+         approved V28 direction. Self-hosted variable latin subsets (the same files
+         Google Fonts serves); @font-face lives in tokens.css. The Google Fonts CSS
+         was the only render-blocking request on the page (~0.9s of LCP on mobile). -->
+    <link rel="preload" href="/fonts/InstrumentSans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/JetBrainsMono-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- JSON-LD schema slot -->
+    <slot name="schema" />
+
+    <!-- Cloudflare Web Analytics — token to insert after deploy -->
+    <!-- <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "SEU_TOKEN"}'></script> -->
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <slot />
+  </body>
+</html>

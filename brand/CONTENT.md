@@ -227,8 +227,8 @@ Privacy Policy · Terms of Service
 © 2026 SyncSet. All rights reserved.
 
 **Endereço declarado (para schema LocalBusiness):**
-Byron Bay NSW 2481, Australia
-(endereço de operação remota — não é escritório físico)
+Australia
+(sem cidade específica — operação remota)
 
 ---
 

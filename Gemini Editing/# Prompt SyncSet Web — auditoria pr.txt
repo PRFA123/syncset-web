@@ -1,0 +1,66 @@
+# Prompt: SyncSet Web — auditoria profunda + correção até 100%
+
+**Criado:** 2026-09-15
+**Para rodar em:** Claude Code, em `C:\Users\paulo\syncset-web`
+**Origem:** auditoria de código feita via device bridge (leitura direta dos fontes) + comparação com o artifact "SyncSet Visual Direction" (V28).
+
+---
+
+## Por que este prompt existe
+
+O Paulo relatou que o site tinha "configurações de texto, alinhamento, botões que não funcionam" sem conseguir localizar. Uma rodada anterior corrigiu 4 bugs visuais (logo, embed Cal.com, duplicação de conectores, SVG mobile). Esta auditoria foi mais fundo, no nível de runtime e configuração, e achou bugs de produção que nenhuma inspeção visual encontraria.
+
+## Achados confirmados por leitura de código (antes de rodar o prompt)
+
+### P0 — quebram produção
+
+1. **`src/pages/api/lead.ts` usa `process.env.MAKE_WEBHOOK_URL`.** `process.env` não existe no runtime do Cloudflare Workers. Toda submissão do formulário cai no catch e devolve 500 — mesmo com a env var configurada corretamente. **O formulário de contato nunca funcionou em produção.** Fix: ler de `locals.runtime.env`.
+
+2. **Honeypot nunca chega ao servidor.** `ContactForm.astro` valida `company_website` só no cliente; o `fetch` envia apenas name/email/business/message. Bot que faz POST direto em `/api/lead` passa limpo. O endpoint público não tem proteção anti-spam nenhuma.
+
+3. **Sem rate limiting em `/api/lead`.** Endpoint público que encaminha para o webhook do Make — flood queima a cota de operations (custo financeiro direto).
+
+4. **`og:image` relativo em `BaseLayout.astro`.** Open Graph exige URL absoluta; preview social quebrado no WhatsApp/LinkedIn/Facebook. Mesmo problema em `twitter:image`; `canonicalURL` usa `Astro.url.href` (carrega query strings).
+
+### Fidelidade à V28 — 4 elementos-assinatura ausentes
+
+Grep em `index.astro` + `v28.css` retornou zero para: `.announce` (pill de anúncio), `.h1-shine` (luz sobre o H1), `.ring`/`.rail`/`.taper` (luz afilada percorrendo a borda da moldura — o efeito mais característico da V28), `.motion-toggle`/`[data-motion]`. O `.frame--glow` (luz estática) existe e está correto.
+
+### Higiene / peso morto
+
+- **Tailwind instalado, configurado e integrado — com ZERO classes usadas.** Injeta o preflight globalmente, que pode estar brigando com o CSS escrito à mão. Candidato forte para os "problemas de alinhamento e texto" relatados.
+- **202KB de fontes não referenciadas** em `public/fonts/` (Plus Jakarta Sans + JetBrains Mono self-hosted). O `BaseLayout` carrega Instrument Sans do Google Fonts. `public/` vai verbatim para `dist/` — esse peso é publicado.
+- `nul` (42 bytes) na raiz — lixo de `> nul` do Windows.
+- `index.astro.bak-2026-09-14` e `v28.css.bak-2026-09-14` dentro de `src/`.
+- `Claude outputs/` — pasta de staging; `v28-NEW.css` já integrado, `index-NEW.astro` precisa de diff antes de apagar.
+
+### Estado confirmado como OK (não mexer)
+
+- 21 logos em `public/logos/` batem exatamente com os 21 slugs em `connectorApps` — nenhum faltando.
+- `tokens.css` é fonte única de tokens; `v28.css` não redefine nenhum (zero duplicação).
+- Todos os componentes estão wired (`ContactForm`, `SyncDiagram`, `Cta`, `Faq`, `schema.ts`) — nenhum código morto.
+- `export const prerender = false` presente em `lead.ts`.
+- `v28.css` respeita `prefers-reduced-motion` em 4 blocos, sem o escape hatch do artifact — comportamento correto para produção.
+
+---
+
+## O prompt
+
+O prompt completo está no arquivo entregue ao Paulo (`PROMPT-syncset-web-100.md`). Estrutura:
+
+- **Papel:** senior staff engineer, não assistente
+- **7 regras inegociáveis** — a central: nunca declarar corrigido sem verificação própria ao vivo do comportamento final; "existe no DOM" e "build passou" não contam como verificação
+- **Parte 0:** baseline obrigatório antes de tocar em código
+- **Parte 1:** os 4 P0 acima, com evidência e fix proposto
+- **Parte 2:** fidelidade V28 — com instrução explícita de *decidir*, não implementar cegamente (ex.: não inventar anúncio falso para preencher o `.announce`; não forçar `data-motion="force"` em produção, que ignoraria a preferência de acessibilidade do usuário)
+- **Parte 3:** auditoria própria em 6 frentes (links/rotas, responsividade em 5 breakpoints, a11y, performance, SEO, higiene)
+- **Parte 4:** 6 fases com portões de saída
+- **Parte 5:** ferramentas (subagentes em paralelo, browser automation, MCP Cloudflare, MCP Make, Lighthouse)
+- **Parte 6:** formato de entrega — tabela de evidências com coluna "como verifiquei", status binário ✅ VERIFICADO / ⚠️ NÃO VERIFICADO, seção de hipóteses descartadas, e o que continua aberto
+- **Critério de aceite:** 13 itens binários e provados
+
+---
+
+## Pendência da rodada anterior
+
+O fix do SVG mobile (`width="1060" height="400"` no diagrama "How it runs") foi aplicado e confirmado no disco por hash, mas **nunca confirmado visualmente em viewport mobile** — a verificação visual foi bloqueada por um bug de zoom no Chrome. Está listado explicitamente na Parte 3.2 do prompt para ser confirmado.

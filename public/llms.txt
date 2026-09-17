@@ -12,5 +12,5 @@
 
 - Website: https://www.syncset.com.au
 - Audit booking: https://www.syncset.com.au/book
-- Email: contact@syncset.com.au
-- Location: Byron Bay, NSW, Australia (remote-first, serves AU and internationally)
+- Email: hello@syncset.com.au
+- Location: Australia (remote-first, serves AU and internationally)

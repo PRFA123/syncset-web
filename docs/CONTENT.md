@@ -63,7 +63,7 @@ SyncSet automates the handoffs your team does manually — WhatsApp, forms, call
 - **Tagline:** SyncSet — Workflow automation for businesses that refuse to lose clients to slow replies.
 - **Links:** Privacy Policy · Terms of Service
 - **Copyright:** © 2026 SyncSet. All rights reserved.
-- **Address:** Byron Bay NSW 2481, Australia
+- **Address:** Australia
 
 ---
 
