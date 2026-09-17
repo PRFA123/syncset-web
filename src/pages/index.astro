@@ -56,7 +56,9 @@ const connectorApps = [
         <section class="hero">
               <div class="hero__container">
                 <div class="hero__badge">
-                  NEW: Booking sync is live — Cal.com to calendar, unattended →
+                  <span class="hero__badge-tag">New</span>
+                  <span class="hero__badge-text">Booking sync is live — Cal.com to calendar, unattended</span>
+                  <span class="hero__badge-arrow" aria-hidden="true">→</span>
                 </div>
                 <h1 class="hero__headline h1-shine">Every missed enquiry becomes a booked job.<br />Nobody types a thing.<span class="shine" aria-hidden="true" data-text="Every missed enquiry becomes a booked job.&#10;Nobody types a thing."></span></h1>
                 <p class="hero__subhead">We connect the tools your business already runs, so the follow-up happens by itself.</p>
@@ -593,57 +595,94 @@ const connectorApps = [
   }
 
   .hero__badge {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
+    gap: 10px;
+    padding: 6px 16px 6px 7px;
     border-radius: 999px;
-    border: 1px solid rgba(75, 186, 139, 0.4);
-    background: rgba(21, 80, 60, 0.08);
+    border: 1px solid rgba(198, 222, 240, 0.26);
+    background: var(--ground-lift);
     font-family: var(--display);
     font-size: var(--text-xs);
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: var(--paper);
-    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-2);
     margin-bottom: var(--space-3);
-    box-shadow: 0 0 0 1px rgba(75, 186, 139, 0.2),
-                inset 0 1px 3px rgba(75, 186, 139, 0.15);
-    animation: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
+    transition: border-color 0.3s ease;
+  }
+
+  .hero__badge-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--forest);
+    color: var(--accent-lit);
+    padding: 3px 8px;
+    border-radius: 999px;
+  }
+
+  .hero__badge-text {
+    background-image: linear-gradient(105deg,
+      var(--ink-2) 0%, #BED4E4 26%, #DCEBF6 42%, #EFF7FE 50%,
+      #DCEBF6 58%, #BED4E4 74%, var(--ink-2) 100%);
+    background-size: 200% 100%;
+    background-position: 122% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: badgeShimmer 19s ease-in-out infinite alternate;
+  }
+  @keyframes badgeShimmer {
+    to { background-position: -22% 0; }
+  }
+
+  .hero__badge-arrow {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    flex: none;
+    background: var(--surface-2);
+    border: 1px solid var(--rule-strong);
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    color: var(--ink-2);
   }
 
   .hero__badge::before {
     content: '';
     position: absolute;
-    top: 0;
     left: 50%;
+    top: -14px;
+    width: var(--edge-w);
+    height: 30px;
     transform: translateX(-50%);
-    width: 60%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(75, 186, 139, 0.6), transparent);
-    opacity: 0.8;
+    background: radial-gradient(ellipse at center, var(--edge-halo) 0%, var(--edge-halo-2) 46%, transparent 74%);
+    filter: blur(7px);
+    pointer-events: none;
+  }
+  .hero__badge::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -1px;
+    width: calc(var(--edge-w) - 2%);
+    height: 2px;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    background: radial-gradient(ellipse at center, var(--edge-line) 0%, var(--edge-line-2) 40%, transparent 78%);
+    filter: blur(1.1px);
+    pointer-events: none;
   }
 
   .hero__badge:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 0 1px rgba(75, 186, 139, 0.24),
-                0 0 30px rgba(75, 186, 139, 0.6),
-                0 0 60px rgba(75, 186, 139, 0.3);
-  }
-
-  @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 0 0 1px rgba(75, 186, 139, 0.24),
-                      0 0 20px rgba(75, 186, 139, 0.4),
-                      0 0 40px rgba(75, 186, 139, 0.2); }
-    50% { box-shadow: 0 0 0 1px rgba(75, 186, 139, 0.24),
-                      0 0 30px rgba(75, 186, 139, 0.6),
-                      0 0 50px rgba(75, 186, 139, 0.3); }
+    border-color: rgba(216, 236, 250, 0.42);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero__badge {
+    .hero__badge-text {
       animation: none;
     }
   }
