@@ -64,12 +64,18 @@
 }
 
 /* ---------- hero headline shine ----------
-   A slow pass of light over the silver headline (one lap every 22s). Colour stays
-   --ink at every point of the gradient except the highlight, so contrast never
-   dips; reduced-motion collapses the animation to its final (plain) state. */
-.h1-shine {
+   A slow pass of light over the silver headline (one lap every 22s). The base
+   text is a static gradient with a soft ambient drop-shadow; the overlay is a
+   second copy of the SAME text, transparent except for a highlight band, laid
+   exactly on top via position:absolute + inset:0. Because it's a highlight on
+   the real text rather than a separately-scaled clone, nothing ever visibly
+   duplicates — reduced-motion collapses the animation to its plain state. */
+.h1-stack {
   position: relative;
-  /* Static base text with subtle gradient */
+  display: inline-block;
+}
+
+.h1-shine-base {
   background: linear-gradient(180deg, rgba(244, 248, 250, 0.9) 0%, rgba(195, 208, 214, 0.9) 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -77,63 +83,34 @@
   filter: drop-shadow(0 2px 8px rgba(75, 186, 139, 0.1));
 }
 
-/* Subtle, gentle shine that moves slowly */
-.h1-shine .shine {
+.h1-shine-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 30%;
-  height: 100%;
-  overflow: hidden;
+  inset: 0;
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 60%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 60%, transparent 100%);
-  transform: translateX(-100%);
-  animation: shine-window-gentle 35s ease-in-out infinite;
+  background-image: linear-gradient(105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 24%,
+    rgba(255, 255, 255, 0.17) 42%,
+    rgba(255, 255, 255, 0.24) 50%,
+    rgba(255, 255, 255, 0.17) 58%,
+    rgba(255, 255, 255, 0.06) 76%,
+    transparent 100%);
+  background-size: 210% 100%;
+  background-position: 128% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: h1shine 22s ease-in-out infinite alternate;
 }
 
-.h1-shine .shine::before {
-  content: attr(data-text);
-  white-space: pre-line;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 333.3333%;
-  color: rgba(255, 255, 255, 0.7);
-  text-shadow: 0 0 8px rgba(75, 186, 139, 0.4);
-  transform: translateX(30%);
-  animation: shine-text-gentle 35s ease-in-out infinite;
-}
-
-@keyframes shine-window-gentle {
-  0% {
-    transform: translateX(-100%);
-  }
-  50% {
-    transform: translateX(333.3333%);
-  }
-  100% {
-    transform: translateX(-100%);
+@keyframes h1shine {
+  to {
+    background-position: -28% 0;
   }
 }
 
-@keyframes shine-text-gentle {
-  0% {
-    transform: translateX(30%);
-  }
-  50% {
-    transform: translateX(-230%);
-  }
-  100% {
-    transform: translateX(30%);
-  }
-}
 @media (prefers-reduced-motion: reduce) {
-  .h1-shine .shine {
-    animation: none;
-  }
-  .h1-shine .shine::before {
+  .h1-shine-overlay {
     animation: none;
   }
 }
