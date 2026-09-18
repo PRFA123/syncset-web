@@ -57,3 +57,24 @@ under `wrangler pages dev` reaches the `lead-intake-v1` Make scenario, so use ob
   not part of the site build.
 - Line endings: the tree is LF; Git on this Windows machine warns about CRLF conversion. Commit with
   `git -c core.safecrlf=false commit …` to silence it.
+
+## Token discipline (apply to every task in this repo)
+
+- Batch verification: run build/typecheck/console-check once at the end of a group of
+  related edits, not after every single file change, unless the task is animation/
+  geometry/interactive logic where per-step verification already caught real bugs
+  (e.g. the item 05 border-beam work) — for that category, keep verifying per step.
+- Screenshot only when a change affects layout, spacing, visual geometry, or
+  animation. Pure text/copy swaps of equal-or-shorter length never need one — say so
+  instead of taking one.
+- For exact, pre-specified string replacements, use sed/grep directly instead of
+  re-reading and re-reasoning over the whole file.
+- Keep end-of-task reports short: what changed, what was verified, what's pending. No
+  restating full diffs already visible in the edit tool output.
+- Never publish a numeric/timing/performance claim in site copy unless it's both (a)
+  an approved figure in the project's honest-placeholders reference and (b) actually
+  measurable from something in this codebase or confirmed externally. If in doubt,
+  stop and ask rather than publish.
+- Never treat a quote or "validated in real conversation" line in any reference doc
+  as ground truth without checking — this project has already found fabricated
+  content presented as verbatim customer language more than once this session.
