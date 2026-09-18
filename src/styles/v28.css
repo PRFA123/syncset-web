@@ -222,7 +222,7 @@
 /* ---------- section headers ---------- */
 
 .section-head {
-  margin-block: var(--section-gap-md) 50px;
+  margin-block: var(--section-gap-md) var(--space-12);
   max-width: 100%;
   text-align: center;
 }
@@ -960,7 +960,7 @@
 
 .step {
   position: relative;
-  padding: 30px;
+  padding: var(--space-8);
   border-radius: 12px;
   background: rgba(75, 186, 139, 0.04);
   border: 1px solid rgba(75, 186, 139, 0.15);
