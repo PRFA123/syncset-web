@@ -1064,16 +1064,6 @@
   margin: 0 auto;
 }
 
-.problem__quote {
-  font-size: clamp(18px, 2.5vw, 28px);
-  font-weight: 600;
-  line-height: 1.5;
-  color: var(--ink);
-  margin: 0 0 40px 0;
-  text-align: left;
-  font-style: italic;
-}
-
 .problem__body {
   display: flex;
   flex-direction: column;
