@@ -5,14 +5,7 @@
 ---
 
 <div class="contact-wrapper">
-  <div class="contact-glass">
-    <!-- Left: SLA only (title+description already in page) -->
-    <div class="contact-left">
-      <p class="contact-left__sla">replies within 1 business day</p>
-    </div>
-
-    <!-- Right: compact inline form -->
-    <div class="contact-right">
+  <div class="contact-glass frame--glow">
       <form id="contact-form" class="contact-form" novalidate>
         <div class="contact-form__row">
           <div class="contact-form__field">
@@ -77,7 +70,6 @@
           aria-live="polite"
         ></p>
       </form>
-    </div>
   </div>
 
   <style>
@@ -85,12 +77,8 @@
       max-width: var(--max-content);
       width: 100%;
       margin-inline: auto;
-      padding-inline: var(--gutter);
     }
     .contact-glass {
-      display: grid;
-      grid-template-columns: 0.54fr 1fr;
-      gap: var(--space-8);
       background: linear-gradient(135deg, rgba(75, 186, 139, 0.08) 0%, rgba(62, 127, 168, 0.04) 100%);
       border: 1px solid rgba(75, 186, 139, 0.2);
       border-radius: 16px;
@@ -98,52 +86,6 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       position: relative;
-      overflow: hidden;
-    }
-
-    .contact-glass::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(75, 186, 139, 0.5), transparent);
-      opacity: 0.8;
-      pointer-events: none;
-    }
-    @media (max-width: 767px) {
-      .contact-glass {
-        grid-template-columns: 1fr;
-      }
-    }
-    .contact-left {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
-    }
-    .contact-left__title {
-      font-family: var(--display);
-      font-size: var(--text-xl);
-      font-weight: 700;
-      color: var(--ink);
-      margin: 0;
-    }
-    .contact-left__microcopy {
-      font-size: var(--text-sm);
-      color: var(--ink-2);
-      margin: 0;
-    }
-    .contact-left__sla {
-      margin-top: auto;
-      font-family: var(--mono);
-      font-size: var(--text-xs);
-      letter-spacing: 0.06em;
-      color: #6fb6de;
-    }
-    .contact-right {
-      display: contents;
     }
     .contact-form {
       display: flex;

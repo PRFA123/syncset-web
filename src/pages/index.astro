@@ -432,7 +432,7 @@ const connectorApps = [
       <div class="contact__container">
         <h2 class="contact__title">Prefer to write instead?</h2>
         <p class="contact__subhead">
-          Tell us where your enquiries get lost and we'll reply within 1 business day, no booking required.
+          Tell us where your enquiries get lost and we'll <span class="contact__sla">reply within 1 business day</span>, no booking required.
         </p>
         <ContactForm />
       </div>
@@ -971,6 +971,11 @@ const connectorApps = [
     line-height: 1.6;
     margin-bottom: var(--space-12);
     max-width: 600px;
+  }
+
+  .contact__sla {
+    color: var(--blue-lit);
+    font-weight: 500;
   }
 
   /* Gap — industry benchmark card */
