@@ -504,6 +504,7 @@ const connectorApps = [
       let t0 = 0;
       let raf = 0;
       let visible = false;
+      let halfTopEdge = 0; // distance from top centre to the start of the corner radius
 
       // Rounded-rect outline starting at top centre, walked clockwise (cw) or
       // counter-clockwise; both directions cover exactly half the perimeter by
@@ -533,6 +534,7 @@ const connectorApps = [
         rail.setAttribute('viewBox', `0 0 ${w} ${h}`);
         railCw.setAttribute('d', outline(w, h, r, true));
         railCcw.setAttribute('d', outline(w, h, r, false));
+        halfTopEdge = w / 2 - r;
       };
 
       const smoothstep = (x: number) => {
@@ -587,7 +589,11 @@ const connectorApps = [
           const d = railPath.getAttribute('d');
           if (!d) continue;
           const total = railPath.getTotalLength();
-          const gap = total * 0.1; // small gap at top centre keeps the two tails apart
+          // Expressed relative to the top edge's own half-width (not the full
+          // perimeter) so the two starting points stay proportionally separated
+          // regardless of the frame's aspect ratio at a given viewport — at least
+          // 35% of the top-centre-to-corner distance, with a small safety margin.
+          const gap = Math.max(total * 0.1, 0.4 * halfTopEdge);
           const head = gap + eased * (total * 0.5 - gap);
           taperEl.setAttribute('d', taperShape(railPath, head, total, gap));
           // Quick rise, a long steady plateau at full brightness, then a fall
