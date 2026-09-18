@@ -17,7 +17,7 @@ SyncSet connects the tools your business already uses so no enquiry goes unanswe
 Every missed enquiry becomes a booked job.
 
 **OG description:**
-SyncSet automates the handoffs your team does manually — WhatsApp, forms, calls — so you stop losing clients to slow responses.
+SyncSet automates the handoffs your team does manually — calls, texts, forms — so you stop losing clients to slow responses.
 
 ---
 
