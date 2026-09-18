@@ -36,7 +36,7 @@ const faqs = [
 ---
 
 <section class="faq" aria-labelledby="faq-heading">
-  <h2 id="faq-heading" class="faq__title" style="font-size: var(--text-base); color: var(--muted); margin-bottom: var(--space-6); letter-spacing: 0.02em;">Common questions</h2>
+  <h2 id="faq-heading" class="faq__title">Common questions</h2>
   <ul class="faq__list">
     {
       faqs.map((item) => (
@@ -97,7 +97,7 @@ const faqs = [
   }
 
   details {
-    padding: var(--space-6) 0;
+    padding: 0;
   }
 
   .faq__question {
@@ -109,7 +109,7 @@ const faqs = [
     justify-content: space-between;
     align-items: center;
     user-select: none;
-    padding: var(--space-3) 0;
+    padding: var(--space-4) 0;
   }
 
   .faq__question::after {
@@ -126,7 +126,7 @@ const faqs = [
   }
 
   .faq__answer {
-    padding: var(--space-4) 0;
+    padding: 0 0 var(--space-4) 0;
     color: var(--graphite);
     line-height: 1.6;
   }
