@@ -78,7 +78,7 @@ In the same "+ Add Category" flow, add each one in order. Google typically allow
 **Copy (draft):**
 
 ```
-SyncSet automates the handoffs your team does manually — WhatsApp, forms, calls — 
+SyncSet automates the handoffs your team does manually — calls, texts, forms — 
 so you stop losing clients to slow responses. 
 
 We connect the tools your business already uses — Google Calendar, CRM, SMS, Notion — 
@@ -94,11 +94,11 @@ Serving Australian small and medium businesses and international clients. Remote
 all time zones.
 ```
 
-**Character count:** 698 / 750 ✓
+**Character count:** 694 / 750 ✓
 
 **Why this copy:**
 - Opens with the business problem (not the company)
-- Lists concrete examples (WhatsApp, CRM, Notion)
+- Lists concrete examples (calls, CRM, Notion)
 - Emphasizes "no new software" and "data stays with you" (objection-handling)
 - Includes pricing and process to set expectations upfront
 - Ends with service-area clarity (Australia + international, remote)
