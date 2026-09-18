@@ -115,8 +115,11 @@
   }
 }
 
-/* ---------- rail: tapered light along the flow frame's border ----------
-   Geometry (points) is written by the script in index.astro. */
+/* ---------- rail: two tapered lines chasing the flow frame's border ----------
+   Geometry (the 'd' attributes) is written by the script in index.astro. The
+   two rail-* paths are pure geometry references (invisible); the two taper-*
+   paths are what's actually drawn, with the halo built from stacked
+   drop-shadows instead of a separate polygon. */
 .rail {
   position: absolute;
   inset: -1px;
@@ -126,15 +129,20 @@
   pointer-events: none;
   z-index: 1;
 }
-.rail .ring {
+.rail .rail-cw,
+.rail .rail-ccw {
   fill: none;
   stroke: none;
 }
-.rail .taper {
+.rail .taper-cw,
+.rail .taper-ccw {
   fill: var(--edge-line);
-}
-.rail .taper--halo {
-  fill: var(--edge-halo);
+  stroke: var(--edge-line);
+  stroke-width: 0.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 2.5px var(--edge-line)) drop-shadow(0 0 7px var(--edge-halo))
+    drop-shadow(0 0 17px var(--edge-halo-2));
 }
 
 /* ---------- buttons ---------- */

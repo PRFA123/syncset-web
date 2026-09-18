@@ -199,9 +199,10 @@ const connectorApps = [
     <div class="flow__wrap">
     <section class="frame frame--glow flow">
       <svg class="rail" aria-hidden="true">
-        <path class="ring" d="" />
-        <polygon class="taper taper--halo" points="" />
-        <polygon class="taper" points="" />
+        <path class="rail-cw" d="" />
+        <path class="rail-ccw" d="" />
+        <path class="taper-cw" d="" />
+        <path class="taper-ccw" d="" />
       </svg>
       <div class="flow-bar">
         <span><b>Enquiry</b> → booking</span>
@@ -223,8 +224,8 @@ const connectorApps = [
             <path id="out0" d="M 590 200 C 690 200, 750 36, 864 36" />
             <path id="in1" d="M 196 118 C 320 118, 380 200, 470 200" />
             <path id="out1" d="M 590 200 C 690 200, 750 118, 864 118" />
-            <path id="in2" d="M 196 200 C 320 200, 380 200, 470 200" />
-            <path id="out2" d="M 590 200 C 690 200, 750 200, 864 200" />
+            <path id="in2" d="M 196 200 C 320 197, 380 197, 470 200" />
+            <path id="out2" d="M 590 200 C 690 203, 750 203, 864 200" />
             <path id="in3" d="M 196 282 C 320 282, 380 200, 470 200" />
             <path id="out3" d="M 590 200 C 690 200, 750 282, 864 282" />
             <path id="in4" d="M 196 364 C 320 364, 380 200, 470 200" />
@@ -461,77 +462,99 @@ const connectorApps = [
     applyMotion();
     motion.addEventListener('change', applyMotion);
 
-    // Rail: a tapered light travelling along the flow frame's border. The ring is a
-    // rounded-rect path sized to the frame, pre-sampled into a point table; each
-    // frame reads a short stretch of it behind the head and rebuilds two polygons
-    // (core + halo). It only runs while the frame is on screen and motion is
-    // allowed — measured at ~3.5% of a 4x-throttled mobile main thread, 60fps.
+    // Rail: two tapered lines chasing the flow frame's border, ported from the
+    // Visual Direction artifact's own script (the technique that v28.css's header
+    // comment originally marked as "not ported, the hardest one" — this replaces
+    // the simpler single-runner fallback that was standing in for it). Both rails
+    // are the same rounded-rect outline starting at TOP CENTRE, walked in opposite
+    // directions; sampling by actual arc length (getPointAtLength) rather than a
+    // conic-gradient/angle approach keeps travel speed constant regardless of the
+    // frame's aspect ratio, so it doesn't distort on a wide, short frame like this
+    // one. Each pair reaches BOTTOM CENTRE together, fades out, and restarts.
     const rail = document.querySelector<SVGSVGElement>('.flow .rail');
     if (rail) {
       const frame = rail.parentElement as HTMLElement;
-      const ring = rail.querySelector<SVGPathElement>('.ring')!;
-      const polys = rail.querySelectorAll<SVGPolygonElement>('.taper');
-      const SAMPLES = 12;
-      const TAIL = 120; // px of border lit behind the head
-      const SPEED = 180; // px per second
-      const STEP = 2; // px between pre-sampled ring points
-      let pts = new Float32Array(0);
-      let length = 0;
-      let head = 0;
-      let last = 0;
+      const railCw = rail.querySelector<SVGPathElement>('.rail-cw')!;
+      const railCcw = rail.querySelector<SVGPathElement>('.rail-ccw')!;
+      const taperCw = rail.querySelector<SVGPathElement>('.taper-cw')!;
+      const taperCcw = rail.querySelector<SVGPathElement>('.taper-ccw')!;
+      const pairs: [SVGPathElement, SVGPathElement][] = [
+        [railCw, taperCw],
+        [railCcw, taperCcw],
+      ];
+
+      const DUR = 5200; // ms per full travel-and-fade cycle
+      const HEAD_W = 1.1;
+      const SPAN = 0.13; // fraction of total length the taper's tail reaches back
+      const SAMPLES = 64;
+      let t0 = 0;
       let raf = 0;
       let visible = false;
+
+      // Rounded-rect outline starting at top centre, walked clockwise (cw) or
+      // counter-clockwise; both directions cover exactly half the perimeter by
+      // the time they reach bottom centre, since the shape is left-right symmetric.
+      const outline = (w: number, h: number, r: number, cw: boolean) => {
+        const cx = w / 2;
+        return (
+          `M ${1 + cx} 1` +
+          (cw
+            ? ` H ${1 + w - r} A ${r} ${r} 0 0 1 ${1 + w} ${1 + r}` +
+              ` V ${1 + h - r} A ${r} ${r} 0 0 1 ${1 + w - r} ${1 + h}` +
+              ` H ${1 + r} A ${r} ${r} 0 0 1 1 ${1 + h - r}` +
+              ` V ${1 + r} A ${r} ${r} 0 0 1 ${1 + r} 1`
+            : ` H ${1 + r} A ${r} ${r} 0 0 0 1 ${1 + r}` +
+              ` V ${1 + h - r} A ${r} ${r} 0 0 0 ${1 + r} ${1 + h}` +
+              ` H ${1 + w - r} A ${r} ${r} 0 0 0 ${1 + w} ${1 + h - r}` +
+              ` V ${1 + r} A ${r} ${r} 0 0 0 ${1 + w - r} 1`) +
+          ` H ${1 + cx}`
+        );
+      };
 
       const layout = () => {
         const w = frame.offsetWidth;
         const h = frame.offsetHeight;
         const r = 16;
+        if (w <= 2 * r || h <= 2 * r) return;
         rail.setAttribute('viewBox', `0 0 ${w} ${h}`);
-        ring.setAttribute(
-          'd',
-          `M${r},0H${w - r}A${r},${r},0,0,1,${w},${r}V${h - r}A${r},${r},0,0,1,${w - r},${h}H${r}A${r},${r},0,0,1,0,${h - r}V${r}A${r},${r},0,0,1,${r},0Z`,
-        );
-        length = ring.getTotalLength();
-        // Sample the ring once per layout; getPointAtLength inside the frame loop
-        // forces a style flush every frame (measured 5ms/frame), the lookup is free.
-        const n = Math.ceil(length / STEP);
-        pts = new Float32Array(n * 4);
-        for (let i = 0; i < n; i++) {
-          const p = ring.getPointAtLength(i * STEP);
-          const q = ring.getPointAtLength(((i + 1) * STEP) % length);
-          let nx = -(q.y - p.y);
-          let ny = q.x - p.x;
-          const m = Math.hypot(nx, ny) || 1;
-          pts[i * 4] = p.x;
-          pts[i * 4 + 1] = p.y;
-          pts[i * 4 + 2] = nx / m;
-          pts[i * 4 + 3] = ny / m;
-        }
+        railCw.setAttribute('d', outline(w, h, r, true));
+        railCcw.setAttribute('d', outline(w, h, r, false));
       };
 
-      const draw = () => {
-        const left: string[] = [];
-        const right: string[] = [];
-        const haloL: string[] = [];
-        const haloR: string[] = [];
-        const n = pts.length / 4;
+      const smoothstep = (x: number) => {
+        x = x < 0 ? 0 : x > 1 ? 1 : x;
+        return x * x * (3 - 2 * x);
+      };
+
+      // Samples a short stretch of the rail behind `headLen` and builds a polygon
+      // that tapers to a point at the tail — the only way to get a true taper,
+      // since a stroke has one uniform width.
+      const taperShape = (railPath: SVGPathElement, headLen: number, total: number, minLen: number) => {
+        const span = total * SPAN;
+        const pts: [number, number][] = [];
+        const back: [number, number][] = [];
         for (let i = 0; i <= SAMPLES; i++) {
-          const k = i / SAMPLES; // 0 = head, 1 = tail
-          const at = (((head - k * TAIL) % length) + length) % length;
-          const j = (Math.round(at / STEP) % n) * 4;
-          const px = pts[j];
-          const py = pts[j + 1];
-          const nx = pts[j + 2];
-          const ny = pts[j + 3];
-          const wCore = 1.6 * (1 - k) + 0.2;
-          const wHalo = 9 * (1 - k) * (1 - k) + 1;
-          left.push(`${px + nx * wCore},${py + ny * wCore}`);
-          right.unshift(`${px - nx * wCore},${py - ny * wCore}`);
-          haloL.push(`${px + nx * wHalo},${py + ny * wHalo}`);
-          haloR.unshift(`${px - nx * wHalo},${py - ny * wHalo}`);
+          const t = i / SAMPLES;
+          const L = headLen - t * span;
+          if (L < minLen) break;
+          const p = railPath.getPointAtLength(L);
+          const d = 0.8;
+          const a = railPath.getPointAtLength(Math.max(L - d, 0));
+          const b = railPath.getPointAtLength(Math.min(L + d, total));
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
+          const m = Math.hypot(dx, dy);
+          if (!m) continue;
+          const nx = -dy / m;
+          const ny = dx / m;
+          const half = (HEAD_W * Math.pow(1 - t, 1.25)) / 2;
+          pts.push([p.x + nx * half, p.y + ny * half]);
+          back.push([p.x - nx * half, p.y - ny * half]);
         }
-        polys[1].setAttribute('points', left.concat(right).join(' '));
-        polys[0].setAttribute('points', haloL.concat(haloR).join(' '));
+        if (pts.length < 2) return '';
+        back.reverse();
+        const fmt = (q: [number, number]) => `${q[0].toFixed(2)} ${q[1].toFixed(2)}`;
+        return `M${pts.map(fmt).join('L')}L${back.map(fmt).join('L')}Z`;
       };
 
       const tick = (now: number) => {
@@ -539,14 +562,25 @@ const connectorApps = [
           raf = 0;
           return;
         }
-        if (last) head = (head + ((now - last) / 1000) * SPEED) % length;
-        last = now;
-        draw();
+        if (!t0) t0 = now;
+        const phase = ((now - t0) % DUR) / DUR;
+        for (const [railPath, taperEl] of pairs) {
+          const d = railPath.getAttribute('d');
+          if (!d) continue;
+          const total = railPath.getTotalLength();
+          const gap = total * 0.1; // small gap at top centre keeps the two tails apart
+          const head = gap + phase * (total * 0.5 - gap);
+          taperEl.setAttribute('d', taperShape(railPath, head, total, gap));
+          // Smoothstepped rise and fall meeting at zero slope avoids the hard
+          // corner a pair of linear ramps would leave where they meet.
+          const fade = (0.19 + 0.33 * smoothstep(phase / 0.8)) * smoothstep((1 - phase) / 0.2);
+          taperEl.setAttribute('opacity', fade.toFixed(3));
+        }
         raf = requestAnimationFrame(tick);
       };
       const start = () => {
         if (!raf && visible && !motion.matches) {
-          last = 0;
+          t0 = 0;
           raf = requestAnimationFrame(tick);
         }
       };
@@ -561,7 +595,10 @@ const connectorApps = [
         { rootMargin: '40px' },
       ).observe(frame);
       motion.addEventListener('change', () => {
-        if (motion.matches) polys.forEach((p) => p.setAttribute('points', ''));
+        if (motion.matches) {
+          taperCw.setAttribute('d', '');
+          taperCcw.setAttribute('d', '');
+        }
         start();
       });
     }
