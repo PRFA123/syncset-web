@@ -402,6 +402,15 @@
 
 /* ---------- "the core" — glowing compass plate ---------- */
 
+.core-card {
+  display: flex;
+  flex-direction: column;
+}
+.core-card .plate-stage {
+  flex: 1;
+  justify-content: center;
+}
+
 .plate-stage {
   position: relative;
   padding: 22px 18px 26px;
