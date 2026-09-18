@@ -262,6 +262,11 @@ summary {
   --space-24: 6rem;
   --space-32: 8rem;
 
+  /* Section-to-section vertical rhythm — every gap between distinct page
+     sections should use one of these two, not a hand-tuned value. */
+  --section-gap-sm: var(--space-12); /* 48px — flowing/adjacent sections */
+  --section-gap-md: var(--space-16); /* 64px — standard section boundary */
+
   /* Layout */
   --max-content: 1280px;
   --gutter: clamp(32px, 6vw, 80px);

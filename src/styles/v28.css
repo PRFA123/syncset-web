@@ -222,7 +222,7 @@
 /* ---------- section headers ---------- */
 
 .section-head {
-  margin-block: clamp(80px, 12vw, 140px) 50px;
+  margin-block: var(--section-gap-md) 50px;
   max-width: 100%;
   text-align: center;
 }
