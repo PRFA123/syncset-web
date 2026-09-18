@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 
 export const prerender = false;
+export const GET: APIRoute = () => new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers: { 'Content-Type': 'application/json' } });
 
 interface LeadPayload {
   name: string;
