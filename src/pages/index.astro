@@ -487,6 +487,9 @@ const connectorApps = [
       const HEAD_W = 1.1;
       const SPAN = 0.13; // fraction of total length the taper's tail reaches back
       const SAMPLES = 64;
+      const FADE_PEAK = 0.52;
+      const FADE_IN = 0.08; // fraction of the cycle spent rising to full opacity
+      const FADE_OUT = 0.08; // fraction of the cycle spent falling, right before the meet
       let t0 = 0;
       let raf = 0;
       let visible = false;
@@ -564,16 +567,22 @@ const connectorApps = [
         }
         if (!t0) t0 = now;
         const phase = ((now - t0) % DUR) / DUR;
+        // Ease-in-out pacing (the same smoothstep used for the fade, just applied to
+        // position too): slow leaving top centre, fastest mid-travel, slow again on
+        // arrival — a "comet" feel instead of the flat, constant-speed travel a plain
+        // linear phase would give.
+        const eased = smoothstep(phase);
         for (const [railPath, taperEl] of pairs) {
           const d = railPath.getAttribute('d');
           if (!d) continue;
           const total = railPath.getTotalLength();
           const gap = total * 0.1; // small gap at top centre keeps the two tails apart
-          const head = gap + phase * (total * 0.5 - gap);
+          const head = gap + eased * (total * 0.5 - gap);
           taperEl.setAttribute('d', taperShape(railPath, head, total, gap));
-          // Smoothstepped rise and fall meeting at zero slope avoids the hard
-          // corner a pair of linear ramps would leave where they meet.
-          const fade = (0.19 + 0.33 * smoothstep(phase / 0.8)) * smoothstep((1 - phase) / 0.2);
+          // Quick rise, a long steady plateau at full brightness, then a fall
+          // concentrated in the last instants before the two lines touch at
+          // bottom centre — not a gradual fade spread across the whole travel.
+          const fade = FADE_PEAK * smoothstep(phase / FADE_IN) * smoothstep((1 - phase) / FADE_OUT);
           taperEl.setAttribute('opacity', fade.toFixed(3));
         }
         raf = requestAnimationFrame(tick);
