@@ -80,8 +80,11 @@ You already know this. You've probably tried to fix it — a person to manage th
 **Nota de validação (não vai ao ar — só para o build):**
 > Linguagem validada em conversa real. Frases-âncora da conversa usadas como referência:
 > "Chega tudo no WhatsApp. Eu leio, passo pro caderno, depois passo pro sistema."
-> "Já paguei um sistema que era uma porcaria. Ninguém usava."
-> "Contratei uma menina pra responder zap. Quando ela sai, volta tudo pra mim."
+>
+> [Duas frases-âncora removidas em 2026-09-18: referenciavam Wayne/Sarah/Marco
+> (brand/interviews/2026-08-30-round-1.md), confirmado pelo fundador como
+> personas simuladas, não conversas reais. Ver git history desta linha para
+> o texto original se precisar.]
 
 ---
 
