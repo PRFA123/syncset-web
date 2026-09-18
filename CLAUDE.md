@@ -32,6 +32,19 @@ under `wrangler pages dev` reaches the `lead-intake-v1` Make scenario, so use ob
   `.frame`/`.frame--glow` cards, `.btn`, section headers, benchmark dashboard, compass plate, animated flow
   diagram, connector marquee). Page-specific layout lives in `<style>` blocks inside each `.astro` page.
   `docs/DESIGN.md` describes the *previous* light theme and is out of date; `tokens.css` is authoritative.
+  **Known duplicate-CSS landmine (not yet cleaned up, do not touch until the site is fully live):**
+  a global `v28.css` selector and a same-named selector scoped inside `index.astro`'s own `<style>` block
+  both exist for the same class, and Astro's scoped-attribute selector wins by specificity regardless of
+  source order — so the `v28.css` copy silently does nothing. Confirmed instances as of 2026-09-18:
+  - `.how-it-works` — dead: `index.astro:859` (`padding: var(--space-32)…`), `v28.css:937`. Live:
+    `index.astro:1074` (`padding: var(--space-16)…`).
+  - `.pricing` — same pattern: dead `index.astro:910` + `v28.css:1015`, live `index.astro:1077`.
+  - `.how-it-works__title` — dead: `v28.css:946` (`font-weight: 600`). Live: `index.astro:869`
+    (`font-weight: 700`).
+  These currently compute correct/consistent values by accident of source order — this is the same class
+  of bug that caused the real regression fixed in commit `616020b` (a duplicate `.how-it-works__steps` gap
+  rule). Planned cleanup: delete the dead declarations once the site is 100% published, so a future edit to
+  the "obvious" file (`v28.css`) doesn't silently do nothing.
 - `src/layouts/BaseLayout.astro` owns `<head>`: absolute canonical/OG URLs derived from `Astro.site`,
   Google Fonts (Instrument Sans + JetBrains Mono), and a `schema` slot for per-page JSON-LD.
   `src/lib/schema.ts` builds the Organization/LocalBusiness/WebSite graph used on the home page.
