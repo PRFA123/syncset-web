@@ -325,13 +325,17 @@
     const focusActiveControl = () => {
       const step = steps[stepIndex];
       if (!step) return;
+      // preventScroll: without it, focusing a control that sits inside the
+      // overflow-x:hidden <main class="page"> wrapper makes the browser
+      // scroll-into-view horizontally, shifting the whole page left on
+      // narrow/mobile viewports (visible as clipped text on both edges).
       if (step.mode === 'choice') {
         const first = choices.querySelector('button');
-        if (first) first.focus();
+        if (first) first.focus({ preventScroll: true });
       } else if (step.mode === 'textarea') {
-        textarea.focus();
+        textarea.focus({ preventScroll: true });
       } else {
-        input.focus();
+        input.focus({ preventScroll: true });
       }
     };
 
