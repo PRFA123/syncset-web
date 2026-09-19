@@ -1,0 +1,494 @@
+---
+// "Get your free Automation Diagnostic" — chat-style version. Same backend contract
+// as the old DiagnosticForm.astro: posts the same JSON payload to /api/diagnostic.ts
+// (Cloudflare Pages Function -> diagnostic-audit-v1 Make.com scenario). No new
+// backend, no NLU — this is a deterministic one-question-at-a-time "conversational
+// form", not an AI chatbot. Same anti-spam pattern (honeypot value sent as '',
+// form_ts captured on load) as ContactForm.astro / the old DiagnosticForm.astro.
+---
+
+<div class="diagnostic-wrapper">
+  <div class="diagnostic-glass frame--glow dc" id="dc-root">
+    <div class="dc__progress" aria-hidden="true">
+      <div class="dc__progress-bar" id="dc-progress-bar"></div>
+    </div>
+    <div class="dc__log" id="dc-log" role="log" aria-live="polite" aria-label="Diagnostic conversation"></div>
+    <div class="dc__inputbar">
+      <div class="dc__choices" id="dc-choices" hidden></div>
+      <form class="dc__form" id="dc-form" novalidate>
+        <textarea class="dc__textarea" id="dc-textarea" rows="2" hidden></textarea>
+        <input class="dc__input" id="dc-input" type="text" autocomplete="off" />
+        <button type="submit" class="dc__send" id="dc-send" aria-label="Send">→</button>
+      </form>
+      <button type="button" class="dc__skip" id="dc-skip" hidden>Skip this one →</button>
+    </div>
+    <p class="dc__error" id="dc-error" role="alert"></p>
+  </div>
+</div>
+
+<style>
+  .diagnostic-wrapper {
+    max-width: var(--max-content);
+    width: 100%;
+    margin-inline: auto;
+  }
+  .diagnostic-glass {
+    max-width: 640px;
+    background: linear-gradient(135deg, rgba(75, 186, 139, 0.08) 0%, rgba(62, 127, 168, 0.04) 100%);
+    border: 1px solid rgba(75, 186, 139, 0.2);
+    border-radius: 16px;
+    padding: var(--space-8) var(--space-8) var(--space-6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dc__progress {
+    height: 3px;
+    border-radius: 3px;
+    background: color-mix(in srgb, var(--surface-2) 60%, transparent);
+    overflow: hidden;
+    margin-bottom: var(--space-6);
+    flex: 0 0 auto;
+  }
+  .dc__progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent) 0%, #2e8a66 100%);
+    transition: width 0.35s ease;
+  }
+
+  .dc__log {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    max-height: 46vh;
+    min-height: 120px;
+    padding-right: 4px;
+    padding-bottom: 8px;
+    scroll-behavior: smooth;
+  }
+  @media (min-width: 720px) {
+    .dc__log {
+      max-height: 380px;
+    }
+  }
+
+  .dc-msg {
+    max-width: 84%;
+    padding: 11px 15px;
+    border-radius: 14px;
+    font-family: var(--display);
+    font-size: var(--text-base);
+    line-height: 1.45;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .dc-msg--bot {
+    align-self: flex-start;
+    background: color-mix(in srgb, var(--surface-2) 75%, transparent);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+  }
+  .dc-msg--user {
+    align-self: flex-end;
+    background: linear-gradient(180deg, var(--accent) 0%, #2e8a66 100%);
+    color: #02110b;
+    font-weight: 500;
+    border-bottom-right-radius: 4px;
+  }
+  .dc-msg--skipped {
+    opacity: 0.6;
+    font-style: italic;
+  }
+  .dc-msg--typing {
+    align-self: flex-start;
+    display: flex;
+    gap: 4px;
+    padding: 13px 16px;
+    background: color-mix(in srgb, var(--surface-2) 75%, transparent);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    border-bottom-left-radius: 4px;
+  }
+  .dc-msg--typing span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ink-3);
+    animation: dc-bounce 1.1s infinite ease-in-out;
+  }
+  .dc-msg--typing span:nth-child(2) { animation-delay: 0.15s; }
+  .dc-msg--typing span:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes dc-bounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .dc__inputbar {
+    flex: 0 0 auto;
+    margin-top: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .dc__choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .dc__choices button {
+    padding: 10px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--rule);
+    background: color-mix(in srgb, var(--surface-2) 60%, transparent);
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    transition: border-color 0.18s ease, background 0.18s ease, transform 0.12s ease;
+  }
+  .dc__choices button:hover,
+  .dc__choices button:focus-visible {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+    outline: none;
+  }
+  .dc__choices button:active {
+    transform: scale(0.97);
+  }
+
+  .dc__form {
+    display: flex;
+    gap: 8px;
+  }
+  .dc__input,
+  .dc__textarea {
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--rule);
+    background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: var(--text-base);
+    transition: border-color 0.18s ease, background 0.18s ease;
+    resize: none;
+  }
+  .dc__input:focus,
+  .dc__textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+  }
+  .dc__send {
+    flex: 0 0 auto;
+    width: 44px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: linear-gradient(180deg, var(--accent) 0%, #2e8a66 100%);
+    color: #02110b;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    box-shadow: 0 0 0 1px rgba(75, 186, 139, 0.4), 0 8px 24px -10px rgba(75, 186, 139, 0.7);
+  }
+  .dc__send:hover {
+    transform: translateY(-1px);
+  }
+
+  .dc__skip {
+    align-self: flex-start;
+    background: none;
+    border: none;
+    padding: 2px 4px;
+    color: var(--ink-3);
+    font-family: var(--mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.18s ease;
+  }
+  .dc__skip:hover {
+    text-decoration-color: var(--ink-3);
+  }
+
+  .dc__error {
+    margin: 8px 0 0;
+    font-family: var(--mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.05em;
+    color: #d97757;
+    min-height: 1em;
+  }
+</style>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    const root = document.getElementById('dc-root');
+    if (!root) return;
+
+    const log = document.getElementById('dc-log');
+    const progressBar = document.getElementById('dc-progress-bar');
+    const form = document.getElementById('dc-form');
+    const input = document.getElementById('dc-input');
+    const textarea = document.getElementById('dc-textarea');
+    const choices = document.getElementById('dc-choices');
+    const skipBtn = document.getElementById('dc-skip');
+    const errorEl = document.getElementById('dc-error');
+
+    const formLoadTs = Date.now(); // captured on load — the API's min-fill-time check needs real elapsed time.
+
+    const CHANNEL_OPTIONS = ['Phone', 'Email', 'Instagram or Facebook DM', 'WhatsApp', 'Website form', 'Other'];
+    const NEXT_STEP_OPTIONS = [
+      { label: 'Email (recommended)', value: 'email' },
+      { label: 'WhatsApp (automated)', value: 'whatsapp_bot' },
+      { label: 'Book a quick call', value: 'call' },
+    ];
+
+    const steps = [
+      { field: 'name', mode: 'text', type: 'text', required: true, maxlength: 200, autocomplete: 'name',
+        prompt: () => "Hi 👋 I'm the SyncSet Diagnostic. This takes about 2 minutes and tells you exactly what slow replies are costing your business. First — what's your name?" },
+      { field: 'email', mode: 'text', type: 'email', required: true, maxlength: 254, autocomplete: 'email',
+        prompt: (a) => `Nice to meet you${a.name ? ', ' + a.name.split(' ')[0] : ''}. What's the best email for your report?` },
+      { field: 'business', mode: 'text', type: 'text', required: true, maxlength: 200,
+        prompt: () => "What's the name of your business?" },
+      { field: 'phone', mode: 'text', type: 'tel', required: false, maxlength: 40, autocomplete: 'tel',
+        prompt: () => 'Got a phone number? Optional — skip if you’d rather not.' },
+      { field: 'channel', mode: 'choice', required: true, options: CHANNEL_OPTIONS.map((c) => ({ label: c, value: c })),
+        prompt: () => 'Where do most of your enquiries come in?' },
+      { field: 'team_size', mode: 'text', type: 'text', required: false, maxlength: 40, placeholder: 'e.g. just me, 2-5, 6+',
+        prompt: () => 'How big is your team? (optional)' },
+      { field: 'missed_enquiries_2wk', mode: 'text', type: 'number', required: true, min: 0, max: 100000,
+        prompt: () => 'In the last two weeks, how many enquiries were missed or answered late?' },
+      { field: 'avg_deal_value_aud', mode: 'text', type: 'number', required: true, min: 0, max: 10000000,
+        prompt: () => "Roughly what's an average job or client worth to you, in AUD?" },
+      { field: 'after_hours_behavior', mode: 'text', type: 'text', required: true, maxlength: 500, placeholder: 'e.g. nothing until next day, goes to voicemail...',
+        prompt: () => "What happens after hours, or when you're too busy to answer?" },
+      { field: 'tools_used', mode: 'text', type: 'text', required: false, maxlength: 300, placeholder: 'e.g. Cal.com, Instagram, a shared inbox...',
+        prompt: () => 'What tools do you already use day to day? (optional)' },
+      { field: 'response_time_current', mode: 'text', type: 'text', required: false, maxlength: 200,
+        prompt: () => 'Roughly how fast do you reply right now? (optional)' },
+      { field: 'booking_flow_current', mode: 'text', type: 'text', required: false, maxlength: 300,
+        prompt: () => 'How do people currently book with you? (optional)' },
+      { field: 'biggest_frustration', mode: 'textarea', required: false, maxlength: 1000,
+        prompt: () => "Last one before the next-step question — what's the biggest thing slowing you down right now? (optional)" },
+      { field: 'preferred_next_step', mode: 'choice', required: true, options: NEXT_STEP_OPTIONS,
+        prompt: () => 'How should we send you the result?' },
+    ];
+
+    const answers = {};
+    let stepIndex = 0;
+
+    const scrollToBottom = () => { log.scrollTop = log.scrollHeight; };
+
+    const addMessage = (text, cls) => {
+      const div = document.createElement('div');
+      div.className = `dc-msg ${cls}`;
+      div.textContent = text;
+      log.appendChild(div);
+      scrollToBottom();
+      return div;
+    };
+
+    const showTyping = () => {
+      const div = document.createElement('div');
+      div.className = 'dc-msg--typing';
+      div.innerHTML = '<span></span><span></span><span></span>';
+      log.appendChild(div);
+      scrollToBottom();
+      return div;
+    };
+
+    const setProgress = () => {
+      progressBar.style.width = `${Math.round((stepIndex / steps.length) * 100)}%`;
+    };
+
+    const clearError = () => { errorEl.textContent = ''; };
+    const showError = (msg) => { errorEl.textContent = msg; };
+
+    const focusActiveControl = () => {
+      const step = steps[stepIndex];
+      if (!step) return;
+      if (step.mode === 'choice') {
+        const first = choices.querySelector('button');
+        if (first) first.focus();
+      } else if (step.mode === 'textarea') {
+        textarea.focus();
+      } else {
+        input.focus();
+      }
+    };
+
+    const renderStepControls = () => {
+      const step = steps[stepIndex];
+      clearError();
+      if (!step) {
+        form.hidden = true;
+        choices.hidden = true;
+        skipBtn.hidden = true;
+        return;
+      }
+      if (step.mode === 'choice') {
+        form.hidden = true;
+        skipBtn.hidden = true;
+        choices.hidden = false;
+        choices.innerHTML = '';
+        step.options.forEach((opt) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = opt.label;
+          btn.addEventListener('click', () => handleAnswer(opt.value, opt.label));
+          choices.appendChild(btn);
+        });
+      } else {
+        choices.hidden = true;
+        form.hidden = false;
+        if (step.mode === 'textarea') {
+          textarea.hidden = false;
+          input.hidden = true;
+          textarea.value = '';
+          textarea.maxLength = step.maxlength || 1000;
+          textarea.placeholder = step.placeholder || '';
+        } else {
+          textarea.hidden = true;
+          input.hidden = false;
+          input.value = '';
+          input.type = step.type || 'text';
+          input.maxLength = step.maxlength || 200;
+          input.placeholder = step.placeholder || '';
+          input.autocomplete = step.autocomplete || 'off';
+          if (step.type === 'number') {
+            input.min = step.min ?? '';
+            input.max = step.max ?? '';
+          } else {
+            input.removeAttribute('min');
+            input.removeAttribute('max');
+          }
+        }
+        skipBtn.hidden = step.required;
+      }
+      focusActiveControl();
+    };
+
+    const askStep = () => {
+      const step = steps[stepIndex];
+      setProgress();
+      if (!step) {
+        renderStepControls();
+        finish();
+        return;
+      }
+      const typing = showTyping();
+      window.setTimeout(() => {
+        typing.remove();
+        addMessage(step.prompt(answers), 'dc-msg--bot');
+        renderStepControls();
+      }, 380);
+    };
+
+    const validate = (step, raw) => {
+      const value = typeof raw === 'string' ? raw.trim() : raw;
+      if (!step.required && (value === '' || value == null)) return { ok: true, value: '' };
+      if (step.mode === 'textarea' || (step.mode === 'text' && step.type !== 'number' && step.type !== 'email')) {
+        if (step.required && !value) return { ok: false, error: 'This one’s required.' };
+        return { ok: true, value: value || '' };
+      }
+      if (step.type === 'email') {
+        if (!value) return { ok: false, error: 'This one’s required.' };
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return { ok: false, error: 'That doesn’t look like a valid email.' };
+        return { ok: true, value };
+      }
+      if (step.type === 'number') {
+        if (value === '' || value == null) return { ok: false, error: 'This one’s required.' };
+        const n = Number(value);
+        if (!Number.isFinite(n)) return { ok: false, error: 'Numbers only, please.' };
+        if (step.min != null && n < step.min) return { ok: false, error: `Must be ${step.min} or more.` };
+        if (step.max != null && n > step.max) return { ok: false, error: `That’s a bit high — try a smaller number.` };
+        return { ok: true, value: n };
+      }
+      return { ok: true, value };
+    };
+
+    const handleAnswer = (value, displayLabel) => {
+      const step = steps[stepIndex];
+      const result = validate(step, value);
+      if (!result.ok) {
+        showError(result.error);
+        return;
+      }
+      answers[step.field] = result.value;
+      const display = result.value === '' ? 'Skipped' : (displayLabel ?? String(result.value));
+      addMessage(display, result.value === '' ? 'dc-msg--user dc-msg--skipped' : 'dc-msg--user');
+      stepIndex += 1;
+      askStep();
+    };
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const step = steps[stepIndex];
+      if (!step) return;
+      const raw = step.mode === 'textarea' ? textarea.value : input.value;
+      handleAnswer(raw);
+    });
+
+    // Shift+Enter adds a newline in the textarea; plain Enter submits, matching the input row.
+    textarea.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        form.requestSubmit();
+      }
+    });
+
+    skipBtn.addEventListener('click', () => handleAnswer(''));
+
+    const finish = async () => {
+      const typing = showTyping();
+      const payload = { ...answers, company_website: '', form_ts: formLoadTs };
+      try {
+        const res = await fetch('/api/diagnostic', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json().catch(() => ({}));
+        typing.remove();
+        if (res.ok) {
+          addMessage('Thanks — check your email in a few minutes for your Diagnostic.', 'dc-msg--bot');
+        } else {
+          addMessage(data.error || 'Something went wrong on our end. Mind trying again in a moment?', 'dc-msg--bot');
+          addRetry();
+        }
+      } catch {
+        typing.remove();
+        addMessage('Network hiccup — mind trying again?', 'dc-msg--bot');
+        addRetry();
+      }
+    };
+
+    const addRetry = () => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = 'Try again';
+      btn.style.marginTop = '4px';
+      choices.hidden = false;
+      choices.innerHTML = '';
+      choices.appendChild(btn);
+      btn.addEventListener('click', () => {
+        choices.hidden = true;
+        finish();
+      });
+    };
+
+    askStep();
+  });
+</script>
