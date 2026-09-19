@@ -2,6 +2,7 @@
 
 type CloudflareEnv = {
   MAKE_WEBHOOK_URL?: string;
+  DIAGNOSTIC_WEBHOOK_URL?: string;
 };
 
 type Runtime = import('@astrojs/cloudflare').Runtime<CloudflareEnv>;
