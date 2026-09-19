@@ -7,11 +7,11 @@ interface Props {
 }
 
 const { variant = 'primary', subtext = false, label = '', href = '' } = Astro.props;
-const resolvedHref = href || (variant === 'ghost' ? '#contact' : '/book/');
+const resolvedHref = href || (variant === 'ghost' ? '#contact' : '/#diagnostic');
 ---
 
 <div class="cta-wrapper">
-  <a href={resolvedHref} class={`btn btn-${variant}`}>{label || 'Book a Workflow Audit →'}</a>
+  <a href={resolvedHref} class={`btn btn-${variant}`}>{label || 'Free Diagnostic →'}</a>
   {subtext && <p class="cta-subtext">20 minutes. Free. No commitment.</p>}
 </div>
 
