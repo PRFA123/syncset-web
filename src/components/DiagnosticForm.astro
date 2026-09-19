@@ -247,9 +247,11 @@
       const status = document.getElementById('diagnostic-form-status');
       if (!form || !status) return;
 
+      const formLoadTs = Date.now(); // captured on load, not on submit — the API's honeypot/min-fill-time check needs real elapsed time.
+
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const formTs = Date.now();
+        const formTs = formLoadTs;
         const formData = new FormData(form);
         const payload = {};
         for (const [key, value] of formData.entries()) {
