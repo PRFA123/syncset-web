@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import Cta from '../components/Cta.astro';
 import Faq from '../components/Faq.astro';
 import ContactForm from '../components/ContactForm.astro';
+import DiagnosticForm from '../components/DiagnosticForm.astro';
 import {
   generateOrganizationSchema,
   generateLocalBusinessSchema,
@@ -66,10 +67,10 @@ const connectorApps = [
                 </h1>
                 <p class="hero__subhead">We connect the tools your business already runs, so the follow-up happens by itself.</p>
                 <div class="hero__cta">
-                  <Cta variant="primary" label="Book a workflow audit" />
-                  <Cta variant="ghost" label="See how it runs" />
+                  <Cta variant="primary" href="#diagnostic" label="Get my free Diagnostic" />
+                  <Cta variant="ghost" href="/book/" label="Or book a call instead" />
                 </div>
-                <p class="hero__microcopy">20 minutes · free · no commitment</p>
+                <p class="hero__microcopy">10 questions · 2 minutes · free</p>
               </div>
             </section>
 
@@ -427,10 +428,21 @@ const connectorApps = [
     <!-- Section 6: FAQ -->
     <Faq />
 
-    <!-- Section 6.5: Contact form (alternative to Cal.com booking) -->
+    <!-- Section 6.4: Diagnostic form (primary lead path, promoted over Cal.com booking) -->
+    <section class="contact" id="diagnostic">
+      <div class="contact__container">
+        <h2 class="contact__title">Get your free Automation Diagnostic</h2>
+        <p class="contact__subhead">
+          10 questions, 2 minutes. We'll tell you <span class="contact__sla">exactly how much revenue you're losing to slow replies</span> — and what to fix first.
+        </p>
+        <DiagnosticForm />
+      </div>
+    </section>
+
+    <!-- Section 6.5: Contact form (quick-message alternative, no diagnostic) -->
     <section class="contact" id="contact">
       <div class="contact__container">
-        <h2 class="contact__title">Prefer to write instead?</h2>
+        <h2 class="contact__title">Prefer to just write instead?</h2>
         <p class="contact__subhead">
           Tell us where your enquiries get lost and we'll <span class="contact__sla">reply within 1 business day</span>, no booking required.
         </p>
@@ -442,18 +454,18 @@ const connectorApps = [
     <div class="section-head cta-final__head">
       <p class="section-eyebrow">Start here</p>
       <h2 class="section-title">Stop losing clients to slow replies.</h2>
-      <p class="section-sub">Book the audit. It's free, and it's 20 minutes.</p>
+      <p class="section-sub">Get the free Diagnostic. It takes 2 minutes.</p>
     </div>
     <div class="cta-final__wrap">
       <section class="frame frame--glow book-band">
         <div class="book-inner">
           <div class="book-copy">
-            <p class="book-line">No deck, no discovery call. Just book a slot and see it work.</p>
-            <p class="book-note">20 minutes · free · no commitment</p>
+            <p class="book-line">10 questions, no call required — see exactly what's costing you.</p>
+            <p class="book-note">2 minutes · free · no commitment</p>
           </div>
           <div class="book-actions">
-            <a class="btn btn-primary" href="/book/">Book a Workflow Audit →</a>
-            <a class="btn btn-ghost" href="#contact">Write instead</a>
+            <a class="btn btn-primary" href="#diagnostic">Get my free Diagnostic →</a>
+            <a class="btn btn-ghost" href="/book/">Or book a call instead</a>
           </div>
         </div>
       </section>
