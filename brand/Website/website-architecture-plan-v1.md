@@ -396,7 +396,7 @@ syncset-web/
 - **Primário: `syncset.com.au`.** `.com.au` exige presença australiana verificável — na prática, ABN ou ACN ativo, sob regras da auDA vigentes desde 12 de abril de 2021. Você tem ABN. O domínio também precisa ter conexão próxima com o nome do negócio — "SyncSet" registrado satisfaz isso.
 - ⚠️ **Condição contínua, não checagem única:** se o ABN caducar, a elegibilidade do domínio cai junto. Manter ativo.
 - **Defensivo:** registrar `syncset.au` e, se disponível, `.com`, redirecionando 301 para o primário.
-- **E-mail:** `hello@syncset.com.au` com SPF, DKIM e DMARC configurados antes do primeiro envio — senão sua automação de follow-up cai em spam e o produto se autossabota.
+- **E-mail:** `contact@syncset.com.au` com SPF, DKIM e DMARC configurados antes do primeiro envio — senão sua automação de follow-up cai em spam e o produto se autossabota.
 
 ### 6.4 Clone-before-build (protocolo obrigatório)
 

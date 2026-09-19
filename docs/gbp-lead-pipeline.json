@@ -268,25 +268,25 @@
     {
       "name": "Welcome Email",
       "subject": "Your Workflow Audit is 1 click away — SyncSet",
-      "from": "hello@syncset.com.au",
+      "from": "contact@syncset.com.au",
       "body": "Hi {lead.name},\n\nThanks for reaching out. Your 20-minute workflow audit is ready to book.\n\n👉 Book your time here: https://cal.com/syncset/workflow-audit\n\nNo prep needed. We'll spend 20 minutes learning where your enquiries come in, where they get stuck, and what we could actually fix.\n\nIf you have any questions before the call, just reply to this email.\n\nCheers,\nThe SyncSet team"
     },
     {
       "name": "Follow-up Email #1 (24 hours)",
       "subject": "Just checking in — Workflow Audit booking",
-      "from": "hello@syncset.com.au",
+      "from": "contact@syncset.com.au",
       "body": "Hi {lead.name},\n\nJust a gentle nudge — if you're still interested in the workflow audit, the calendar is open:\n\n👉 https://cal.com/syncset/workflow-audit\n\nFeel free to pick any time that works. Questions? Hit reply.\n\nCheers,\nSyncSet"
     },
     {
       "name": "Follow-up Email #2 (72 hours, FINAL)",
       "subject": "Last opportunity: Workflow Audit booking",
-      "from": "hello@syncset.com.au",
+      "from": "contact@syncset.com.au",
       "body": "Hi {lead.name},\n\nOne last heads-up — we've got a couple of audit slots available this week if you'd like to grab one:\n\n👉 https://cal.com/syncset/workflow-audit\n\nIf now isn't the right time, no worries. Feel free to reach out anytime you're ready.\n\nCheers,\nSyncSet"
     },
     {
       "name": "Booking Confirmation Email",
       "subject": "Workflow Audit confirmed — {booking.time}",
-      "from": "hello@syncset.com.au",
+      "from": "contact@syncset.com.au",
       "body": "Hi {lead.name},\n\nAwesome! Your audit is scheduled for {booking.time} (AEDT).\n\n📅 Add to your calendar: [ICS attachment]\n📞 Zoom link: [Cal.com link]\n❓ Questions: Reply to this email anytime\n\nLooking forward to learning about {lead.business}.\n\nCheers,\nSyncSet"
     }
   ],

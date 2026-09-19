@@ -15,7 +15,7 @@
     "Worldwide"
   ],
   "priceRange": "A$900–A$2,500",
-  "email": "hello@syncset.com.au",
+  "email": "contact@syncset.com.au",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "SyncSet Services",
@@ -75,7 +75,7 @@
   ],
   "contactPoint": {
     "@type": "ContactPoint",
-    "email": "hello@syncset.com.au",
+    "email": "contact@syncset.com.au",
     "contactType": "customer service"
   }
 }

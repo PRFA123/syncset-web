@@ -460,7 +460,7 @@ const faqs = [
     "areaServed": ["AU", "Worldwide"],
     "contactPoint": {
       "@type": "ContactPoint",
-      "email": "hello@syncset.com.au",
+      "email": "contact@syncset.com.au",
       "contactType": "customer service"
     },
     "sameAs": [
@@ -479,7 +479,7 @@ const faqs = [
     },
     "areaServed": ["AU", "Worldwide"],
     "priceRange": "A$900–A$2,500",
-    "email": "hello@syncset.com.au"
+    "email": "contact@syncset.com.au"
   },
   {
     "@context": "https://schema.org",
@@ -590,7 +590,7 @@ Sitemap: https://www.syncset.com.au/sitemap-index.xml
 
 - Website: https://www.syncset.com.au
 - Audit booking: https://www.syncset.com.au/book
-- Email: hello@syncset.com.au
+- Email: contact@syncset.com.au
 - Location: Australia (remote-first, serves AU and internationally)
 ```
 

@@ -15,7 +15,7 @@
 | **Primary Category** | Marketing agency | Best fit for "AI workflow automation + small business consulting" |
 | **Secondary Categories** | Artificial intelligence, Social media marketing service, Business consultant | Up to 3 total; covers automation + advisory angle |
 | **Service Areas** | Australia-wide, international (remote) | No specific cities listed — remote-first model |
-| **Contact Email** | hello@syncset.com.au | Primary point of contact |
+| **Contact Email** | contact@syncset.com.au | Primary point of contact |
 | **Phone** | *awaiting acquisition* | Not yet assigned; placeholder in schema |
 | **Address** | Not publicly displayed (remote-first) | Per skill rule: no addressLocality/Region/Postcode for remote business |
 | **Hours of Operation** | *to be determined by Paulo* | Likely standard AU business hours; update in dashboard after verification |

@@ -245,7 +245,7 @@ SyncSet ("we", "us", "our") collects information you provide when booking a work
 
 We use this information to respond to your enquiry and conduct the audit. We do not sell your data. We do not share it with third parties except where required to deliver our service (e.g. calendar booking tools).
 
-You may request deletion of your data at any time by emailing hello@syncset.com.au.
+You may request deletion of your data at any time by emailing contact@syncset.com.au.
 
 This site uses Cloudflare Web Analytics, which is cookieless and collects no personal data.
 
