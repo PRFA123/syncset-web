@@ -294,6 +294,11 @@
 
     const answers = {};
     let stepIndex = 0;
+    // Only steal focus (and pop the mobile keyboard) after the visitor has actually
+    // engaged with the widget — never on initial page load, which was scrolling the
+    // whole page down to the form on real phones (mobile browsers auto-scroll to
+    // keep a freshly-focused field above the keyboard).
+    let hasEngaged = false;
 
     const scrollToBottom = () => { log.scrollTop = log.scrollHeight; };
 
@@ -323,6 +328,7 @@
     const showError = (msg) => { errorEl.textContent = msg; };
 
     const focusActiveControl = () => {
+      if (!hasEngaged) return;
       const step = steps[stepIndex];
       if (!step) return;
       // preventScroll: without it, focusing a control that sits inside the
@@ -445,6 +451,7 @@
     };
 
     const handleAnswer = (value, displayLabel) => {
+      hasEngaged = true;
       const step = steps[stepIndex];
       const result = validate(step, value);
       if (!result.ok) {

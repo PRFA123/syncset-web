@@ -540,6 +540,16 @@
     min-width: 1060px;
   }
 }
+/* On phones, scrolling a 1060px diagram sideways reads as broken, not scrollable —
+   shrink it to fit the screen instead (labels get smaller, but nothing is cut off). */
+@media (max-width: 640px) {
+  .flow-scroll {
+    overflow-x: visible;
+  }
+  .flow-scroll svg {
+    min-width: 0;
+  }
+}
 .wire-in {
   fill: none;
   stroke: url(#wireIn);
