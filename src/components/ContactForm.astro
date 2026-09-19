@@ -201,7 +201,7 @@
           const data = await res.json();
           if (res.ok) {
             form.reset();
-            status.textContent = 'Thanks — we’ll be in touch within 1 business day.';
+            status.textContent = 'Thanks, we’ll be in touch within 1 business day.';
           } else {
             status.textContent = data.error || 'Something went wrong. Please try again.';
           }

@@ -257,13 +257,13 @@
 
     const steps = [
       { field: 'name', mode: 'text', type: 'text', required: true, maxlength: 200, autocomplete: 'name',
-        prompt: () => "Hi 👋 I'm the SyncSet Diagnostic. This takes about 2 minutes and tells you exactly what slow replies are costing your business. First — what's your name?" },
+        prompt: () => "Hi 👋 I'm the SyncSet Diagnostic. This takes about 2 minutes and tells you exactly what slow replies are costing your business. First, what's your name?" },
       { field: 'email', mode: 'text', type: 'email', required: true, maxlength: 254, autocomplete: 'email',
         prompt: (a) => `Nice to meet you${a.name ? ', ' + a.name.split(' ')[0] : ''}. What's the best email for your report?` },
       { field: 'business', mode: 'text', type: 'text', required: true, maxlength: 200,
         prompt: () => "What's the name of your business?" },
       { field: 'phone', mode: 'text', type: 'tel', required: false, maxlength: 40, autocomplete: 'tel',
-        prompt: () => 'Got a phone number? Optional — skip if you’d rather not.' },
+        prompt: () => 'Got a phone number? Optional. Skip if you’d rather not.' },
       { field: 'channel', mode: 'choice', required: true, options: CHANNEL_OPTIONS.map((c) => ({ label: c, value: c })),
         prompt: () => 'Where do most of your enquiries come in?' },
       { field: 'team_size', mode: 'text', type: 'text', required: false, maxlength: 40, placeholder: 'e.g. just me, 2-5, 6+',
@@ -281,7 +281,7 @@
       { field: 'booking_flow_current', mode: 'text', type: 'text', required: false, maxlength: 300,
         prompt: () => 'How do people currently book with you? (optional)' },
       { field: 'biggest_frustration', mode: 'textarea', required: false, maxlength: 1000,
-        prompt: () => "Last one before the next-step question — what's the biggest thing slowing you down right now? (optional)" },
+        prompt: () => "Last one before the next-step question: what's the biggest thing slowing you down right now? (optional)" },
       { field: 'preferred_next_step', mode: 'choice', required: true, options: NEXT_STEP_OPTIONS,
         prompt: () => 'How should we send you the result?' },
     ];
@@ -413,7 +413,7 @@
         const n = Number(value);
         if (!Number.isFinite(n)) return { ok: false, error: 'Numbers only, please.' };
         if (step.min != null && n < step.min) return { ok: false, error: `Must be ${step.min} or more.` };
-        if (step.max != null && n > step.max) return { ok: false, error: `That’s a bit high — try a smaller number.` };
+        if (step.max != null && n > step.max) return { ok: false, error: `That’s a bit high. Try a smaller number.` };
         return { ok: true, value: n };
       }
       return { ok: true, value };
@@ -463,14 +463,14 @@
         const data = await res.json().catch(() => ({}));
         typing.remove();
         if (res.ok) {
-          addMessage('Thanks — check your email in a few minutes for your Diagnostic.', 'dc-msg--bot');
+          addMessage('Thanks! Check your email in a few minutes for your Diagnostic.', 'dc-msg--bot');
         } else {
           addMessage(data.error || 'Something went wrong on our end. Mind trying again in a moment?', 'dc-msg--bot');
           addRetry();
         }
       } catch {
         typing.remove();
-        addMessage('Network hiccup — mind trying again?', 'dc-msg--bot');
+        addMessage('Network hiccup. Mind trying again?', 'dc-msg--bot');
         addRetry();
       }
     };

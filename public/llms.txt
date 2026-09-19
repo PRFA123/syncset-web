@@ -1,6 +1,6 @@
 # SyncSet
 
-> AI workflow automation for businesses of all sizes. We connect the tools you already use — WhatsApp, CRM, calendar — so enquiries are captured and bookings are confirmed automatically.
+> AI workflow automation for businesses of all sizes. We connect the tools you already use (WhatsApp, CRM, calendar) so enquiries are captured and bookings are confirmed automatically.
 
 ## Services
 
