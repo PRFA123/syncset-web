@@ -50,6 +50,33 @@ const MIN_FILL_MS = 3000;
 const MAX_MISSED_ENQUIRIES = 100000;
 const MAX_DEAL_VALUE = 10000000;
 
+// In-memory per-isolate rate limit: stops a single client/bot from hammering
+// this endpoint and running up real Anthropic API costs via the
+// diagnostic-audit-v1 Make scenario. Not a global limit (Cloudflare can run
+// several isolates concurrently across edge locations), but it is free,
+// needs no new Cloudflare binding, and covers the realistic risk at this
+// stage (pre-launch, low traffic). Upgrade to a KV-backed limiter if real
+// distributed abuse shows up once there is real traffic.
+const RATE_LIMIT_MAX = 5; // submissions
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // per IP, per hour
+const rateLimitBuckets = new Map<string, number[]>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const timestamps = (rateLimitBuckets.get(ip) || []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  if (timestamps.length >= RATE_LIMIT_MAX) {
+    rateLimitBuckets.set(ip, timestamps);
+    return true;
+  }
+  timestamps.push(now);
+  rateLimitBuckets.set(ip, timestamps);
+  // Guard against unbounded growth across many distinct IPs in a long-lived isolate.
+  if (rateLimitBuckets.size > 5000) {
+    rateLimitBuckets.clear();
+  }
+  return false;
+}
+
 const json = (body: unknown, status: number) =>
   new Response(JSON.stringify(body), {
     status,
@@ -60,6 +87,11 @@ const json = (body: unknown, status: number) =>
 const fakeSuccess = () => json({ success: true, message: 'Diagnostic received' }, 200);
 
 export const POST: APIRoute = async ({ request }) => {
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  if (isRateLimited(ip)) {
+    return json({ error: 'Too many requests. Please try again in a bit.' }, 429);
+  }
+
   const contentType = request.headers.get('content-type') || '';
   if (!contentType.toLowerCase().includes('application/json')) {
     return json({ error: 'Unsupported media type' }, 415);
