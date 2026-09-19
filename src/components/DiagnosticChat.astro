@@ -332,6 +332,9 @@
     const renderStepControls = () => {
       const step = steps[stepIndex];
       clearError();
+      input.disabled = false;
+      textarea.disabled = false;
+      skipBtn.disabled = false;
       if (!step) {
         form.hidden = true;
         choices.hidden = true;
@@ -419,6 +422,17 @@
       return { ok: true, value };
     };
 
+    // Locks every control right away so a fast second keystroke/click during the
+    // ~380ms "typing" delay can't land on stale, still-focused, unclear input.
+    const lockControls = () => {
+      input.value = '';
+      input.disabled = true;
+      textarea.value = '';
+      textarea.disabled = true;
+      skipBtn.disabled = true;
+      choices.querySelectorAll('button').forEach((b) => { b.disabled = true; });
+    };
+
     const handleAnswer = (value, displayLabel) => {
       const step = steps[stepIndex];
       const result = validate(step, value);
@@ -426,6 +440,7 @@
         showError(result.error);
         return;
       }
+      lockControls();
       answers[step.field] = result.value;
       const display = result.value === '' ? 'Skipped' : (displayLabel ?? String(result.value));
       addMessage(display, result.value === '' ? 'dc-msg--user dc-msg--skipped' : 'dc-msg--user');
