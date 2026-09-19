@@ -25,6 +25,8 @@ export interface SchemaLocalBusiness {
   '@id': string;
   name: string;
   url: string;
+  logo: string;
+  description: string;
   address: {
     '@type': string;
     addressCountry: string;
@@ -32,6 +34,34 @@ export interface SchemaLocalBusiness {
   areaServed: string[];
   priceRange: string;
   email: string;
+  hasOfferCatalog: {
+    '@type': string;
+    name: string;
+    itemListElement: Array<{
+      '@type': string;
+      name: string;
+      description: string;
+      price?: string;
+      priceCurrency: string;
+      priceSpecification: {
+        '@type': string;
+        price?: string;
+        priceCurrency: string;
+        eligibleQuantity?: {
+          '@type': string;
+          minValue: number;
+          maxValue: number;
+        };
+      };
+    }>;
+  };
+  knowsAbout: string[];
+  sameAs: string[];
+  contactPoint: {
+    '@type': string;
+    email: string;
+    contactType: string;
+  };
 }
 
 export interface SchemaWebSite {
@@ -62,7 +92,7 @@ export function generateOrganizationSchema(): SchemaOrganization {
     areaServed: ['AU', 'Worldwide'],
     contactPoint: {
       '@type': 'ContactPoint',
-      email: 'hello@syncset.com.au',
+      email: 'contact@syncset.com.au',
       contactType: 'customer service',
     },
     sameAs: ['https://www.linkedin.com/company/syncset'],
@@ -72,17 +102,86 @@ export function generateOrganizationSchema(): SchemaOrganization {
 export function generateLocalBusinessSchema(): SchemaLocalBusiness {
   return {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    // ProfessionalService (a LocalBusiness subtype) matches the GBP primary
+    // category (Marketing agency) more precisely than bare LocalBusiness and
+    // is what the GBP deployment guide's schema was built against.
+    '@type': 'ProfessionalService',
     '@id': 'https://www.syncset.com.au/#localbusiness',
     name: 'SyncSet',
     url: 'https://www.syncset.com.au',
+    logo: 'https://www.syncset.com.au/logo-mark.png',
+    description:
+      'AI workflow automation agency. We connect the tools your business already uses so no enquiry goes unanswered and no booking gets lost.',
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'AU',
     },
     areaServed: ['AU', 'Worldwide'],
     priceRange: 'A$900–A$2,500',
-    email: 'hello@syncset.com.au',
+    email: 'contact@syncset.com.au',
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'SyncSet Services',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          name: 'Workflow Audit',
+          description:
+            '20-minute discovery call to identify where your enquiries get stuck and what automation could fix. Free. No commitment.',
+          price: '0',
+          priceCurrency: 'AUD',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            price: '0',
+            priceCurrency: 'AUD',
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Workflow Build',
+          description:
+            'We connect your existing tools and build the automation to capture enquiries and confirm bookings automatically. Pilot: one workflow end-to-end. Most builds take 1–3 weeks.',
+          price: '900',
+          priceCurrency: 'AUD',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            price: '900',
+            priceCurrency: 'AUD',
+            eligibleQuantity: {
+              '@type': 'QuantitativeValue',
+              minValue: 1,
+              maxValue: 1,
+            },
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Ongoing Support & Monitoring',
+          description:
+            'We monitor the workflows we build and fix issues proactively. No lock-in — pay as you go or per-incident support available.',
+          priceCurrency: 'AUD',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            priceCurrency: 'AUD',
+          },
+        },
+      ],
+    },
+    knowsAbout: [
+      'AI workflow automation',
+      'Business process automation',
+      'WhatsApp integration',
+      'CRM automation',
+      'Booking automation',
+      'Enquiry capture',
+      'Small business automation',
+    ],
+    sameAs: ['https://www.linkedin.com/company/syncset'],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      email: 'contact@syncset.com.au',
+      contactType: 'customer service',
+    },
   };
 }
 
