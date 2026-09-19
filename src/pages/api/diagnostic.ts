@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { env } from 'cloudflare:workers';
 
 export const prerender = false;
 export const GET: APIRoute = () => new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers: { 'Content-Type': 'application/json' } });
@@ -58,7 +59,7 @@ const json = (body: unknown, status: number) =>
 // Bots get the same response a human gets so they cannot tell they were caught.
 const fakeSuccess = () => json({ success: true, message: 'Diagnostic received' }, 200);
 
-export const POST: APIRoute = async ({ request, locals }) => {
+export const POST: APIRoute = async ({ request }) => {
   const contentType = request.headers.get('content-type') || '';
   if (!contentType.toLowerCase().includes('application/json')) {
     return json({ error: 'Unsupported media type' }, 415);
@@ -172,29 +173,43 @@ export const POST: APIRoute = async ({ request, locals }) => {
       timestamp: new Date().toISOString(),
     };
 
-    // Workers bindings live on locals.runtime.env. process.env is only populated
-    // when the Pages project has nodejs_compat AND a compat date >= 2025-04-26;
-    // outside that window it is an empty object and every submission 500s.
-    const webhookUrl = locals.runtime?.env?.DIAGNOSTIC_WEBHOOK_URL;
+    // Workers bindings come from the 'cloudflare:workers' module. Astro 6 removed
+    // Astro.locals.runtime.env (it now throws instead of returning undefined) and
+    // process.env stays empty on Workers regardless of compat settings.
+    const webhookUrl = env.DIAGNOSTIC_WEBHOOK_URL;
     if (!webhookUrl) {
-      console.error('DIAGNOSTIC_WEBHOOK_URL environment variable not set');
+      console.error('diagnostic: DIAGNOSTIC_WEBHOOK_URL environment variable not set');
       return json({ error: 'Configuration error' }, 500);
     }
 
-    const response = await fetch(webhookUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
+    let response: Response;
+    try {
+      response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+    } catch (error) {
+      console.error(
+        'diagnostic: fetch to Make webhook threw',
+        error instanceof Error ? error.message : String(error),
+        error instanceof Error ? error.stack : undefined
+      );
+      return json({ error: 'Internal server error' }, 500);
+    }
 
     if (!response.ok) {
-      console.error('Make webhook error:', response.status, response.statusText);
+      console.error('diagnostic: Make webhook returned non-OK status', response.status, response.statusText);
       return json({ error: 'Failed to process diagnostic' }, 500);
     }
 
     return json({ success: true, message: 'Diagnostic received' }, 200);
   } catch (error) {
-    console.error('API error:', error);
+    console.error(
+      'diagnostic: unexpected error',
+      error instanceof Error ? error.message : String(error),
+      error instanceof Error ? error.stack : undefined
+    );
     return json({ error: 'Internal server error' }, 500);
   }
 };
