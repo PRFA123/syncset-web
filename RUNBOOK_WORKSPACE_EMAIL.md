@@ -80,11 +80,11 @@ O pedido tem duas necessidades diferentes, e o Google resolve cada uma com um me
 ### Assinatura de e-mail
 
 - [ ] Gmail (`contact@`) → Configurações → "General" → Signature → nova assinatura
-- [ ] Conteúdo sugerido (ajustar tom):
+- [x] Conteúdo final (revisado por Paulo, 2026-09-21 — sem nome pessoal, sem em dash, em inglês, "AI" removido):
 
   ```
-  Paulo Andrade
-  SyncSet — AI Workflow Automation
+  SyncSet
+  Workflow Automation
   contact@syncset.com.au · syncset.com.au
   ```
 - [ ] Logo: usar o SVG/PNG do favicon/wordmark que já existe em `public/` no repositório (`favicon.svg` é a referência usada no JSON-LD do site) — se não houver uma versão horizontal adequada pra assinatura, gerar uma exportação específica antes
@@ -94,15 +94,15 @@ O pedido tem duas necessidades diferentes, e o Google resolve cada uma com um me
 ### Auto-resposta (vacation responder / triagem de expectativa)
 
 - [ ] Configurações → "General" → Vacation responder — usar mais como "expectativa de resposta" do que ausência real, já que o volume ainda é baixo
-- [ ] Texto sugerido:
+- [x] Texto final (revisado por Paulo, 2026-09-21 — em inglês):
 
   ```
-  Obrigado pelo contato com a SyncSet.
-  Recebemos sua mensagem e respondemos dentro de 1 dia útil.
+  Thank you for contacting SyncSet.
+  We have received your message and will respond within 1 business day.
   ```
-  (Removida a referência a "syncset.com.au/book" do rascunho original — essa página não existe
-  mais, o Cal.com foi removido do site em 19/09/2026. Não há hoje uma página de "ação urgente"
-  alternativa pra linkar; se quiser oferecer isso, precisa ser antes decidido no site.)
+  (Sem link para "syncset.com.au/book" — essa página não existe mais, o Cal.com foi removido do
+  site em 19/09/2026. Não há hoje uma página de "ação urgente" alternativa pra linkar; se quiser
+  oferecer isso, precisa ser antes decidido no site.)
 - [ ] Marcar "Only send a response to people in my Contacts" como **desmarcado** (é e-mail de negócio, precisa responder a desconhecidos)
 
 * **Ferramenta:** Claude for Chrome
