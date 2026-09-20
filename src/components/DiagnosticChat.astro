@@ -1,10 +1,12 @@
 ---
-// "Get your free Automation Diagnostic" — chat-style version. Same backend contract
-// as the old DiagnosticForm.astro: posts the same JSON payload to /api/diagnostic.ts
-// (Cloudflare Pages Function -> diagnostic-audit-v1 Make.com scenario). No new
-// backend, no NLU — this is a deterministic one-question-at-a-time "conversational
-// form", not an AI chatbot. Same anti-spam pattern (honeypot value sent as '',
-// form_ts captured on load) as ContactForm.astro / the old DiagnosticForm.astro.
+// "Get your free Automation Diagnostic" — chat-style version. Posts the same JSON
+// payload shape as before to /api/diagnostic.ts, which now calls Claude directly and
+// returns the generated report synchronously — rendered inline via renderReport()
+// below, not "check your email" (a backup copy is still emailed via the
+// diagnostic-audit-v1 Make.com scenario). This widget itself is still a
+// deterministic one-question-at-a-time "conversational form", not an AI chatbot —
+// the AI is only in the backend report generation. Same anti-spam pattern (honeypot
+// value sent as '', form_ts captured on load) as ContactForm.astro.
 ---
 
 <div class="diagnostic-wrapper">
@@ -127,6 +129,81 @@
   @keyframes dc-bounce {
     0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
     30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .dc-report {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: var(--space-6);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+    border: 1px solid var(--rule);
+  }
+  .dc-report__badge {
+    align-self: flex-start;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .dc-report__badge--alto {
+    background: color-mix(in srgb, var(--accent) 25%, transparent);
+    color: var(--accent-lit);
+  }
+  .dc-report__badge--médio {
+    background: color-mix(in srgb, var(--blue) 25%, transparent);
+    color: var(--blue-lit);
+  }
+  .dc-report__badge--baixo {
+    background: color-mix(in srgb, var(--ink-3) 25%, transparent);
+    color: var(--ink-2);
+  }
+  .dc-report__revenue {
+    font-family: var(--display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0;
+  }
+  .dc-report__note {
+    font-family: var(--mono);
+    font-size: var(--text-xs);
+    color: var(--ink-3);
+    margin: 0;
+  }
+  .dc-report__summary {
+    font-size: var(--text-base);
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0;
+  }
+  .dc-report__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding-left: 20px;
+  }
+  .dc-report__list li {
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+  .dc-report__cta {
+    align-self: flex-start;
+    margin-top: 6px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, var(--accent) 0%, #2e8a66 100%);
+    color: #02110b;
+    font-family: var(--display);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
   }
 
   .dc__inputbar {
@@ -488,6 +565,53 @@
 
     skipBtn.addEventListener('click', () => handleAnswer(''));
 
+    const currencyAud = (n) => `A$${Math.round(n).toLocaleString('en-AU')}`;
+
+    const renderReport = (report) => {
+      const card = document.createElement('div');
+      card.className = 'dc-report';
+
+      const badge = document.createElement('span');
+      badge.className = `dc-report__badge dc-report__badge--${report.score.split(' ')[0].toLowerCase()}`;
+      badge.textContent = report.score;
+      card.appendChild(badge);
+
+      const revenue = document.createElement('p');
+      revenue.className = 'dc-report__revenue';
+      revenue.textContent = `${currencyAud(report.estimated_revenue_aud)} estimated recovered revenue`;
+      card.appendChild(revenue);
+
+      const revenueNote = document.createElement('p');
+      revenueNote.className = 'dc-report__note';
+      revenueNote.textContent = 'Based on your last 2 weeks of missed enquiries, at a conservative 30% close rate.';
+      card.appendChild(revenueNote);
+
+      const summary = document.createElement('p');
+      summary.className = 'dc-report__summary';
+      summary.textContent = report.summary;
+      card.appendChild(summary);
+
+      const list = document.createElement('ul');
+      list.className = 'dc-report__list';
+      report.recommendations.forEach((rec) => {
+        const li = document.createElement('li');
+        li.textContent = rec;
+        list.appendChild(li);
+      });
+      card.appendChild(list);
+
+      if (report.show_booking_cta) {
+        const cta = document.createElement('a');
+        cta.className = 'dc-report__cta';
+        cta.href = 'mailto:contact@syncset.com.au?subject=Diagnostic%20follow-up';
+        cta.textContent = 'Want to talk it through? Email us →';
+        card.appendChild(cta);
+      }
+
+      log.appendChild(card);
+      scrollToBottom();
+    };
+
     const finish = async () => {
       const typing = showTyping();
       const payload = { ...answers, company_website: '', form_ts: formLoadTs };
@@ -499,7 +623,13 @@
         });
         const data = await res.json().catch(() => ({}));
         typing.remove();
-        if (res.ok) {
+        if (res.ok && data.report) {
+          addMessage("Here's your Diagnostic:", 'dc-msg--bot');
+          renderReport(data.report);
+          addMessage("We've also emailed you a copy.", 'dc-msg--bot');
+        } else if (res.ok) {
+          // Defensive fallback — should not happen once ANTHROPIC_API_KEY/DIAGNOSTIC_KV
+          // are configured, but never leave the visitor with nothing.
           addMessage('Thanks! Check your email in a few minutes for your Diagnostic.', 'dc-msg--bot');
         } else {
           addMessage(data.error || 'Something went wrong on our end. Mind trying again in a moment?', 'dc-msg--bot');

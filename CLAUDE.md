@@ -34,9 +34,16 @@ the turn if it fails — keep the build green before stopping.
 
 To exercise `/api/lead` end-to-end, `.dev.vars` (gitignored) must contain `MAKE_WEBHOOK_URL`; a real POST
 under `wrangler pages dev` reaches the `lead-intake-v1` Make scenario, so use obviously-fake probe data.
-`/api/diagnostic` needs `DIAGNOSTIC_WEBHOOK_URL` the same way, reaching the `diagnostic-audit-v1` Make
-scenario (which calls the Anthropic API to score the report — costs real money per call; see
-`agents/BUDGET.md` in the Agent Studio repo, this spend was not budgeted before the feature shipped).
+`/api/diagnostic` needs `DIAGNOSTIC_WEBHOOK_URL`, `ANTHROPIC_API_KEY`, and a `DIAGNOSTIC_KV` namespace
+binding (see Architecture below) — `wrangler pages dev` needs the KV binding passed explicitly since there's
+no committed `wrangler.jsonc` (`--kv=DIAGNOSTIC_KV`), and a fake `ANTHROPIC_API_KEY` will 500 past the cap
+check but exercise everything up to the real API call.
+**Known environment issue on this machine (2026-09-20, unrelated to app code):** `wrangler pages dev` fails
+to start with `Uncaught Error: No such module ".../middleware-insertion-facade.js"` — reproduced from a
+clean `.wrangler/tmp`, so it's not a stale-cache issue. `npx astro dev` (Miniflare-backed) works fine and
+exercises everything except real KV/binding behaviour. If you need the real Workers runtime and hit this,
+it's a pre-existing wrangler/Windows issue, not something your change broke — try a wrangler upgrade before
+assuming your code is wrong.
 
 ## Architecture
 
@@ -71,16 +78,32 @@ scenario (which calls the Anthropic API to score the report — costs real money
   in production until commit `810b6ea` caught it via `wrangler tail` and fixed both files. If you see
   `locals.runtime` anywhere, it's stale/wrong — do not copy that pattern into new code.
   Each endpoint validates content type, body size and field lengths, checks the honeypot and a
-  render-timestamp server-side (bots get a fake 200), then forwards its payload to a Make.com webhook —
-  `lead.ts` → `lead-intake-v1`, `diagnostic.ts` → `diagnostic-audit-v1` (which calls Anthropic, writes
-  Notion, pings Telegram, and **emails the lead their report**). `diagnostic.ts` also has an in-memory,
-  per-isolate rate limit (5 requests/IP/hour) — not distributed across edge locations, documented as a
-  known limitation in the file, upgrade to a KV-backed limiter if real abuse shows up.
-  **Open question, not yet decided:** the original brief for the Diagnostic asked for the report to display
-  immediately in the browser, not by email — that requirement was dropped silently during a prior session.
-  See `memory/COUNCIL.md` (session "2026-09-20 (retroativa)") in the Agent Studio repo for the full
-  analysis; this needs an explicit founder decision (keep email, or build the on-screen display), not a
-  unilateral change by whoever picks this up next.
+  render-timestamp server-side (bots get a fake 200). `lead.ts` forwards straight to the `lead-intake-v1`
+  Make webhook, unchanged.
+  `diagnostic.ts` (rewritten 2026-09-20, resolving the Council item below) now calls the Anthropic API
+  **directly** — `POST https://api.anthropic.com/v1/messages` with `ANTHROPIC_API_KEY`, model
+  `claude-haiku-4-5-20251001`, a forced tool call (`submit_diagnostic_report`) so the response is
+  structured JSON, never free text to parse. The score and `estimated_revenue_aud` are computed **in code**
+  (`missed_enquiries_2wk × 0.3 × avg_deal_value_aud`, thresholds in `scoreFromRevenue()`) — never trust an
+  LLM to do the arithmetic; Claude only writes the qualitative summary + 2-3 recommendations, grounded in
+  the already-computed numbers so it can't contradict them. The report is returned to the browser
+  immediately (`DiagnosticChat.astro`'s `renderReport()` shows it inline, no more "check your email"), and
+  the full payload — original answers **plus** the computed `report` object — is still forwarded to the
+  `diagnostic-audit-v1` Make webhook afterwards for the CRM row, Telegram ping, and a backup copy emailed to
+  the lead. **The Make scenario must stop calling Claude itself** — it now receives the finished `report`
+  (`score`, `estimated_revenue_aud`, `summary`, `recommendations`, `show_booking_cta`) in the payload; if it
+  still calls Claude too, every submission bills twice. A Make/CRM failure never throws away the report the
+  visitor already has — it's logged and the request still returns 200 with the report.
+  Two enforcement layers before the paid API call: the pre-existing in-memory per-IP rate limit (5/hour,
+  not distributed, first line of defence only) and a **global monthly spend cap** (`MONTHLY_DIAGNOSTIC_CAP
+  = 200`, enforced via the `DIAGNOSTIC_KV` binding, fails closed if the KV read/write itself errors — see
+  `agents/BUDGET.md` in the Agent Studio repo for why 200 and how to change it). `DIAGNOSTIC_KV` is a
+  **separate KV namespace Paulo needs to create and bind** in the Cloudflare Pages dashboard — it is not
+  the adapter's auto-provisioned `SESSION` KV (reusing that risked colliding with Astro's own session key
+  namespace, not worth the ambiguity).
+  This was a Council-reviewed change (`memory/COUNCIL.md`, session "2026-09-20 (retroativa)", Agent Studio
+  repo) — the original brief always wanted the report shown immediately; a prior session silently switched
+  it to email-only, which is now fixed rather than left as an open question.
 - `src/components/ContactForm.astro` and `src/components/DiagnosticChat.astro` are the client halves of
   those two flows: both must send `company_website` (empty) and `form_ts` (captured on load, not on
   submit — a real bug fixed in `c838757`) with the payload, otherwise the server treats the submission as
