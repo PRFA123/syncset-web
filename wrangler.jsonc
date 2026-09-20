@@ -1,0 +1,8 @@
+{
+  "name": "syncset-web",
+  "compatibility_date": "2026-04-15",
+  "kv_namespaces": [
+    { "binding": "SESSION", "id": "51b06835cdb74f1c9ffdfe03e694383b" },
+    { "binding": "DIAGNOSTIC_KV", "id": "d7ded9d39ba04ad2a8bce7df34233847" }
+  ]
+}
