@@ -289,7 +289,12 @@ export const POST: APIRoute = async ({ request }) => {
             'reference something specific from their actual answers (their channel, their ' +
             'after-hours behaviour, their tools, their stated frustration) — never a generic ' +
             'tip that could apply to any business. Australian English. No invented statistics ' +
-            'beyond the numbers you were given.',
+            'beyond the numbers you were given. Never use an em dash (—) or en dash (–) ' +
+            'anywhere in your output. Write in plain sentences with commas, periods, or ' +
+            '"and"/"but" instead. Avoid other tells of AI-generated writing too (no ' +
+            '"furthermore", "in today\'s fast-paced world", triple-adjective lists, or ' +
+            'unnecessary hedging). Write like a person who knows this business, not like a ' +
+            'report generator.',
           messages: [
             {
               role: 'user',
