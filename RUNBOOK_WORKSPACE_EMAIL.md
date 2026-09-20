@@ -79,7 +79,7 @@ O pedido tem duas necessidades diferentes, e o Google resolve cada uma com um me
 
 ### Assinatura de e-mail
 
-- [ ] Gmail (`contact@`) → Configurações → "General" → Signature → nova assinatura
+- [x] Gmail (`contact@`) → Configurações → "General" → Signature → nova assinatura ("SyncSet Default") — aplicada via Claude in Chrome em 2026-09-21
 - [x] Conteúdo final (revisado por Paulo, 2026-09-21 — sem nome pessoal, sem em dash, em inglês, "AI" removido):
 
   ```
@@ -87,13 +87,13 @@ O pedido tem duas necessidades diferentes, e o Google resolve cada uma com um me
   Workflow Automation
   contact@syncset.com.au · syncset.com.au
   ```
-- [ ] Logo: usar o SVG/PNG do favicon/wordmark que já existe em `public/` no repositório (`favicon.svg` é a referência usada no JSON-LD do site) — se não houver uma versão horizontal adequada pra assinatura, gerar uma exportação específica antes
+- [ ] Logo: usar o SVG/PNG do favicon/wordmark que já existe em `public/` no repositório (`favicon.svg` é a referência usada no JSON-LD do site) — se não houver uma versão horizontal adequada pra assinatura, gerar uma exportação específica antes. **Ainda pendente**: assinatura aplicada hoje é só texto, sem logo.
 
 * **Ferramenta:** Claude for Chrome cola o texto e faz upload da imagem — nenhuma credencial envolvida, ação de baixo risco
 
 ### Auto-resposta (vacation responder / triagem de expectativa)
 
-- [ ] Configurações → "General" → Vacation responder — usar mais como "expectativa de resposta" do que ausência real, já que o volume ainda é baixo
+- [x] Configurações → "General" → Vacation responder — aplicado via Claude in Chrome em 2026-09-21, sem data de término (ativo indefinidamente)
 - [x] Texto final (revisado por Paulo, 2026-09-21 — em inglês):
 
   ```
@@ -103,7 +103,7 @@ O pedido tem duas necessidades diferentes, e o Google resolve cada uma com um me
   (Sem link para "syncset.com.au/book" — essa página não existe mais, o Cal.com foi removido do
   site em 19/09/2026. Não há hoje uma página de "ação urgente" alternativa pra linkar; se quiser
   oferecer isso, precisa ser antes decidido no site.)
-- [ ] Marcar "Only send a response to people in my Contacts" como **desmarcado** (é e-mail de negócio, precisa responder a desconhecidos)
+- [x] "Only send a response to people in my Contacts" confirmado **desmarcado** — responde a qualquer remetente
 
 * **Ferramenta:** Claude for Chrome
 
