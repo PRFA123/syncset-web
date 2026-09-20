@@ -33,10 +33,10 @@ Estado real confirmado nesta sessão (via DNS público + Claude in Chrome), não
 - [ ] Encaminhamento (Forwarding) para o Gmail pessoal — passos já entregues, execução não confirmada
 - [ ] "Send mail as" (responder como `contact@` de dentro do Gmail pessoal) — não configurado
 - [ ] Perfil da organização no Admin Console (nome exibido, fuso horário, idioma) — nunca verificado, provavelmente nos valores padrão do signup
-- [ ] 2FA em `contact@syncset.com.au` — status desconhecido, checagem humana
+- [x] 2FA em `contact@syncset.com.au` — confirmado ativo (checagem humana, 2026-09-20)
 - [ ] 2FA em `paulinhodemolay@gmail.com` — status desconhecido, checagem humana
 - [ ] DMARC do domínio em `p=none` (registro da Brevo) — modo monitoramento, sem enforcement; correto por agora, item de maturidade na Fase 4
-- [ ] Google Business Profile — guia completo já existe (agente Hermes), nenhum passo executado no painel ainda
+- [x] Google Business Profile — verificação de identidade concluída (100% verified), confirmado via Claude in Chrome (2026-09-20)
 
 **Por que diagnosticar primeiro:** metade do que normalmente se propõe num setup "do zero" (MX, SPF, DKIM) já está feito e correto. Refazer seria retrabalho e risco de derrubar o que funciona. As lacunas reais estão na camada de uso diário (assinatura, encaminhamento, send-as) e de governança (2FA, DMARC enforcement) — não na infraestrutura.
 
@@ -52,9 +52,7 @@ O pedido tem duas necessidades diferentes, e o Google resolve cada uma com um me
 
 **Mecanismo escolhido: Gmail Forwarding** (dentro das configurações de `contact@`, não do Gmail pessoal).
 
-- [ ] Entrar em `contact@syncset.com.au` → Configurações → "Forwarding and POP/IMAP" → "Add a forwarding address" → `paulinhodemolay@gmail.com`
-- [ ] Confirmar o código que o Google manda para o Gmail pessoal
-- [ ] Marcar "Forward a copy of incoming mail to paulinhodemolay@gmail.com" + "keep Gmail's copy in the Inbox" → Salvar
+- [x] **Decisão do fundador (2026-09-21): Forwarding NÃO será configurado.** Paulo optou por não receber e-mails de `contact@syncset.com.au` na caixa pessoal — Necessidade A fica fechada por decisão, não por execução. Sem cópia automática no pessoal, checar `contact@` passa a depender de rotina própria (ex: checagem semanal via Hermes, ver Camada PRO) ou acesso direto à conta.
 
 **Por que Forwarding e não outra coisa:** uma cópia chegando no Gmail pessoal gera notificação nativa (push, badge, e-mail) sem precisar de nenhuma configuração extra de notificação do Workspace — é o próprio e-mail chegando. `contact@` mantém sua cópia íntegra (com "keep in Inbox"), entao as duas caixas continuam com histórico completo e independente — não há fusão de identidade, só uma cópia de leitura chegando no pessoal.
 
@@ -143,7 +141,7 @@ Já documentado em detalhe no runbook separado que o agente Hermes preparou (cat
 
 ### Revisão de 2FA — só você
 
-- [ ] Confirmar 2FA ativo em `contact@syncset.com.au` (Admin Console → Security, ou diretamente na conta)
+- [x] Confirmar 2FA ativo em `contact@syncset.com.au` — confirmado (2026-09-20)
 - [ ] Confirmar 2FA ativo em `paulinhodemolay@gmail.com`
 - [ ] Se for gerar a senha de app pra SMTP (Fase 2, Necessidade B), 2FA precisa estar ativo primeiro — o Google não libera senha de app sem isso
 
@@ -226,3 +224,22 @@ Transforma este setup de "feito uma vez" em sistema mantido, sem exigir que voc�
   real do Make (CRM + Telegram + e-mail de backup) com dados de teste óbvios ("QA Test Co",
   "SyncSet QA Final") — vale apagar essas linhas.
 - [ ] Senha de app SMTP — adiada por decisão do fundador, sem data.
+
+## Fechamento da sessão — 2026-09-21
+
+**Confirmado hoje (decisões e status reportados por Paulo):**
+- [x] Forwarding (Fase 2, Necessidade A) — decisão do fundador de não configurar; item fechado por
+  decisão, não por execução (ver nota na Fase 1 e checkpoint da Fase 2).
+- [x] Chave de console da Anthropic (exposta em texto puro durante troubleshooting em 2026-09-20)
+  — **revogada**. Ação de segurança pendente do fechamento anterior, resolvida.
+- [x] Limpeza de CRM/Notion — as 2 linhas de teste ("QA Test Co", "SyncSet QA Final") removidas.
+- [x] Cenário Make `diagnostic-audit-v1` — corrigido e funcionando (double billing / chamada
+  interna à Anthropic resolvida por Paulo).
+- [ ] Senha de app SMTP — segue adiada por decisão do fundador, sem data (depende de "Send mail as"
+  via SMTP, Fase 2 Necessidade B, que por sua vez depende da decisão em aberto abaixo).
+
+**Ainda em aberto — e por que a maior parte não é tarefa do Claude Code:**
+Todo o trabalho pendente das Fases 2–5 e da Camada PRO é configuração dentro de telas do Gmail/Admin
+Console/GBP (cliques, checkboxes, texto) ou decisão humana — não código, CLI ou deploy. Claude Code
+não tem navegador; essas tarefas cabem ao Claude for Chrome / Claude Cowork (com supervisão de Paulo
+nos pontos de credencial) ou a Paulo diretamente.
