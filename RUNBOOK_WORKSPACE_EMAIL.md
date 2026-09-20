@@ -109,8 +109,8 @@ O pedido tem duas necessidades diferentes, e o Google resolve cada uma com um me
 
 ### Perfil da organização (Admin Console)
 
-- [ ] Admin Console → Account → Profile — confirmar nome exibido "SyncSet", fuso horário (Australia/Sydney ou o correto pra sua base), idioma
-- [ ] **Não preencher endereço físico residencial** — consistente com a decisão já tomada no guia de Google Business Profile (service-area business, sem endereço público exibido)
+- [x] Admin Console → Account → Profile — confirmado em 2026-09-21 via Claude in Chrome: nome "SyncSet", idioma English (UK), fuso horário Australia/Sydney (GMT+10:00) — todos já corretos, nada alterado
+- [x] **Não preencher endereço físico residencial** — confirmado: nenhum endereço preenchido no perfil, consistente com a decisão já tomada no guia de Google Business Profile (service-area business, sem endereço público exibido)
 
 * **Ferramenta:** Claude for Chrome navega e lê os campos; você confirma os valores finais, mudança de baixo risco mas envolve dados da organização
 
