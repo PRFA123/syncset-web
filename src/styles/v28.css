@@ -353,6 +353,22 @@
   color: #93a4ae;
   white-space: nowrap;
 }
+.reply-bars li span {
+  /* Grid items default to a content-based min-width, so a nowrap label
+     can force this column wider than its 1fr share and spill past the
+     card's edge. min-width:0 lets it actually respect the track, and on
+     phones we also allow wrapping instead of relying on nowrap. */
+  min-width: 0;
+}
+/* On phones the label + percentage no longer fit on one line at this size —
+   let it wrap to two lines instead of spilling past the dashboard card's edge. */
+@media (max-width: 640px) {
+  .reply-bars li {
+    grid-template-columns: 34% 1fr;
+    white-space: normal;
+    line-height: 1.25;
+  }
+}
 .reply-bars i {
   display: block;
   height: 12px;
