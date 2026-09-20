@@ -63,10 +63,7 @@ O pedido tem duas necessidades diferentes, e o Google resolve cada uma com um me
 
 **Mecanismo escolhido: "Send mail as"** (configurado do lado do Gmail pessoal, não delegação completa de caixa).
 
-- [ ] No Gmail pessoal → Configurações → "Accounts and Import" → "Send mail as" → "Add another email address"
-- [ ] Endereço: `contact@syncset.com.au` — desmarcar "Treat as an alias" (mantém a identidade separada, não mistura os endereços no envio)
-- [ ] Google verifica por confirmação — confirmar clicando no link que chega em `contact@` (ou, se pedir servidor SMTP para uma assinatura 100% limpa sem qualquer marca "via"/"on behalf of", usar `smtp.gmail.com`, porta 587, usuário `contact@syncset.com.au` e uma **senha de app** gerada dentro da conta `contact@` — isso exige 2FA ativo em `contact@`, ver Fase 4)
-- [ ] Testar: abrir um e-mail encaminhado (da Necessidade A) no Gmail pessoal, responder, e escolher "De: contact@syncset.com.au" no campo De — sem trocar de conta, sem logar de novo
+- [x] **Decisão do fundador (2026-09-21): "Send mail as" NÃO será configurado.** Sem Forwarding, não haveria aviso automático no pessoal pra saber quando responder — Paulo prefere logar direto em `contact@syncset.com.au` quando precisar. Necessidade B fecha por decisão, como a A. Fase 2 encerrada inteira sem configuração adicional de identidade/alias.
 
 **Por que "Send mail as" e não delegação completa (Gmail Delegation):** delegação dá acesso à caixa inteira de `contact@` dentro do Gmail pessoal, mas (a) o e-mail enviado carrega um cabeçalho "sent by ... on behalf of ..." visível se o destinatário abrir os detalhes — menos profissional que uma assinatura própria via SMTP — e (b) as mensagens delegadas normalmente não geram notificação/badge no Gmail pessoal do mesmo jeito que Forwarding gera. Combinando Forwarding (aviso real) + Send mail as (responder com o remetente certo), vocã cobre as duas necessidades sem abrir uma visualização separada nem re-autenticar.
 
@@ -76,7 +73,7 @@ O pedido tem duas necessidades diferentes, e o Google resolve cada uma com um me
 
 **Ferramentas desta fase:** os cliques em Configurações do Gmail (checkboxes, campos de texto) podem ser feitos por **Claude for Chrome**, desde que vocé já esteja logado nas duas contas no seu Chrome — ele nunca digita senha. O clique no **link de confirmação de verificação** e a geração da **senha de app** (se for usar SMTP) ficam com você, por toque em credencial (ver lista "nunca delegar" ao final).
 
-**Checkpoint de aprovação:** confirme que quer o combo Forwarding + Send mail as (recomendação desta seção) antes de eu preparar o passo a passo detalhado do Claude for Chrome para a Fase 3.
+**Checkpoint de aprovação:** Fase 2 encerrada por decisão do fundador (2026-09-21) — Necessidade A (Forwarding) e Necessidade B (Send mail as) descartadas. `contact@syncset.com.au` segue como conta separada, acessada diretamente quando necessário; sem cópia automática no pessoal.
 
 ## Fase 3 — Branding profissional
 
@@ -235,8 +232,7 @@ Transforma este setup de "feito uma vez" em sistema mantido, sem exigir que voc�
 - [x] Limpeza de CRM/Notion — as 2 linhas de teste ("QA Test Co", "SyncSet QA Final") removidas.
 - [x] Cenário Make `diagnostic-audit-v1` — corrigido e funcionando (double billing / chamada
   interna à Anthropic resolvida por Paulo).
-- [ ] Senha de app SMTP — segue adiada por decisão do fundador, sem data (depende de "Send mail as"
-  via SMTP, Fase 2 Necessidade B, que por sua vez depende da decisão em aberto abaixo).
+- [x] Senha de app SMTP — não será necessária: "Send mail as" (Fase 2, Necessidade B) foi descartado por decisão do fundador em 2026-09-21 (ver Fase 2). Item encerrado, não apenas adiado.
 
 **Ainda em aberto — e por que a maior parte não é tarefa do Claude Code:**
 Todo o trabalho pendente das Fases 2–5 e da Camada PRO é configuração dentro de telas do Gmail/Admin
