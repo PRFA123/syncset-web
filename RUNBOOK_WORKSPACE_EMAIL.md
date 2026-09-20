@@ -202,3 +202,27 @@ Transforma este setup de "feito uma vez" em sistema mantido, sem exigir que voc�
 * **Ferramenta:** Hermes (OpenRouter/Nous), com acesso de leitura ao Gmail MCP já disponível neste ambiente — só leitura de labels/threads, sem enviar nada sozinho
 
 **Checkpoint de aprovação final:** essa camada PRO só vale a pena depois que as Fases 1–5 estiverem 100% testadas. Confirme comigo quando chegar lá e eu preparo o agendamento.
+
+## Fechamento da sessão — 2026-09-20
+
+**Confirmado hoje:**
+- [x] DKIM ativo (Admin Console) e verificação de identidade do Google Business Profile
+  concluída (100% verified) — ver Fase 1/4 acima.
+- [x] Dados de pagamento do Workspace adicionados (trial com 12 dias restantes no momento
+  desta sessão).
+- [x] Feature "Diagnóstico" (relatório na tela, commit `e03f1fd`) **deployada e confirmada em
+  produção** pelo Claude Code — `ANTHROPIC_API_KEY` e `DIAGNOSTIC_KV` corretos, endpoint
+  retornando 200 com relatório completo. Handoff fechado: `tasks/2026-09-20-diagnostic-kv-binding.md`
+  (status DONE).
+
+**Ainda em aberto para a próxima sessão:**
+- [ ] Fase 2 deste runbook — Forwarding (`contact@` → pessoal) e Send mail as — não configurados.
+- [ ] Cenário Make `diagnostic-audit-v1` — ainda precisa parar de chamar a Anthropic
+  internamente (double billing), não tocado hoje.
+- [ ] **Ação de segurança recomendada pelo Claude Code, ainda sem confirmação**: uma chave da
+  Anthropic foi colada em texto puro na conversa do Claude Code durante o troubleshooting de
+  hoje — precisa estar **revogada** no console da Anthropic. Confirmar isso amanhã.
+- [ ] Limpeza de CRM/Notion: 2 dos 6 diagnósticos de QA consumidos hoje dispararam o webhook
+  real do Make (CRM + Telegram + e-mail de backup) com dados de teste óbvios ("QA Test Co",
+  "SyncSet QA Final") — vale apagar essas linhas.
+- [ ] Senha de app SMTP — adiada por decisão do fundador, sem data.
