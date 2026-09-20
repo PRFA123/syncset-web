@@ -136,7 +136,7 @@ Já documentado em detalhe no runbook separado que o agente Hermes preparou (cat
 ### SPF / DKIM / DMARC — já resolvido, só confirmar
 
 - [x] MX, SPF, DKIM confirmados publicamente na Fase 1 — nada a fazer aqui de novo
-- [ ] Admin Console → Apps → Google Workspace → Gmail → "Authenticate email" → confirmar que está em "Authenticating with DKIM" (o registro DNS por si só n��o garante que a assinatura está ativa)
+- [x] Admin Console → Apps → Google Workspace → Gmail → "Authenticate email" → confirmado em 2026-09-20: autenticação DKIM ativa
 - [ ] Revisar o DMARC atual (`v=DMARC1; p=none; rua=mailto:...`, registro da Brevo): `p=none` só monitora, não bloqueia nada malicioso se-passar-por-você. Depois de 2–4 semanas de envio normal sem problema de entrega, considerar subir pra `p=quarantine` — item de maturidade, não urgente agora (entra na Camada PRO abaixo)
 
 * **Ferramenta:** Claude for Chrome confirma visualmente o status no Admin Console; qualquer mudança de política DMARC é só editar um registro TXT no Cloudflare — baixo risco, mas fica pra quando o volume de envio justificar
