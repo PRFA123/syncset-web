@@ -4,15 +4,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Marketing site for SyncSet (workflow-automation agency, Australia). Astro 5, `output: 'static'` with the
-`@astrojs/cloudflare` adapter; deployed to Cloudflare Pages. The only business goal of the page is the
-conversion to "Book a Workflow Audit" (Cal.com on `/book/`) or the contact form.
+Marketing site for SyncSet (workflow-automation agency, Australia). Astro 6, `output: 'server'` with the
+`@astrojs/cloudflare` adapter; deployed to Cloudflare Pages. Every page is server-rendered on each request
+by default now (no page sets `prerender = true`) — this changed from the original `output: 'static'` when a
+deploy-config fix from origin was merged in (see the `80307cd` merge commit); nothing in this repo has
+re-added `prerender = true` since, so treat that as the current, intentional state, not an oversight.
+
+The primary conversion path is the **"Diagnostic de Automação"** — a conversational chat (`#diagnostic`,
+`DiagnosticChat.astro`) that posts to `/api/diagnostic.ts`. **Cal.com and `/book/` were removed entirely**
+(commit `374c69f`, 2026-09-19) — this was a deliberate founder decision, not scope drift: a solo founder
+with no team can't absorb an open booking calendar pre-qualification, and the interactive
+form/chatbot was always meant to be the priority over a booked call. If a prospect wants a video call, they
+request it by email — there is no booking UI on the site anymore. Google Business Profile still lists a
+phone number and WhatsApp as of 2026-09-20; the founder has not decided whether to keep those.
+The secondary path is the short contact form (`ContactForm.astro`, `#contact`, "quick message, no
+diagnostic").
 
 ## Commands
 
 ```bash
 npm run dev                 # astro dev on :4321 (port often taken — use `npx astro dev --port 4330`)
-npm run build               # astro build → dist/ (prerendered pages + dist/_worker.js for /api/lead)
+npm run build               # astro build → dist/ (server-rendered via dist/_worker.js, output: 'server')
 npx astro check             # type-check .astro/.ts (needs @astrojs/check, installed as devDependency)
 npx wrangler pages dev ./dist --port 8788 --compatibility-date=2026-09-11   # run the real Workers runtime
 ```
@@ -22,6 +34,9 @@ the turn if it fails — keep the build green before stopping.
 
 To exercise `/api/lead` end-to-end, `.dev.vars` (gitignored) must contain `MAKE_WEBHOOK_URL`; a real POST
 under `wrangler pages dev` reaches the `lead-intake-v1` Make scenario, so use obviously-fake probe data.
+`/api/diagnostic` needs `DIAGNOSTIC_WEBHOOK_URL` the same way, reaching the `diagnostic-audit-v1` Make
+scenario (which calls the Anthropic API to score the report — costs real money per call; see
+`agents/BUDGET.md` in the Agent Studio repo, this spend was not budgeted before the feature shipped).
 
 ## Architecture
 
@@ -48,15 +63,31 @@ under `wrangler pages dev` reaches the `lead-intake-v1` Make scenario, so use ob
 - `src/layouts/BaseLayout.astro` owns `<head>`: absolute canonical/OG URLs derived from `Astro.site`,
   Google Fonts (Instrument Sans + JetBrains Mono), and a `schema` slot for per-page JSON-LD.
   `src/lib/schema.ts` builds the Organization/LocalBusiness/WebSite graph used on the home page.
-- `src/pages/api/lead.ts` is the only server route (`prerender = false`). Secrets come from
-  `locals.runtime.env` (typed in `src/env.d.ts`), never `process.env` — that is empty on Workers unless the
-  project has `nodejs_compat` and a compatibility date ≥ 2025-04-26. It validates content type, body size
-  and field lengths, checks the honeypot and a render-timestamp server-side (bots get a fake 200), then
-  forwards to the Make webhook.
-- `src/components/ContactForm.astro` is the client half of that flow: it must send `company_website` and
-  `form_ts` with the payload, otherwise the server treats the submission as a bot.
-- Internal links use the trailing-slash form (`/book/`, `/privacy/`, `/terms/`) because Cloudflare Pages
-  serves `book/index.html` and 308-redirects the bare path.
+- `src/pages/api/lead.ts` and `src/pages/api/diagnostic.ts` are the two server routes (both
+  `prerender = false`). Secrets come from **`import { env } from 'cloudflare:workers'`** (typed via the
+  module augmentation in `src/env.d.ts`), never `Astro.locals.runtime.env` and never `process.env`.
+  `locals.runtime.env` was the correct pattern under Astro 5 but **Astro 6 removed it — the getter now
+  throws instead of returning `undefined`**, which silently 500'd every real submission on both endpoints
+  in production until commit `810b6ea` caught it via `wrangler tail` and fixed both files. If you see
+  `locals.runtime` anywhere, it's stale/wrong — do not copy that pattern into new code.
+  Each endpoint validates content type, body size and field lengths, checks the honeypot and a
+  render-timestamp server-side (bots get a fake 200), then forwards its payload to a Make.com webhook —
+  `lead.ts` → `lead-intake-v1`, `diagnostic.ts` → `diagnostic-audit-v1` (which calls Anthropic, writes
+  Notion, pings Telegram, and **emails the lead their report**). `diagnostic.ts` also has an in-memory,
+  per-isolate rate limit (5 requests/IP/hour) — not distributed across edge locations, documented as a
+  known limitation in the file, upgrade to a KV-backed limiter if real abuse shows up.
+  **Open question, not yet decided:** the original brief for the Diagnostic asked for the report to display
+  immediately in the browser, not by email — that requirement was dropped silently during a prior session.
+  See `memory/COUNCIL.md` (session "2026-09-20 (retroativa)") in the Agent Studio repo for the full
+  analysis; this needs an explicit founder decision (keep email, or build the on-screen display), not a
+  unilateral change by whoever picks this up next.
+- `src/components/ContactForm.astro` and `src/components/DiagnosticChat.astro` are the client halves of
+  those two flows: both must send `company_website` (empty) and `form_ts` (captured on load, not on
+  submit — a real bug fixed in `c838757`) with the payload, otherwise the server treats the submission as
+  a bot.
+- Internal links use the trailing-slash form (`/privacy/`, `/terms/`) because Cloudflare Pages serves
+  `privacy/index.html` and 308-redirects the bare path. There is no `/book/` anymore — it was deleted along
+  with Cal.com (commit `374c69f`); don't re-add a link to it.
 - SVG animations in `index.astro` are SMIL (`<animateMotion>`); CSS cannot pause them, so the inline script
   at the bottom of `index.astro` pauses every `<svg>` under `prefers-reduced-motion`.
 - `public/` is copied verbatim to `dist/`. `public/logos/*.svg` are generated by `get-logos.ps1`
