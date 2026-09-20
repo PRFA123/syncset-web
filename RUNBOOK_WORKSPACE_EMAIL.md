@@ -118,11 +118,13 @@ O pedido tem duas necessidades diferentes, e o Google resolve cada uma com um me
 
 Já documentado em detalhe no runbook separado que o agente Hermes preparou (categoria, descrição de 750 caracteres, 4 serviços com preço, verificação por vídeo ou correio). Aqui só o que muda depois da decisão desta conversa:
 
-- [ ] Usar `contact@syncset.com.au` como e-mail de contato do perfil (o guia original citava `hello@`, já corrigido no repositório — replicar a mesma escolha no painel do GBP)
-- [ ] Confirmar a paleta SPEC.md (warm paper `#FBFAF7` + verde `#1F7A5C`) antes de criar a imagem de capa e o logo do perfil
-- [ ] Verificação (vídeo ou postal) — 100% manual, só você
+- [ ] **Revisado em 2026-09-21**: o painel atual do GBP (aba "Contact") não expõe um campo de e-mail de contato público — só telefone, WhatsApp/SMS e site. Esse passo do guia original pode estar desatualizado (Google mudou a interface) ou depender de um recurso diferente (Messages). Sem ação possível aqui até confirmar onde esse campo existe, se existir.
+- [ ] Confirmar a paleta SPEC.md (warm paper `#FBFAF7` + verde `#1F7A5C`) antes de criar a imagem de capa e o logo do perfil — **ainda pendente**, perfil sem foto de capa (só o mapa padrão)
+- [x] Verificação (vídeo ou postal) — concluída, perfil 100% verificado (confirmado em 2026-09-20)
 
 * **Ferramenta:** painel do GBP é 100% manual/humano nas etapas de verificação; Claude for Chrome pode ajudar a preencher categoria/descrição/serviços (texto, sem credencial), mas não a etapa de verificação de identidade
+
+**Achado da revisão de 2026-09-21 (via Claude in Chrome):** o perfil já está bem além do que este runbook previa — categoria primária "Automation company" + 3 secundárias, descrição detalhada com metodologia e faixa de preço (pilotos A$900, primeiro build A$1.800–2.500), WhatsApp/SMS configurados como canal primário de chat, site linkado. Há uma edição de descrição pendente de revisão do Google (prazo de até 7 dias) — não mexi em nada pra não interferir nessa revisão em andamento. Falta: foto de capa/logo (só o mapa padrão aparece) e definir onde/se cabe um e-mail de contato público.
 
 **Checkpoint de aprovação:** aprove o texto da assinatura e da auto-resposta acima (�ou ajuste o tom) antes de eu pedir ao Claude for Chrome pra aplicar — são textos que virão em nome da empresa, vale sua revisão.
 
