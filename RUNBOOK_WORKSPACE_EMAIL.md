@@ -26,7 +26,7 @@ Estado real confirmado nesta sessão (via DNS público + Claude in Chrome), não
 - [x] `contact@syncset.com.au` ativo no Google Workspace Starter (trial 14 dias, iniciado \~17/09)
 - [x] MX correto: `smtp.google.com`, prioridade 10, único MX na zona
 - [x] SPF correto: `v=spf1 include:_spf.google.com ~all`, sem duplicidade com a Brevo
-- [x] DKIM (`google._domainkey`) publicado e válido — falta confirmar se a assinatura está de fato ativada
+- [x] DKIM (`google._domainkey`) publicado e válido — assinatura confirmada ativa no Admin Console (2026-09-20)
 - [x] Todo o site (`schema.ts`, `privacy.astro`, `terms.astro`, docs) já usa `contact@` como único endereço — `hello@` foi removido do repositório inteiro
 - [ ] Assinatura de e-mail — não configurada
 - [ ] Auto-resposta / vacation responder — não configurada
