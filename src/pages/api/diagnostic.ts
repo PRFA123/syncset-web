@@ -13,7 +13,17 @@ export const GET: APIRoute = () => new Response(JSON.stringify({ error: 'Method 
 // the lead a backup copy — but it must stop calling Claude itself, or every
 // submission gets billed twice. See CLAUDE.md for the exact `report` shape
 // Make now receives.
+//
+// `intake_type` distinguishes the two DiagnosticChat.astro flows: 'diagnostic'
+// is the standard 14-question flow (default, all fields below populated,
+// `report` always set); 'direct' is the "I already know what I want" shortcut
+// (only name/email/business/automation_request/sms_opt_in populated, no
+// Anthropic call, `report` is null). Make's webhook module accepts unknown
+// JSON fields without breaking — `intake_type`, `automation_request` and
+// `sms_opt_in` only become usable in the scenario once its data structure is
+// redetermined from a sample payload there.
 interface DiagnosticPayload {
+  intake_type: 'diagnostic' | 'direct';
   name: string;
   email: string;
   phone: string;
@@ -27,9 +37,11 @@ interface DiagnosticPayload {
   response_time_current: string;
   booking_flow_current: string;
   biggest_frustration: string;
+  automation_request: string;
+  sms_opt_in: boolean;
   preferred_next_step: string;
   timestamp: string;
-  report: DiagnosticReport;
+  report: DiagnosticReport | null;
 }
 
 interface DiagnosticReport {
@@ -53,11 +65,13 @@ const MAX_FIELD = {
   response_time_current: 200,
   booking_flow_current: 300,
   biggest_frustration: 1000,
+  automation_request: 1000,
   preferred_next_step: 40,
 } as const;
 // Enforces Paulo's standing next-step rule: email first, automated WhatsApp
 // second, phone/video call framed as last resort — never the default.
 const ALLOWED_NEXT_STEPS = ['email', 'whatsapp_bot', 'call'] as const;
+const ALLOWED_INTAKE_TYPES = ['diagnostic', 'direct'] as const;
 // A human needs longer than this between the form rendering and pressing submit.
 const MIN_FILL_MS = 3000;
 const MAX_MISSED_ENQUIRIES = 100000;
@@ -178,22 +192,40 @@ export const POST: APIRoute = async ({ request }) => {
     const response_time_current = str(data.response_time_current);
     const booking_flow_current = str(data.booking_flow_current);
     const biggest_frustration = str(data.biggest_frustration);
-    const preferred_next_step = str(data.preferred_next_step);
+    const automation_request = str(data.automation_request);
+    const sms_opt_in = data.sms_opt_in === true;
+    const preferred_next_stepRaw = str(data.preferred_next_step);
 
     const missed_enquiries_2wk = Number(data.missed_enquiries_2wk);
     const avg_deal_value_aud = Number(data.avg_deal_value_aud);
 
-    if (!name || !email || !business || !channel || !after_hours_behavior || !preferred_next_step) {
-      return json({ error: 'Missing required fields' }, 400);
-    }
-    if (!Number.isFinite(missed_enquiries_2wk) || missed_enquiries_2wk < 0 || missed_enquiries_2wk > MAX_MISSED_ENQUIRIES) {
-      return json({ error: 'Missed enquiries must be a valid number' }, 400);
-    }
-    if (!Number.isFinite(avg_deal_value_aud) || avg_deal_value_aud < 0 || avg_deal_value_aud > MAX_DEAL_VALUE) {
-      return json({ error: 'Average deal value must be a valid number' }, 400);
-    }
-    if (!ALLOWED_NEXT_STEPS.includes(preferred_next_step as typeof ALLOWED_NEXT_STEPS[number])) {
-      return json({ error: 'Invalid preferred next step' }, 400);
+    // Unrecognised or missing intake_type falls back to 'diagnostic' — the
+    // standard flow, unchanged from before this field existed.
+    const intakeTypeRaw = str(data.intake_type);
+    const intake_type = ALLOWED_INTAKE_TYPES.includes(intakeTypeRaw as (typeof ALLOWED_INTAKE_TYPES)[number])
+      ? (intakeTypeRaw as (typeof ALLOWED_INTAKE_TYPES)[number])
+      : 'diagnostic';
+    // The shortcut flow never shows the next-step question — always email,
+    // decided server-side so a tampered client payload can't change it.
+    const preferred_next_step = intake_type === 'direct' ? 'email' : preferred_next_stepRaw;
+
+    if (intake_type === 'direct') {
+      if (!name || !email || !business || !automation_request) {
+        return json({ error: 'Missing required fields' }, 400);
+      }
+    } else {
+      if (!name || !email || !business || !channel || !after_hours_behavior || !preferred_next_step) {
+        return json({ error: 'Missing required fields' }, 400);
+      }
+      if (!Number.isFinite(missed_enquiries_2wk) || missed_enquiries_2wk < 0 || missed_enquiries_2wk > MAX_MISSED_ENQUIRIES) {
+        return json({ error: 'Missed enquiries must be a valid number' }, 400);
+      }
+      if (!Number.isFinite(avg_deal_value_aud) || avg_deal_value_aud < 0 || avg_deal_value_aud > MAX_DEAL_VALUE) {
+        return json({ error: 'Average deal value must be a valid number' }, 400);
+      }
+      if (!ALLOWED_NEXT_STEPS.includes(preferred_next_step as typeof ALLOWED_NEXT_STEPS[number])) {
+        return json({ error: 'Invalid preferred next step' }, 400);
+      }
     }
 
     const fieldChecks: Array<[string, string, number]> = [
@@ -208,6 +240,7 @@ export const POST: APIRoute = async ({ request }) => {
       [response_time_current, 'response_time_current', MAX_FIELD.response_time_current],
       [booking_flow_current, 'booking_flow_current', MAX_FIELD.booking_flow_current],
       [biggest_frustration, 'biggest_frustration', MAX_FIELD.biggest_frustration],
+      [automation_request, 'automation_request', MAX_FIELD.automation_request],
       [preferred_next_step, 'preferred_next_step', MAX_FIELD.preferred_next_step],
     ];
     for (const [value, field, max] of fieldChecks) {
@@ -228,161 +261,174 @@ export const POST: APIRoute = async ({ request }) => {
     // Astro.locals.runtime.env (it now throws instead of returning undefined) and
     // process.env stays empty on Workers regardless of compat settings.
     const webhookUrl = env.DIAGNOSTIC_WEBHOOK_URL;
-    const anthropicKey = env.ANTHROPIC_API_KEY;
-    const spendKv = env.DIAGNOSTIC_KV;
-    if (!webhookUrl || !anthropicKey || !spendKv) {
-      console.error(
-        'diagnostic: missing configuration —',
-        !webhookUrl ? 'DIAGNOSTIC_WEBHOOK_URL' : '',
-        !anthropicKey ? 'ANTHROPIC_API_KEY' : '',
-        !spendKv ? 'DIAGNOSTIC_KV' : ''
-      );
+    if (!webhookUrl) {
+      console.error('diagnostic: missing configuration — DIAGNOSTIC_WEBHOOK_URL');
       return json({ error: 'Configuration error' }, 500);
     }
 
-    // Global monthly spend cap, enforced before the paid API call. Fails
-    // closed: if KV read/write itself errors, we do not fall through to an
-    // uncapped Anthropic call — that would defeat the whole point of the cap.
-    const monthKey = currentMonthKey();
-    let monthCount: number;
-    try {
-      monthCount = Number((await spendKv.get(monthKey)) || '0');
-    } catch (error) {
-      console.error('diagnostic: KV read failed, refusing to proceed uncapped', error);
-      return json({ error: 'Internal server error' }, 500);
-    }
-    if (monthCount >= MONTHLY_DIAGNOSTIC_CAP) {
-      console.error('diagnostic: monthly cap reached', monthKey, monthCount);
-      return json(
-        { error: "We've hit our diagnostic capacity for this month. Please email contact@syncset.com.au and we'll run yours by hand." },
-        429
-      );
-    }
+    // The shortcut ('direct') flow never computes a score: there's no
+    // missed_enquiries/avg_deal_value to base it on, and no report to write,
+    // so it also skips the Anthropic call and the spend cap entirely — a
+    // free action, unlike the standard flow below.
+    let report: DiagnosticReport | null = null;
 
-    // Deterministic score/revenue math happens in code, never trusted to the
-    // model — an LLM asked to "do the arithmetic" is the wrong tool for a
-    // fixed formula. Claude is only asked for the qualitative narrative,
-    // grounded in the already-computed numbers.
-    const estimated_revenue_aud = Math.round(missed_enquiries_2wk * 0.3 * avg_deal_value_aud);
-    const score = scoreFromRevenue(estimated_revenue_aud);
-    const show_booking_cta = score !== 'Baixo potencial';
+    if (intake_type === 'diagnostic') {
+      const anthropicKey = env.ANTHROPIC_API_KEY;
+      const spendKv = env.DIAGNOSTIC_KV;
+      if (!anthropicKey || !spendKv) {
+        console.error(
+          'diagnostic: missing configuration —',
+          !anthropicKey ? 'ANTHROPIC_API_KEY' : '',
+          !spendKv ? 'DIAGNOSTIC_KV' : ''
+        );
+        return json({ error: 'Configuration error' }, 500);
+      }
 
-    let summary: string;
-    let recommendations: string[];
-    try {
-      const anthropicRes = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'x-api-key': anthropicKey,
-          'anthropic-version': '2023-06-01',
-        },
-        body: JSON.stringify({
-          model: ANTHROPIC_MODEL,
-          max_tokens: 800,
-          system:
-            'You write short, specific automation diagnostic reports for Australian small ' +
-            'businesses, based on answers from a 2-minute intake chat. You are given an ' +
-            'already-computed score and estimated recovered revenue (over the last 2 weeks) ' +
-            '— never recalculate or contradict those numbers. Write exactly: a 1-2 sentence ' +
-            'summary of their situation, and 2-3 recommendations. Every recommendation must ' +
-            'reference something specific from their actual answers (their channel, their ' +
-            'after-hours behaviour, their tools, their stated frustration) — never a generic ' +
-            'tip that could apply to any business. Australian English. No invented statistics ' +
-            'beyond the numbers you were given. Never use an em dash (—) or en dash (–) ' +
-            'anywhere in your output. Write in plain sentences with commas, periods, or ' +
-            '"and"/"but" instead. Avoid other tells of AI-generated writing too (no ' +
-            '"furthermore", "in today\'s fast-paced world", triple-adjective lists, or ' +
-            'unnecessary hedging). Write like a person who knows this business, not like a ' +
-            'report generator.',
-          messages: [
-            {
-              role: 'user',
-              content: JSON.stringify({
-                business,
-                team_size: team_size || 'not given',
-                channel,
-                missed_enquiries_2wk,
-                after_hours_behavior,
-                avg_deal_value_aud,
-                tools_used: tools_used || 'not given',
-                response_time_current: response_time_current || 'not given',
-                booking_flow_current: booking_flow_current || 'not given',
-                biggest_frustration: biggest_frustration || 'not given',
-                computed_score: score,
-                computed_estimated_revenue_aud: estimated_revenue_aud,
-              }),
-            },
-          ],
-          tool_choice: { type: 'tool', name: 'submit_diagnostic_report' },
-          tools: [
-            {
-              name: 'submit_diagnostic_report',
-              description: 'Submit the written diagnostic report.',
-              input_schema: {
-                type: 'object',
-                properties: {
-                  summary: { type: 'string' },
-                  recommendations: {
-                    type: 'array',
-                    items: { type: 'string' },
-                    minItems: 2,
-                    maxItems: 3,
-                  },
-                },
-                required: ['summary', 'recommendations'],
+      // Global monthly spend cap, enforced before the paid API call. Fails
+      // closed: if KV read/write itself errors, we do not fall through to an
+      // uncapped Anthropic call — that would defeat the whole point of the cap.
+      const monthKey = currentMonthKey();
+      let monthCount: number;
+      try {
+        monthCount = Number((await spendKv.get(monthKey)) || '0');
+      } catch (error) {
+        console.error('diagnostic: KV read failed, refusing to proceed uncapped', error);
+        return json({ error: 'Internal server error' }, 500);
+      }
+      if (monthCount >= MONTHLY_DIAGNOSTIC_CAP) {
+        console.error('diagnostic: monthly cap reached', monthKey, monthCount);
+        return json(
+          { error: "We've hit our diagnostic capacity for this month. Please email contact@syncset.com.au and we'll run yours by hand." },
+          429
+        );
+      }
+
+      // Deterministic score/revenue math happens in code, never trusted to the
+      // model — an LLM asked to "do the arithmetic" is the wrong tool for a
+      // fixed formula. Claude is only asked for the qualitative narrative,
+      // grounded in the already-computed numbers.
+      const estimated_revenue_aud = Math.round(missed_enquiries_2wk * 0.3 * avg_deal_value_aud);
+      const score = scoreFromRevenue(estimated_revenue_aud);
+      const show_booking_cta = score !== 'Baixo potencial';
+
+      let summary: string;
+      let recommendations: string[];
+      try {
+        const anthropicRes = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            'x-api-key': anthropicKey,
+            'anthropic-version': '2023-06-01',
+          },
+          body: JSON.stringify({
+            model: ANTHROPIC_MODEL,
+            max_tokens: 800,
+            system:
+              'You write short, specific automation diagnostic reports for Australian small ' +
+              'businesses, based on answers from a 2-minute intake chat. You are given an ' +
+              'already-computed score and estimated recovered revenue (over the last 2 weeks) ' +
+              '— never recalculate or contradict those numbers. Write exactly: a 1-2 sentence ' +
+              'summary of their situation, and 2-3 recommendations. Every recommendation must ' +
+              'reference something specific from their actual answers (their channel, their ' +
+              'after-hours behaviour, their tools, their stated frustration) — never a generic ' +
+              'tip that could apply to any business. Australian English. No invented statistics ' +
+              'beyond the numbers you were given. Never use an em dash (—) or en dash (–) ' +
+              'anywhere in your output. Write in plain sentences with commas, periods, or ' +
+              '"and"/"but" instead. Avoid other tells of AI-generated writing too (no ' +
+              '"furthermore", "in today\'s fast-paced world", triple-adjective lists, or ' +
+              'unnecessary hedging). Write like a person who knows this business, not like a ' +
+              'report generator.',
+            messages: [
+              {
+                role: 'user',
+                content: JSON.stringify({
+                  business,
+                  team_size: team_size || 'not given',
+                  channel,
+                  missed_enquiries_2wk,
+                  after_hours_behavior,
+                  avg_deal_value_aud,
+                  tools_used: tools_used || 'not given',
+                  response_time_current: response_time_current || 'not given',
+                  booking_flow_current: booking_flow_current || 'not given',
+                  biggest_frustration: biggest_frustration || 'not given',
+                  computed_score: score,
+                  computed_estimated_revenue_aud: estimated_revenue_aud,
+                }),
               },
-            },
-          ],
-        }),
-      });
+            ],
+            tool_choice: { type: 'tool', name: 'submit_diagnostic_report' },
+            tools: [
+              {
+                name: 'submit_diagnostic_report',
+                description: 'Submit the written diagnostic report.',
+                input_schema: {
+                  type: 'object',
+                  properties: {
+                    summary: { type: 'string' },
+                    recommendations: {
+                      type: 'array',
+                      items: { type: 'string' },
+                      minItems: 2,
+                      maxItems: 3,
+                    },
+                  },
+                  required: ['summary', 'recommendations'],
+                },
+              },
+            ],
+          }),
+        });
 
-      if (!anthropicRes.ok) {
-        const errText = await anthropicRes.text().catch(() => '');
-        console.error('diagnostic: Anthropic API returned non-OK status', anthropicRes.status, errText);
+        if (!anthropicRes.ok) {
+          const errText = await anthropicRes.text().catch(() => '');
+          console.error('diagnostic: Anthropic API returned non-OK status', anthropicRes.status, errText);
+          return json({ error: 'Internal server error' }, 500);
+        }
+
+        const anthropicJson = (await anthropicRes.json()) as {
+          content?: Array<{ type: string; input?: { summary?: string; recommendations?: string[] } }>;
+        };
+        const toolUse = anthropicJson.content?.find((c) => c.type === 'tool_use');
+        summary = toolUse?.input?.summary || '';
+        recommendations = toolUse?.input?.recommendations || [];
+        if (!summary || recommendations.length < 2) {
+          console.error('diagnostic: Anthropic response missing expected fields', JSON.stringify(anthropicJson));
+          return json({ error: 'Internal server error' }, 500);
+        }
+      } catch (error) {
+        console.error(
+          'diagnostic: fetch to Anthropic threw',
+          error instanceof Error ? error.message : String(error),
+          error instanceof Error ? error.stack : undefined
+        );
         return json({ error: 'Internal server error' }, 500);
       }
 
-      const anthropicJson = (await anthropicRes.json()) as {
-        content?: Array<{ type: string; input?: { summary?: string; recommendations?: string[] } }>;
+      // Only count spend against the cap for a call that actually succeeded and
+      // billed. KV writes here are best-effort per-isolate — under concurrent
+      // load two requests can both read the same starting count before either
+      // writes (a known KV race, not a strict lock) — acceptable at this
+      // traffic level since the cap is a cost ceiling, not a precise quota;
+      // revisit if volume ever makes the race meaningfully underrun 200/month.
+      try {
+        await spendKv.put(monthKey, String(monthCount + 1), { expirationTtl: 60 * 60 * 24 * 40 });
+      } catch (error) {
+        console.error('diagnostic: KV write failed (report already generated, proceeding anyway)', error);
+      }
+
+      report = {
+        score,
+        estimated_revenue_aud,
+        summary,
+        recommendations,
+        show_booking_cta,
       };
-      const toolUse = anthropicJson.content?.find((c) => c.type === 'tool_use');
-      summary = toolUse?.input?.summary || '';
-      recommendations = toolUse?.input?.recommendations || [];
-      if (!summary || recommendations.length < 2) {
-        console.error('diagnostic: Anthropic response missing expected fields', JSON.stringify(anthropicJson));
-        return json({ error: 'Internal server error' }, 500);
-      }
-    } catch (error) {
-      console.error(
-        'diagnostic: fetch to Anthropic threw',
-        error instanceof Error ? error.message : String(error),
-        error instanceof Error ? error.stack : undefined
-      );
-      return json({ error: 'Internal server error' }, 500);
     }
-
-    // Only count spend against the cap for a call that actually succeeded and
-    // billed. KV writes here are best-effort per-isolate — under concurrent
-    // load two requests can both read the same starting count before either
-    // writes (a known KV race, not a strict lock) — acceptable at this
-    // traffic level since the cap is a cost ceiling, not a precise quota;
-    // revisit if volume ever makes the race meaningfully underrun 200/month.
-    try {
-      await spendKv.put(monthKey, String(monthCount + 1), { expirationTtl: 60 * 60 * 24 * 40 });
-    } catch (error) {
-      console.error('diagnostic: KV write failed (report already generated, proceeding anyway)', error);
-    }
-
-    const report: DiagnosticReport = {
-      score,
-      estimated_revenue_aud,
-      summary,
-      recommendations,
-      show_booking_cta,
-    };
 
     const payload: DiagnosticPayload = {
+      intake_type,
       name,
       email,
       phone,
@@ -396,6 +442,8 @@ export const POST: APIRoute = async ({ request }) => {
       response_time_current,
       booking_flow_current,
       biggest_frustration,
+      automation_request,
+      sms_opt_in,
       preferred_next_step,
       timestamp: new Date().toISOString(),
       report,

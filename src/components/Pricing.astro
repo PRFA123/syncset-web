@@ -1,0 +1,200 @@
+---
+// Tier 0 launch pricing — the five entry offers for the first clients, shown
+// as a table above the standing "What it costs" pilot pricing further down
+// the page (kept separate on purpose: Tier 0 is launch pricing, not the
+// long-run pilot pricing in the existing .pricing section).
+interface Tier {
+  name: string;
+  price: string;
+  description: string;
+}
+
+const tiers: Tier[] = [
+  {
+    name: 'Free Diagnostic',
+    price: 'Free',
+    description: '20-minute audit. We show you exactly where enquiries are getting lost before you spend a cent.',
+  },
+  {
+    name: 'Starter Automation',
+    price: 'A$490',
+    description: 'One workflow, wired end to end, enquiry capture or booking confirmation, whichever is costing you more right now.',
+  },
+  {
+    name: 'Presence + Automation Bundle',
+    price: 'A$690',
+    description: 'Your online presence set up properly, plus one workflow connected and running.',
+  },
+  {
+    name: 'Multi-workflow Automation',
+    price: 'A$990',
+    description: 'Several workflows connected across your enquiry, booking and follow-up process.',
+  },
+  {
+    name: 'Retainer',
+    price: 'A$197/mo',
+    description: 'We monitor what we built and fix it before you notice it broke.',
+  },
+];
+---
+
+<section class="tier0" id="tier0-pricing" aria-labelledby="tier0-pricing-title">
+  <div class="tier0__container">
+    <div class="section-head">
+      <p class="section-eyebrow">Launch pricing</p>
+      <h2 class="section-title" id="tier0-pricing-title">Where to start.</h2>
+    </div>
+
+    <p class="tier0__banner">
+      Every SyncSet automation runs with human approval on anything that contacts your client or touches money.
+    </p>
+
+    <table class="tier0__table">
+      <thead>
+        <tr>
+          <th scope="col">Tier</th>
+          <th scope="col">Price</th>
+          <th scope="col">What you get</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          tiers.map((tier) => (
+            <tr>
+              <td data-label="Tier">
+                <span class="tier0__name">{tier.name}</span>
+              </td>
+              <td data-label="Price">
+                <span class="tier0__price">{tier.price}</span>
+              </td>
+              <td data-label="What you get">{tier.description}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+
+    <p class="tier0__note">
+      This is launch pricing, reserved for the businesses that come on board first. Once we have a run of finished builds behind us, standard pricing takes over.
+    </p>
+  </div>
+</section>
+
+<style>
+  .tier0 {
+    padding: var(--space-16) var(--gutter);
+    background-color: var(--surface);
+  }
+
+  .tier0__container {
+    max-width: var(--max-content);
+    margin: 0 auto;
+  }
+
+  .tier0__banner {
+    max-width: 720px;
+    margin: 0 auto var(--space-8);
+    padding: var(--space-4) var(--space-6);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--surface-2) 60%, transparent);
+    color: var(--ink-2);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .tier0__table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--surface) 0%, var(--ground-lift) 100%);
+  }
+
+  .tier0__table th,
+  .tier0__table td {
+    padding: var(--space-4) var(--space-6);
+    text-align: left;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+
+  .tier0__table thead th {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--ground-lift);
+  }
+
+  .tier0__table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .tier0__name {
+    font-family: var(--display);
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .tier0__price {
+    font-family: var(--mono);
+    font-weight: 600;
+    color: var(--accent-lit);
+    white-space: nowrap;
+  }
+
+  .tier0__table td:last-child {
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+
+  .tier0__note {
+    margin: var(--space-6) auto 0;
+    max-width: 720px;
+    color: var(--ink-2);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+
+  /* Below this width the table reflows into stacked cards, one per tier,
+     with the column header repeated as a label — a plain <table> otherwise
+     forces horizontal scroll on a phone. */
+  @media (max-width: 640px) {
+    .tier0__table thead {
+      display: none;
+    }
+    .tier0__table,
+    .tier0__table tbody,
+    .tier0__table tr,
+    .tier0__table td {
+      display: block;
+      width: 100%;
+    }
+    .tier0__table tr {
+      border-bottom: 1px solid var(--rule);
+      padding: var(--space-4) var(--space-6);
+    }
+    .tier0__table tr:last-child {
+      border-bottom: none;
+    }
+    .tier0__table td {
+      border-bottom: none;
+      padding: var(--space-1) 0;
+    }
+    .tier0__table td[data-label]::before {
+      content: attr(data-label);
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+  }
+</style>

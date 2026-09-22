@@ -16,6 +16,7 @@
     </div>
     <div class="dc__log" id="dc-log" role="log" aria-live="polite" aria-label="Diagnostic conversation"></div>
     <div class="dc__inputbar">
+      <button type="button" class="dc__shortcut" id="dc-shortcut" hidden>I already know what I want →</button>
       <div class="dc__choices" id="dc-choices" hidden></div>
       <form class="dc__form" id="dc-form" novalidate>
         <textarea class="dc__textarea" id="dc-textarea" rows="2" hidden></textarea>
@@ -121,7 +122,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--ink-3);
+    background: var(--muted);
     animation: dc-bounce 1.1s infinite ease-in-out;
   }
   .dc-msg--typing span:nth-child(2) { animation-delay: 0.15s; }
@@ -159,7 +160,7 @@
     color: var(--blue-lit);
   }
   .dc-report__badge--baixo {
-    background: color-mix(in srgb, var(--ink-3) 25%, transparent);
+    background: color-mix(in srgb, var(--muted) 25%, transparent);
     color: var(--ink-2);
   }
   .dc-report__revenue {
@@ -172,7 +173,7 @@
   .dc-report__note {
     font-family: var(--mono);
     font-size: var(--text-xs);
-    color: var(--ink-3);
+    color: var(--muted);
     margin: 0;
   }
   .dc-report__summary {
@@ -212,6 +213,29 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+  }
+
+  .dc__shortcut {
+    align-self: flex-start;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px dashed var(--rule-strong);
+    background: transparent;
+    color: var(--ink-2);
+    font-family: var(--display);
+    font-size: var(--text-xs);
+    cursor: pointer;
+    transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+  }
+  .dc__shortcut:hover,
+  .dc__shortcut:focus-visible {
+    border-color: var(--accent);
+    color: var(--ink);
+    background: color-mix(in srgb, var(--surface-2) 60%, transparent);
+    outline: none;
+  }
+  .dc__shortcut[hidden] {
+    display: none;
   }
 
   .dc__choices {
@@ -296,7 +320,7 @@
     background: none;
     border: none;
     padding: 2px 4px;
-    color: var(--ink-3);
+    color: var(--muted);
     font-family: var(--mono);
     font-size: var(--text-xs);
     letter-spacing: 0.05em;
@@ -306,7 +330,7 @@
     transition: text-decoration-color 0.18s ease;
   }
   .dc__skip:hover {
-    text-decoration-color: var(--ink-3);
+    text-decoration-color: var(--muted);
   }
 
   .dc__error {
@@ -331,6 +355,7 @@
     const textarea = document.getElementById('dc-textarea');
     const choices = document.getElementById('dc-choices');
     const skipBtn = document.getElementById('dc-skip');
+    const shortcutBtn = document.getElementById('dc-shortcut');
     const errorEl = document.getElementById('dc-error');
 
     const formLoadTs = Date.now(); // captured on load — the API's min-fill-time check needs real elapsed time.
@@ -342,7 +367,14 @@
       { label: 'Book a quick call', value: 'call' },
     ];
 
-    const steps = [
+    // Asked only if the visitor opts in to SMS and hasn't given a phone number yet
+    // (the 'phone' step above is skippable) — spliced in at runtime, see handleAnswer.
+    const phoneFollowupStep = {
+      field: 'phone', mode: 'text', type: 'tel', required: true, maxlength: 40, autocomplete: 'tel',
+      prompt: () => "What's the number we should text?",
+    };
+
+    const baseSteps = [
       { field: 'name', mode: 'text', type: 'text', required: true, maxlength: 200, autocomplete: 'name',
         prompt: () => "Hi 👋 I'm the SyncSet Diagnostic. This takes about 2 minutes and tells you exactly what slow replies are costing your business. First, what's your name?" },
       { field: 'email', mode: 'text', type: 'email', required: true, maxlength: 254, autocomplete: 'email',
@@ -351,6 +383,9 @@
         prompt: () => "What's the name of your business?" },
       { field: 'phone', mode: 'text', type: 'tel', required: false, maxlength: 40, autocomplete: 'tel',
         prompt: () => 'Got a phone number? Optional. Skip if you’d rather not.' },
+      { field: 'sms_opt_in', mode: 'choice', required: true,
+        options: [{ label: 'Yes', value: true }, { label: 'No', value: false }],
+        prompt: () => "Can we text you about SyncSet news? (optional, you can say no)" },
       { field: 'channel', mode: 'choice', required: true, options: CHANNEL_OPTIONS.map((c) => ({ label: c, value: c })),
         prompt: () => 'Where do most of your enquiries come in?' },
       { field: 'team_size', mode: 'text', type: 'text', required: false, maxlength: 40, placeholder: 'e.g. just me, 2-5, 6+',
@@ -373,7 +408,26 @@
         prompt: () => 'How should we send you the result?' },
     ];
 
+    // Shortcut flow for visitors who don't want the full diagnostic — 4 fields,
+    // no score/report, just enough to get a human replying by email. Triggered
+    // by the "I already know what I want" button, only offered on step 0.
+    const directSteps = [
+      { field: 'name', mode: 'text', type: 'text', required: true, maxlength: 200, autocomplete: 'name',
+        prompt: () => "Good, let's keep this quick. What's your name?" },
+      { field: 'email', mode: 'text', type: 'email', required: true, maxlength: 254, autocomplete: 'email',
+        prompt: (a) => `Thanks${a.name ? ', ' + a.name.split(' ')[0] : ''}. What's the best email to reach you on?` },
+      { field: 'business', mode: 'text', type: 'text', required: true, maxlength: 200,
+        prompt: () => "What's the name of your business?" },
+      { field: 'automation_request', mode: 'textarea', required: true, maxlength: 1000,
+        prompt: () => 'What do you want to automate?' },
+    ];
+
     const answers = {};
+    // 'diagnostic' = the standard 14-question flow (default); 'direct' = the
+    // 4-field shortcut. `steps` is a mutable working copy so the SMS-opt-in
+    // follow-up can splice in a step without touching the source arrays above.
+    let flowMode = 'diagnostic';
+    let steps = [...baseSteps];
     let stepIndex = 0;
     // Only steal focus (and pop the mobile keyboard) after the visitor has actually
     // engaged with the widget — never on initial page load, which was scrolling the
@@ -432,6 +486,9 @@
       input.disabled = false;
       textarea.disabled = false;
       skipBtn.disabled = false;
+      // Only offered right at the start of the standard flow — once answering
+      // has begun, or inside the shortcut flow itself, it disappears.
+      shortcutBtn.hidden = !(flowMode === 'diagnostic' && stepIndex === 0);
       if (!step) {
         form.hidden = true;
         choices.hidden = true;
@@ -544,6 +601,12 @@
       const display = result.value === '' ? 'Skipped' : (displayLabel ?? String(result.value));
       addMessage(display, result.value === '' ? 'dc-msg--user dc-msg--skipped' : 'dc-msg--user');
       stepIndex += 1;
+      // Said yes to SMS but skipped the earlier optional phone field — ask for
+      // it now, before moving on, instead of collecting an opt-in with nothing
+      // to text.
+      if (step.field === 'sms_opt_in' && result.value === true && !answers.phone) {
+        steps.splice(stepIndex, 0, phoneFollowupStep);
+      }
       askStep();
     };
 
@@ -564,6 +627,17 @@
     });
 
     skipBtn.addEventListener('click', () => handleAnswer(''));
+
+    shortcutBtn.addEventListener('click', () => {
+      if (flowMode !== 'diagnostic' || stepIndex !== 0) return;
+      hasEngaged = true;
+      shortcutBtn.hidden = true;
+      flowMode = 'direct';
+      steps = [...directSteps];
+      stepIndex = 0;
+      addMessage('I already know what I want', 'dc-msg--user');
+      askStep();
+    });
 
     const currencyAud = (n) => `A$${Math.round(n).toLocaleString('en-AU')}`;
 
@@ -614,7 +688,9 @@
 
     const finish = async () => {
       const typing = showTyping();
-      const payload = { ...answers, company_website: '', form_ts: formLoadTs };
+      const payload = { ...answers, company_website: '', form_ts: formLoadTs, intake_type: flowMode };
+      // The shortcut flow never asks how to be contacted — email is the standing default.
+      if (flowMode === 'direct') payload.preferred_next_step = 'email';
       try {
         const res = await fetch('/api/diagnostic', {
           method: 'POST',
@@ -627,6 +703,9 @@
           addMessage("Here's your Diagnostic:", 'dc-msg--bot');
           renderReport(data.report);
           addMessage("We've also emailed you a copy.", 'dc-msg--bot');
+        } else if (res.ok && flowMode === 'direct') {
+          // No score to compute for the shortcut flow — just confirm it landed.
+          addMessage("Got it, thanks! We'll reply by email within one business day.", 'dc-msg--bot');
         } else if (res.ok) {
           // Defensive fallback — should not happen once ANTHROPIC_API_KEY/DIAGNOSTIC_KV
           // are configured, but never leave the visitor with nothing.
