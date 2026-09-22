@@ -9,3 +9,4 @@ dist/
 .DS_Store
 
 *.bak-*
+.claude/runbook-artifact-sync.sha256

@@ -7,6 +7,12 @@
           {
             "type": "command",
             "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/stop.sh\""
+          },
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/runbook-sync-check.sh\"",
+            "timeout": 15,
+            "statusMessage": "Checking runbook artifact sync..."
           }
         ]
       }
