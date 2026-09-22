@@ -117,7 +117,7 @@ export function generateLocalBusinessSchema(): SchemaLocalBusiness {
       addressCountry: 'AU',
     },
     areaServed: ['AU', 'Worldwide'],
-    priceRange: 'A$900–A$2,500',
+    priceRange: 'A$490–A$990',
     email: 'contact@syncset.com.au',
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -125,9 +125,9 @@ export function generateLocalBusinessSchema(): SchemaLocalBusiness {
       itemListElement: [
         {
           '@type': 'Offer',
-          name: 'Workflow Audit',
+          name: 'Automation Diagnostic',
           description:
-            '20-minute discovery call to identify where your enquiries get stuck and what automation could fix. Free. No commitment.',
+            'A guided chat on syncset.com.au that maps where your enquiries, bookings and follow-ups get stuck and which workflow to fix first. Free, no commitment.',
           price: '0',
           priceCurrency: 'AUD',
           priceSpecification: {
@@ -138,30 +138,53 @@ export function generateLocalBusinessSchema(): SchemaLocalBusiness {
         },
         {
           '@type': 'Offer',
-          name: 'Workflow Build',
+          name: 'Starter Automation',
           description:
-            'We connect your existing tools and build the automation to capture enquiries and confirm bookings automatically. Pilot: one workflow end-to-end. Most builds take 1–3 weeks.',
-          price: '900',
+            'One workflow built and running in 5 to 7 days: automatic enquiry replies, follow-up sequences or lead capture, on the tools you already use. Human approval on every customer-facing action.',
+          price: '490',
           priceCurrency: 'AUD',
           priceSpecification: {
             '@type': 'PriceSpecification',
-            price: '900',
+            price: '490',
             priceCurrency: 'AUD',
-            eligibleQuantity: {
-              '@type': 'QuantitativeValue',
-              minValue: 1,
-              maxValue: 1,
-            },
           },
         },
         {
           '@type': 'Offer',
-          name: 'Ongoing Support & Monitoring',
+          name: 'Presence + Automation Package',
           description:
-            'We monitor the workflows we build and fix issues proactively. No lock-in — pay as you go or per-incident support available.',
+            'Google Business Profile set up and optimised plus one Starter Automation running, in 7 to 10 days.',
+          price: '690',
           priceCurrency: 'AUD',
           priceSpecification: {
             '@type': 'PriceSpecification',
+            price: '690',
+            priceCurrency: 'AUD',
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Multi-workflow Automation',
+          description:
+            'Two to three processes connected end to end, for example enquiry capture, CRM update and team notification, in 10 to 14 days.',
+          price: '990',
+          priceCurrency: 'AUD',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            price: '990',
+            priceCurrency: 'AUD',
+          },
+        },
+        {
+          '@type': 'Offer',
+          name: 'Maintenance Retainer',
+          description:
+            'A$197 per month. We monitor the workflows we built, fix issues before they cost you a client and make small adjustments. No lock-in.',
+          price: '197',
+          priceCurrency: 'AUD',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            price: '197',
             priceCurrency: 'AUD',
           },
         },
