@@ -1075,7 +1075,7 @@
 .pricing__trust {
   font-size: 14px;
   line-height: 1.6;
-  color: var(--ink-3);
+  color: var(--muted);
   margin: 0;
   text-align: left;
 }

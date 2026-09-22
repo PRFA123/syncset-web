@@ -45,7 +45,10 @@ interface DiagnosticPayload {
 }
 
 interface DiagnosticReport {
-  score: 'Alto potencial' | 'Médio potencial' | 'Baixo potencial';
+  // Short labels matching the Notion CRM's "Score" select field, which already
+  // used these exact values from the old Make-side prompt -- written straight
+  // into that field now, no new select option gets created.
+  score: 'Alto' | 'Medio' | 'Baixo';
   estimated_revenue_aud: number;
   summary: string;
   recommendations: string[];
@@ -123,9 +126,9 @@ function currentMonthKey(): string {
 // don't push a call on a business too small for it to be worth either side's
 // time.
 function scoreFromRevenue(revenueAud: number): DiagnosticReport['score'] {
-  if (revenueAud >= 3000) return 'Alto potencial';
-  if (revenueAud >= 800) return 'Médio potencial';
-  return 'Baixo potencial';
+  if (revenueAud >= 3000) return 'Alto';
+  if (revenueAud >= 500) return 'Medio';
+  return 'Baixo';
 }
 
 const json = (body: unknown, status: number) =>
@@ -307,9 +310,17 @@ export const POST: APIRoute = async ({ request }) => {
       // model — an LLM asked to "do the arithmetic" is the wrong tool for a
       // fixed formula. Claude is only asked for the qualitative narrative,
       // grounded in the already-computed numbers.
-      const estimated_revenue_aud = Math.round(missed_enquiries_2wk * 0.3 * avg_deal_value_aud);
+      // Monthly figure (missed_enquiries_2wk is a 2-week count) -- this is the
+      // number Make used to send out separately (the "double billing" bug:
+      // the browser showed a 2-week number while the CRM/email/Telegram got
+      // this monthly one, double the visible figure). This endpoint is now
+      // the only place the score/revenue are computed; Make reads them from
+      // `report.*` in the payload below instead of recalculating with its
+      // own Anthropic call.
+      const missed_enquiries_month = missed_enquiries_2wk * 2;
+      const estimated_revenue_aud = Math.round(missed_enquiries_month * 0.3 * avg_deal_value_aud);
       const score = scoreFromRevenue(estimated_revenue_aud);
-      const show_booking_cta = score !== 'Baixo potencial';
+      const show_booking_cta = score !== 'Baixo';
 
       let summary: string;
       let recommendations: string[];
@@ -327,7 +338,7 @@ export const POST: APIRoute = async ({ request }) => {
             system:
               'You write short, specific automation diagnostic reports for Australian small ' +
               'businesses, based on answers from a 2-minute intake chat. You are given an ' +
-              'already-computed score and estimated recovered revenue (over the last 2 weeks) ' +
+              'already-computed score and estimated recovered revenue (per month) ' +
               '— never recalculate or contradict those numbers. Write exactly: a 1-2 sentence ' +
               'summary of their situation, and 2-3 recommendations. Every recommendation must ' +
               'reference something specific from their actual answers (their channel, their ' +
