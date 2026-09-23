@@ -117,7 +117,7 @@ export function generateLocalBusinessSchema(): SchemaLocalBusiness {
       addressCountry: 'AU',
     },
     areaServed: ['AU', 'Worldwide'],
-    priceRange: 'A$490–A$990',
+    priceRange: 'A$539–A$1,089 (inc. GST)',
     email: 'contact@syncset.com.au',
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -141,12 +141,13 @@ export function generateLocalBusinessSchema(): SchemaLocalBusiness {
           name: 'Starter Automation',
           description:
             'One workflow built and running in 5 to 7 days: automatic enquiry replies, follow-up sequences or lead capture, on the tools you already use. Human approval on every customer-facing action.',
-          price: '490',
+          price: '539',
           priceCurrency: 'AUD',
           priceSpecification: {
             '@type': 'PriceSpecification',
-            price: '490',
+            price: '539',
             priceCurrency: 'AUD',
+            valueAddedTaxIncluded: true,
           },
         },
         {
@@ -154,12 +155,13 @@ export function generateLocalBusinessSchema(): SchemaLocalBusiness {
           name: 'Presence + Automation Package',
           description:
             'Google Business Profile set up and optimised plus one Starter Automation running, in 7 to 10 days.',
-          price: '690',
+          price: '759',
           priceCurrency: 'AUD',
           priceSpecification: {
             '@type': 'PriceSpecification',
-            price: '690',
+            price: '759',
             priceCurrency: 'AUD',
+            valueAddedTaxIncluded: true,
           },
         },
         {
@@ -167,25 +169,27 @@ export function generateLocalBusinessSchema(): SchemaLocalBusiness {
           name: 'Multi-workflow Automation',
           description:
             'Two to three processes connected end to end, for example enquiry capture, CRM update and team notification, in 10 to 14 days.',
-          price: '990',
+          price: '1089',
           priceCurrency: 'AUD',
           priceSpecification: {
             '@type': 'PriceSpecification',
-            price: '990',
+            price: '1089',
             priceCurrency: 'AUD',
+            valueAddedTaxIncluded: true,
           },
         },
         {
           '@type': 'Offer',
           name: 'Maintenance Retainer',
           description:
-            'A$197 per month. We monitor the workflows we built, fix issues before they cost you a client and make small adjustments. No lock-in.',
-          price: '197',
+            'A$216.70 per month inc. GST (A$197 + GST). We monitor the workflows we built, fix issues before they cost you a client and make small adjustments. No lock-in.',
+          price: '216.70',
           priceCurrency: 'AUD',
           priceSpecification: {
             '@type': 'PriceSpecification',
-            price: '197',
+            price: '216.70',
             priceCurrency: 'AUD',
+            valueAddedTaxIncluded: true,
           },
         },
       ],

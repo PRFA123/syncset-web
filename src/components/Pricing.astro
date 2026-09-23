@@ -6,6 +6,7 @@
 interface Tier {
   name: string;
   price: string;
+  exGst?: string;
   description: string;
 }
 
@@ -17,22 +18,26 @@ const tiers: Tier[] = [
   },
   {
     name: 'Starter Automation',
-    price: 'A$490',
+    price: 'A$539 inc. GST',
+    exGst: 'A$490 + GST',
     description: 'One workflow wired end to end, enquiry reply, follow-up or lead capture, live in 5 to 7 days.',
   },
   {
     name: 'Presence + Automation Package',
-    price: 'A$690',
+    price: 'A$759 inc. GST',
+    exGst: 'A$690 + GST',
     description: 'Google Business Profile set up and optimised (categories, description, services, schema) plus one Starter Automation. 7 to 10 days.',
   },
   {
     name: 'Multi-workflow Automation',
-    price: 'A$990',
+    price: 'A$1,089 inc. GST',
+    exGst: 'A$990 + GST',
     description: 'Two to three processes connected, for example enquiry capture, CRM update and team notification. 10 to 14 days.',
   },
   {
     name: 'Maintenance Retainer',
-    price: 'A$197/mo',
+    price: 'A$216.70/mo inc. GST',
+    exGst: 'A$197 + GST',
     description: 'We monitor what we built, fix issues before they cost you a client and make small adjustments as you grow. Cancel any time.',
   },
 ];
@@ -66,6 +71,7 @@ const tiers: Tier[] = [
               </td>
               <td data-label="Price">
                 <span class="tier0__price">{tier.price}</span>
+                {tier.exGst && <span class="tier0__exgst">{tier.exGst}</span>}
               </td>
               <td data-label="What you get">{tier.description}</td>
             </tr>
@@ -75,7 +81,7 @@ const tiers: Tier[] = [
     </table>
 
     <p class="tier0__note">
-      This is launch pricing, reserved for the businesses that come on board first. Once we have a run of finished builds behind us, standard pricing takes over.
+      This is launch pricing, reserved for the businesses that come on board first. Once we have a run of finished builds behind us, standard pricing takes over. All prices are in Australian dollars and include GST. You receive a tax invoice for every paid engagement.
     </p>
   </div>
 </section>
@@ -145,6 +151,14 @@ const tiers: Tier[] = [
     font-family: var(--mono);
     font-weight: 600;
     color: var(--accent-lit);
+    white-space: nowrap;
+  }
+
+  .tier0__exgst {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.8em;
+    color: var(--ink-2);
     white-space: nowrap;
   }
 
