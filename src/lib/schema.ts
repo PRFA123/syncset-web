@@ -201,7 +201,7 @@ export function generateLocalBusinessSchema(): SchemaLocalBusiness {
       'CRM automation',
       'Booking automation',
       'Enquiry capture',
-      'Small business automation',
+      'Business workflow automation',
     ],
     sameAs: ['https://www.linkedin.com/company/syncset'],
     contactPoint: {

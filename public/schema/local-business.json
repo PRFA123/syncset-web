@@ -1,0 +1,94 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://www.syncset.com.au/#localbusiness",
+  "name": "SyncSet",
+  "url": "https://www.syncset.com.au",
+  "logo": "https://www.syncset.com.au/logo-mark.png",
+  "description": "AI workflow automation agency. We connect the tools your business already uses so no enquiry goes unanswered and no booking gets lost.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "AU"
+  },
+  "areaServed": [
+    "AU",
+    "Worldwide"
+  ],
+  "priceRange": "A$900–A$2,500",
+  "email": "contact@syncset.com.au",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "SyncSet Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Workflow Audit",
+          "description": "20-minute discovery call to identify where your enquiries get stuck and what automation could fix. Free. No commitment."
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "0",
+            "priceCurrency": "AUD"
+          }
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Workflow Build",
+          "description": "We connect your existing tools and build the automation to capture enquiries and confirm bookings automatically. Pilot: one workflow end-to-end. Most builds take 1–3 weeks."
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "900",
+            "priceCurrency": "AUD",
+            "eligibleQuantity": {
+              "@type": "QuantitativeValue",
+              "minValue": 1,
+              "maxValue": 1
+            }
+          }
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Ongoing Support & Monitoring",
+          "description": "We monitor the workflows we build and fix issues proactively. No lock-in — pay as you go or per-incident support available."
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "AUD"
+          }
+        }
+      }
+    ]
+  },
+  "knowsAbout": [
+    "AI workflow automation",
+    "Business process automation",
+    "WhatsApp integration",
+    "CRM automation",
+    "Booking automation",
+    "Enquiry capture",
+    "Business workflow automation"
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/company/syncset"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "contact@syncset.com.au",
+    "contactType": "customer service"
+  }
+}
