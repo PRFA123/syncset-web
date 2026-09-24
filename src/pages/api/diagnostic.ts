@@ -40,6 +40,7 @@ interface DiagnosticPayload {
   automation_request: string;
   sms_opt_in: boolean;
   preferred_next_step: string;
+  extra_notes: string;
   timestamp: string;
   report: DiagnosticReport | null;
 }
@@ -70,10 +71,11 @@ const MAX_FIELD = {
   biggest_frustration: 1000,
   automation_request: 1000,
   preferred_next_step: 40,
+  extra_notes: 1000,
 } as const;
-// Enforces Paulo's standing next-step rule: email first, automated WhatsApp
-// second, phone/video call framed as last resort — never the default.
-const ALLOWED_NEXT_STEPS = ['email', 'whatsapp_bot', 'call'] as const;
+// Async-only next steps (Paulo, 24/09): a written breakdown by email (default)
+// or a fixed-price proposal. No WhatsApp, no call.
+const ALLOWED_NEXT_STEPS = ['email', 'proposal'] as const;
 const ALLOWED_INTAKE_TYPES = ['diagnostic', 'direct'] as const;
 // A human needs longer than this between the form rendering and pressing submit.
 const MIN_FILL_MS = 3000;
@@ -198,6 +200,7 @@ export const POST: APIRoute = async ({ request }) => {
     const automation_request = str(data.automation_request);
     const sms_opt_in = data.sms_opt_in === true;
     const preferred_next_stepRaw = str(data.preferred_next_step);
+    const extra_notes = str(data.extra_notes);
 
     const missed_enquiries_2wk = Number(data.missed_enquiries_2wk);
     const avg_deal_value_aud = Number(data.avg_deal_value_aud);
@@ -245,6 +248,7 @@ export const POST: APIRoute = async ({ request }) => {
       [biggest_frustration, 'biggest_frustration', MAX_FIELD.biggest_frustration],
       [automation_request, 'automation_request', MAX_FIELD.automation_request],
       [preferred_next_step, 'preferred_next_step', MAX_FIELD.preferred_next_step],
+      [extra_notes, 'extra_notes', MAX_FIELD.extra_notes],
     ];
     for (const [value, field, max] of fieldChecks) {
       if (value.length > max) {
@@ -456,6 +460,7 @@ export const POST: APIRoute = async ({ request }) => {
       automation_request,
       sms_opt_in,
       preferred_next_step,
+      extra_notes,
       timestamp: new Date().toISOString(),
       report,
     };

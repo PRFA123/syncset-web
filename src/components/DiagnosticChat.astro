@@ -361,11 +361,15 @@
     const formLoadTs = Date.now(); // captured on load — the API's min-fill-time check needs real elapsed time.
 
     const CHANNEL_OPTIONS = ['Phone', 'Email', 'Instagram or Facebook DM', 'WhatsApp', 'Website form', 'Other'];
+    // Async only (Paulo, 24/09): no WhatsApp and no call as a next step.
+    // 'email' stays the stored value so the Make/CRM mapping keeps working.
     const NEXT_STEP_OPTIONS = [
-      { label: 'Email (recommended)', value: 'email' },
-      { label: 'WhatsApp (automated)', value: 'whatsapp_bot' },
-      { label: 'Book a quick call', value: 'call' },
+      { label: 'Email me a written breakdown', value: 'email' },
+      { label: 'Send me a fixed-price proposal', value: 'proposal' },
     ];
+    // Visitor-facing score labels; the internal value (Alto/Medio/Baixo) is
+    // what goes to Make/Notion and must not change.
+    const SCORE_LABELS = { Alto: 'High', Medio: 'Medium', 'Médio': 'Medium', Baixo: 'Low' };
 
     // Asked only if the visitor opts in to SMS and hasn't given a phone number yet
     // (the 'phone' step above is skippable) — spliced in at runtime, see handleAnswer.
@@ -406,6 +410,8 @@
         prompt: () => "Last one before the next-step question: what's the biggest thing slowing you down right now? (optional)" },
       { field: 'preferred_next_step', mode: 'choice', required: true, options: NEXT_STEP_OPTIONS,
         prompt: () => 'How should we send you the result?' },
+      { field: 'extra_notes', mode: 'textarea', required: false, maxlength: 1000,
+        prompt: () => 'Anything else we should know? (optional)' },
     ];
 
     // Shortcut flow for visitors who don't want the full diagnostic — 4 fields,
@@ -647,7 +653,7 @@
 
       const badge = document.createElement('span');
       badge.className = `dc-report__badge dc-report__badge--${report.score.split(' ')[0].toLowerCase()}`;
-      badge.textContent = report.score;
+      badge.textContent = SCORE_LABELS[report.score] ?? report.score;
       card.appendChild(badge);
 
       const revenue = document.createElement('p');
