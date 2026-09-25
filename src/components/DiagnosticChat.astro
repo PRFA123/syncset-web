@@ -711,6 +711,9 @@
     const finish = async () => {
       const typing = showTyping();
       const payload = { ...answers, company_website: '', form_ts: formLoadTs, intake_type: flowMode };
+      // Attribution from the landing URL (?utm_source=instagram&utm_medium=bio...).
+      const params = new URLSearchParams(window.location.search);
+      ['utm_source', 'utm_medium', 'utm_campaign'].forEach((k) => { payload[k] = params.get(k) || ''; });
       // The shortcut flow never asks how to be contacted — email is the standing default.
       if (flowMode === 'direct') payload.preferred_next_step = 'email';
       try {

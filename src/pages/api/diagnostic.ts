@@ -41,6 +41,9 @@ interface DiagnosticPayload {
   sms_opt_in: boolean;
   preferred_next_step: string;
   extra_notes: string;
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
   timestamp: string;
   report: DiagnosticReport | null;
 }
@@ -75,6 +78,11 @@ const MAX_FIELD = {
 } as const;
 // Async-only next steps (Paulo, 24/09): a written breakdown by email (default)
 // or a fixed-price proposal. No WhatsApp, no call.
+// UTM tags come from the landing URL (e.g. the Instagram bio link). They are
+// attribution only, so bad values are cleaned and clipped, never a reason to
+// reject a submission.
+const MAX_UTM = 100;
+const utm = (v: unknown) => (typeof v === 'string' ? v.trim().replace(/[^\w.+ -]/g, '').slice(0, MAX_UTM) : '');
 const ALLOWED_NEXT_STEPS = ['email', 'proposal'] as const;
 const ALLOWED_INTAKE_TYPES = ['diagnostic', 'direct'] as const;
 // A human needs longer than this between the form rendering and pressing submit.
@@ -201,6 +209,9 @@ export const POST: APIRoute = async ({ request }) => {
     const sms_opt_in = data.sms_opt_in === true;
     const preferred_next_stepRaw = str(data.preferred_next_step);
     const extra_notes = str(data.extra_notes);
+    const utm_source = utm(data.utm_source);
+    const utm_medium = utm(data.utm_medium);
+    const utm_campaign = utm(data.utm_campaign);
 
     const missed_enquiries_2wk = Number(data.missed_enquiries_2wk);
     const avg_deal_value_aud = Number(data.avg_deal_value_aud);
@@ -461,6 +472,9 @@ export const POST: APIRoute = async ({ request }) => {
       sms_opt_in,
       preferred_next_step,
       extra_notes,
+      utm_source,
+      utm_medium,
+      utm_campaign,
       timestamp: new Date().toISOString(),
       report,
     };
