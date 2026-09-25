@@ -79,6 +79,10 @@
       max-height: 380px;
     }
   }
+  .dc__log.dc__log--done {
+    max-height: none;
+    overflow-y: visible;
+  }
 
   .dc-msg {
     max-width: 84%;
@@ -690,6 +694,18 @@
 
       log.appendChild(card);
       scrollToBottom();
+      return card;
+    };
+
+    // The report card is taller than the capped chat log (46vh / 380px), so
+    // inside the scroller the visitor only saw a slice of it and the text looked
+    // cut mid-sentence. Once the report is in, drop the cap and bring the card's
+    // top into view on the page (window scroll, not scrollIntoView, to avoid the
+    // horizontal shift noted in focusActiveControl).
+    const revealReport = (card) => {
+      log.classList.add('dc__log--done');
+      const top = card.getBoundingClientRect().top + window.scrollY - 96;
+      window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' });
     };
 
     const finish = async () => {
@@ -707,8 +723,9 @@
         typing.remove();
         if (res.ok && data.report) {
           addMessage("Here's your Diagnostic:", 'dc-msg--bot');
-          renderReport(data.report);
+          const card = renderReport(data.report);
           addMessage("We've also emailed you a copy.", 'dc-msg--bot');
+          revealReport(card);
         } else if (res.ok && flowMode === 'direct') {
           // No score to compute for the shortcut flow — just confirm it landed.
           addMessage("Got it, thanks! We'll reply by email within one business day.", 'dc-msg--bot');
