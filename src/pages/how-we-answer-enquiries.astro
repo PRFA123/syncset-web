@@ -1,0 +1,226 @@
+---
+// CASE-0 (plano v2, Sprint C2). DRAFT: lives on branch draft/case-0, not linked
+// from nav, not deployed. Every fact on this page must stay checkable against
+// the live pipeline (src/pages/api/diagnostic.ts + the Make scenarios
+// diagnostic-audit-v1, nurture-sequence-v1, prospect-reply-alert-v1).
+// No client results or unsourced numbers.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const steps = [
+  { kind: 'in', who: 'You', title: 'Website', text: 'You fill in the free Diagnostic or the contact form on syncset.com.au.' },
+  { kind: 'auto', who: 'Automatic', title: 'Diagnostic report', text: 'A fixed formula scores your answers. Claude writes the plain-English summary. You see it on screen and get it by email.' },
+  { kind: 'auto', who: 'Automatic', title: 'CRM', text: 'Your answers land as one row in our CRM, so nothing lives only in an inbox.' },
+  { kind: 'auto', who: 'Automatic', title: 'Alert', text: 'Paulo gets a phone alert with your name, business and what you need.' },
+  { kind: 'out', who: 'A person', title: 'Human reply', text: 'Paulo reads your answers and writes the reply personally. Nothing personal goes out without being read first.' },
+];
+---
+
+<BaseLayout
+  title="How SyncSet answers its own enquiries"
+  description="The exact enquiry pipeline behind syncset.com.au: what runs on its own, what waits for a person, the tools we use and what we don't do."
+>
+  <Header />
+
+  <main id="main-content">
+    <article class="case">
+      <div class="case__container">
+        <p class="case__eyebrow">Case 0 · our own business</p>
+        <h1>How SyncSet answers its own enquiries</h1>
+        <p class="case__lead">
+          We build enquiry systems, so ours should be the first one you can check. This is the setup
+          running on this website today. No client data and no borrowed results. You can test every
+          step yourself with the free Diagnostic.
+        </p>
+
+        <h2>The pipeline</h2>
+        <ol class="flow" aria-label="Enquiry pipeline, in order">
+          {steps.map((s, i) => (
+            <li class={`flow__step flow__step--${s.kind}`}>
+              <span class="flow__num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="flow__who">{s.who}</span>
+              <strong class="flow__title">{s.title}</strong>
+              <span class="flow__text">{s.text}</span>
+            </li>
+          ))}
+        </ol>
+        <p class="case__note">
+          Green is something coming in. Blue is something going back out. Grey steps run without anyone
+          touching them.
+        </p>
+
+        <h2>What runs on its own</h2>
+        <ul>
+          <li><strong>Your Diagnostic report.</strong> Shown on screen and emailed to you. The email arrives within seconds of the form being submitted.</li>
+          <li><strong>A CRM record.</strong> One row per enquiry in Notion, with your answers and the report.</li>
+          <li><strong>An alert to Paulo.</strong> A Telegram message the moment you submit.</li>
+          <li><strong>Up to three short follow-up emails</strong> over the next two weeks, each with an unsubscribe link. They stop as soon as we're talking to you in person.</li>
+          <li><strong>A reply alert.</strong> When someone replies to one of our emails, Paulo gets a phone alert. The inbox is checked every 30 minutes.</li>
+        </ul>
+
+        <h2>What waits for a person</h2>
+        <ul>
+          <li><strong>The written breakdown you ask for.</strong> Paulo writes it, checks it and sends it from contact@syncset.com.au.</li>
+          <li><strong>Any answer to a question you send us.</strong> No AI replies to you on our behalf.</li>
+          <li><strong>Any proposal, price or payment link.</strong> Always sent by a person, never triggered by a form.</li>
+        </ul>
+        <p>
+          This is the same rule we build into client systems: anything that talks to your customers on
+          your behalf waits for your OK first.
+        </p>
+
+        <h2>The tools</h2>
+        <ul class="case__tools">
+          <li><strong>Astro on Cloudflare Pages</strong>: the website and the Diagnostic.</li>
+          <li><strong>Claude</strong> (Anthropic): writes the report summary. The score itself is a fixed formula, not AI.</li>
+          <li><strong>Make.com</strong>: moves each enquiry between the tools below.</li>
+          <li><strong>Notion</strong>: the CRM.</li>
+          <li><strong>Telegram</strong>: phone alerts.</li>
+          <li><strong>Brevo</strong>: the Diagnostic and follow-up emails.</li>
+          <li><strong>Gmail</strong> (contact@syncset.com.au): every personal reply.</li>
+        </ul>
+
+        <h2>What we don't do</h2>
+        <ul>
+          <li>We don't let AI answer your questions as if it were us.</li>
+          <li>We don't ask you to book a call. If you want one, just ask.</li>
+          <li>We don't sell or share your answers. The full detail is in our <a href="/privacy/">Privacy Policy</a>.</li>
+          <li>We don't keep enquiry data forever. If you don't become a client, it's deleted or anonymised after 12 months.</li>
+          <li>We don't publish client results here. We haven't got any we're allowed to share yet, so this page only shows what you can check yourself.</li>
+        </ul>
+
+        <div class="case__cta">
+          <p>See it run on your own answers. Sixteen quick questions, about two minutes, free.</p>
+          <a class="btn btn-primary" href="/#diagnostic">Free Diagnostic</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .case {
+    padding: var(--space-24) var(--gutter);
+    background-color: var(--paper);
+  }
+  .case__container {
+    max-width: var(--max-content);
+    margin: 0 auto;
+    color: var(--graphite);
+    line-height: 1.7;
+  }
+  .case__eyebrow {
+    font-family: var(--mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-4);
+  }
+  .case__container h1 {
+    font-size: var(--text-2xl);
+    line-height: 1.1;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: var(--space-6);
+  }
+  .case__lead {
+    font-size: var(--text-base);
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+  .case__container h2 {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--ink);
+    margin: var(--space-16) 0 var(--space-6);
+  }
+  .case__container ul {
+    padding-left: 1.2em;
+    display: grid;
+    gap: var(--space-3);
+  }
+  .case__container ul + p { margin-top: var(--space-6); }
+  .case__container strong { color: var(--ink); }
+  .case__container a:not(.btn) { color: var(--ink); text-decoration: underline; }
+  .case__note { font-size: var(--text-sm); color: var(--muted); margin-top: var(--space-4); }
+
+  .flow {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-4);
+    width: 100%;
+    max-width: none;
+  }
+  .flow__step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-6) var(--space-4);
+    background: var(--surface);
+    border: 1px solid var(--rule-strong);
+    border-radius: 12px;
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+  .flow__step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: calc(-1 * var(--space-4));
+    top: 50%;
+    transform: translate(50%, -50%);
+    color: var(--ink-2);
+    font-family: var(--mono);
+    font-size: 1.1rem;
+  }
+  .flow__step--in { border-color: var(--accent); }
+  .flow__step--out { border-color: var(--blue-lit); }
+  .flow__num { font-family: var(--mono); font-size: var(--text-xs); color: var(--muted); }
+  .flow__who {
+    font-family: var(--mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-2);
+  }
+  .flow__step--in .flow__who { color: var(--accent-lit); }
+  .flow__step--out .flow__who { color: var(--blue-lit); }
+  .flow__title { font-size: 1rem; color: var(--ink); }
+  .flow__text { color: var(--graphite); }
+
+  .case__cta {
+    margin-top: var(--space-16);
+    padding: var(--space-8);
+    border: 1px solid var(--rule-strong);
+    border-radius: 12px;
+    background: var(--surface);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .case__cta p { margin: 0; color: var(--ink); }
+
+  @media (max-width: 900px) {
+    .flow { grid-template-columns: 1fr; }
+    .flow__step:not(:last-child)::after {
+      content: '↓';
+      right: 50%;
+      top: auto;
+      bottom: calc(-1 * var(--space-4));
+      transform: translate(50%, 50%);
+    }
+  }
+  @media (max-width: 768px) {
+    .case { padding: var(--space-16) var(--gutter); }
+    .case__container h1 { font-size: var(--text-xl); }
+  }
+</style>
