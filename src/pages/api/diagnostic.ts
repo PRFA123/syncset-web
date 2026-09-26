@@ -364,7 +364,11 @@ export const POST: APIRoute = async ({ request }) => {
               '"and"/"but" instead. Avoid other tells of AI-generated writing too (no ' +
               '"furthermore", "in today\'s fast-paced world", triple-adjective lists, or ' +
               'unnecessary hedging). Write like a person who knows this business, not like a ' +
-              'report generator.',
+              'report generator. When you name the business, use the exact "business" value ' +
+              'character for character: never shorten it, drop words or prefixes, or ' +
+              'paraphrase it. Before submitting, proofread every sentence for grammar, ' +
+              'especially singular/plural agreement (for example "another tradie", never ' +
+              '"another tradies").',
             messages: [
               {
                 role: 'user',
