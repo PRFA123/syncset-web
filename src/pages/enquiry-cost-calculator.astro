@@ -1,0 +1,234 @@
+---
+// Free tool #1 (free-tools plan, approved by Paulo 26 Sep 2026). DRAFT: lives on
+// branch draft/enquiry-calculator, not linked from nav, not deployed. Publishing
+// needs Paulo's call on decision L1 (site staging) in memory/00_DECISIONS.md.
+// Rule L2: no number on this page comes from us. Every figure is computed only
+// from what the visitor types in; the "go elsewhere" share is their own pick.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Public prices, from memory/precos-syncset.md (Tier 0, inc. GST).
+const STARTER_PRICE_INC_GST = 539;
+---
+
+<BaseLayout
+  title="Missed enquiry cost calculator"
+  description="Work out what slow replies to enquiries cost your business each month, using your own numbers. Free, no sign-up."
+>
+  <Header />
+
+  <main id="main-content">
+    <article class="calc">
+      <div class="calc__container">
+        <p class="calc__eyebrow">Free tool · 30 seconds</p>
+        <h1>What do slow replies cost you each month?</h1>
+        <p class="calc__lead">
+          When an enquiry waits for a reply, some people book with whoever answers first. Put in your
+          own numbers and see what that adds up to. Nothing is stored unless you ask for the breakdown by email.
+        </p>
+
+        <form class="calc__form" id="calc-form" novalidate>
+          <label class="calc__field">
+            <span>New enquiries per week</span>
+            <small>Calls, forms, emails and messages from people who aren't clients yet.</small>
+            <input type="number" id="c-enq" min="0" max="10000" step="1" inputmode="numeric" required />
+          </label>
+
+          <label class="calc__field">
+            <span>Share that wait more than an hour for a reply (%)</span>
+            <small>After hours, weekends, or while you're on a job or with a client.</small>
+            <input type="number" id="c-late" min="0" max="100" step="1" inputmode="numeric" required />
+          </label>
+
+          <label class="calc__field">
+            <span>Share of enquiries that normally become clients (%)</span>
+            <small>Out of every 10 enquiries you answer, how many book?</small>
+            <input type="number" id="c-close" min="0" max="100" step="1" inputmode="numeric" required />
+          </label>
+
+          <label class="calc__field">
+            <span>Value of a new client (A$)</span>
+            <small>The first job or first booking is enough. Leave out repeat work.</small>
+            <input type="number" id="c-value" min="0" max="1000000" step="1" inputmode="numeric" required />
+          </label>
+
+          <fieldset class="calc__field calc__choice">
+            <legend>Of the people left waiting, how many go elsewhere?</legend>
+            <small>Your best guess. We don't have a figure for your business, so you pick.</small>
+            <div class="calc__options">
+              <label><input type="radio" name="c-lost" value="10" /> A few (1 in 10)</label>
+              <label><input type="radio" name="c-lost" value="25" /> Some (1 in 4)</label>
+              <label><input type="radio" name="c-lost" value="50" /> Many (1 in 2)</label>
+            </div>
+          </fieldset>
+
+          <button class="btn btn-primary" type="submit">Work it out</button>
+          <p class="calc__error" id="calc-error" role="alert" hidden></p>
+        </form>
+
+        <section class="calc__result" id="calc-result" aria-live="polite" hidden>
+          <h2>Your numbers</h2>
+          <p class="calc__big"><span id="r-value"></span> <span class="calc__per">a month at risk</span></p>
+          <ul>
+            <li><span id="r-late"></span> enquiries a month wait more than an hour.</li>
+            <li>At your pick, <span id="r-lost"></span> of them book somewhere else.</li>
+            <li>At your booking rate, that's about <span id="r-clients"></span> clients a month.</li>
+          </ul>
+          <p id="r-payback"></p>
+          <p class="calc__note">
+            This uses only the numbers you typed in. It's an estimate, not a promise: change any input and
+            the result changes with it.
+          </p>
+
+          <div class="calc__email">
+            <h3>Want this breakdown by email?</h3>
+            <p>Paulo reads your numbers and replies personally with the first three fixes he'd look at for a business like yours.</p>
+            <form id="email-form" novalidate>
+              <div class="calc__honeypot" aria-hidden="true">
+                <label for="e-company-website">Leave this field empty</label>
+                <input type="text" id="e-company-website" name="company_website" tabindex="-1" autocomplete="off" />
+              </div>
+              <label class="calc__field"><span>Your name</span><input type="text" id="e-name" maxlength="200" required autocomplete="name" /></label>
+              <label class="calc__field"><span>Business</span><input type="text" id="e-business" maxlength="200" required autocomplete="organization" /></label>
+              <label class="calc__field"><span>Email</span><input type="email" id="e-email" maxlength="254" required autocomplete="email" /></label>
+              <button class="btn" type="submit">Email me the breakdown</button>
+              <p class="calc__error" id="email-status" role="status" hidden></p>
+            </form>
+          </div>
+        </section>
+
+        <section class="calc__next">
+          <h2>See where your enquiries actually stall</h2>
+          <p>
+            The calculator shows the size of the problem. The free Diagnostic shows where it happens in your
+            business. No call needed.
+          </p>
+          <a class="btn btn-primary" href="/#diagnostic">Free Diagnostic</a>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script define:vars={{ price: STARTER_PRICE_INC_GST }}>
+  const $ = (id) => document.getElementById(id);
+  const aud = (n) => 'A$' + Math.round(n).toLocaleString('en-AU');
+  const num = (id, max) => {
+    const v = Number($(id).value);
+    return Number.isFinite(v) && v >= 0 && v <= max && $(id).value !== '' ? v : null;
+  };
+  const loadTs = Date.now();
+  let last = null;
+
+  $('calc-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const enq = num('c-enq', 10000), late = num('c-late', 100), close = num('c-close', 100), value = num('c-value', 1000000);
+    const lostEl = document.querySelector('input[name="c-lost"]:checked');
+    const err = $('calc-error');
+    if (enq === null || late === null || close === null || value === null || !lostEl) {
+      err.textContent = 'Fill in all five answers to see your numbers.';
+      err.hidden = false;
+      return;
+    }
+    err.hidden = true;
+    const lost = Number(lostEl.value);
+    const lateMonth = enq * (52 / 12) * (late / 100);
+    const lostMonth = lateMonth * (lost / 100);
+    const clients = lostMonth * (close / 100);
+    const atRisk = clients * value;
+
+    $('r-late').textContent = Math.round(lateMonth).toLocaleString('en-AU');
+    $('r-lost').textContent = Math.round(lostMonth).toLocaleString('en-AU');
+    $('r-clients').textContent = clients.toLocaleString('en-AU', { maximumFractionDigits: 1 });
+    $('r-value').textContent = aud(atRisk);
+    $('r-payback').textContent = atRisk > 0
+      ? `For comparison, our Starter Automation (one workflow that replies to every enquiry within minutes, with you approving what goes out) is ${aud(price)} inc. GST, once.`
+      : 'At these numbers, slow replies aren\'t costing you much. That\'s a good place to be.';
+    last = { enq, late, close, value, lost, lateMonth, lostMonth, clients, atRisk };
+    $('calc-result').hidden = false;
+    $('calc-result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  $('email-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const status = $('email-status');
+    const name = $('e-name').value.trim(), business = $('e-business').value.trim(), email = $('e-email').value.trim();
+    if (!last || !name || !business || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      status.textContent = 'Add your name, business and a valid email.';
+      status.hidden = false;
+      return;
+    }
+    const message = [
+      'Missed enquiry cost calculator',
+      `Enquiries/week: ${last.enq}`,
+      `Wait > 1 hour: ${last.late}%`,
+      `Booking rate: ${last.close}%`,
+      `Value of a new client: A$${last.value}`,
+      `Go elsewhere (visitor's pick): ${last.lost}%`,
+      `Result: ${aud(last.atRisk)}/month at risk (~${last.clients.toFixed(1)} clients)`,
+    ].join('\n');
+    status.textContent = 'Sending…';
+    status.hidden = false;
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, business, email, message,
+          source: 'tool-calculator',
+          company_website: $('e-company-website').value,
+          form_ts: loadTs,
+        }),
+      });
+      status.textContent = res.ok
+        ? 'Done. Paulo will reply personally to the email you gave.'
+        : 'That didn\'t go through. Try again, or email contact@syncset.com.au.';
+    } catch {
+      status.textContent = 'That didn\'t go through. Try again, or email contact@syncset.com.au.';
+    }
+  });
+</script>
+
+<style>
+  .calc { padding: var(--space-24) var(--gutter); background-color: var(--paper); }
+  .calc__container { max-width: var(--max-content); margin: 0 auto; color: var(--graphite); line-height: 1.7; }
+  .calc__eyebrow {
+    font-family: var(--mono); font-size: var(--text-xs); letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: var(--space-4);
+  }
+  .calc__container h1 { font-size: var(--text-2xl); line-height: 1.1; font-weight: 700; color: var(--ink); margin-bottom: var(--space-6); }
+  .calc__container h2 { font-size: var(--text-lg); font-weight: 700; color: var(--ink); margin: var(--space-16) 0 var(--space-6); }
+  .calc__container h3 { font-size: var(--text-base); font-weight: 700; color: var(--ink); margin-bottom: var(--space-2); }
+  .calc__lead { font-size: var(--text-base); color: var(--ink-2); max-width: 60ch; }
+  .calc__form, #email-form { display: grid; gap: var(--space-6); margin-top: var(--space-8); max-width: 36rem; }
+  .calc__field { display: grid; gap: var(--space-2); border: 0; padding: 0; margin: 0; }
+  .calc__field span, .calc__field legend { font-weight: 600; color: var(--ink); }
+  .calc__field small { font-size: var(--text-sm); color: var(--muted); }
+  .calc__field input[type='number'], .calc__field input[type='text'], .calc__field input[type='email'] {
+    font: inherit; padding: var(--space-3) var(--space-4); border: 1px solid var(--rule-strong);
+    border-radius: 8px; background: var(--surface); color: var(--ink); max-width: 16rem;
+  }
+  .calc__field input[type='text'], .calc__field input[type='email'] { max-width: 100%; }
+  .calc__options { display: grid; gap: var(--space-2); }
+  .calc__options label { display: flex; gap: var(--space-2); align-items: center; }
+  .calc__error { color: var(--ink); font-size: var(--text-sm); }
+  .calc__result {
+    margin-top: var(--space-16); padding: var(--space-8); background: var(--surface);
+    border: 1px solid var(--rule-strong); border-radius: 12px;
+  }
+  .calc__result h2 { margin-top: 0; }
+  .calc__big { font-size: var(--text-2xl); font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: var(--space-6); }
+  .calc__per { display: block; font-size: var(--text-base); font-weight: 400; color: var(--ink-2); }
+  .calc__result ul { padding-left: 1.2em; display: grid; gap: var(--space-2); margin-bottom: var(--space-6); }
+  .calc__note { font-size: var(--text-sm); color: var(--muted); }
+  .calc__email { margin-top: var(--space-8); padding-top: var(--space-8); border-top: 1px solid var(--rule-strong); }
+  .calc__honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .calc__next p { max-width: 60ch; margin-bottom: var(--space-6); }
+  @media (max-width: 640px) {
+    .calc { padding: var(--space-16) var(--gutter); }
+    .calc__result { padding: var(--space-6); }
+  }
+</style>
