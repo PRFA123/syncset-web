@@ -113,7 +113,9 @@ export const POST: APIRoute = async ({ request }) => {
       email,
       business,
       message,
-      source: 'syncset.com.au/home',
+      // Client-supplied source is only trusted from this closed list, so the CRM
+      // can tell free-tool leads apart without letting anyone write arbitrary tags.
+      source: data.source === 'tool-calculator' ? 'syncset.com.au/tool-calculator' : 'syncset.com.au/home',
       utm_source,
       utm_medium,
       timestamp: new Date().toISOString(),
